@@ -10,6 +10,8 @@ import com.sstgroup.xabaapp.data.DaoSession;
 
 import org.greenrobot.greendao.database.Database;
 
+import timber.log.Timber;
+
 //import com.sstgroup.xabaapp.data.
 
 /**
@@ -34,6 +36,9 @@ public class XabaApplication extends Application {
         DevOpenHelper helper = new DevOpenHelper(this, "xaba-db", null);
         Database db = helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
-        Log.d("TAG", "" + daoSession.getProfileDao().count());
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 }

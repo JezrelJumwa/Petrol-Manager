@@ -16,9 +16,21 @@ public class Profile {
     @SerializedName("uuid")
     private Long uuid;
 
-    @Generated(hash = 1149211111)
-    public Profile(Long uuid) {
+    @SerializedName("firstName")
+    private String firstName;
+    @SerializedName("sirName")
+    private String sirName;
+    @SerializedName("otherName")
+    private String otherName;
+
+
+
+    @Generated(hash = 1413825713)
+    public Profile(Long uuid, String firstName, String sirName, String otherName) {
         this.uuid = uuid;
+        this.firstName = firstName;
+        this.sirName = sirName;
+        this.otherName = otherName;
     }
 
     @Generated(hash = 782787822)
@@ -31,5 +43,29 @@ public class Profile {
 
     public void setUuid(Long uuid) {
         this.uuid = uuid;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSirName() {
+        return this.sirName;
+    }
+
+    public void setSirName(String sirName) {
+        this.sirName = sirName;
+    }
+
+    public String getOtherName() {
+        return this.otherName;
+    }
+
+    public void setOtherName(String otherName) {
+        this.otherName = otherName;
     }
 }
