@@ -13,7 +13,7 @@ import retrofit.RetrofitError;
  */
 
 public class NetworkMockService {
-    public static void login(String pin, String nationalId, Callback<ProfileModel> callback) {
+    public void login(String pin, String nationalId, Callback<ProfileModel> callback) {
         callback.failure(RetrofitError.networkError("login", new IOException()));
     }
 }
