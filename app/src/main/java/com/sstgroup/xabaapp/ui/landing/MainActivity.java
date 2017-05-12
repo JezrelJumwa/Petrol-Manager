@@ -2,7 +2,6 @@ package com.sstgroup.xabaapp.ui.landing;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.network.adapter.NetworkAdapterService;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.landing);
 
         Timber.d("MainActivity onCreate called!");
 
