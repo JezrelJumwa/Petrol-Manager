@@ -1,7 +1,4 @@
-package com.sstgroup.xabaapp.ui.landing;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+package com.sstgroup.xabaapp.ui.activities;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.network.adapter.NetworkAdapterService;
@@ -15,15 +12,17 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     public NetworkAdapterService networkService;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.landing);
+    protected int getLayoutId() {
+        return R.layout.landing;
+    }
 
+    @Override
+    protected void init() {
         Timber.d("MainActivity onCreate called!");
 
         networkService = NetworkAdapterService.getInstance(this);
