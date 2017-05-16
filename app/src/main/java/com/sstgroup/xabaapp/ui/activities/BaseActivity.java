@@ -5,10 +5,14 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+
+import com.sstgroup.xabaapp.R;
 
 import butterknife.ButterKnife;
 
@@ -28,7 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void init();
 
- /*   public void openFragment(Fragment toOpen, boolean addToBackStack) {
+    public void openFragment(Fragment toOpen, boolean addToBackStack) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame, toOpen);
         if (addToBackStack) {
@@ -44,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             ft.addToBackStack(null);
         }
         ft.commit();
-    }*/
+    }
 
     public void hideSoftKeyboard() {
         View view = this.getCurrentFocus();

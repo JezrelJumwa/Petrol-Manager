@@ -2,15 +2,7 @@ package com.sstgroup.xabaapp.ui.activities;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.network.adapter.NetworkAdapterService;
-import com.sstgroup.xabaapp.network.adapter.objects.CountryModel;
-import com.sstgroup.xabaapp.network.adapter.objects.IndustryModel;
-
-import java.util.ArrayList;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import timber.log.Timber;
+import com.sstgroup.xabaapp.ui.fragments.WizardStepOneFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -18,12 +10,16 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.landing;
+        return R.layout.activity_main;
     }
 
     @Override
     protected void init() {
-        Timber.d("MainActivity onCreate called!");
+
+        WizardStepOneFragment wizardStepOneFragment = new WizardStepOneFragment();
+        openFragment(wizardStepOneFragment, false);
+
+  /*      Timber.d("MainActivity onCreate called!");
 
         networkService = NetworkAdapterService.getInstance(this);
 
@@ -49,6 +45,6 @@ public class MainActivity extends BaseActivity {
             public void failure(RetrofitError error) {
                 Timber.d("Countries failed to load:" + error);
             }
-        });
+        });*/
     }
 }

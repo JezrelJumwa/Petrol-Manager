@@ -2,65 +2,52 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:orientation="vertical"
     android:paddingEnd="30dp"
     android:paddingStart="30dp">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@android:color/holo_blue_light"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/title"
+        android:layout_marginTop="20dp"
+        android:text="@string/refer_someone_to_get_rewards"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
     <TextView
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="@string/national_id"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/national_id"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="@string/pin_code"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/pin_code"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        android:text="@string/with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions"
+        android:textSize="16sp"
+        android:visibility="invisible"/>
 
     <Button
-        android:id="@+id/log_in"
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@android:color/holo_blue_light"
-        android:text="@string/log_in"
+        android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="@android:color/white"/>
 
     <Button
-        android:id="@+id/forgot_pin"
+        android:id="@+id/log_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@null"
-        android:text="@string/forgot_pin"
+        android:text="@string/login_in"
         android:textAllCaps="false"
         android:textColor="@android:color/holo_blue_light"/>
 

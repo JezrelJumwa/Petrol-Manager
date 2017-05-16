@@ -4,4 +4,33 @@
     <string name="and_i_want_to">and I want to</string>
     <string name="register">Register</string>
     <string name="log_in">Log in</string>
+    <string name="get_an_account">Get an account</string>
+    <string name="with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard">With our
+        easy process it only takes a couple of minutes to get onboard.
+    </string>
+    <string name="next">Next</string>
+    <string name="login_in">Log in</string>
+    <string name="refer_someone_to_get_rewards">Refer someone to get rewards</string>
+    <string name="with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions">
+        With each referral you get extra money and you also get credits for their actions.
+    </string>
+    <string name="title">Title</string>
+    <string name="national_id">National ID</string>
+    <string name="pin_code">PIN Code</string>
+    <string name="forgot_pin">Forgot PIN?</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="send_new_pin">Send new PIN</string>
+    <string name="national_id_used_for_authentication_and_validation">National ID (Used for
+        authentication and validation)
+    </string>
+    <string name="confirm_national_id">Confirm National ID</string>
+    <string name="confirm_pin_code">Confirm PIN Code</string>
+    <string name="referral_code">Referral Code</string>
+    <string name="activation_code">Activation Code</string>
+    <string name="verify">Verify</string>
+    <string name="resend_pin_sms">Re-send PIN SMS</string>
+    <string name="verified">Verified</string>
+    <string name="continuE">Continue</string>
+    <string name="register_another_worker">Register another worker</string>
+    <string name="your_referral_id_is">Your referral ID is:</string>
 </resources>

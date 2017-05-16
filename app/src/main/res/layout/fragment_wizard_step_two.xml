@@ -2,42 +2,51 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:orientation="vertical"
     android:paddingEnd="30dp"
     android:paddingStart="30dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@android:color/holo_blue_light"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/title"
+        android:layout_marginTop="20dp"
+        android:text="@string/refer_someone_to_get_rewards"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
     <TextView
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="@string/phone_number"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/phone_number"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:text="@string/with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions"
         android:textSize="16sp"/>
 
     <Button
-        android:id="@+id/send_new_pin"
+        android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@android:color/holo_blue_light"
-        android:text="@string/send_new_pin"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:text="@string/login_in"
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_blue_light"/>
 
 </LinearLayout>

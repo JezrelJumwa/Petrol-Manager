@@ -8,7 +8,7 @@ import java.util.Date;
  */
 
 public class ProfileModel implements NetworkModelObject {
-    private enum Gender {Male, Female};
+    private enum Gender {Male, Female}
 
     private long userId;
 

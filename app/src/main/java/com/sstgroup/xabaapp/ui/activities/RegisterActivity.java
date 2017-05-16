@@ -1,15 +1,18 @@
 package com.sstgroup.xabaapp.ui.activities;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.ui.fragments.RegisterWorkerAgentFragment;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+    protected int getLayoutId() {
+        return R.layout.activity_register;
+    }
+
+    @Override
+    protected void init() {
+        RegisterWorkerAgentFragment registerWorkerAgentFragment = new RegisterWorkerAgentFragment();
+        openFragment(registerWorkerAgentFragment, false);
     }
 }

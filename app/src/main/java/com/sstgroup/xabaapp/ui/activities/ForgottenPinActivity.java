@@ -1,15 +1,36 @@
 package com.sstgroup.xabaapp.ui.activities;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.view.View;
+import android.widget.EditText;
 
 import com.sstgroup.xabaapp.R;
 
-public class ForgottenPinActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.OnClick;
+
+public class ForgottenPinActivity extends BaseActivity {
+
+    @BindView(R.id.phone_number)
+    EditText mEditTextPhoneNumber;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgotten_pin);
+    protected int getLayoutId() {
+        return R.layout.activity_forgotten_pin;
+    }
+
+    @Override
+    protected void init() {
+
+    }
+
+    @OnClick({R.id.send_new_pin})
+    public void onButtonClick(View view) {
+        switch (view.getId()) {
+            case R.id.send_new_pin:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
