@@ -2,7 +2,6 @@ package com.sstgroup.xabaapp;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import com.sstgroup.xabaapp.data.DaoMaster;
 import com.sstgroup.xabaapp.data.DaoMaster.DevOpenHelper;
@@ -12,7 +11,6 @@ import org.greenrobot.greendao.database.Database;
 
 import timber.log.Timber;
 
-//import com.sstgroup.xabaapp.data.
 
 /**
  * Created by julianlubenov on 5/10/17.

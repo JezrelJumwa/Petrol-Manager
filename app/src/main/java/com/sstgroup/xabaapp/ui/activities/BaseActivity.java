@@ -28,6 +28,24 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void init();
 
+ /*   public void openFragment(Fragment toOpen, boolean addToBackStack) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, toOpen);
+        if (addToBackStack) {
+            ft.addToBackStack(null);
+        }
+        ft.commit();
+    }
+
+    public void addFragment(Fragment toOpen, boolean addToBackStack) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.content_frame, toOpen);
+        if (addToBackStack) {
+            ft.addToBackStack(null);
+        }
+        ft.commit();
+    }*/
+
     public void hideSoftKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
