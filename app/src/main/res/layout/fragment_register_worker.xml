@@ -279,51 +279,6 @@
             android:textAllCaps="false"
             android:textColor="@android:color/holo_blue_light"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="25dp"
-            android:background="@android:color/darker_gray"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/pin_code"
-            android:textSize="16sp"/>
-
-        <EditText
-            android:id="@+id/pin_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/confirm_pin_code"
-            android:textSize="16sp"/>
-
-        <EditText
-            android:id="@+id/confirm_pin_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/referral_code"
-            android:textSize="16sp"/>
-
-        <EditText
-            android:id="@+id/referral_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
         <Button
             android:id="@+id/register"
             android:layout_width="match_parent"

@@ -36,7 +36,8 @@ public class RegisterCompleteFragment extends BaseFragment {
 //
                 break;
             case R.id.register_another_worker:
-//
+                RegisterWorkerFragment registerWorkerFragment = new RegisterWorkerFragment();
+                activity.openFragment(registerWorkerFragment, false);
                 break;
         }
     }

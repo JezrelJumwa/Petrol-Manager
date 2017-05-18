@@ -33,4 +33,17 @@
     <string name="continuE">Continue</string>
     <string name="register_another_worker">Register another worker</string>
     <string name="your_referral_id_is">Your referral ID is:</string>
+    <string name="add_another_profession">Add another profession</string>
+    <string name="select_language">Select language</string>
+    <string name="preferred_language_of_communication">Preferred language of communication</string>
+    <string name="county">County</string>
+    <string name="sub_county">Sub-County</string>
+    <string name="select_county">Select County</string>
+    <string name="select_sub_county">Select Sub-County</string>
+    <string name="industry">Industry</string>
+    <string name="category">Category</string>
+    <string name="select_industry">Select Industry</string>
+    <string name="select_category">Select Category</string>
+    <string name="profession">Profession</string>
+    <string name="select_profession">Select Profession</string>
 </resources>

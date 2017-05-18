@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class RegisterWorkerAgentFragment extends BaseFragment {
+public class RegisterWorkerFragment extends BaseFragment {
 
     @BindView(R.id.national_id)
     EditText mEditTextNationalId;
@@ -34,12 +34,6 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     TextView txtCategorySelection;
     @BindView(R.id.txt_profession_selection)
     TextView txtProfessionSelection;
-    @BindView(R.id.pin_code)
-    EditText mEditTextPinCode;
-    @BindView(R.id.confirm_pin_code)
-    EditText mEditTextConfirmPinCode;
-    @BindView(R.id.referral_code)
-    EditText mEditTextReferralCode;
 
     private String selectedLanguage = "";
     private String selectedCounty = "";
@@ -51,7 +45,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_register_worker_agent;
+        return R.layout.fragment_register_worker;
     }
 
     @Override
