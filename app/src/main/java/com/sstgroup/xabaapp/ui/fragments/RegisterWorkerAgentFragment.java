@@ -6,13 +6,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.models.LocationResponse;
+import com.sstgroup.xabaapp.models.LocationStructure;
+import com.sstgroup.xabaapp.models.ProfessionResponse;
+import com.sstgroup.xabaapp.models.ProfessionStructure;
+import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
+import com.sstgroup.xabaapp.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
+
 
 public class RegisterWorkerAgentFragment extends BaseFragment {
 
@@ -56,7 +67,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-
+        getLocations();
+        getProfessions();
     }
 
     @Override
@@ -198,5 +210,41 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     }
                 });
         dialog.show();
+    }
+
+    private void getLocations() {
+
+        Call<LocationResponse> call = RestClient.getService().getLocations(Constants.AGENT_APP_VALUE);
+        call.enqueue(new Callback<LocationResponse>() {
+            @Override
+            public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
+                if (response.isSuccessful()) {
+                    LocationStructure locationStructure = response.body().getLocationStructure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LocationResponse> call, Throwable t) {
+                Timber.d("onFailure" + t.toString());
+            }
+        });
+    }
+
+    private void getProfessions() {
+
+        Call<ProfessionResponse> call = RestClient.getService().getProfessions(Constants.AGENT_APP_VALUE);
+        call.enqueue(new Callback<ProfessionResponse>() {
+            @Override
+            public void onResponse(Call<ProfessionResponse> call, Response<ProfessionResponse> response) {
+                if (response.isSuccessful()) {
+                    ProfessionStructure professionStructure = response.body().getProfessionStructure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfessionResponse> call, Throwable t) {
+                Timber.d("onFailure" + t.toString());
+            }
+        });
     }
 }
