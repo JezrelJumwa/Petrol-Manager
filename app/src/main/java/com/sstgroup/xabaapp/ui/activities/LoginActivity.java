@@ -5,14 +5,18 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Encryption;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class LoginActivity extends BaseActivity {
 
@@ -48,18 +52,21 @@ public class LoginActivity extends BaseActivity {
         String nationalId = mEditTextNationalId.getText().toString().trim();
         String pinCode = mEditTextPinCode.getText().toString().trim();
 
-        Call<Object> call = RestClient.getService().login(Constants.AGENT_APP_VALUE, nationalId,
+        nationalId = Encryption.encryptionRSA(nationalId);
+
+        Call<UserResponse> call = RestClient.getService().login(Constants.AGENT_APP_VALUE, nationalId,
                 pinCode);
-        call.enqueue(new Callback<Object>() {
+        call.enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
-                    response.toString();
+                    User user = response.body().getUser();
                 }
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Timber.d("onFailure" + t.toString());
             }
         });
     }

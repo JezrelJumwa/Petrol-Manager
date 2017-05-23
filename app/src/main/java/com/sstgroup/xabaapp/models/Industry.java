@@ -12,7 +12,7 @@ public class Industry {
     @SerializedName("name")
     private String name;
     @SerializedName("categories")
-    public ArrayList<Category> categories;
+    private ArrayList<Category> categories;
 
     public Long getIndustryId() {
         return industryId;

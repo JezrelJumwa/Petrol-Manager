@@ -3,6 +3,7 @@ package com.sstgroup.xabaapp.service;
 
 import com.sstgroup.xabaapp.models.LocationResponse;
 import com.sstgroup.xabaapp.models.ProfessionResponse;
+import com.sstgroup.xabaapp.models.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -22,9 +23,9 @@ public interface LeadsService {
 
     @FormUrlEncoded
     @POST(WS_LOGIN_PATH)
-    Call<Object> login(@Field(AGENT_APP_NAME) String agentApp,
-                       @Field(NATIONAL_ID) String nationalId,
-                       @Field(PIN) String pin);
+    Call<UserResponse> login(@Field(AGENT_APP_NAME) String agentApp,
+                             @Field(NATIONAL_ID) String nationalId,
+                             @Field(PIN) String pin);
 
     @GET(WS_LOCATION_PATH)
     Call<LocationResponse> getLocations(@Header(AGENT_APP_NAME) String agentApp);

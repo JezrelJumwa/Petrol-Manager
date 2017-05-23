@@ -3,7 +3,9 @@ package com.sstgroup.xabaapp.models;
 
 import com.google.gson.annotations.SerializedName;
 
-class User {
+import java.util.ArrayList;
+
+public class User {
 
     @SerializedName("id")
     private Long id;
@@ -29,7 +31,64 @@ class User {
     private String countyId;
     @SerializedName("subcounty_id")
     private String subcountyId;
+    @SerializedName("professions")
+    private ArrayList<Profession> professions;
+    @SerializedName("token")
+    private Token token;
 
-    @SerializedName("hash")
-    public String hash;
+    public Long getId() {
+        return id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getAgentId() {
+        return agentId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getOtherName() {
+        return otherName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public String getCountryId() {
+        return countryId;
+    }
+
+    public String getCountyId() {
+        return countyId;
+    }
+
+    public String getSubcountyId() {
+        return subcountyId;
+    }
+
+    public ArrayList<Profession> getProfessions() {
+        return professions;
+    }
+
+    public Token getToken() {
+        return token;
+    }
 }

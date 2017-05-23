@@ -9,6 +9,8 @@ public class Profession {
     private Long professionId;
     @SerializedName("name")
     private String name;
+    @SerializedName("id")
+    private Long id;
 
     public Long getProfessionId() {
         return professionId;
@@ -16,5 +18,9 @@ public class Profession {
 
     public String getName() {
         return name;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
