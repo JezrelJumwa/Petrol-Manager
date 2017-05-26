@@ -6,12 +6,13 @@ import android.view.View;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.PinResponse;
-import com.sstgroup.xabaapp.models.SignupRequestModel;
+import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.activities.LoginActivity;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Encryption;
 
 import java.util.ArrayList;
 
@@ -55,15 +56,40 @@ public class WizardStepOneFragment extends BaseFragment {
         }
     }
 
+    private void registerWorkerByAgent() {
+
+        ArrayList<Integer> professions = new ArrayList<>();
+        professions.add(77);
+        professions.add(4);
+
+        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel("1234554791", "1234", "+254701234567", "sw-KE", 1, 42, 51, professions, 34, Constants.AGENT_APP_VALUE, "79f256ee5556127042b6392006cacfc085bc042bbacb0d78d58927887eadc0b9bf5ce5711165e61606dc49a1b90cfafe26c954616fdf0fd2995cee1260d5e31b");
+
+        RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateStringForRequest());
+        Call<Object> call = RestClient.getService().registerWorkerByAgent(body);
+        call.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                if (response.isSuccessful()) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Timber.d("onFailure" + t.toString());
+            }
+        });
+    }
+
     private void register() {
 
         ArrayList<Integer> professions = new ArrayList<>();
         professions.add(77);
         professions.add(4);
 
-        SignupRequestModel signupRequestModel = new SignupRequestModel("1234554781", "1234", "+254701234567", "sw-KE", 1, 42, 51, professions, 12, Constants.AGENT_APP_VALUE);
+        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel("1234554781", "1234", "+254701234567", "sw-KE", 1, 42, 51, professions, 12, Constants.AGENT_APP_VALUE, null);
 
-        RequestBody body = RequestBody.create(MediaType.parse("text"), signupRequestModel.generateStringForRequest());
+        RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateStringForRequest());
         Call<Object> call = RestClient.getService().register(body);
         call.enqueue(new Callback<Object>() {
             @Override
@@ -101,6 +127,44 @@ public class WizardStepOneFragment extends BaseFragment {
     private void changePIN() {
 
         Call<PinResponse> call = RestClient.getService().changePin(Constants.AGENT_APP_VALUE, "c6aa59e7de501f559089fcc31b2a57319816fc042035425e1a1fe29bfa8fd77b3204955ba9237a12fae168dc96850a29b34d435a1dce5665e3b6f58e731aac6f", "1234", "1234");
+        call.enqueue(new Callback<PinResponse>() {
+            @Override
+            public void onResponse(Call<PinResponse> call, Response<PinResponse> response) {
+                if (response.isSuccessful()) {
+                    response.body().getStatus();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PinResponse> call, Throwable t) {
+                Timber.d("onFailure" + t.toString());
+            }
+        });
+    }
+
+    private void resetPIN() {
+        Call<PinResponse> call = RestClient.getService().resetPin(Constants.AGENT_APP_VALUE, "0000", "DCC0AA27");
+        call.enqueue(new Callback<PinResponse>() {
+            @Override
+            public void onResponse(Call<PinResponse> call, Response<PinResponse> response) {
+                if (response.isSuccessful()) {
+                    response.body().getStatus();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PinResponse> call, Throwable t) {
+                Timber.d("onFailure" + t.toString());
+            }
+        });
+    }
+
+    private void sendVerificationCodeForResetPIN() {
+
+        String nationalId = "1234554781";
+        nationalId = Encryption.encryptionRSA(nationalId);
+
+        Call<PinResponse> call = RestClient.getService().sendVerificationCodeForResetPIN(Constants.AGENT_APP_VALUE, nationalId);
         call.enqueue(new Callback<PinResponse>() {
             @Override
             public void onResponse(Call<PinResponse> call, Response<PinResponse> response) {

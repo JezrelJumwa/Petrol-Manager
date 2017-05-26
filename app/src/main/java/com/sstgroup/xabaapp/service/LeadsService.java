@@ -22,18 +22,26 @@ import static com.sstgroup.xabaapp.utils.Constants.NEW_PIN;
 import static com.sstgroup.xabaapp.utils.Constants.OLD_PIN;
 import static com.sstgroup.xabaapp.utils.Constants.PIN;
 import static com.sstgroup.xabaapp.utils.Constants.TOKEN;
+import static com.sstgroup.xabaapp.utils.Constants.VERIFICATION_CODE;
 import static com.sstgroup.xabaapp.utils.Constants.WS_CHANGE_PIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_GET_USER_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOCATION_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOGIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_PROFESSION_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_REGISTER_PATH;
+import static com.sstgroup.xabaapp.utils.Constants.WS_REGISTER_WORKER_BY_AGENT_PATH;
+import static com.sstgroup.xabaapp.utils.Constants.WS_RESET_PIN_PATH;
+import static com.sstgroup.xabaapp.utils.Constants.WS_RESET_VERIFY_PATH;
 
 public interface LeadsService {
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(WS_REGISTER_PATH)
     Call<Object> register(@Body RequestBody model);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(WS_REGISTER_WORKER_BY_AGENT_PATH)
+    Call<Object> registerWorkerByAgent(@Body RequestBody model);
 
     @FormUrlEncoded
     @POST(WS_GET_USER_PATH)
@@ -58,4 +66,15 @@ public interface LeadsService {
                                 @Field(TOKEN) String token,
                                 @Field(OLD_PIN) String oldPin,
                                 @Field(NEW_PIN) String newPin);
+
+    @FormUrlEncoded
+    @POST(WS_RESET_VERIFY_PATH)
+    Call<PinResponse> sendVerificationCodeForResetPIN(@Field(AGENT_APP_NAME) String agentApp,
+                                                      @Field(NATIONAL_ID) String nationalId);
+
+    @FormUrlEncoded
+    @POST(WS_RESET_PIN_PATH)
+    Call<PinResponse> resetPin(@Field(AGENT_APP_NAME) String agentApp,
+                               @Field(PIN) String pin,
+                               @Field(VERIFICATION_CODE) String verificationCode);
 }

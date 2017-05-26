@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-public class SignupRequestModel {
+public class RegisterWorkerRequestModel {
 
     private String national_idn;
     private String pin;
@@ -20,9 +20,9 @@ public class SignupRequestModel {
     private ArrayList<Integer> professions;
     private Integer agent_id;
     private String client;
+    private String token;
 
-
-    public SignupRequestModel(String national_idn, String pin, String phone, String preferred_language, Integer country_id, Integer county_id, Integer subcounty_id, ArrayList<Integer> professions, Integer agent_id, String client) {
+    public RegisterWorkerRequestModel(String national_idn, String pin, String phone, String preferred_language, Integer country_id, Integer county_id, Integer subcounty_id, ArrayList<Integer> professions, Integer agent_id, String client, String token) {
         this.national_idn = national_idn;
         this.pin = pin;
         this.phone = phone;
@@ -33,6 +33,7 @@ public class SignupRequestModel {
         this.professions = professions;
         this.agent_id = agent_id;
         this.client = client;
+        this.token = token;
     }
 
     public String generateStringForRequest() {
@@ -56,6 +57,10 @@ public class SignupRequestModel {
                 "&" + Constants.AGENT_ID + "=" + agent_id +
                 "&" + Constants.AGENT_APP_NAME + "=" + client +
                 professionsString;
+
+        if (token != null && !token.isEmpty()) {
+            requestBody += "&" + Constants.TOKEN + "=" + token;
+        }
 
         return requestBody;
     }
