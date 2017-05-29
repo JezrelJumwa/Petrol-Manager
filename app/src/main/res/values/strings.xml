@@ -15,8 +15,8 @@
         With each referral you get extra money and you also get credits for their actions.
     </string>
     <string name="title">Title</string>
-    <string name="national_id">National ID</string>
-    <string name="pin_code">PIN Code</string>
+    <string name="national_id">National ID:</string>
+    <string name="pin_code">PIN Code:</string>
     <string name="forgot_pin">Forgot PIN?</string>
     <string name="phone_number">Phone Number</string>
     <string name="send_new_pin">Send new PIN</string>
@@ -34,8 +34,10 @@
     <string name="register_another_worker">Register another worker</string>
     <string name="your_referral_id_is">Your referral ID is:</string>
     <string name="add_another_profession">Add another profession</string>
-    <string name="select_language">Select language</string>
-    <string name="preferred_language_of_communication">Preferred language of communication</string>
+    <string name="country">Country</string>
+    <string name="select_country">Select Country</string>
+    <string name="language">Language</string>
+    <string name="select_preferred_language">Select Preferred Language</string>
     <string name="county">County</string>
     <string name="sub_county">Sub-County</string>
     <string name="select_county">Select County</string>
@@ -46,4 +48,13 @@
     <string name="select_category">Select Category</string>
     <string name="profession">Profession</string>
     <string name="select_profession">Select Profession</string>
+    <string name="welcome_to_xaba">Welcome to Xaba</string>
+    <string name="register_now">Register Now</string>
+    <string name="how_to_get_an_account">How to get an account</string>
+    <string name="have_you_forgot_your_pin">Have you forgot your PIN?</string>
+    <string name="your_new_pin_will_be_sent_to_your_notification_number">Your new pin will be sent
+        to your notification number
+    </string>
+    <string name="did_you_remember_it">Did you remember it?</string>
+    <string name="do_you_remember_it">Do you remember it?</string>
 </resources>

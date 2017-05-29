@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="@string/refer_someone_to_get_rewards"
+        android:text="@string/how_to_get_an_account"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
@@ -26,14 +26,24 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="@string/with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions"
+        android:text="@string/with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard"
         android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:text="@string/register_now"
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_blue_light"/>
 
     <Button
         android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/holo_blue_light"
         android:text="@string/next"
         android:textAllCaps="false"

@@ -19,8 +19,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/refer_someone_to_get_rewards"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="invisible"/>
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,8 +27,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="@string/with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions"
-        android:textSize="16sp"
-        android:visibility="invisible"/>
+        android:textSize="16sp"/>
 
     <Button
         android:id="@+id/register"
@@ -37,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@android:color/holo_blue_light"
-        android:text="@string/register"
+        android:text="@string/register_now"
         android:textAllCaps="false"
         android:textColor="@android:color/white"/>
 

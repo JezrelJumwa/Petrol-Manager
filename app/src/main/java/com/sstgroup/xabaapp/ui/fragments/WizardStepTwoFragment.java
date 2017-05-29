@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.ui.activities.LoginActivity;
+import com.sstgroup.xabaapp.ui.activities.RegisterActivity;
 
 import butterknife.OnClick;
 
@@ -26,9 +27,13 @@ public class WizardStepTwoFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.next, R.id.log_in})
+    @OnClick({R.id.register, R.id.next, R.id.log_in})
     public void onButtonClick(View view) {
         switch (view.getId()) {
+            case R.id.register:
+                Intent intentToRegisterActivity = new Intent(activity, RegisterActivity.class);
+                startActivity(intentToRegisterActivity);
+                break;
             case R.id.next:
                 WizardStepThreeFragment wizardStepThreeFragment = new WizardStepThreeFragment();
                 activity.openFragment(wizardStepThreeFragment, true);

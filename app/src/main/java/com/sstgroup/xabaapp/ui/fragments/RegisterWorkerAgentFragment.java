@@ -33,8 +33,6 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     EditText mEditTextConfirmNationalId;
     @BindView(R.id.phone_number)
     EditText mEditTextPhoneNumber;
-    @BindView(R.id.txt_language_selection)
-    TextView txtLanguageSelection;
     @BindView(R.id.txt_county_selection)
     TextView txtCountySelection;
     @BindView(R.id.txt_sub_county_selection)
@@ -52,7 +50,6 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     @BindView(R.id.referral_code)
     EditText mEditTextReferralCode;
 
-    private String selectedLanguage = "";
     private String selectedCounty = "";
     private String selectedSubCounty = "";
 
@@ -76,12 +73,9 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.grp_language, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.register})
+    @OnClick({R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.register})
     public void onButtonClick(View view) {
         switch (view.getId()) {
-            case R.id.grp_language:
-                showLanguagesDialog();
-                break;
             case R.id.grp_county:
                 showCountiesDialog();
                 break;
@@ -102,24 +96,6 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                 activity.openFragment(registerConfirmFragment, true);
                 break;
         }
-    }
-
-    private void showLanguagesDialog() {
-
-        final List<String> languages = new ArrayList<>();
-        languages.add("Bulgarian");
-        languages.add("German");
-        languages.add("French");
-
-        CustomChooserDialog dialog = new CustomChooserDialog(activity, languages, true,
-                new CustomChooserDialog.OnCustomChooserDialogClosed() {
-                    @Override
-                    public void onCustomChooserDialogClosed(List<String> selectedItems) {
-                        selectedLanguage = selectedItems.get(0);
-                        txtLanguageSelection.setText(selectedItems.get(0));
-                    }
-                });
-        dialog.show();
     }
 
     private void showCountiesDialog() {

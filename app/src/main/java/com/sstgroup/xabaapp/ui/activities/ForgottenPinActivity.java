@@ -24,12 +24,16 @@ public class ForgottenPinActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.send_new_pin})
+    @OnClick({R.id.send_new_pin, R.id.do_you_remember_it})
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.send_new_pin:
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.do_you_remember_it:
+                Intent intent2 = new Intent(this, LoginActivity.class);
+                startActivity(intent2);
                 break;
         }
     }

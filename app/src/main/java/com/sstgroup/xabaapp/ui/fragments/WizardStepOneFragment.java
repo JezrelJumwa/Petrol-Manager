@@ -3,6 +3,7 @@ package com.sstgroup.xabaapp.ui.fragments;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.PinResponse;
@@ -11,11 +12,15 @@ import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.activities.LoginActivity;
+import com.sstgroup.xabaapp.ui.activities.RegisterActivity;
+import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -26,6 +31,14 @@ import timber.log.Timber;
 
 
 public class WizardStepOneFragment extends BaseFragment {
+
+    @BindView(R.id.txt_country_selection)
+    TextView txtCountrySelection;
+    @BindView(R.id.txt_language_selection)
+    TextView txtLanguageSelection;
+
+    private String selectedCountry = "";
+    private String selectedLanguage = "";
 
     @Override
     protected int getLayoutId() {
@@ -42,9 +55,19 @@ public class WizardStepOneFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.next, R.id.log_in})
+    @OnClick({R.id.grp_country, R.id.grp_language, R.id.register, R.id.next, R.id.log_in})
     public void onButtonClick(View view) {
         switch (view.getId()) {
+            case R.id.grp_country:
+                showCountriesDialog();
+                break;
+            case R.id.grp_language:
+                showLanguagesDialog();
+                break;
+            case R.id.register:
+                Intent intentToRegisterActivity = new Intent(activity, RegisterActivity.class);
+                startActivity(intentToRegisterActivity);
+                break;
             case R.id.next:
                 WizardStepTwoFragment wizardStepTwoFragment = new WizardStepTwoFragment();
                 activity.openFragment(wizardStepTwoFragment, true);
@@ -54,6 +77,42 @@ public class WizardStepOneFragment extends BaseFragment {
                 startActivity(intent);
                 break;
         }
+    }
+
+    private void showCountriesDialog() {
+
+        final List<String> languages = new ArrayList<>();
+        languages.add("Bulgaria");
+        languages.add("Germany");
+        languages.add("France");
+
+        CustomChooserDialog dialog = new CustomChooserDialog(activity, languages, true,
+                new CustomChooserDialog.OnCustomChooserDialogClosed() {
+                    @Override
+                    public void onCustomChooserDialogClosed(List<String> selectedItems) {
+                        selectedCountry = selectedItems.get(0);
+                        txtCountrySelection.setText(selectedItems.get(0));
+                    }
+                });
+        dialog.show();
+    }
+
+    private void showLanguagesDialog() {
+
+        final List<String> languages = new ArrayList<>();
+        languages.add("Bulgarian");
+        languages.add("German");
+        languages.add("French");
+
+        CustomChooserDialog dialog = new CustomChooserDialog(activity, languages, true,
+                new CustomChooserDialog.OnCustomChooserDialogClosed() {
+                    @Override
+                    public void onCustomChooserDialogClosed(List<String> selectedItems) {
+                        selectedLanguage = selectedItems.get(0);
+                        txtLanguageSelection.setText(selectedItems.get(0));
+                    }
+                });
+        dialog.show();
     }
 
     private void registerWorkerByAgent() {
@@ -143,6 +202,7 @@ public class WizardStepOneFragment extends BaseFragment {
     }
 
     private void resetPIN() {
+
         Call<PinResponse> call = RestClient.getService().resetPin(Constants.AGENT_APP_VALUE, "0000", "DCC0AA27");
         call.enqueue(new Callback<PinResponse>() {
             @Override
