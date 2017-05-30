@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class RegisterWorkerFragment extends BaseFragment {
+public class RegisterWorkerByAgentFragment extends BaseFragment {
 
     @BindView(R.id.national_id)
     EditText mEditTextNationalId;

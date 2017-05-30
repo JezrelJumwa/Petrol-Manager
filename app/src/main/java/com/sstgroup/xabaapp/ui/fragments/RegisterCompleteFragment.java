@@ -33,11 +33,10 @@ public class RegisterCompleteFragment extends BaseFragment {
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.continuE:
-//
                 break;
             case R.id.register_another_worker:
-                RegisterWorkerFragment registerWorkerFragment = new RegisterWorkerFragment();
-                activity.openFragment(registerWorkerFragment, false);
+                RegisterWorkerByAgentFragment registerWorkerByAgentFragment = new RegisterWorkerByAgentFragment();
+                activity.openFragment(registerWorkerByAgentFragment, false);
                 break;
         }
     }
