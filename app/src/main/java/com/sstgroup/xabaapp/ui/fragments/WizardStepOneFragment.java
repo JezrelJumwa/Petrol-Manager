@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.data.XabaDatabaseHelper;
 import com.sstgroup.xabaapp.models.PinResponse;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
 import com.sstgroup.xabaapp.models.User;
@@ -37,6 +38,9 @@ public class WizardStepOneFragment extends BaseFragment {
     @BindView(R.id.txt_language_selection)
     TextView txtLanguageSelection;
 
+    List<String> countries = new ArrayList<>();
+    List<String> languages = new ArrayList<>();
+
     private String selectedCountry = "";
     private String selectedLanguage = "";
 
@@ -47,7 +51,8 @@ public class WizardStepOneFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-
+        countries = XabaDatabaseHelper.getInstance(activity).getCountries();
+        languages = XabaDatabaseHelper.getInstance(activity).getLanguages();
     }
 
     @Override
@@ -80,13 +85,7 @@ public class WizardStepOneFragment extends BaseFragment {
     }
 
     private void showCountriesDialog() {
-
-        final List<String> languages = new ArrayList<>();
-        languages.add("Bulgaria");
-        languages.add("Germany");
-        languages.add("France");
-
-        CustomChooserDialog dialog = new CustomChooserDialog(activity, languages, true,
+        CustomChooserDialog dialog = new CustomChooserDialog(activity, countries, true,
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
@@ -98,12 +97,6 @@ public class WizardStepOneFragment extends BaseFragment {
     }
 
     private void showLanguagesDialog() {
-
-        final List<String> languages = new ArrayList<>();
-        languages.add("Bulgarian");
-        languages.add("German");
-        languages.add("French");
-
         CustomChooserDialog dialog = new CustomChooserDialog(activity, languages, true,
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override

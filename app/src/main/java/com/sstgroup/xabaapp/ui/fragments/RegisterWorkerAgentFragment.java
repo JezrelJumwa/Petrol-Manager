@@ -6,23 +6,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.models.LocationResponse;
-import com.sstgroup.xabaapp.models.LocationStructure;
-import com.sstgroup.xabaapp.models.ProfessionResponse;
-import com.sstgroup.xabaapp.models.ProfessionStructure;
-import com.sstgroup.xabaapp.service.RestClient;
+import com.sstgroup.xabaapp.data.XabaDatabaseHelper;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
-import com.sstgroup.xabaapp.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
 
 
 public class RegisterWorkerAgentFragment extends BaseFragment {
@@ -50,6 +41,13 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     @BindView(R.id.referral_code)
     EditText mEditTextReferralCode;
 
+    List<String> counties = new ArrayList<>();
+    List<String> subCounties = new ArrayList<>();
+
+    List<String> industries = new ArrayList<>();
+    List<String> categories = new ArrayList<>();
+    List<String> professions = new ArrayList<>();
+
     private String selectedCounty = "";
     private String selectedSubCounty = "";
 
@@ -64,8 +62,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-        getLocations();
-        getProfessions();
+        counties = XabaDatabaseHelper.getInstance(activity).getCounties();
+        industries = XabaDatabaseHelper.getInstance(activity).getIndustries();
     }
 
     @Override
@@ -100,29 +98,19 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     private void showCountiesDialog() {
 
-        final List<String> counties = new ArrayList<>();
-        counties.add("Sofia");
-        counties.add("Plovdiv");
-        counties.add("Varna");
-
         CustomChooserDialog dialog = new CustomChooserDialog(activity, counties, true,
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCounty = selectedItems.get(0);
                         txtCountySelection.setText(selectedItems.get(0));
+                        subCounties = XabaDatabaseHelper.getInstance(activity).getSubCounties(selectedItems.get(0));
                     }
                 });
         dialog.show();
     }
 
     private void showSubCountiesDialog() {
-
-        final List<String> subCounties = new ArrayList<>();
-        subCounties.add("Ihtiman");
-        subCounties.add("Pomorie");
-        subCounties.add("Shabla");
-
         CustomChooserDialog dialog = new CustomChooserDialog(activity, subCounties, true,
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override
@@ -135,47 +123,32 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     }
 
     private void showIndustriesDialog() {
-
-        final List<String> industries = new ArrayList<>();
-        industries.add("Pharmacy");
-        industries.add("IT");
-        industries.add("Tourism");
-
         CustomChooserDialog dialog = new CustomChooserDialog(activity, industries, true,
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedIndustry = selectedItems.get(0);
                         txtIndustrySelection.setText(selectedItems.get(0));
+                        categories = XabaDatabaseHelper.getInstance(activity).getCategories(selectedItems.get(0));
                     }
                 });
         dialog.show();
     }
 
     private void showCategoriesDialog() {
-
-        final List<String> categories = new ArrayList<>();
-        categories.add("Chief");
-        categories.add("Worker");
-        categories.add("Support");
-
         CustomChooserDialog dialog = new CustomChooserDialog(activity, categories, true,
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCategory = selectedItems.get(0);
                         txtCategorySelection.setText(selectedItems.get(0));
+                        professions = XabaDatabaseHelper.getInstance(activity).getProfessions(selectedItems.get(0));
                     }
                 });
         dialog.show();
     }
 
     private void showProfessionsDialog() {
-
-        final List<String> professions = new ArrayList<>();
-        professions.add("Policeman");
-        professions.add("Teacher");
-        professions.add("Barman");
 
         CustomChooserDialog dialog = new CustomChooserDialog(activity, professions, true,
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
@@ -186,41 +159,5 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     }
                 });
         dialog.show();
-    }
-
-    private void getLocations() {
-
-        Call<LocationResponse> call = RestClient.getService().getLocations(Constants.AGENT_APP_VALUE);
-        call.enqueue(new Callback<LocationResponse>() {
-            @Override
-            public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
-                if (response.isSuccessful()) {
-                    LocationStructure locationStructure = response.body().getLocationStructure();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LocationResponse> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
-            }
-        });
-    }
-
-    private void getProfessions() {
-
-        Call<ProfessionResponse> call = RestClient.getService().getProfessions(Constants.AGENT_APP_VALUE);
-        call.enqueue(new Callback<ProfessionResponse>() {
-            @Override
-            public void onResponse(Call<ProfessionResponse> call, Response<ProfessionResponse> response) {
-                if (response.isSuccessful()) {
-                    ProfessionStructure professionStructure = response.body().getProfessionStructure();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ProfessionResponse> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
-            }
-        });
     }
 }

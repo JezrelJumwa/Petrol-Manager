@@ -1,15 +1,16 @@
 package com.sstgroup.xabaapp.ui.activities;
 
 
+import android.content.Intent;
+
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.data.XabaDatabaseHelper;
-import com.sstgroup.xabaapp.models.Language;
 import com.sstgroup.xabaapp.models.LocationResponse;
 import com.sstgroup.xabaapp.models.LocationStructure;
+import com.sstgroup.xabaapp.models.ProfessionResponse;
+import com.sstgroup.xabaapp.models.ProfessionStructure;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.utils.Constants;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,7 +21,6 @@ public class SplashActivity extends BaseActivity {
 
     private XabaDatabaseHelper mXabaDatabaseHelper;
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_splash;
@@ -28,20 +28,13 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        mXabaDatabaseHelper = XabaDatabaseHelper.getInstance(this);
 
-        List<Language> languages = mXabaDatabaseHelper.getLanguages();
-        Timber.d("TEST");
-        Timber.d("TEST" + languages.get(0).getLanguageCode());
-        Timber.d("TEST" + languages.get(1).getIsRightToLeft());
-
-//        getLocations();
+        getLocations();
+        getProfessions();
+        startActivity(new Intent(this, MainActivity.class));
     }
 
-
     private void getLocations() {
-
-        Timber.d("getLocations");
 
         Call<LocationResponse> call = RestClient.getService().getLocations(Constants.AGENT_APP_VALUE);
         call.enqueue(new Callback<LocationResponse>() {
@@ -49,13 +42,36 @@ public class SplashActivity extends BaseActivity {
             public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
                 if (response.isSuccessful()) {
                     LocationStructure locationStructure = response.body().getLocationStructure();
-                    Timber.d("onResponse");
+                    mXabaDatabaseHelper = XabaDatabaseHelper.getInstance(SplashActivity.this);
+                    mXabaDatabaseHelper.deleteLocationTables();
                     mXabaDatabaseHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
+                    mXabaDatabaseHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
                 }
             }
 
             @Override
             public void onFailure(Call<LocationResponse> call, Throwable t) {
+                Timber.d("onFailure" + t.toString());
+            }
+        });
+    }
+
+    private void getProfessions() {
+
+        Call<ProfessionResponse> call = RestClient.getService().getProfessions(Constants.AGENT_APP_VALUE);
+        call.enqueue(new Callback<ProfessionResponse>() {
+            @Override
+            public void onResponse(Call<ProfessionResponse> call, Response<ProfessionResponse> response) {
+                if (response.isSuccessful()) {
+                    ProfessionStructure professionStructure = response.body().getProfessionStructure();
+                    mXabaDatabaseHelper = XabaDatabaseHelper.getInstance(SplashActivity.this);
+                    mXabaDatabaseHelper.deleteProfessionTables();
+                    mXabaDatabaseHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfessionResponse> call, Throwable t) {
                 Timber.d("onFailure" + t.toString());
             }
         });

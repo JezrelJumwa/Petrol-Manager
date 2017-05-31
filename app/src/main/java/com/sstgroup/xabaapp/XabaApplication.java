@@ -3,9 +3,8 @@ package com.sstgroup.xabaapp;
 import android.app.Application;
 import android.content.Context;
 
-import com.sstgroup.xabaapp.data.DaoMaster;
-import com.sstgroup.xabaapp.data.DaoMaster.DevOpenHelper;
-import com.sstgroup.xabaapp.data.DaoSession;
+import com.sstgroup.xabaapp.models.DaoMaster;
+import com.sstgroup.xabaapp.models.DaoSession;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -31,7 +30,7 @@ public class XabaApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        DevOpenHelper helper = new DevOpenHelper(this, "xaba-db", null);
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "xaba-db", null);
         Database db = helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
 
