@@ -10,7 +10,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/green_color"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_chooser"
@@ -29,7 +29,7 @@
             android:id="@+id/btn_close"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/green_color"
             android:textColor="@color/white"
             android:textSize="17sp"/>
 
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/green_color"/>
 
     </FrameLayout>
 

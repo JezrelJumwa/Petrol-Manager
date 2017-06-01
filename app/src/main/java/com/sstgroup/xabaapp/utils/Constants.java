@@ -33,4 +33,7 @@ public class Constants {
     public static final String PROFESSIONS = "professions[]";
     public static final String AGENT_ID = "agent_id";
     public static final String VERIFICATION_CODE = "verification_code";
+
+    public static final String PREFS = "AbsoricaPreferences";
+    public static final int SPLASH_DURATION = 1000;
 }

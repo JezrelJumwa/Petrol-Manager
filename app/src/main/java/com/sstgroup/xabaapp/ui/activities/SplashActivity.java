@@ -2,6 +2,7 @@ package com.sstgroup.xabaapp.ui.activities;
 
 
 import android.content.Intent;
+import android.os.Handler;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.data.XabaDatabaseHelper;
@@ -28,10 +29,27 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        mXabaDatabaseHelper = XabaDatabaseHelper.getInstance(this);
 
         getLocations();
         getProfessions();
-        startActivity(new Intent(this, MainActivity.class));
+
+        startTimerForSplash();
+    }
+
+    private void startTimerForSplash() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                goToMainScreen();
+            }
+        }, Constants.SPLASH_DURATION);
+    }
+
+    private void goToMainScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void getLocations() {
@@ -42,7 +60,6 @@ public class SplashActivity extends BaseActivity {
             public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
                 if (response.isSuccessful()) {
                     LocationStructure locationStructure = response.body().getLocationStructure();
-                    mXabaDatabaseHelper = XabaDatabaseHelper.getInstance(SplashActivity.this);
                     mXabaDatabaseHelper.deleteLocationTables();
                     mXabaDatabaseHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
                     mXabaDatabaseHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
@@ -64,7 +81,6 @@ public class SplashActivity extends BaseActivity {
             public void onResponse(Call<ProfessionResponse> call, Response<ProfessionResponse> response) {
                 if (response.isSuccessful()) {
                     ProfessionStructure professionStructure = response.body().getProfessionStructure();
-                    mXabaDatabaseHelper = XabaDatabaseHelper.getInstance(SplashActivity.this);
                     mXabaDatabaseHelper.deleteProfessionTables();
                     mXabaDatabaseHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
                 }

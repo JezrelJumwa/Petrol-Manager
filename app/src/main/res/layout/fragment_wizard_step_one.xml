@@ -2,126 +2,153 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingEnd="30dp"
     android:paddingStart="30dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/country"
-        android:textSize="16sp"/>
-
     <LinearLayout
-        android:id="@+id/grp_country"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        tools:ignore="UseCompoundDrawables">
-
-        <TextView
-            android:id="@+id/txt_country_selection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/select_country"
-            android:textColor="@color/dark_text_color"
-            android:textSize="16sp"
-            tools:ignore="MissingPrefix"/>
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/down_arrow"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/xaba_red_logo"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/country"
+            android:textColor="@color/dark_color"
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:id="@+id/grp_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="7dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="7dp"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/txt_country_selection"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/select_country"
+                android:textColor="@color/dark_color"
+                android:textSize="16sp"
+                tools:ignore="MissingPrefix"/>
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/arrow_down"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/language"
+            android:textColor="@color/dark_color"
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:id="@+id/grp_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="7dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="7dp"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/txt_language_selection"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/select_preferred_language"
+                android:textColor="@color/dark_color"
+                android:textSize="16sp"
+                tools:ignore="MissingPrefix"/>
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/arrow_down"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/language"
-        android:textSize="16sp"/>
-
     <LinearLayout
-        android:id="@+id/grp_language"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        tools:ignore="UseCompoundDrawables">
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txt_language_selection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/select_preferred_language"
-            android:textColor="@color/dark_text_color"
-            android:textSize="16sp"
-            tools:ignore="MissingPrefix"/>
+            android:layout_marginTop="50dp"
+            android:text="@string/welcome_to_xaba"
+            android:textColor="@color/dark_color"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/down_arrow"/>
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard"
+            android:textColor="@color/dark_color"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/register"
+            style="@style/ButtonLink"
+            android:layout_marginTop="40dp"
+            android:text="@string/register_now"/>
+
+        <Button
+            android:id="@+id/next"
+            style="@style/ButtonGreen"
+            android:layout_marginTop="10dp"
+            android:text="@string/next"/>
+
+        <Button
+            android:id="@+id/log_in"
+            style="@style/ButtonLink"
+            android:layout_marginTop="5dp"
+            android:text="@string/login_in"/>
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="@string/welcome_to_xaba"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="@string/with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard"
-        android:textSize="16sp"/>
-
-    <Button
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@null"
-        android:text="@string/register_now"
-        android:textAllCaps="false"
-        android:textColor="@android:color/holo_blue_light"/>
-
-    <Button
-        android:id="@+id/next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"/>
-
-    <Button
-        android:id="@+id/log_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@null"
-        android:text="@string/login_in"
-        android:textAllCaps="false"
-        android:textColor="@android:color/holo_blue_light"/>
 
 </LinearLayout>

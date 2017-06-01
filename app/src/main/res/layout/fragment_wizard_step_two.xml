@@ -2,61 +2,79 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
     android:paddingEnd="30dp"
     android:paddingStart="30dp">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@android:color/holo_blue_light"/>
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="@string/how_to_get_an_account"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/arrow_back"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="@string/with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard"
-        android:textSize="16sp"/>
+        <ImageView
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:background="@color/green_color"/>
 
-    <Button
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@null"
-        android:text="@string/register_now"
-        android:textAllCaps="false"
-        android:textColor="@android:color/holo_blue_light"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/next"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"/>
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/log_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@null"
-        android:text="@string/login_in"
-        android:textAllCaps="false"
-        android:textColor="@android:color/holo_blue_light"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="@string/how_to_get_an_account"
+            android:textColor="@color/dark_color"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard"
+            android:textColor="@color/dark_color"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/register"
+            style="@style/ButtonLink"
+            android:layout_marginTop="40dp"
+            android:text="@string/register_now"/>
+
+        <Button
+            android:id="@+id/next"
+            style="@style/ButtonGreen"
+            android:layout_marginTop="10dp"
+            android:text="@string/next"/>
+
+        <Button
+            android:id="@+id/log_in"
+            style="@style/ButtonLink"
+            android:layout_marginTop="5dp"
+            android:text="@string/login_in"/>
+
+    </LinearLayout>
 
 </LinearLayout>

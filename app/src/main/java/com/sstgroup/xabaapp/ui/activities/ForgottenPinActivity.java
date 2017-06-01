@@ -11,8 +11,8 @@ import butterknife.OnClick;
 
 public class ForgottenPinActivity extends BaseActivity {
 
-    @BindView(R.id.phone_number)
-    EditText mEditTextPhoneNumber;
+    @BindView(R.id.national_id)
+    EditText mEditTextNationalId;
 
     @Override
     protected int getLayoutId() {

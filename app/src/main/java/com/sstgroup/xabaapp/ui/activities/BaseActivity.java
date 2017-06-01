@@ -13,16 +13,19 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.utils.SharedPreferencesHelper;
 
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    protected SharedPreferencesHelper preferencesHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-
+        preferencesHelper = SharedPreferencesHelper.getInstance(this);
         ButterKnife.bind(this);
 
         init();

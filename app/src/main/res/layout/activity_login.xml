@@ -2,10 +2,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingEnd="30dp"
     android:paddingStart="30dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/xaba_red_logo"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,55 +20,30 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:text="@string/title"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="@string/national_id"
-        android:textSize="16sp"/>
+        android:textSize="20sp"/>
 
     <EditText
         android:id="@+id/national_id"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        style="@style/EditText"
         android:layout_marginTop="20dp"
-        android:text="@string/pin_code"
-        android:textSize="16sp"/>
+        android:hint="@string/national_id"/>
 
     <EditText
         android:id="@+id/pin_code"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        style="@style/EditText"
+        android:layout_marginTop="20dp"
+        android:hint="@string/pin_code"/>
 
     <Button
         android:id="@+id/log_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ButtonGreen"
         android:layout_marginTop="30dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="@string/log_in"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"/>
+        android:text="@string/log_in"/>
 
     <Button
         android:id="@+id/forgot_pin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ButtonLink"
         android:layout_marginTop="5dp"
-        android:background="@null"
-        android:text="@string/forgot_pin"
-        android:textAllCaps="false"
-        android:textColor="@android:color/holo_blue_light"/>
+        android:text="@string/forgot_pin"/>
 
 </LinearLayout>

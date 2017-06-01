@@ -11,7 +11,8 @@
     <string name="next">Next</string>
     <string name="login_in">Log in</string>
     <string name="refer_someone_to_get_rewards">Refer someone to get rewards</string>
-    <string name="with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions">
+    <string
+        name="with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions">
         With each referral you get extra money and you also get credits for their actions.
     </string>
     <string name="title">Title</string>
@@ -49,7 +50,8 @@
     <string name="profession">Profession</string>
     <string name="select_profession">Select Profession</string>
     <string name="welcome_to_xaba">Welcome to Xaba</string>
-    <string name="register_now">Register Now</string>
+    <string name="register_now"><u>Register Now</u></string>
+    <string name="register_now_not_underlined">Register Now</string>
     <string name="how_to_get_an_account">How to get an account</string>
     <string name="have_you_forgot_your_pin">Have you forgot your PIN?</string>
     <string name="your_new_pin_will_be_sent_to_your_notification_number">Your new pin will be sent
@@ -57,4 +59,5 @@
     </string>
     <string name="did_you_remember_it">Did you remember it?</string>
     <string name="do_you_remember_it">Do you remember it?</string>
+    <string name="building_connections">Building Connections</string>
 </resources>
