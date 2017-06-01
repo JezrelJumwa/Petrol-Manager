@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.data.XabaDatabaseHelper;
+import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.LocationResponse;
 import com.sstgroup.xabaapp.models.LocationStructure;
 import com.sstgroup.xabaapp.models.ProfessionResponse;
@@ -20,7 +20,7 @@ import timber.log.Timber;
 
 public class SplashActivity extends BaseActivity {
 
-    private XabaDatabaseHelper mXabaDatabaseHelper;
+    private DatabaseHelper mXabaDatabaseHelper;
 
     @Override
     protected int getLayoutId() {
@@ -29,7 +29,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        mXabaDatabaseHelper = XabaDatabaseHelper.getInstance(this);
+        mXabaDatabaseHelper = DatabaseHelper.getInstance(this);
 
         getLocations();
         getProfessions();

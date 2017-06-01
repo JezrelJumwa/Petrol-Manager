@@ -1,4 +1,4 @@
-package com.sstgroup.xabaapp.data;
+package com.sstgroup.xabaapp.db;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -28,9 +28,9 @@ import java.util.List;
  * Created by julianlubenov on 5/10/17.
  */
 
-public class XabaDatabaseHelper {
+public class DatabaseHelper {
 
-    private static XabaDatabaseHelper instance;
+    private static DatabaseHelper instance;
 
     private static DaoMaster.DevOpenHelper helper;
     private static SQLiteDatabase db;
@@ -44,13 +44,13 @@ public class XabaDatabaseHelper {
     private static CategoryDao categoryDao;
     private static ProfessionDao professionDao;
 
-    private XabaDatabaseHelper() {
+    private DatabaseHelper() {
 
     }
 
-    public static XabaDatabaseHelper getInstance(Context context) {
+    public static DatabaseHelper getInstance(Context context) {
         if (instance == null) {
-            instance = new XabaDatabaseHelper();
+            instance = new DatabaseHelper();
 
             helper = new DaoMaster.DevOpenHelper(context, "xaba-db", null);
             db = helper.getWritableDatabase();

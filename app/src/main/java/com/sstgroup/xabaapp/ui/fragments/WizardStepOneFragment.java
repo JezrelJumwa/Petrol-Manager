@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.data.XabaDatabaseHelper;
+import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.PinResponse;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
 import com.sstgroup.xabaapp.models.User;
@@ -51,8 +51,8 @@ public class WizardStepOneFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-        countries = XabaDatabaseHelper.getInstance(activity).getCountries();
-        languages = XabaDatabaseHelper.getInstance(activity).getLanguages();
+        countries = DatabaseHelper.getInstance(activity).getCountries();
+        languages = DatabaseHelper.getInstance(activity).getLanguages();
     }
 
     @Override

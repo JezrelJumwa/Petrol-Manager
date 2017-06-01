@@ -25,11 +25,15 @@ public class Industry {
     @ToMany(referencedJoinProperty = "industryId")
     private List<Category> categories;
 
-    /** Used to resolve relations */
+    /**
+     * Used to resolve relations
+     */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
 
-    /** Used for active entity operations. */
+    /**
+     * Used for active entity operations.
+     */
     @Generated(hash = 964309580)
     private transient IndustryDao myDao;
 
@@ -90,7 +94,9 @@ public class Industry {
         return categories;
     }
 
-    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    /**
+     * Resets a to-many relationship, making the next get call to query for a fresh result.
+     */
     @Generated(hash = 1494004962)
     public synchronized void resetCategories() {
         categories = null;

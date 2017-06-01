@@ -1,7 +1,8 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,9 +20,7 @@
 
         <EditText
             android:id="@+id/national_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            style="@style/EditText"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,9 +31,7 @@
 
         <EditText
             android:id="@+id/confirm_national_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            style="@style/EditText"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,9 +42,7 @@
 
         <EditText
             android:id="@+id/phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            style="@style/EditText"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -58,19 +53,25 @@
 
         <LinearLayout
             android:id="@+id/grp_county"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:background="@color/white"
             android:orientation="horizontal"
+            android:paddingBottom="7dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="7dp"
             tools:ignore="UseCompoundDrawables">
 
             <TextView
                 android:id="@+id/txt_county_selection"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_weight="1"
                 android:text="@string/select_county"
-                android:textColor="@color/dark_text_color"
+                android:textColor="@color/dark_color"
                 android:textSize="16sp"
                 tools:ignore="MissingPrefix"/>
 
@@ -78,9 +79,9 @@
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/down_arrow"/>
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/arrow_down"/>
 
         </LinearLayout>
 
@@ -93,19 +94,25 @@
 
         <LinearLayout
             android:id="@+id/grp_sub_county"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:background="@color/white"
             android:orientation="horizontal"
+            android:paddingBottom="7dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="7dp"
             tools:ignore="UseCompoundDrawables">
 
             <TextView
                 android:id="@+id/txt_sub_county_selection"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_weight="1"
                 android:text="@string/select_sub_county"
-                android:textColor="@color/dark_text_color"
+                android:textColor="@color/dark_color"
                 android:textSize="16sp"
                 tools:ignore="MissingPrefix"/>
 
@@ -113,9 +120,9 @@
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/down_arrow"/>
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/arrow_down"/>
 
         </LinearLayout>
 
@@ -135,19 +142,25 @@
 
             <LinearLayout
                 android:id="@+id/grp_industry"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@color/white"
                 android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="7dp"
                 tools:ignore="UseCompoundDrawables">
 
                 <TextView
                     android:id="@+id/txt_industry_selection"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:text="@string/select_industry"
-                    android:textColor="@color/dark_text_color"
+                    android:textColor="@color/dark_color"
                     android:textSize="16sp"
                     tools:ignore="MissingPrefix"/>
 
@@ -155,9 +168,9 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:src="@drawable/down_arrow"/>
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/arrow_down"/>
 
             </LinearLayout>
 
@@ -170,19 +183,25 @@
 
             <LinearLayout
                 android:id="@+id/grp_category"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@color/white"
                 android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="7dp"
                 tools:ignore="UseCompoundDrawables">
 
                 <TextView
                     android:id="@+id/txt_category_selection"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:text="@string/select_category"
-                    android:textColor="@color/dark_text_color"
+                    android:textColor="@color/dark_color"
                     android:textSize="16sp"
                     tools:ignore="MissingPrefix"/>
 
@@ -190,9 +209,9 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:src="@drawable/down_arrow"/>
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/arrow_down"/>
 
             </LinearLayout>
 
@@ -205,19 +224,25 @@
 
             <LinearLayout
                 android:id="@+id/grp_profession"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@color/white"
                 android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="7dp"
                 tools:ignore="UseCompoundDrawables">
 
                 <TextView
                     android:id="@+id/txt_profession_selection"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:text="@string/select_profession"
-                    android:textColor="@color/dark_text_color"
+                    android:textColor="@color/dark_color"
                     android:textSize="16sp"
                     tools:ignore="MissingPrefix"/>
 
@@ -225,9 +250,9 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:src="@drawable/down_arrow"/>
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/arrow_down"/>
 
             </LinearLayout>
 
@@ -235,25 +260,23 @@
 
         <Button
             android:id="@+id/add_another_profession"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ButtonLink"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@null"
-            android:text="@string/add_another_profession"
-            android:textAllCaps="false"
-            android:textColor="@android:color/holo_blue_light"/>
+            android:text="@string/add_another_profession"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="25dp"
+            android:background="@android:color/darker_gray"/>
 
         <Button
             android:id="@+id/register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/ButtonGreen"
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
-            android:background="@android:color/holo_blue_light"
-            android:text="@string/register"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"/>
+            android:text="@string/register"/>
 
     </LinearLayout>
 

@@ -21,20 +21,17 @@
     <string name="forgot_pin">Forgot PIN?</string>
     <string name="phone_number">Phone Number</string>
     <string name="send_new_pin">Send new PIN</string>
-    <string name="national_id_used_for_authentication_and_validation">National ID (Used for
-        authentication and validation)
-    </string>
     <string name="confirm_national_id">Confirm National ID</string>
     <string name="confirm_pin_code">Confirm PIN Code</string>
     <string name="referral_code">Referral Code</string>
     <string name="activation_code">Activation Code</string>
     <string name="verify">Verify</string>
-    <string name="resend_pin_sms">Re-send PIN SMS</string>
+    <string name="resend_pin_sms"><u>Re-send PIN SMS</u></string>
     <string name="verified">Verified</string>
     <string name="continuE">Continue</string>
-    <string name="register_another_worker">Register another worker</string>
+    <string name="register_another_worker"><u>Register another worker</u></string>
     <string name="your_referral_id_is">Your referral ID is:</string>
-    <string name="add_another_profession">Add another profession</string>
+    <string name="add_another_profession"><u>Add another profession</u></string>
     <string name="country">Country</string>
     <string name="select_country">Select Country</string>
     <string name="language">Language</string>
@@ -57,7 +54,6 @@
     <string name="your_new_pin_will_be_sent_to_your_notification_number">Your new pin will be sent
         to your notification number
     </string>
-    <string name="did_you_remember_it">Did you remember it?</string>
-    <string name="do_you_remember_it">Do you remember it?</string>
+    <string name="do_you_remember_it"><u>Do you remember it?</u></string>
     <string name="building_connections">Building Connections</string>
 </resources>

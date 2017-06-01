@@ -26,11 +26,15 @@ public class Category {
     public List<Profession> professions;
     private long industryId;
 
-    /** Used to resolve relations */
+    /**
+     * Used to resolve relations
+     */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
 
-    /** Used for active entity operations. */
+    /**
+     * Used for active entity operations.
+     */
     @Generated(hash = 40161530)
     private transient CategoryDao myDao;
 
@@ -101,7 +105,9 @@ public class Category {
         return professions;
     }
 
-    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    /**
+     * Resets a to-many relationship, making the next get call to query for a fresh result.
+     */
     @Generated(hash = 1823650265)
     public synchronized void resetProfessions() {
         professions = null;

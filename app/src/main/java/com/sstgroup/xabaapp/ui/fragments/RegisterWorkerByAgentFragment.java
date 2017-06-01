@@ -42,7 +42,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_register_worker;
+        return R.layout.fragment_register_worker_by_agent;
     }
 
     @Override
