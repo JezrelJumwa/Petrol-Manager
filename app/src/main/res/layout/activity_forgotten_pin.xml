@@ -2,28 +2,33 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/background"
+    android:paddingEnd="30dp"
+    android:paddingStart="30dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_x"
         android:gravity="center"
-        android:orientation="vertical"
-        android:paddingEnd="30dp"
-        android:paddingStart="30dp">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/xaba_red_logo_big"/>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/green_line"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:text="@string/have_you_forgot_your_pin"
+            android:layout_marginTop="30dp"
+            android:text="@string/need_help_with_your_pin"
             android:textColor="@color/dark_color"
             android:textSize="20sp"/>
 
@@ -31,15 +36,16 @@
             android:id="@+id/national_id"
             style="@style/EditTextStyle"
             android:layout_marginTop="20dp"
-            android:hint="@string/national_id"/>
+            android:hint="@string/national_id"
+            android:inputType="number"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="@string/your_new_pin_will_be_sent_to_your_notification_number"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/enter_your_national_id_we_will_send_a_pin_to_your_preferred_number"
             android:textColor="@color/dark_color"
             android:textSize="16sp"/>
 

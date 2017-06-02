@@ -22,7 +22,6 @@ import static com.sstgroup.xabaapp.utils.Constants.NEW_PIN;
 import static com.sstgroup.xabaapp.utils.Constants.OLD_PIN;
 import static com.sstgroup.xabaapp.utils.Constants.PIN;
 import static com.sstgroup.xabaapp.utils.Constants.TOKEN;
-import static com.sstgroup.xabaapp.utils.Constants.VERIFICATION_CODE;
 import static com.sstgroup.xabaapp.utils.Constants.WS_CHANGE_PIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_GET_USER_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOCATION_PATH;
@@ -75,6 +74,5 @@ public interface LeadsService {
     @FormUrlEncoded
     @POST(WS_RESET_PIN_PATH)
     Call<PinResponse> resetPin(@Field(AGENT_APP_NAME) String agentApp,
-                               @Field(PIN) String pin,
-                               @Field(VERIFICATION_CODE) String verificationCode);
+                               @Field(NATIONAL_ID) String nationalId);
 }

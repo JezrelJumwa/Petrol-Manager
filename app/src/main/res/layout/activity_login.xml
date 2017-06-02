@@ -18,12 +18,20 @@
             android:layout_height="wrap_content"
             android:src="@drawable/xaba_red_logo_big"/>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/green_line"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:text="@string/title"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/please_enter_your_national_id_and_pin_to_login"
             android:textSize="20sp"/>
 
         <EditText

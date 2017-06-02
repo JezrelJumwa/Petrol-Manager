@@ -24,6 +24,8 @@ import com.sstgroup.xabaapp.models.SubCountyDao;
 import java.util.ArrayList;
 import java.util.List;
 
+import timber.log.Timber;
+
 /**
  * Created by julianlubenov on 5/10/17.
  */
@@ -165,6 +167,7 @@ public class DatabaseHelper {
         List<String> subCountiesString = new ArrayList<>();
 
         for (SubCounty subCounty : countyDao.queryBuilder().where(CountyDao.Properties.Name.eq(countyName)).list().get(0).getSubCounties()) {
+            Timber.d("TEST subCounty=");
             subCountiesString.add(subCounty.getName());
         }
 
