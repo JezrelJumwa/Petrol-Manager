@@ -18,8 +18,8 @@ public class MyProfileFragment extends BaseFragment {
 
     public static final String TAG = MyProfileFragment.class.getSimpleName();
 
-//    @BindView(R.id.rv_profile)
-//    RecyclerView mRvMyProfile;
+    @BindView(R.id.rv_profile)
+    RecyclerView mRvMyProfile;
 
     public static MyProfileFragment newInstance() {
 
@@ -37,9 +37,9 @@ public class MyProfileFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-//        mRvMyProfile.setLayoutManager(new LinearLayoutManager(activity));
-//        MyProfileAdapter adapter = new MyProfileAdapter();
-//        mRvMyProfile.setAdapter(adapter);
+        mRvMyProfile.setLayoutManager(new LinearLayoutManager(activity));
+        MyProfileAdapter adapter = new MyProfileAdapter();
+        mRvMyProfile.setAdapter(adapter);
     }
 
     @Override

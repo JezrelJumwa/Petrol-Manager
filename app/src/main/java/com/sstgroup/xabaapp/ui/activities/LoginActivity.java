@@ -93,6 +93,7 @@ public class LoginActivity extends BaseActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     User user = response.body().getUser();
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }
             }
 

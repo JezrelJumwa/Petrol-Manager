@@ -27,7 +27,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         .inflate(R.layout.row_profile_item, parent, false));
             case R.layout.row_profile_profesion:
                 return new RowProfession(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.row_profile_footer, parent, false));
+                        .inflate(R.layout.row_profile_profesion, parent, false));
             case R.layout.row_profile_footer:
                 return new RowFooter(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.row_profile_footer, parent, false));
@@ -77,7 +77,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemCount() {
-        return 9;
+        return 10;
     }
 
     class RowHeader extends RecyclerView.ViewHolder {
