@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginBottom="35dp"
+        android:src="@drawable/menu_logo"/>
+
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/nav_register_worker"
+        style="@style/NavMenuStyle"
+        android:drawableLeft="@drawable/nav_register_worker"
+        android:drawablePadding="18dp"
+        android:text="Register Worker"/>
+
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/nav_dashboard"
+        style="@style/NavMenuStyle"
+        android:drawableLeft="@drawable/nav_dashboard"
+        android:drawablePadding="18dp"
+        android:text="Dashboard"/>
+
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/nav_reports"
+        style="@style/NavMenuStyle"
+        android:drawableLeft="@drawable/nav_reports"
+        android:drawablePadding="18dp"
+        android:text="Reports"/>
+
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/nav_my_profile"
+        style="@style/NavMenuStyle"
+        android:drawableLeft="@drawable/nav_my_profile"
+        android:drawablePadding="18dp"
+        android:text="My Profile"/>
+
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/nav_notifications"
+        style="@style/NavMenuStyle"
+        android:drawableLeft="@drawable/nav_notifications"
+        android:drawablePadding="18dp"
+        android:text="Notifications"/>
+
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/nav_faq"
+        style="@style/NavMenuStyle"
+        android:drawableLeft="@drawable/nav_faq"
+        android:drawablePadding="18dp"
+        android:text="FAQ"/>
+
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/nav_contact"
+        style="@style/NavMenuStyle"
+        android:drawableLeft="@drawable/nav_contact"
+        android:drawablePadding="18dp"
+        android:text="Contact"/>
+
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/nav_logout"
+        style="@style/NavMenuStyle"
+        android:layout_marginTop="14dp"
+        android:drawableLeft="@drawable/nav_logout"
+        android:drawablePadding="18dp"
+        android:textColor="@color/text_red"
+        android:text="Log Out"/>
+
+</LinearLayout>

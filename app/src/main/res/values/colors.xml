@@ -12,4 +12,7 @@
     <color name="gray">#e7e7e8</color>
     <color name="dark_text_color">#2a2a2a</color>
 
+    <color name="text_red">#e51f28</color>
+    <color name="text_gray">#4d4d4d</color>
+
 </resources>
