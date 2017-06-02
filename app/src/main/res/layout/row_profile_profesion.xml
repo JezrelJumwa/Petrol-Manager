@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:text="Industry:"
+            android:text="@string/industry_dot"
             style="@style/ProfileTxtKey"/>
 
         <TextView
@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/textView3"
             style="@style/ProfileTxtKey"
-            android:text="Category"
+            android:text="@string/category_dot"
             android:layout_below="@id/textView"/>
 
         <TextView
@@ -42,7 +42,7 @@
         <TextView
             android:id="@+id/textView4"
             style="@style/ProfileTxtKey"
-            android:text="Profession:"
+            android:text="@string/profession_dot"
             android:layout_below="@id/textView3"/>
 
         <TextView

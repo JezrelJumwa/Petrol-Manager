@@ -11,6 +11,7 @@ import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
+import com.sstgroup.xabaapp.utils.NavigationUtils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import butterknife.BindView;
@@ -64,10 +65,10 @@ public class LoginActivity extends BaseActivity {
             return;
         }
 
-        if (nationalId.length() != 10) {
-            Toast.makeText(this, getResources().getString(R.string.your_national_id_is_wrong), Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if (nationalId.length() != 10) {
+//            Toast.makeText(this, getResources().getString(R.string.your_national_id_is_wrong), Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         if (Validator.isEmpty(pinCode)) {
             Toast.makeText(this, getResources().getString(R.string.enter_pin_code), Toast.LENGTH_SHORT).show();
@@ -93,7 +94,7 @@ public class LoginActivity extends BaseActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     User user = response.body().getUser();
-                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    NavigationUtils.startSingleActivity(LoginActivity.this, HomeActivity.class);
                 }
             }
 
