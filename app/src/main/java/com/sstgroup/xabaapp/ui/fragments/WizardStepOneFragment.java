@@ -17,6 +17,7 @@ import com.sstgroup.xabaapp.ui.activities.RegisterActivity;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
+import com.sstgroup.xabaapp.utils.Preferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,9 @@ public class WizardStepOneFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
+        selectedCountry = Preferences.getSelectedCountry(activity);
+        selectedLanguage = Preferences.getSelectedLanguage(activity);
+
         countries = DatabaseHelper.getInstance(activity).getCountries();
         languages = DatabaseHelper.getInstance(activity).getLanguages();
     }
@@ -58,6 +62,13 @@ public class WizardStepOneFragment extends BaseFragment {
     @Override
     protected void initViews(View rootView) {
 
+        if (!selectedCountry.isEmpty()) {
+            txtCountrySelection.setText(selectedCountry);
+        }
+
+        if (!selectedLanguage.isEmpty()) {
+            txtLanguageSelection.setText(selectedLanguage);
+        }
     }
 
     @OnClick({R.id.grp_country, R.id.grp_language, R.id.register, R.id.next, R.id.log_in})
@@ -90,7 +101,9 @@ public class WizardStepOneFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCountry = selectedItems.get(0);
-                        txtCountrySelection.setText(selectedItems.get(0));
+                        txtCountrySelection.setText(selectedCountry);
+
+                        Preferences.setSelectedCountry(activity, selectedCountry);
                     }
                 });
         dialog.show();
@@ -102,7 +115,9 @@ public class WizardStepOneFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedLanguage = selectedItems.get(0);
-                        txtLanguageSelection.setText(selectedItems.get(0));
+                        txtLanguageSelection.setText(selectedLanguage);
+
+                        Preferences.setSelectedLanguage(activity, selectedLanguage);
                     }
                 });
         dialog.show();

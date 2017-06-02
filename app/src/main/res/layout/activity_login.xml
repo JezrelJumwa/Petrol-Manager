@@ -1,49 +1,65 @@
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingEnd="30dp"
-    android:paddingStart="30dp">
+    android:background="@color/white">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/xaba_red_logo"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_x"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xaba_red_logo_big"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="@string/title"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/national_id"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="20dp"
+            android:hint="@string/national_id"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/pin_code"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="15dp"
+            android:hint="@string/pin_code"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/log_in"
+            style="@style/ButtonGreenStyle"
+            android:layout_marginTop="15dp"
+            android:text="@string/login"/>
+
+        <Button
+            android:id="@+id/forgot_pin"
+            style="@style/ButtonLinkStyle"
+            android:layout_marginTop="10dp"
+            android:text="@string/forgot_pin"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/title"
-        android:textSize="20sp"/>
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingBottom="30dp"
+        android:text="@string/visit_xaba"
+        android:textSize="13sp"/>
 
-    <EditText
-        android:id="@+id/national_id"
-        style="@style/EditText"
-        android:layout_marginTop="20dp"
-        android:hint="@string/national_id"/>
-
-    <EditText
-        android:id="@+id/pin_code"
-        style="@style/EditText"
-        android:layout_marginTop="20dp"
-        android:hint="@string/pin_code"/>
-
-    <Button
-        android:id="@+id/log_in"
-        style="@style/ButtonGreen"
-        android:layout_marginTop="30dp"
-        android:text="@string/log_in"/>
-
-    <Button
-        android:id="@+id/forgot_pin"
-        style="@style/ButtonLink"
-        android:layout_marginTop="5dp"
-        android:text="@string/forgot_pin"/>
-
-</LinearLayout>
+</FrameLayout>

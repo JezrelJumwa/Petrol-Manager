@@ -1,7 +1,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingEnd="30dp"
     android:paddingStart="30dp">
@@ -25,39 +25,20 @@
             android:layout_marginTop="30dp"
             android:text="@string/country"
             android:textColor="@color/dark_color"
-            android:textSize="18sp"/>
+            android:textSize="16sp"/>
 
         <LinearLayout
             android:id="@+id/grp_country"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingBottom="7dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="7dp"
-            tools:ignore="UseCompoundDrawables">
+            style="@style/SpinnerLayoutStyle"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/txt_country_selection"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/select_country"
-                android:textColor="@color/dark_color"
-                android:textSize="16sp"
-                tools:ignore="MissingPrefix"/>
+                style="@style/SpinnerTextViewStyle"
+                android:text="@string/select_country"/>
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/arrow_down"/>
+                style="@style/SpinnerImageViewStyle"/>
 
         </LinearLayout>
 
@@ -67,39 +48,20 @@
             android:layout_marginTop="20dp"
             android:text="@string/language"
             android:textColor="@color/dark_color"
-            android:textSize="18sp"/>
+            android:textSize="16sp"/>
 
         <LinearLayout
             android:id="@+id/grp_language"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingBottom="7dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="7dp"
-            tools:ignore="UseCompoundDrawables">
+            style="@style/SpinnerLayoutStyle"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/txt_language_selection"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/select_preferred_language"
-                android:textColor="@color/dark_color"
-                android:textSize="16sp"
-                tools:ignore="MissingPrefix"/>
+                style="@style/SpinnerTextViewStyle"
+                android:text="@string/select_preferred_language"/>
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/arrow_down"/>
+                style="@style/SpinnerImageViewStyle"/>
 
         </LinearLayout>
 
@@ -135,22 +97,23 @@
 
         <Button
             android:id="@+id/register"
-            style="@style/ButtonLink"
+            style="@style/ButtonLinkStyle"
             android:layout_marginTop="40dp"
             android:text="@string/register_now"/>
 
         <Button
             android:id="@+id/next"
-            style="@style/ButtonGreen"
+            style="@style/ButtonGreenStyle"
             android:layout_marginTop="10dp"
             android:text="@string/next"/>
 
         <Button
             android:id="@+id/log_in"
-            style="@style/ButtonLink"
+            style="@style/ButtonLinkStyle"
             android:layout_marginTop="5dp"
             android:text="@string/login_in"/>
 
     </LinearLayout>
 
 </LinearLayout>
+

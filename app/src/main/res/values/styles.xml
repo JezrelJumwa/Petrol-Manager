@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -16,7 +16,7 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="ButtonGreen">
+    <style name="ButtonGreenStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/white</item>
@@ -25,7 +25,7 @@
         <item name="android:background">@color/green_color</item>
     </style>
 
-    <style name="ButtonLink">
+    <style name="ButtonLinkStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/green_color</item>
@@ -34,13 +34,45 @@
         <item name="android:background">@null</item>
     </style>
 
-    <style name="EditText">
+    <style name="EditTextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/dark_color</item>
         <item name="android:textSize">16sp</item>
         <item name="android:background">@drawable/edit_text_background</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+
+    <style name="SpinnerLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="SpinnerTextViewStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="SpinnerImageViewStyle">
+        <item name="android:layout_width">12dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginEnd" tools:ignore="NewApi">8dp</item>
+        <item name="android:src">@drawable/arrow_down</item>
+        <item name="android:layout_gravity">center_vertical</item>
     </style>
 
 </resources>

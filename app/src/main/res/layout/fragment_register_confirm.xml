@@ -26,19 +26,19 @@
 
     <EditText
         android:id="@+id/activation_code"
-        style="@style/EditText"
+        style="@style/EditTextStyle"
         android:layout_marginTop="30dp"
         android:hint="@string/activation_code"/>
 
     <Button
         android:id="@+id/verify"
-        style="@style/ButtonGreen"
+        style="@style/ButtonGreenStyle"
         android:layout_marginTop="30dp"
         android:text="@string/verify"/>
 
     <Button
         android:id="@+id/resend_pin_sms"
-        style="@style/ButtonLink"
+        style="@style/ButtonLinkStyle"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:text="@string/resend_pin_sms"/>

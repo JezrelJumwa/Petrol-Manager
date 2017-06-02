@@ -1,61 +1,68 @@
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingEnd="30dp"
-    android:paddingStart="30dp">
+    android:background="@color/white">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/xaba_red_logo"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/have_you_forgot_your_pin"
-        android:textColor="@color/dark_color"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:id="@+id/national_id"
-        style="@style/EditText"
-        android:layout_marginTop="20dp"
-        android:hint="@string/national_id"/>
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/your_new_pin_will_be_sent_to_your_notification_number"
-        android:textColor="@color/dark_color"
-        android:textSize="16sp"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/background_x"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp">
 
-    <Button
-        android:id="@+id/send_new_pin"
-        style="@style/ButtonGreen"
-        android:layout_marginTop="20dp"
-        android:text="@string/send_new_pin"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xaba_red_logo_big"/>
 
-    <Button
-        android:id="@+id/do_you_remember_it"
-        style="@style/ButtonLink"
-        android:layout_marginTop="5dp"
-        android:text="@string/do_you_remember_it"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="@string/have_you_forgot_your_pin"
+            android:textColor="@color/dark_color"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/national_id"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="20dp"
+            android:hint="@string/national_id"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/your_new_pin_will_be_sent_to_your_notification_number"
+            android:textColor="@color/dark_color"
+            android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/send_new_pin"
+            style="@style/ButtonGreenStyle"
+            android:layout_marginTop="20dp"
+            android:text="@string/send_new_pin"/>
+
+        <Button
+            android:id="@+id/do_you_remember_it"
+            style="@style/ButtonLinkStyle"
+            android:layout_marginTop="5dp"
+            android:text="@string/do_you_remember_it"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="70dp"
-        android:text="Visit www.xaba.org"
-        android:textColor="@color/green_color"
-        android:textSize="16sp"/>
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingBottom="30dp"
+        android:text="@string/visit_xaba"
+        android:textSize="13sp"/>
 
-</LinearLayout>
+</FrameLayout>

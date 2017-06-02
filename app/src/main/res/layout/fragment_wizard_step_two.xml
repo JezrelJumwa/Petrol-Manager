@@ -59,19 +59,19 @@
 
         <Button
             android:id="@+id/register"
-            style="@style/ButtonLink"
+            style="@style/ButtonLinkStyle"
             android:layout_marginTop="40dp"
             android:text="@string/register_now"/>
 
         <Button
             android:id="@+id/next"
-            style="@style/ButtonGreen"
+            style="@style/ButtonGreenStyle"
             android:layout_marginTop="10dp"
             android:text="@string/next"/>
 
         <Button
             android:id="@+id/log_in"
-            style="@style/ButtonLink"
+            style="@style/ButtonLinkStyle"
             android:layout_marginTop="5dp"
             android:text="@string/login_in"/>
 

@@ -59,18 +59,18 @@
             android:textSize="18sp"/>
 
         <Button
-            style="@style/ButtonLink"
+            style="@style/ButtonLinkStyle"
             android:layout_marginTop="40dp"/>
 
         <Button
             android:id="@+id/register"
-            style="@style/ButtonGreen"
+            style="@style/ButtonGreenStyle"
             android:layout_marginTop="10dp"
             android:text="@string/register_now_not_underlined"/>
 
         <Button
             android:id="@+id/log_in"
-            style="@style/ButtonLink"
+            style="@style/ButtonLinkStyle"
             android:layout_marginTop="5dp"
             android:text="@string/login_in"/>
 

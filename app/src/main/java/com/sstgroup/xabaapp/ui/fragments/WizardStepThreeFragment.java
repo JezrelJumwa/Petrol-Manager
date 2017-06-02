@@ -27,9 +27,12 @@ public class WizardStepThreeFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.register, R.id.log_in})
+    @OnClick({R.id.back, R.id.register, R.id.log_in})
     public void onButtonClick(View view) {
         switch (view.getId()) {
+            case R.id.back:
+                activity.onBackPressed();
+                break;
             case R.id.register:
                 Intent intentToRegisterActivity = new Intent(activity, RegisterActivity.class);
                 startActivity(intentToRegisterActivity);

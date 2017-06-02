@@ -122,6 +122,7 @@ public class DatabaseHelper {
     public List<String> getCounties() {
 
         List<String> counties = new ArrayList<>();
+        countyDao = daoSession.getCountyDao();
 
         Cursor cursor = countyDao.getDatabase().rawQuery("SELECT name FROM county", null);
         while (cursor.moveToNext()) {

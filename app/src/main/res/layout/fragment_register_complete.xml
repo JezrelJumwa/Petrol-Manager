@@ -27,7 +27,7 @@
 
     <Button
         android:id="@+id/continuE"
-        style="@style/ButtonGreen"
+        style="@style/ButtonGreenStyle"
         android:layout_marginTop="30dp"
         android:text="@string/continuE"/>
 
@@ -43,7 +43,7 @@
 
     <Button
         android:id="@+id/register_another_worker"
-        style="@style/ButtonLink"
+        style="@style/ButtonLinkStyle"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:text="@string/register_another_worker"/>

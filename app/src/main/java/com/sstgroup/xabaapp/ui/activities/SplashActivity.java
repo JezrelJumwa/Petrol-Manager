@@ -12,6 +12,7 @@ import com.sstgroup.xabaapp.models.ProfessionResponse;
 import com.sstgroup.xabaapp.models.ProfessionStructure;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Preferences;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,9 +61,15 @@ public class SplashActivity extends BaseActivity {
             public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
                 if (response.isSuccessful()) {
                     LocationStructure locationStructure = response.body().getLocationStructure();
-                    mXabaDatabaseHelper.deleteLocationTables();
-                    mXabaDatabaseHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
-                    mXabaDatabaseHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
+
+                    String savedLocationHash = Preferences.getLocationHash(SplashActivity.this);
+
+                    if (!savedLocationHash.equals(locationStructure.getHash())) {
+                        Preferences.setLocationHash(SplashActivity.this, locationStructure.hash);
+                        mXabaDatabaseHelper.deleteLocationTables();
+                        mXabaDatabaseHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
+                        mXabaDatabaseHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
+                    }
                 }
             }
 
@@ -81,8 +88,14 @@ public class SplashActivity extends BaseActivity {
             public void onResponse(Call<ProfessionResponse> call, Response<ProfessionResponse> response) {
                 if (response.isSuccessful()) {
                     ProfessionStructure professionStructure = response.body().getProfessionStructure();
-                    mXabaDatabaseHelper.deleteProfessionTables();
-                    mXabaDatabaseHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
+
+                    String savedProfessionHash = Preferences.getProfessionHash(SplashActivity.this);
+
+                    if (!savedProfessionHash.equals(professionStructure.getHash())) {
+                        Preferences.setProfessionHash(SplashActivity.this, professionStructure.hash);
+                        mXabaDatabaseHelper.deleteProfessionTables();
+                        mXabaDatabaseHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
+                    }
                 }
             }
 

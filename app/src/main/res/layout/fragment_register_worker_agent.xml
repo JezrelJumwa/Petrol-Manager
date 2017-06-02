@@ -20,7 +20,7 @@
 
         <EditText
             android:id="@+id/national_id"
-            style="@style/EditText"/>
+            style="@style/EditTextStyle"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
 
         <EditText
             android:id="@+id/confirm_national_id"
-            style="@style/EditText"/>
+            style="@style/EditTextStyle"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
 
         <EditText
             android:id="@+id/phone_number"
-            style="@style/EditText"/>
+            style="@style/EditTextStyle"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -260,7 +260,7 @@
 
         <Button
             android:id="@+id/add_another_profession"
-            style="@style/ButtonLink"
+            style="@style/ButtonLinkStyle"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:text="@string/add_another_profession"/>
@@ -280,7 +280,7 @@
 
         <EditText
             android:id="@+id/pin_code"
-            style="@style/EditText"/>
+            style="@style/EditTextStyle"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -291,7 +291,7 @@
 
         <EditText
             android:id="@+id/confirm_pin_code"
-            style="@style/EditText"/>
+            style="@style/EditTextStyle"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -302,11 +302,11 @@
 
         <EditText
             android:id="@+id/referral_code"
-            style="@style/EditText"/>
+            style="@style/EditTextStyle"/>
 
         <Button
             android:id="@+id/register"
-            style="@style/ButtonGreen"
+            style="@style/ButtonGreenStyle"
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
             android:text="@string/register"/>
