@@ -18,49 +18,49 @@
         style="@style/NavMenuStyle"
         android:drawableLeft="@drawable/nav_register_worker"
         android:drawablePadding="18dp"
-        android:text="Register Worker"/>
+        android:text="@string/register_worker"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
         android:id="@+id/nav_dashboard"
         style="@style/NavMenuStyle"
         android:drawableLeft="@drawable/nav_dashboard"
         android:drawablePadding="18dp"
-        android:text="Dashboard"/>
+        android:text="@string/dashboard"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
         android:id="@+id/nav_reports"
         style="@style/NavMenuStyle"
         android:drawableLeft="@drawable/nav_reports"
         android:drawablePadding="18dp"
-        android:text="Reports"/>
+        android:text="@string/reports"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
         android:id="@+id/nav_my_profile"
         style="@style/NavMenuStyle"
         android:drawableLeft="@drawable/nav_my_profile"
         android:drawablePadding="18dp"
-        android:text="My Profile"/>
+        android:text="@string/my_profile"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
         android:id="@+id/nav_notifications"
         style="@style/NavMenuStyle"
         android:drawableLeft="@drawable/nav_notifications"
         android:drawablePadding="18dp"
-        android:text="Notifications"/>
+        android:text="@string/notifications"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
         android:id="@+id/nav_faq"
         style="@style/NavMenuStyle"
         android:drawableLeft="@drawable/nav_faq"
         android:drawablePadding="18dp"
-        android:text="FAQ"/>
+        android:text="@string/faq"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
         android:id="@+id/nav_contact"
         style="@style/NavMenuStyle"
         android:drawableLeft="@drawable/nav_contact"
         android:drawablePadding="18dp"
-        android:text="Contact"/>
+        android:text="@string/contact"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
         android:id="@+id/nav_logout"
@@ -69,6 +69,6 @@
         android:drawableLeft="@drawable/nav_logout"
         android:drawablePadding="18dp"
         android:textColor="@color/text_red"
-        android:text="Log Out"/>
+        android:text="@string/log_out"/>
 
 </LinearLayout>

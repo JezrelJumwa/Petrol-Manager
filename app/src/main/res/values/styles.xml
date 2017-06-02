@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -75,7 +75,7 @@
         <item name="android:layout_gravity">center_vertical</item>
     </style>
 
-    <!--<item name="android:textColor">@drawable/menu_item_text_selector</item>-->
+    <!--<item name="android:background">@drawable/selector_navigation</item>-->
     <style name="NavMenuStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
@@ -87,6 +87,28 @@
         <item name="android:paddingTop">11dp</item>
         <item name="android:paddingRight">20dp</item>
         <item name="android:color">@color/text_gray</item>
+    </style>
+
+    <style name="ProfileTxtKey">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginStart" tools:ignore="NewApi">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@color/text_light_gray</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ProfileTxtValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginEnd" tools:ignore="NewApi">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@color/text_dark_gray</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>
