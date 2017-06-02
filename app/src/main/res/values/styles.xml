@@ -75,4 +75,18 @@
         <item name="android:layout_gravity">center_vertical</item>
     </style>
 
+    <!--<item name="android:textColor">@drawable/menu_item_text_selector</item>-->
+    <style name="NavMenuStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:paddingLeft">22dp</item>
+        <item name="android:paddingBottom">11dp</item>
+        <item name="android:paddingTop">11dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:color">@color/text_gray</item>
+    </style>
+
 </resources>
