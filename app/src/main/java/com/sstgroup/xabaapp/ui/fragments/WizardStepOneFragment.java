@@ -209,24 +209,6 @@ public class WizardStepOneFragment extends BaseFragment {
         });
     }
 
-    private void resetPIN() {
-
-        Call<PinResponse> call = RestClient.getService().resetPin(Constants.AGENT_APP_VALUE, "0000", "DCC0AA27");
-        call.enqueue(new Callback<PinResponse>() {
-            @Override
-            public void onResponse(Call<PinResponse> call, Response<PinResponse> response) {
-                if (response.isSuccessful()) {
-                    response.body().getStatus();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PinResponse> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
-            }
-        });
-    }
-
     private void sendVerificationCodeForResetPIN() {
 
         String nationalId = "1234554781";

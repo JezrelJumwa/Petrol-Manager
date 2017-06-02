@@ -1,8 +1,8 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,72 +16,60 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/national_id"
+            android:textColor="@color/dark_color"
             android:textSize="16sp"/>
 
         <EditText
             android:id="@+id/national_id"
-            style="@style/EditTextStyle"/>
+            style="@style/EditTextStyle"
+            android:inputType="number"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/confirm_national_id"
+            android:textColor="@color/dark_color"
             android:textSize="16sp"/>
 
         <EditText
             android:id="@+id/confirm_national_id"
-            style="@style/EditTextStyle"/>
+            style="@style/EditTextStyle"
+            android:inputType="number"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/phone_number"
+            android:textColor="@color/dark_color"
             android:textSize="16sp"/>
 
         <EditText
             android:id="@+id/phone_number"
-            style="@style/EditTextStyle"/>
+            style="@style/EditTextStyle"
+            android:inputType="phone"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/county"
+            android:textColor="@color/dark_color"
             android:textSize="16sp"/>
 
         <LinearLayout
             android:id="@+id/grp_county"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingBottom="7dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="7dp"
-            tools:ignore="UseCompoundDrawables">
+            style="@style/SpinnerLayoutStyle"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/txt_county_selection"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/select_county"
-                android:textColor="@color/dark_color"
-                android:textSize="16sp"
-                tools:ignore="MissingPrefix"/>
+                style="@style/SpinnerTextViewStyle"
+                android:text="@string/select_county"/>
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/arrow_down"/>
+                style="@style/SpinnerImageViewStyle"/>
 
         </LinearLayout>
 
@@ -90,39 +78,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/sub_county"
+            android:textColor="@color/dark_color"
             android:textSize="16sp"/>
 
         <LinearLayout
             android:id="@+id/grp_sub_county"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingBottom="7dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="7dp"
-            tools:ignore="UseCompoundDrawables">
+            style="@style/SpinnerLayoutStyle"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/txt_sub_county_selection"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/select_sub_county"
-                android:textColor="@color/dark_color"
-                android:textSize="16sp"
-                tools:ignore="MissingPrefix"/>
+                style="@style/SpinnerTextViewStyle"
+                android:text="@string/select_sub_county"/>
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/arrow_down"/>
+                style="@style/SpinnerImageViewStyle"/>
 
         </LinearLayout>
 
@@ -138,39 +108,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/industry"
+                android:textColor="@color/dark_color"
                 android:textSize="16sp"/>
 
             <LinearLayout
                 android:id="@+id/grp_industry"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:paddingBottom="7dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="7dp"
-                tools:ignore="UseCompoundDrawables">
+                style="@style/SpinnerLayoutStyle"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:id="@+id/txt_industry_selection"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:text="@string/select_industry"
-                    android:textColor="@color/dark_color"
-                    android:textSize="16sp"
-                    tools:ignore="MissingPrefix"/>
+                    style="@style/SpinnerTextViewStyle"
+                    android:text="@string/select_industry"/>
 
                 <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/arrow_down"/>
+                    style="@style/SpinnerImageViewStyle"/>
 
             </LinearLayout>
 
@@ -179,39 +131,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/category"
+                android:textColor="@color/dark_color"
                 android:textSize="16sp"/>
 
             <LinearLayout
                 android:id="@+id/grp_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:paddingBottom="7dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="7dp"
-                tools:ignore="UseCompoundDrawables">
+                style="@style/SpinnerLayoutStyle"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:id="@+id/txt_category_selection"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:text="@string/select_category"
-                    android:textColor="@color/dark_color"
-                    android:textSize="16sp"
-                    tools:ignore="MissingPrefix"/>
+                    style="@style/SpinnerTextViewStyle"
+                    android:text="@string/select_category"/>
 
                 <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/arrow_down"/>
+                    style="@style/SpinnerImageViewStyle"/>
 
             </LinearLayout>
 
@@ -220,39 +154,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/profession"
+                android:textColor="@color/dark_color"
                 android:textSize="16sp"/>
 
             <LinearLayout
                 android:id="@+id/grp_profession"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:paddingBottom="7dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="7dp"
-                tools:ignore="UseCompoundDrawables">
+                style="@style/SpinnerLayoutStyle"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:id="@+id/txt_profession_selection"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:text="@string/select_profession"
-                    android:textColor="@color/dark_color"
-                    android:textSize="16sp"
-                    tools:ignore="MissingPrefix"/>
+                    style="@style/SpinnerTextViewStyle"
+                    android:text="@string/select_profession"/>
 
                 <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/arrow_down"/>
+                    style="@style/SpinnerImageViewStyle"/>
 
             </LinearLayout>
 
@@ -265,44 +181,44 @@
             android:layout_marginTop="20dp"
             android:text="@string/add_another_profession"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="25dp"
-            android:background="@android:color/darker_gray"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/pin_code"
+            android:textColor="@color/dark_color"
             android:textSize="16sp"/>
 
         <EditText
             android:id="@+id/pin_code"
-            style="@style/EditTextStyle"/>
+            style="@style/EditTextStyle"
+            android:inputType="number"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/confirm_pin_code"
+            android:textColor="@color/dark_color"
             android:textSize="16sp"/>
 
         <EditText
             android:id="@+id/confirm_pin_code"
-            style="@style/EditTextStyle"/>
+            style="@style/EditTextStyle"
+            android:inputType="number"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/referral_code"
+            android:textColor="@color/dark_color"
             android:textSize="16sp"/>
 
         <EditText
             android:id="@+id/referral_code"
-            style="@style/EditTextStyle"/>
+            style="@style/EditTextStyle"
+            android:inputType="number"/>
 
         <Button
             android:id="@+id/register"

@@ -57,4 +57,19 @@
     <string name="do_you_remember_it"><u>Do you remember it?</u></string>
     <string name="building_connections">Building Connections</string>
     <string name="visit_xaba">Visit www.xaba.org</string>
+    <string name="pin_is_reset">Pin is reset!</string>
+    <string name="need_help_with_your_pin">Need help with your PIN?</string>
+    <string name="enter_your_national_id_we_will_send_a_pin_to_your_preferred_number">Enter your
+        national ID. We will send a PIN to your preferred number.
+    </string>
+    <string name="enter_national_id">Enter National ID</string>
+    <string name="national_id_should_be_a_number">National ID should be a number.</string>
+    <string name="something_is_wrong">Something is wrong.</string>
+    <string name="your_national_id_is_wrong">Your National ID is wrong.</string>
+    <string name="please_enter_your_national_id_and_pin_to_login">Please enter your national ID and
+        PIN to login.
+    </string>
+    <string name="your_pin_code_is_wrong">Your PIN code is wrong.</string>
+    <string name="pin_code_should_be_a_number">PIN code should be a number.</string>
+    <string name="enter_pin_code">Enter PIN code.</string>
 </resources>

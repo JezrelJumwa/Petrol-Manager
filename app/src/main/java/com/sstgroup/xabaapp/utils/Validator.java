@@ -10,6 +10,10 @@ public class Validator {
         return TextUtils.isEmpty(field);
     }
 
+    public static boolean isNotNumber(String field) {
+        return !TextUtils.isDigitsOnly(field);
+    }
+
     public static boolean isPhoneValid(String phone) {
         return Patterns.PHONE.matcher(phone).matches();
     }
