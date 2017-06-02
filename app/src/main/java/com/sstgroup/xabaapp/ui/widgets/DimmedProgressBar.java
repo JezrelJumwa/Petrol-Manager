@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-import com.mektoube.R;
+import com.sstgroup.xabaapp.R;
 
 /**
  * Created by alexander on 2/16/17.
