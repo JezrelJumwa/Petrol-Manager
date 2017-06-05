@@ -84,8 +84,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-        counties = databaseHelper.getCounties();
-        industries = databaseHelper.getIndustries();
+        counties = xabaDbHelper.getCounties();
+        industries = xabaDbHelper.getIndustries();
     }
 
     @Override
@@ -128,8 +128,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCounty = selectedItems.get(0);
-                        txtCountySelection.setText(selectedCounty);
-                        subCounties = databaseHelper.getSubCounties(selectedCounty);
+                        txtCountySelection.setText(selectedItems.get(0));
+                        subCounties = xabaDbHelper.getSubCounties(selectedItems.get(0));
                     }
                 });
         dialog.show();
@@ -141,7 +141,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedSubCounty = selectedItems.get(0);
-                        txtSubCountySelection.setText(selectedSubCounty);
+                        txtSubCountySelection.setText(selectedItems.get(0));
                     }
                 });
         dialog.show();
@@ -153,8 +153,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedIndustry = selectedItems.get(0);
-                        txtIndustrySelection.setText(selectedIndustry);
-                        categories = databaseHelper.getCategories(selectedIndustry);
+                        txtIndustrySelection.setText(selectedItems.get(0));
+                        categories = xabaDbHelper.getCategories(selectedItems.get(0));
                     }
                 });
         dialog.show();
@@ -166,8 +166,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCategory = selectedItems.get(0);
-                        txtCategorySelection.setText(selectedCategory);
-                        professions = databaseHelper.getProfessions(selectedCategory);
+                        txtCategorySelection.setText(selectedItems.get(0));
+                        professions = xabaDbHelper.getProfessions(selectedItems.get(0));
                     }
                 });
         dialog.show();
@@ -180,7 +180,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedProfession = selectedItems.get(0);
-                        txtProfessionSelection.setText(selectedProfession);
+                        txtProfessionSelection.setText(selectedItems.get(0));
                     }
                 });
         dialog.show();

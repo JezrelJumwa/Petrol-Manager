@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Handler;
 
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.LocationResponse;
 import com.sstgroup.xabaapp.models.LocationStructure;
 import com.sstgroup.xabaapp.models.ProfessionResponse;
@@ -63,9 +62,9 @@ public class SplashActivity extends BaseActivity {
 
                     if (!savedLocationHash.equals(locationStructure.getHash())) {
                         Preferences.setLocationHash(SplashActivity.this, locationStructure.hash);
-                        databaseHelper.deleteLocationTables();
-                        databaseHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
-                        databaseHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
+                        xabaDbHelper.deleteLocationTables();
+                        xabaDbHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
+                        xabaDbHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
                     }
                 }
             }
@@ -90,8 +89,8 @@ public class SplashActivity extends BaseActivity {
 
                     if (!savedProfessionHash.equals(professionStructure.getHash())) {
                         Preferences.setProfessionHash(SplashActivity.this, professionStructure.hash);
-                        databaseHelper.deleteProfessionTables();
-                        databaseHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
+                        xabaDbHelper.deleteProfessionTables();
+                        xabaDbHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
                     }
                 }
             }

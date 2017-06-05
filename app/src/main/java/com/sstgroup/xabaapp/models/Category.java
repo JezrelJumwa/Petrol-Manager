@@ -7,6 +7,7 @@ import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.JoinEntity;
 import org.greenrobot.greendao.annotation.ToMany;
 
 import java.util.List;
@@ -15,78 +16,57 @@ import java.util.List;
 public class Category {
 
     @Id
-    private Long id;
-
     @SerializedName("category_id")
     private Long categoryId;
     @SerializedName("name")
     private String name;
     @SerializedName("professions")
-    @ToMany(referencedJoinProperty = "categoryId")
+    @ToMany
+    @JoinEntity(
+            entity = JoinCategoriesWithProfessions.class,
+            sourceProperty = "categoryId",
+            targetProperty = "professionsId"
+    )
     public List<Profession> professions;
     private long industryId;
-
-    /**
-     * Used to resolve relations
-     */
+    /** Used to resolve relations */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
-
-    /**
-     * Used for active entity operations.
-     */
+    /** Used for active entity operations. */
     @Generated(hash = 40161530)
     private transient CategoryDao myDao;
-
-    @Generated(hash = 1896967187)
-    public Category(Long id, Long categoryId, String name, long industryId) {
-        this.id = id;
+    @Generated(hash = 1619690683)
+    public Category(Long categoryId, String name, long industryId) {
         this.categoryId = categoryId;
         this.name = name;
         this.industryId = industryId;
     }
-
     @Generated(hash = 1150634039)
     public Category() {
     }
-
     public Long getCategoryId() {
-        return categoryId;
+        return this.categoryId;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
-
+    public String getName() {
+        return this.name;
+    }
     public void setName(String name) {
         this.name = name;
     }
-
     public long getIndustryId() {
         return this.industryId;
     }
-
     public void setIndustryId(long industryId) {
         this.industryId = industryId;
     }
-
     /**
      * To-many relationship, resolved on first access (and after reset).
      * Changes to to-many relations are not persisted, make changes to the target entity.
      */
-    @Generated(hash = 1796650382)
+    @Generated(hash = 2136326234)
     public List<Profession> getProfessions() {
         if (professions == null) {
             final DaoSession daoSession = this.daoSession;
@@ -95,7 +75,7 @@ public class Category {
             }
             ProfessionDao targetDao = daoSession.getProfessionDao();
             List<Profession> professionsNew = targetDao
-                    ._queryCategory_Professions(id);
+                    ._queryCategory_Professions(categoryId);
             synchronized (this) {
                 if (professions == null) {
                     professions = professionsNew;
@@ -104,15 +84,11 @@ public class Category {
         }
         return professions;
     }
-
-    /**
-     * Resets a to-many relationship, making the next get call to query for a fresh result.
-     */
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
     @Generated(hash = 1823650265)
     public synchronized void resetProfessions() {
         professions = null;
     }
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
      * Entity must attached to an entity context.
@@ -124,7 +100,6 @@ public class Category {
         }
         myDao.delete(this);
     }
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
      * Entity must attached to an entity context.
@@ -136,7 +111,6 @@ public class Category {
         }
         myDao.refresh(this);
     }
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
      * Entity must attached to an entity context.
@@ -148,13 +122,11 @@ public class Category {
         }
         myDao.update(this);
     }
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 503476761)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getCategoryDao() : null;
     }
-
 
 }

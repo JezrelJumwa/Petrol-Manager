@@ -19,13 +19,13 @@ import com.sstgroup.xabaapp.db.DatabaseHelper;
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    protected DatabaseHelper databaseHelper;
+    protected DatabaseHelper xabaDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        databaseHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
+        xabaDbHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
         ButterKnife.bind(this);
 
         init();

@@ -11,55 +11,38 @@ import org.greenrobot.greendao.annotation.Id;
 public class Profession {
 
     @Id
-    private Long id;
-
     @SerializedName("profession_id")
     private Long professionId;
     @SerializedName("name")
     private String name;
-    private long categoryId;
-
-    @Generated(hash = 91061013)
-    public Profession(Long id, Long professionId, String name, long categoryId) {
-        this.id = id;
+    @SerializedName("id")
+    private Long loggedUserProfessionId;
+    @Generated(hash = 1568584522)
+    public Profession(Long professionId, String name, Long loggedUserProfessionId) {
         this.professionId = professionId;
         this.name = name;
-        this.categoryId = categoryId;
+        this.loggedUserProfessionId = loggedUserProfessionId;
     }
-
     @Generated(hash = 900874100)
     public Profession() {
     }
-
     public Long getProfessionId() {
-        return professionId;
+        return this.professionId;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setProfessionId(Long professionId) {
         this.professionId = professionId;
     }
-
+    public String getName() {
+        return this.name;
+    }
     public void setName(String name) {
         this.name = name;
     }
-
-    public long getCategoryId() {
-        return this.categoryId;
+    public Long getLoggedUserProfessionId() {
+        return this.loggedUserProfessionId;
+    }
+    public void setLoggedUserProfessionId(Long loggedUserProfessionId) {
+        this.loggedUserProfessionId = loggedUserProfessionId;
     }
 
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
-    }
 }
