@@ -102,6 +102,13 @@ public class LoginActivity extends BaseActivity {
                 if (response.isSuccessful()) {
                     User user = response.body().getUser();
                     databaseHelper.insertLoggedUser(LoginActivity.this, user);
+//                    if (!user.getIsPhoneVerified()){
+//
+//                    } else if (!user.getIsDefaultPin()){
+//
+//                    } else {
+//                        NavigationUtils.startSingleActivity(LoginActivity.this, HomeActivity.class);
+//                    }
                     NavigationUtils.startSingleActivity(LoginActivity.this, HomeActivity.class);
                 }
             }

@@ -56,6 +56,10 @@ public class User {
     @ToOne(joinProperty = "tokenId")
     private Token token;
     private Long tokenId;
+    @SerializedName("is_phone_verified")
+    private Boolean isPhoneVerified;
+    @SerializedName("is_default_pin")
+    private Boolean isDefaultPin;
     /**
      * Used to resolve relations
      */
@@ -69,11 +73,11 @@ public class User {
     @Generated(hash = 2059307683)
     private transient Long token__resolvedKey;
 
-    @Generated(hash = 196022839)
-    public User(Long id, String status, String agentId, String firstName,
-                String lastName, String otherName, String phone, String gender,
-                String birthdate, String countryId, String countyId, String subcountyId,
-                Long tokenId) {
+    @Generated(hash = 1672337806)
+    public User(Long id, String status, String agentId, String firstName, String lastName,
+            String otherName, String phone, String gender, String birthdate, String countryId,
+            String countyId, String subcountyId, Long tokenId, Boolean isPhoneVerified,
+            Boolean isDefaultPin) {
         this.id = id;
         this.status = status;
         this.agentId = agentId;
@@ -87,6 +91,8 @@ public class User {
         this.countyId = countyId;
         this.subcountyId = subcountyId;
         this.tokenId = tokenId;
+        this.isPhoneVerified = isPhoneVerified;
+        this.isDefaultPin = isDefaultPin;
     }
 
     @Generated(hash = 586692638)
@@ -298,6 +304,22 @@ public class User {
             throw new DaoException("Entity is detached from DAO context");
         }
         myDao.update(this);
+    }
+
+    public Boolean getIsPhoneVerified() {
+        return this.isPhoneVerified;
+    }
+
+    public void setIsPhoneVerified(Boolean isPhoneVerified) {
+        this.isPhoneVerified = isPhoneVerified;
+    }
+
+    public Boolean getIsDefaultPin() {
+        return this.isDefaultPin;
+    }
+
+    public void setIsDefaultPin(Boolean isDefaultPin) {
+        this.isDefaultPin = isDefaultPin;
     }
 
     /** called by internal mechanisms, do not call yourself. */
