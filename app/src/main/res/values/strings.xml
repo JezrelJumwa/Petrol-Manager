@@ -33,13 +33,10 @@
     </string>
     <string name="verified">Verified</string>
     <string name="continuE">Continue</string>
-    <string name="register_another_worker"><u>Register another worker</u></string>
-    <string name="your_referral_id_is">Your referral ID is:&#160;</string>
-    <string name="add_another_profession"><u>Add another profession</u></string>
     <string name="register_another_worker">
         <u>Register another worker</u>
     </string>
-    <string name="your_referral_id_is">Your referral ID is:</string>
+    <string name="your_referral_id_is">Your referral ID is:&#160;</string>
     <string name="add_another_profession">
         <u>Add another profession</u>
     </string>
