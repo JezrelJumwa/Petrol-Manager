@@ -1,46 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp">
+    android:background="@color/white">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/xaba_red_logo"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/xaba_red_logo_big"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/green_line"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="@string/we_have_sent_an_activation_code_to_your_contact_number_please_enter_the_provided_code_to_verify_your_account"
+            android:textColor="@color/dark_color"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/activation_code"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="30dp"
+            android:hint="@string/activation_code"/>
+
+        <Button
+            android:id="@+id/verify"
+            style="@style/ButtonGreenStyle"
+            android:layout_marginTop="20dp"
+            android:text="@string/verify"/>
+
+        <Button
+            android:id="@+id/resend_pin_sms"
+            style="@style/ButtonLinkStyle"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="@string/resend_pin_sms"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/title"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingBottom="30dp"
+        android:text="@string/visit_xaba"
+        android:textSize="13sp"/>
 
-    <EditText
-        android:id="@+id/activation_code"
-        style="@style/EditTextStyle"
-        android:layout_marginTop="30dp"
-        android:hint="@string/activation_code"/>
-
-    <Button
-        android:id="@+id/verify"
-        style="@style/ButtonGreenStyle"
-        android:layout_marginTop="30dp"
-        android:text="@string/verify"/>
-
-    <Button
-        android:id="@+id/resend_pin_sms"
-        style="@style/ButtonLinkStyle"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:text="@string/resend_pin_sms"/>
-
-</LinearLayout>
+</FrameLayout>

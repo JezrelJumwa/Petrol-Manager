@@ -3,10 +3,10 @@ package com.sstgroup.xabaapp.ui.fragments;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 
 public class RegisterWorkerAgentFragment extends BaseFragment {
@@ -24,16 +25,37 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     EditText mEditTextConfirmNationalId;
     @BindView(R.id.phone_number)
     EditText mEditTextPhoneNumber;
+
     @BindView(R.id.txt_county_selection)
     TextView txtCountySelection;
     @BindView(R.id.txt_sub_county_selection)
     TextView txtSubCountySelection;
+
     @BindView(R.id.txt_industry_selection)
     TextView txtIndustrySelection;
     @BindView(R.id.txt_category_selection)
     TextView txtCategorySelection;
     @BindView(R.id.txt_profession_selection)
     TextView txtProfessionSelection;
+
+    @BindView(R.id.layout_profession_two)
+    LinearLayout mLinearLayoutProfessionTwo;
+    @BindView(R.id.txt_industry_selection_two)
+    TextView txtIndustrySelectionTwo;
+    @BindView(R.id.txt_category_selection_two)
+    TextView txtCategorySelectionTwo;
+    @BindView(R.id.txt_profession_selection_two)
+    TextView txtProfessionSelectionTwo;
+
+    @BindView(R.id.layout_profession_three)
+    LinearLayout mLinearLayoutProfessionThree;
+    @BindView(R.id.txt_industry_selection_three)
+    TextView txtIndustrySelectionThree;
+    @BindView(R.id.txt_category_selection_three)
+    TextView txtCategorySelectionThree;
+    @BindView(R.id.txt_profession_selection_three)
+    TextView txtProfessionSelectionThree;
+
     @BindView(R.id.pin_code)
     EditText mEditTextPinCode;
     @BindView(R.id.confirm_pin_code)
@@ -71,7 +93,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.register})
+    @OnClick({R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.add_another_profession, R.id.register})
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.grp_county:
@@ -89,6 +111,9 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             case R.id.grp_profession:
                 showProfessionsDialog();
                 break;
+            case R.id.add_another_profession:
+                addAnotherProfession();
+                break;
             case R.id.register:
                 RegisterConfirmFragment registerConfirmFragment = new RegisterConfirmFragment();
                 activity.openFragment(registerConfirmFragment, true);
@@ -103,8 +128,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCounty = selectedItems.get(0);
-                        txtCountySelection.setText(selectedItems.get(0));
-                        subCounties = databaseHelper.getSubCounties(selectedItems.get(0));
+                        txtCountySelection.setText(selectedCounty);
+                        subCounties = databaseHelper.getSubCounties(selectedCounty);
                     }
                 });
         dialog.show();
@@ -116,7 +141,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedSubCounty = selectedItems.get(0);
-                        txtSubCountySelection.setText(selectedItems.get(0));
+                        txtSubCountySelection.setText(selectedSubCounty);
                     }
                 });
         dialog.show();
@@ -128,8 +153,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedIndustry = selectedItems.get(0);
-                        txtIndustrySelection.setText(selectedItems.get(0));
-                        categories = databaseHelper.getCategories(selectedItems.get(0));
+                        txtIndustrySelection.setText(selectedIndustry);
+                        categories = databaseHelper.getCategories(selectedIndustry);
                     }
                 });
         dialog.show();
@@ -141,8 +166,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCategory = selectedItems.get(0);
-                        txtCategorySelection.setText(selectedItems.get(0));
-                        professions = databaseHelper.getProfessions(selectedItems.get(0));
+                        txtCategorySelection.setText(selectedCategory);
+                        professions = databaseHelper.getProfessions(selectedCategory);
                     }
                 });
         dialog.show();
@@ -155,9 +180,17 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedProfession = selectedItems.get(0);
-                        txtProfessionSelection.setText(selectedItems.get(0));
+                        txtProfessionSelection.setText(selectedProfession);
                     }
                 });
         dialog.show();
+    }
+
+    private void addAnotherProfession() {
+        if (mLinearLayoutProfessionTwo.getVisibility() == View.GONE) {
+            mLinearLayoutProfessionTwo.setVisibility(View.VISIBLE);
+        } else if (mLinearLayoutProfessionThree.getVisibility() == View.GONE) {
+            mLinearLayoutProfessionThree.setVisibility(View.VISIBLE);
+        }
     }
 }
