@@ -1,119 +1,130 @@
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingEnd="30dp"
-    android:paddingStart="30dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/xaba_red_logo"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/country"
-            android:textColor="@color/dark_color"
-            android:textSize="16sp"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp">
 
         <LinearLayout
-            android:id="@+id/grp_country"
-            style="@style/SpinnerLayoutStyle"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:id="@+id/txt_country_selection"
-                style="@style/SpinnerTextViewStyle"
-                android:text="@string/select_country"/>
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <ImageView
-                style="@style/SpinnerImageViewStyle"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/xaba_red_logo"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/country"
+                android:textColor="@color/dark_color"
+                android:textSize="16sp"/>
+
+            <LinearLayout
+                android:id="@+id/grp_country"
+                style="@style/SpinnerLayoutStyle"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txt_country_selection"
+                    style="@style/SpinnerTextViewStyle"
+                    android:text="@string/select_country"/>
+
+                <ImageView
+                    style="@style/SpinnerImageViewStyle"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/language"
+                android:textColor="@color/dark_color"
+                android:textSize="16sp"/>
+
+            <LinearLayout
+                android:id="@+id/grp_language"
+                style="@style/SpinnerLayoutStyle"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txt_language_selection"
+                    style="@style/SpinnerTextViewStyle"
+                    android:text="@string/select_preferred_language"/>
+
+                <ImageView
+                    style="@style/SpinnerImageViewStyle"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/language"
-            android:textColor="@color/dark_color"
-            android:textSize="16sp"/>
-
         <LinearLayout
-            android:id="@+id/grp_language"
-            style="@style/SpinnerLayoutStyle"
-            android:layout_marginTop="10dp">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txt_language_selection"
-                style="@style/SpinnerTextViewStyle"
-                android:text="@string/select_preferred_language"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:text="@string/welcome_to_xaba"
+                android:textColor="@color/dark_color"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <ImageView
-                style="@style/SpinnerImageViewStyle"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/green_line"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard"
+                android:textColor="@color/dark_color"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/register"
+                style="@style/ButtonLinkStyle"
+                android:layout_marginTop="30dp"
+                android:text="@string/register_now"/>
+
+            <Button
+                android:id="@+id/next"
+                style="@style/ButtonGreenStyle"
+                android:layout_marginTop="10dp"
+                android:text="@string/next"/>
+
+            <Button
+                android:id="@+id/log_in"
+                style="@style/ButtonLinkStyle"
+                android:layout_marginTop="5dp"
+                android:text="@string/login_in"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:text="@string/welcome_to_xaba"
-            android:textColor="@color/dark_color"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard"
-            android:textColor="@color/dark_color"
-            android:textSize="18sp"/>
-
-        <Button
-            android:id="@+id/register"
-            style="@style/ButtonLinkStyle"
-            android:layout_marginTop="40dp"
-            android:text="@string/register_now"/>
-
-        <Button
-            android:id="@+id/next"
-            style="@style/ButtonGreenStyle"
-            android:layout_marginTop="10dp"
-            android:text="@string/next"/>
-
-        <Button
-            android:id="@+id/log_in"
-            style="@style/ButtonLinkStyle"
-            android:layout_marginTop="5dp"
-            android:text="@string/login_in"/>
-
-    </LinearLayout>
-
-</LinearLayout>
-
+</ScrollView>
