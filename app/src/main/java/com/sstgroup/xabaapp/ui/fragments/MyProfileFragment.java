@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.ui.adapters.MyProfileAdapter;
 
 import butterknife.BindView;
@@ -38,7 +39,8 @@ public class MyProfileFragment extends BaseFragment {
     @Override
     protected void initFields() {
         mRvMyProfile.setLayoutManager(new LinearLayoutManager(activity));
-        MyProfileAdapter adapter = new MyProfileAdapter();
+        User loggedUser = xabaDbHelper.getLoggedUser(activity);
+        MyProfileAdapter adapter = new MyProfileAdapter(loggedUser);
         mRvMyProfile.setAdapter(adapter);
     }
 

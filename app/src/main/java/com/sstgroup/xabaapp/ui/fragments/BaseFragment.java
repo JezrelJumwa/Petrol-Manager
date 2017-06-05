@@ -19,7 +19,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected BaseActivity activity;
     private Unbinder unbinder;
-    protected DatabaseHelper databaseHelper;
+    protected DatabaseHelper xabaDbHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +42,7 @@ public abstract class BaseFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.activity = (BaseActivity) context;
-        databaseHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
+        xabaDbHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
     }
 
     @Override

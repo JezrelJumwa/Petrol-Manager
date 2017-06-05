@@ -21,12 +21,14 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/txt_profile_key"
         style="@style/ProfileTxtKey"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         tools:text="National ID:"/>
 
     <TextView
+        android:id="@+id/txt_profile_detail"
         style="@style/ProfileTxtValue"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"

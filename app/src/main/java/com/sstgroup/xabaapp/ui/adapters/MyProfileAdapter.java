@@ -1,12 +1,21 @@
 package com.sstgroup.xabaapp.ui.adapters;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
+import com.sstgroup.xabaapp.db.DatabaseHelper;
+import com.sstgroup.xabaapp.models.Category;
+import com.sstgroup.xabaapp.models.Industry;
+import com.sstgroup.xabaapp.models.Profession;
+import com.sstgroup.xabaapp.models.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,6 +25,18 @@ import butterknife.ButterKnife;
  */
 
 public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private User loggedUser;
+    private Context context;
+    private int professionsSize;
+    private DatabaseHelper databaseHelper;
+
+    public MyProfileAdapter(User loggedUser) {
+        this.loggedUser = loggedUser;
+        this.context = XabaApplication.getInstance().getApplicationContext();
+        this.professionsSize = loggedUser.getProfessions().size();
+        this.databaseHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
@@ -50,6 +71,14 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemViewType(int position) {
+
+        if (position > 5){
+            if (professionsSize + 5 <= position){
+                return R.layout.row_profile_profesion;
+            }
+
+            return R.layout.row_profile_footer;
+        }
         switch (position) {
             case 0:
                 return R.layout.row_profile_header;
@@ -63,21 +92,14 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 return R.layout.row_profile_item;
             case 5:
                 return R.layout.row_profile_item;
-            case 6:
-                return R.layout.row_profile_profesion;
-            case 7:
-                return R.layout.row_profile_profesion;
-            case 8:
-                return R.layout.row_profile_profesion;
-            case 9:
-                return R.layout.row_profile_footer;
         }
+
         throw new IndexOutOfBoundsException("Invalid position");
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 6 + professionsSize + 1;
     }
 
     class RowHeader extends RecyclerView.ViewHolder {
@@ -91,40 +113,90 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         void bind() {
-
+            txtName.setText(loggedUser.getFirstName() + " " + loggedUser.getLastName());
         }
     }
 
     class RowItem extends RecyclerView.ViewHolder {
+        @BindView(R.id.txt_profile_key)
+        TextView txtProfileKey;
+        @BindView(R.id.txt_profile_detail)
+        TextView txtProfileDetail;
+        @BindView(R.id.iv_left_icon)
+        ImageView ivProfileLeftIcon;
+
 
         public RowItem(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         void bind(int position) {
+            switch (position){
+                case 1:
+                    txtProfileKey.setText(context.getText(R.string.national_id));
+                    txtProfileDetail.setText("1234");
+                    ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_national_id));
+                    break;
+                case 2:
+                    txtProfileKey.setText(context.getText(R.string.phone));
+                    txtProfileDetail.setText(loggedUser.getPhone());
+                    ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_phone));
+                    break;
+                case 3:
+                    txtProfileKey.setText(context.getText(R.string.national_id));
+                    txtProfileDetail.setText(loggedUser.getGender());
+                    ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre));
+                    break;
+                case 4:
+                    txtProfileKey.setText(context.getText(R.string.county_profile));
+                    txtProfileDetail.setText("1234");
+                    ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_county));
+                    break;
+                case 5:
+                    txtProfileKey.setText(context.getText(R.string.sub_county_profile));
+                    txtProfileDetail.setText("1234");
+                    ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_county));
+                    break;
+            }
 
         }
     }
 
     class RowProfession extends RecyclerView.ViewHolder {
+        @BindView(R.id.txt_industry)
+        TextView txtIndustry;
+        @BindView(R.id.txt_category)
+        TextView txtCategory;
+        @BindView(R.id.txt_profession)
+        TextView txtProfession;
 
         public RowProfession(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         void bind(int position) {
-
+//            Profession profession = loggedUser.getProfessions().get(position - 6);
+//            Category category = databaseHelper.getCategory(profession.getCategoryId());
+//            Industry industry = databaseHelper.getIndustry(category.getIndustryId());
+//            txtIndustry.setText(profession.getName());
+//            txtCategory.setText(category.getName());
+//            txtProfession.setText(industry.getName());
         }
     }
 
     class RowFooter extends RecyclerView.ViewHolder {
+        @BindView(R.id.txt_referral_id)
+        TextView txtReferralId;
 
         public RowFooter(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         void bind() {
-
+            txtReferralId.setText(loggedUser.getId().toString());
         }
     }
 }

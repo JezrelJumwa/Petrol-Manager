@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 
 import java.util.ArrayList;
@@ -62,8 +61,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-        counties = databaseHelper.getCounties();
-        industries = databaseHelper.getIndustries();
+        counties = xabaDbHelper.getCounties();
+        industries = xabaDbHelper.getIndustries();
     }
 
     @Override
@@ -104,7 +103,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCounty = selectedItems.get(0);
                         txtCountySelection.setText(selectedItems.get(0));
-                        subCounties = databaseHelper.getSubCounties(selectedItems.get(0));
+                        subCounties = xabaDbHelper.getSubCounties(selectedItems.get(0));
                     }
                 });
         dialog.show();
@@ -129,7 +128,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedIndustry = selectedItems.get(0);
                         txtIndustrySelection.setText(selectedItems.get(0));
-                        categories = databaseHelper.getCategories(selectedItems.get(0));
+                        categories = xabaDbHelper.getCategories(selectedItems.get(0));
                     }
                 });
         dialog.show();
@@ -142,7 +141,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCategory = selectedItems.get(0);
                         txtCategorySelection.setText(selectedItems.get(0));
-                        professions = databaseHelper.getProfessions(selectedItems.get(0));
+                        professions = xabaDbHelper.getProfessions(selectedItems.get(0));
                     }
                 });
         dialog.show();
