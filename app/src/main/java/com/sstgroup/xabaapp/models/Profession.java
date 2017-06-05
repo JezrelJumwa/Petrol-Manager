@@ -12,15 +12,14 @@ public class Profession {
 
     @Id
     private Long id;
-
     @SerializedName("profession_id")
     private Long professionId;
     @SerializedName("name")
     private String name;
-    private long categoryId;
+    private Long categoryId;
 
-    @Generated(hash = 91061013)
-    public Profession(Long id, Long professionId, String name, long categoryId) {
+    @Generated(hash = 1923483507)
+    public Profession(Long id, Long professionId, String name, Long categoryId) {
         this.id = id;
         this.professionId = professionId;
         this.name = name;
@@ -31,35 +30,35 @@ public class Profession {
     public Profession() {
     }
 
+    public Long getCategoryId() {
+        return this.categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public Long getProfessionId() {
-        return professionId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return this.professionId;
     }
 
     public void setProfessionId(Long professionId) {
         this.professionId = professionId;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public long getCategoryId() {
-        return this.categoryId;
+    public Long getId() {
+        return this.id;
     }
 
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
+    public void setId(Long id) {
+        this.id = id;
     }
 }
