@@ -62,8 +62,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-        counties = DatabaseHelper.getInstance(activity).getCounties();
-        industries = DatabaseHelper.getInstance(activity).getIndustries();
+        counties = databaseHelper.getCounties();
+        industries = databaseHelper.getIndustries();
     }
 
     @Override
@@ -104,7 +104,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCounty = selectedItems.get(0);
                         txtCountySelection.setText(selectedItems.get(0));
-                        subCounties = DatabaseHelper.getInstance(activity).getSubCounties(selectedItems.get(0));
+                        subCounties = databaseHelper.getSubCounties(selectedItems.get(0));
                     }
                 });
         dialog.show();
@@ -129,7 +129,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedIndustry = selectedItems.get(0);
                         txtIndustrySelection.setText(selectedItems.get(0));
-                        categories = DatabaseHelper.getInstance(activity).getCategories(selectedItems.get(0));
+                        categories = databaseHelper.getCategories(selectedItems.get(0));
                     }
                 });
         dialog.show();
@@ -142,7 +142,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedCategory = selectedItems.get(0);
                         txtCategorySelection.setText(selectedItems.get(0));
-                        professions = DatabaseHelper.getInstance(activity).getProfessions(selectedItems.get(0));
+                        professions = databaseHelper.getProfessions(selectedItems.get(0));
                     }
                 });
         dialog.show();

@@ -6,12 +6,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
 import com.sstgroup.xabaapp.utils.NavigationUtils;
+import com.sstgroup.xabaapp.utils.Preferences;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import butterknife.BindView;
@@ -94,6 +96,8 @@ public class LoginActivity extends BaseActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     User user = response.body().getUser();
+                    Preferences.setLoggedUserId(LoginActivity.this, user.getId());
+                    databaseHelper.insertOrReplaceUser(user);
                     NavigationUtils.startSingleActivity(LoginActivity.this, HomeActivity.class);
                 }
             }

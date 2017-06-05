@@ -1,5 +1,6 @@
 package com.sstgroup.xabaapp.db;
 
+import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,6 +21,8 @@ import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.ProfessionDao;
 import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.models.SubCountyDao;
+import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.models.UserDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,16 +48,17 @@ public class DatabaseHelper {
     private static IndustryDao industryDao;
     private static CategoryDao categoryDao;
     private static ProfessionDao professionDao;
+    private static UserDao userDao;
 
     private DatabaseHelper() {
 
     }
 
-    public static DatabaseHelper getInstance(Context context) {
+    public static DatabaseHelper getInstance(Application application) {
         if (instance == null) {
             instance = new DatabaseHelper();
 
-            helper = new DaoMaster.DevOpenHelper(context, "xaba-db", null);
+            helper = new DaoMaster.DevOpenHelper(application.getApplicationContext(), "xaba-db", null);
             db = helper.getWritableDatabase();
             daoMaster = new DaoMaster(db);
             daoSession = daoMaster.newSession();
@@ -228,5 +232,10 @@ public class DatabaseHelper {
         }
 
         return professions;
+    }
+
+    public void insertOrReplaceUser(User user) {
+        userDao = daoSession.getUserDao();
+        userDao.insertOrReplace(user);
     }
 }

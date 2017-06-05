@@ -21,8 +21,6 @@ import timber.log.Timber;
 
 public class SplashActivity extends BaseActivity {
 
-    private DatabaseHelper mXabaDatabaseHelper;
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_splash;
@@ -30,7 +28,6 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        mXabaDatabaseHelper = DatabaseHelper.getInstance(this);
 
         getLocations();
         getProfessions();
@@ -66,9 +63,9 @@ public class SplashActivity extends BaseActivity {
 
                     if (!savedLocationHash.equals(locationStructure.getHash())) {
                         Preferences.setLocationHash(SplashActivity.this, locationStructure.hash);
-                        mXabaDatabaseHelper.deleteLocationTables();
-                        mXabaDatabaseHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
-                        mXabaDatabaseHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
+                        databaseHelper.deleteLocationTables();
+                        databaseHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
+                        databaseHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
                     }
                 }
             }
@@ -93,8 +90,8 @@ public class SplashActivity extends BaseActivity {
 
                     if (!savedProfessionHash.equals(professionStructure.getHash())) {
                         Preferences.setProfessionHash(SplashActivity.this, professionStructure.hash);
-                        mXabaDatabaseHelper.deleteProfessionTables();
-                        mXabaDatabaseHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
+                        databaseHelper.deleteProfessionTables();
+                        databaseHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
                     }
                 }
             }

@@ -6,14 +6,21 @@ import android.content.SharedPreferences;
 
 public class Preferences {
 
-    public static final String PREFERENCES_NAME = "XabaPreferences";
-    public static final String LOCATION_HASH = "location_hash";
-    public static final String PROFESSION_HASH = "profession_hash";
-    public static final String SELECTED_COUNTRY = "selected_country";
-    public static final String SELECTED_LANGUAGE = "selected_language";
+    private static final String PREFERENCES_NAME = "XabaPreferences";
+    private static final String LOCATION_HASH = "location_hash";
+    private static final String PROFESSION_HASH = "profession_hash";
+    private static final String SELECTED_COUNTRY = "selected_country";
+    private static final String SELECTED_LANGUAGE = "selected_language";
+    private static final String LOGGED_USER_ID = "logged_user_id";
+
+    private static Long mLogedUserId = null;
 
     private static SharedPreferences getPreferences(Context context) {
         return context.getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
+    }
+
+    private static SharedPreferences.Editor getEditPreference(Context context){
+        return getPreferences(context).edit();
     }
 
     public static void setLocationHash(Context context, String locationHash) {
@@ -46,5 +53,21 @@ public class Preferences {
 
     public static String getSelectedLanguage(Context context) {
         return getPreferences(context).getString(SELECTED_LANGUAGE, "");
+    }
+
+    public static void setLoggedUserId(Context context, Long loggedUserId) {
+        getEditPreference(context).putLong(LOGGED_USER_ID, loggedUserId);
+        mLogedUserId = loggedUserId;
+    }
+
+    //TODO: implement update loggedUserID if needed
+    public static Long getLoggedUserId(Context context){
+        if (mLogedUserId != null){
+            return mLogedUserId;
+        }
+
+        Long loggedUserId = getPreferences(context).getLong(LOGGED_USER_ID, -1);
+        mLogedUserId = loggedUserId;
+        return  loggedUserId;
     }
 }
