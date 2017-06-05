@@ -15,14 +15,20 @@ import com.sstgroup.xabaapp.models.DaoMaster;
 import com.sstgroup.xabaapp.models.DaoSession;
 import com.sstgroup.xabaapp.models.Industry;
 import com.sstgroup.xabaapp.models.IndustryDao;
+import com.sstgroup.xabaapp.models.JoinUsersWithProfessions;
+import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsDao;
 import com.sstgroup.xabaapp.models.Language;
 import com.sstgroup.xabaapp.models.LanguageDao;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.ProfessionDao;
 import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.models.SubCountyDao;
+import com.sstgroup.xabaapp.models.Token;
+import com.sstgroup.xabaapp.models.TokenDao;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserDao;
+import com.sstgroup.xabaapp.ui.activities.LoginActivity;
+import com.sstgroup.xabaapp.utils.Preferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +55,7 @@ public class DatabaseHelper {
     private static CategoryDao categoryDao;
     private static ProfessionDao professionDao;
     private static UserDao userDao;
+    private static TokenDao tokenDao;
 
     private DatabaseHelper() {
 
@@ -237,5 +244,43 @@ public class DatabaseHelper {
     public void insertOrReplaceUser(User user) {
         userDao = daoSession.getUserDao();
         userDao.insertOrReplace(user);
+    }
+
+    public User getLoggedUser(Context context){
+        return getUser(Preferences.getLoggedUserId(context));
+    }
+
+    public User getUser(long id){
+        userDao = daoSession.getUserDao();
+        List<User> users = userDao.queryBuilder().where(UserDao.Properties.Id.eq(id)).list();
+        if (!users.isEmpty())
+            return users.get(0);
+
+        return null;
+    }
+
+    public void insertLoggedUser(Context context, User user) {
+        Preferences.setLoggedUserId(context, user.getId());
+        for (Profession profession : user.getProfessions()) {
+            insertJoinUserProfessions(user.getId(), profession.getId());
+        }
+        long tokenId = insertOrReplaceToken(user.getTokenFromWS());
+        user.setTokenId(tokenId);
+        insertOrReplaceUser(user);
+    }
+
+    public long insertOrReplaceToken(Token token){
+        tokenDao = daoSession.getTokenDao();
+        return tokenDao.insertOrReplace(token);
+    }
+
+    public void insertJoinUserProfessions(Long userId, Long professionId) {
+        List<JoinUsersWithProfessions> list = daoSession.getJoinUsersWithProfessionsDao()
+                .queryBuilder()
+                .where(JoinUsersWithProfessionsDao.Properties.UserId.eq(userId))
+                .where(JoinUsersWithProfessionsDao.Properties.ProfessionsId.eq(professionId)).list();
+        if (list.isEmpty())
+            daoSession.getJoinUsersWithProfessionsDao()
+                    .insertOrReplace(new JoinUsersWithProfessions(null, userId, professionId));
     }
 }

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sstgroup.xabaapp.BuildConfig;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.User;
@@ -37,6 +38,10 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        if (BuildConfig.DEBUG){
+            mEditTextNationalId.setText("235720441");
+            mEditTextPinCode.setText("0000");
+        }
     }
 
     @OnClick({R.id.log_in, R.id.forgot_pin})
@@ -96,8 +101,7 @@ public class LoginActivity extends BaseActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     User user = response.body().getUser();
-                    Preferences.setLoggedUserId(LoginActivity.this, user.getId());
-                    databaseHelper.insertOrReplaceUser(user);
+                    databaseHelper.insertLoggedUser(LoginActivity.this, user);
                     NavigationUtils.startSingleActivity(LoginActivity.this, HomeActivity.class);
                 }
             }
