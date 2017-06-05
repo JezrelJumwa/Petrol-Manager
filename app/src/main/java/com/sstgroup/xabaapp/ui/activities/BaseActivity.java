@@ -13,15 +13,19 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
+import com.sstgroup.xabaapp.db.DatabaseHelper;
 
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
+    protected DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        databaseHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
         ButterKnife.bind(this);
 
         init();

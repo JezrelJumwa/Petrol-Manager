@@ -39,7 +39,10 @@
             android:name=".ui.activities.ForgottenPinActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity android:name=".ui.activities.HomeActivity"></activity>
+        <activity
+            android:name=".ui.activities.HomeActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

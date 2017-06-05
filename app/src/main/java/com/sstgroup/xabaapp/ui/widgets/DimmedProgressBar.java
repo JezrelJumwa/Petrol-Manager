@@ -6,7 +6,6 @@ import android.widget.RelativeLayout;
 
 import com.sstgroup.xabaapp.R;
 
-
 /**
  * Created by alexander on 2/16/17.
  */

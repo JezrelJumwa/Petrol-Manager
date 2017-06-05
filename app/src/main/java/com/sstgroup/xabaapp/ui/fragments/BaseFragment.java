@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sstgroup.xabaapp.XabaApplication;
+import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.ui.activities.BaseActivity;
 
 import butterknife.ButterKnife;
@@ -17,6 +19,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected BaseActivity activity;
     private Unbinder unbinder;
+    protected DatabaseHelper databaseHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +42,7 @@ public abstract class BaseFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.activity = (BaseActivity) context;
+        databaseHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
     }
 
     @Override

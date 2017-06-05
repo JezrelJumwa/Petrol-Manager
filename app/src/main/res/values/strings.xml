@@ -33,6 +33,9 @@
     </string>
     <string name="verified">Verified</string>
     <string name="continuE">Continue</string>
+    <string name="register_another_worker"><u>Register another worker</u></string>
+    <string name="your_referral_id_is">Your referral ID is:&#160;</string>
+    <string name="add_another_profession"><u>Add another profession</u></string>
     <string name="register_another_worker">
         <u>Register another worker</u>
     </string>
@@ -84,6 +87,24 @@
     <string name="your_pin_code_is_wrong">Your PIN code is wrong.</string>
     <string name="pin_code_should_be_a_number">PIN code should be a number.</string>
     <string name="enter_pin_code">Enter PIN code.</string>
+
+    <!--My Profile-->
+    <string name="change_pin">Change PIN</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="industry_dot">Industry:&#160;</string>
+    <string name="category_dot">Category&#160;</string>
+    <string name="profession_dot">Profession:&#160;</string>
+    <string name="register_worker">Register Worker</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="reports">Reports</string>
+    <string name="my_profile">My Profile</string>
+    <string name="notifications">Notifications</string>
+    <string name="faq">FAQ</string>
+    <string name="contact">Contact</string>
+    <string name="log_out">Log Out</string>
+
+    <!--Nav Menu-->
     <string name="welcome_to_xaba_shikanisha">Welcome to Xaba Shikanisha</string>
     <string name="we_have_made_it_easier_for_you_to_register">We\'ve made it easier for you to
         register.

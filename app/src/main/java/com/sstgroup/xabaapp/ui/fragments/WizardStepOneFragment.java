@@ -55,8 +55,8 @@ public class WizardStepOneFragment extends BaseFragment {
         selectedCountry = Preferences.getSelectedCountry(activity);
         selectedLanguage = Preferences.getSelectedLanguage(activity);
 
-        countries = DatabaseHelper.getInstance(activity).getCountries();
-        languages = DatabaseHelper.getInstance(activity).getLanguages();
+        countries = databaseHelper.getCountries();
+        languages = databaseHelper.getLanguages();
     }
 
     @Override
