@@ -47,11 +47,17 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/green_line"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="@string/with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions"
@@ -60,7 +66,7 @@
 
         <Button
             style="@style/ButtonLinkStyle"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="30dp"/>
 
         <Button
             android:id="@+id/register"

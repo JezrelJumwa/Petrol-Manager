@@ -11,13 +11,16 @@
     <string name="next">Next</string>
     <string name="login_in">Log in</string>
     <string name="refer_someone_to_get_rewards">Refer someone to get rewards</string>
-    <string name="with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions">
+    <string
+        name="with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions">
         With each referral you get extra money and you also get credits for their actions.
     </string>
     <string name="title">Title</string>
     <string name="national_id">National ID:</string>
     <string name="pin_code">PIN Code:</string>
-    <string name="forgot_pin"><u>Forgot PIN?</u></string>
+    <string name="forgot_pin">
+        <u>Forgot PIN?</u>
+    </string>
     <string name="phone_number">Phone Number</string>
     <string name="send_new_pin">Send new PIN</string>
     <string name="confirm_national_id">Confirm National ID</string>
@@ -25,12 +28,21 @@
     <string name="referral_code">Referral Code</string>
     <string name="activation_code">Activation Code</string>
     <string name="verify">Verify</string>
-    <string name="resend_pin_sms"><u>Re-send PIN SMS</u></string>
+    <string name="resend_pin_sms">
+        <u>Re-send PIN SMS</u>
+    </string>
     <string name="verified">Verified</string>
     <string name="continuE">Continue</string>
     <string name="register_another_worker"><u>Register another worker</u></string>
     <string name="your_referral_id_is">Your referral ID is:&#160;</string>
     <string name="add_another_profession"><u>Add another profession</u></string>
+    <string name="register_another_worker">
+        <u>Register another worker</u>
+    </string>
+    <string name="your_referral_id_is">Your referral ID is:</string>
+    <string name="add_another_profession">
+        <u>Add another profession</u>
+    </string>
     <string name="country">Country</string>
     <string name="select_country">Select Country</string>
     <string name="language">Language</string>
@@ -46,14 +58,18 @@
     <string name="profession">Profession</string>
     <string name="select_profession">Select Profession</string>
     <string name="welcome_to_xaba">Welcome to Xaba</string>
-    <string name="register_now"><u>Register Now</u></string>
+    <string name="register_now">
+        <u>Register Now</u>
+    </string>
     <string name="register_now_not_underlined">Register Now</string>
     <string name="how_to_get_an_account">How to get an account</string>
     <string name="have_you_forgot_your_pin">Have you forgot your PIN?</string>
     <string name="your_new_pin_will_be_sent_to_your_notification_number">Your new pin will be sent
         to your notification number
     </string>
-    <string name="do_you_remember_it"><u>Do you remember it?</u></string>
+    <string name="do_you_remember_it">
+        <u>Do you remember it?</u>
+    </string>
     <string name="building_connections">Building Connections</string>
     <string name="visit_xaba">Visit www.xaba.org</string>
     <string name="pin_is_reset">Pin is reset!</string>
@@ -89,4 +105,16 @@
     <string name="log_out">Log Out</string>
 
     <!--Nav Menu-->
+    <string name="welcome_to_xaba_shikanisha">Welcome to Xaba Shikanisha</string>
+    <string name="we_have_made_it_easier_for_you_to_register">We\'ve made it easier for you to
+        register.
+    </string>
+    <string name="join_the_movement_get_connected_simply_click_register_and_proceed">Join the
+        movement, get connected! Simply click register now and proceed.
+    </string>
+    <string name="refer_someone_to_xaba_and_get_rewarded">Refer someone to Xaba and get rewarded!
+    </string>
+    <string name="want_some_extra_cash_become_an_agent_and_register_workers_onto_xaba">Want some
+        extra cash? Become an agent and register workers onto Xaba.
+    </string>
 </resources>
