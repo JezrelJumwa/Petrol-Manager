@@ -240,6 +240,15 @@ public class DatabaseHelper {
         }
     }
 
+    public Profession getProfession(long id) {
+        professionDao = daoSession.getProfessionDao();
+        List<Profession> profesions = professionDao.queryBuilder().where(ProfessionDao.Properties.ProfessionId.eq(id)).list();
+        if (!profesions.isEmpty())
+            return profesions.get(0);
+
+        return null;
+    }
+
     public List<String> getProfessions(String categoryName) {
         List<String> professions = new ArrayList<>();
         categoryDao = daoSession.getCategoryDao();

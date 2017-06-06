@@ -3,6 +3,7 @@ package com.sstgroup.xabaapp.ui.adapters;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.sstgroup.xabaapp.models.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  * Created by rosenstoyanov on 6/2/17.
@@ -72,8 +74,8 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public int getItemViewType(int position) {
 
-        if (position > 5){
-            if (professionsSize + 5 <= position){
+        if (position > 4){
+            if (professionsSize + 4 >= position){
                 return R.layout.row_profile_profesion;
             }
 
@@ -90,8 +92,6 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 return R.layout.row_profile_item;
             case 4:
                 return R.layout.row_profile_item;
-            case 5:
-                return R.layout.row_profile_item;
         }
 
         throw new IndexOutOfBoundsException("Invalid position");
@@ -99,7 +99,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemCount() {
-        return 6 + professionsSize + 1;
+        return 5 + professionsSize + 1;
     }
 
     class RowHeader extends RecyclerView.ViewHolder {
@@ -134,26 +134,21 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         void bind(int position) {
             switch (position){
                 case 1:
-                    txtProfileKey.setText(context.getText(R.string.national_id));
-                    txtProfileDetail.setText("1234");
-                    ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_national_id));
-                    break;
-                case 2:
                     txtProfileKey.setText(context.getText(R.string.phone));
                     txtProfileDetail.setText(loggedUser.getPhone());
                     ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_phone));
                     break;
-                case 3:
-                    txtProfileKey.setText(context.getText(R.string.national_id));
+                case 2:
+                    txtProfileKey.setText(context.getText(R.string.genre));
                     txtProfileDetail.setText(loggedUser.getGender());
                     ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre));
                     break;
-                case 4:
+                case 3:
                     txtProfileKey.setText(context.getText(R.string.county_profile));
                     txtProfileDetail.setText("1234");
                     ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_county));
                     break;
-                case 5:
+                case 4:
                     txtProfileKey.setText(context.getText(R.string.sub_county_profile));
                     txtProfileDetail.setText("1234");
                     ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_county));
@@ -164,10 +159,10 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     class RowProfession extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_industry)
-        TextView txtIndustry;
-        @BindView(R.id.txt_category)
-        TextView txtCategory;
+//        @BindView(R.id.txt_industry)
+//        TextView txtIndustry;
+//        @BindView(R.id.txt_category)
+//        TextView txtCategory;
         @BindView(R.id.txt_profession)
         TextView txtProfession;
 
@@ -177,12 +172,25 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         void bind(int position) {
-//            Profession profession = loggedUser.getProfessions().get(position - 6);
+//            Timber.d("meh");
+//            loggedUser.refresh();
+//            Profession professionRel = loggedUser.getProfessions().get(position - 6);
+//            Long id = professionRel.getProfessionId() != null ? professionRel.getProfessionId() : professionRel.getLoggedUserProfessionId();
+//            Profession profession = DatabaseHelper
+//                    .getInstance(XabaApplication.getInstance())
+//                    .getProfession(id);
+
+            Profession profession = loggedUser.getProfessions().get(position - 5);
+
 //            Category category = databaseHelper.getCategory(profession.getCategoryId());
 //            Industry industry = databaseHelper.getIndustry(category.getIndustryId());
 //            txtIndustry.setText(profession.getName());
 //            txtCategory.setText(category.getName());
-//            txtProfession.setText(industry.getName());
+            if(profession != null && !TextUtils.isEmpty(profession.getName())){
+                txtProfession.setText(profession.getName());
+            } else {
+                txtProfession.setText("");
+            }
         }
     }
 
