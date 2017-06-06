@@ -3,8 +3,13 @@ package com.sstgroup.xabaapp.service;
 
 import com.sstgroup.xabaapp.utils.Constants;
 
+import java.io.IOException;
+
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Converter;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -32,5 +37,9 @@ public class RestClient {
 
     public static LeadsService getService() {
         return service;
+    }
+
+    public static Retrofit getRetrofit() {
+        return retrofit;
     }
 }
