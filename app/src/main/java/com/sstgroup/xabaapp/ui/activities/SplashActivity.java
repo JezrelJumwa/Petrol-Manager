@@ -14,6 +14,7 @@ import com.sstgroup.xabaapp.models.ProfessionResponse;
 import com.sstgroup.xabaapp.models.ProfessionStructure;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.NavigationUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
 
 import retrofit2.Call;
@@ -45,9 +46,19 @@ public class SplashActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                goToMainScreen();
+                if (xabaDbHelper.getLoggedUser(SplashActivity.this) != null) {
+                    goToHome();
+                } else {
+                    goToMainScreen();
+                }
             }
         }, Constants.SPLASH_DURATION);
+    }
+
+    private void goToHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void goToMainScreen() {

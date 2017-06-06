@@ -56,7 +56,7 @@ public class Preferences {
     }
 
     public static void setLoggedUserId(Context context, Long loggedUserId) {
-        getEditPreference(context).putLong(LOGGED_USER_ID, loggedUserId);
+        getEditPreference(context).putLong(LOGGED_USER_ID, loggedUserId).apply();
         mLogedUserId = loggedUserId;
     }
 
