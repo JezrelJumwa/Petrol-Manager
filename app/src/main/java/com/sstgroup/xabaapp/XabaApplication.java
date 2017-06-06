@@ -34,7 +34,6 @@ public class XabaApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "xaba-db", null);
 
         User user = DatabaseHelper.getInstance(this).getLoggedUser(this);
         if (user != null)
