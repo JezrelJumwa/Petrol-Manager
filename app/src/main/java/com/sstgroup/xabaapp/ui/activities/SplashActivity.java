@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.LocationResponse;
 import com.sstgroup.xabaapp.models.LocationStructure;
 import com.sstgroup.xabaapp.models.ProfessionResponse;
@@ -46,7 +47,7 @@ public class SplashActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (xabaDbHelper.getLoggedUser(SplashActivity.this) != null) {
+                if (XabaApplication.getInstance().isAuthenticated()) {
                     goToHome();
                 } else {
                     goToMainScreen();
