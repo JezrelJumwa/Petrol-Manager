@@ -35,4 +35,10 @@ public class Constants {
     public static final String PROFESSIONS = "professions[]";
     public static final String AGENT_ID = "agent_id";
     public static final String VERIFICATION_CODE = "verification_code";
+
+    //error status
+    public static final String ERROR_STATUS_UNEXPECTED = "unexpected";
+    public static final String ERROR_STATUS_ERROR = "ERROR";
+    public static final String ERROR_STATUS_OK = "OK";
+    public static final String ERROR_STATUS_FAIL = "FAIL";
 }
