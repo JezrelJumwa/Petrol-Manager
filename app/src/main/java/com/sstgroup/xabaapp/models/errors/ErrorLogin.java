@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ErrorLogin {
     private String status;
-    @SerializedName("ERROR")
+    @SerializedName("errors")
     private String error;
 
     public ErrorLogin(String status, String error) {
