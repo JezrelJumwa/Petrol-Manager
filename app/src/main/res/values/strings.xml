@@ -141,4 +141,7 @@
     <string name="choose_industry">Choose Industry.</string>
     <string name="choose_category">Choose Category.</string>
     <string name="choose_profession">Choose Profession.</string>
+    <string name="enter_activation_code">Enter Activation Code.</string>
+    <string name="new_activation_code_is_sent_via_sms">New Actiovation code is sent via SMS.
+    </string>
 </resources>

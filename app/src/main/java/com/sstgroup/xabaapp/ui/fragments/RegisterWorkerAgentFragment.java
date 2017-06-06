@@ -1,6 +1,7 @@
 package com.sstgroup.xabaapp.ui.fragments;
 
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
+import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.utils.Constants;
@@ -125,9 +127,12 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     protected void initViews(View rootView) {
     }
 
-    @OnClick({R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.add_another_profession, R.id.register})
+    @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.add_another_profession, R.id.register})
     public void onButtonClick(View view) {
         switch (view.getId()) {
+            case R.id.back:
+                activity.onBackPressed();
+                break;
             case R.id.grp_county:
                 showCountiesDialog();
                 break;
@@ -458,18 +463,24 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, pinCode, phoneNumber, languageCode, countryId, 42L, 51L, professionIds, null, Constants.AGENT_APP_VALUE, null);
 
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateStringForRequest());
-        Call<Object> call = RestClient.getService().register(body);
-        call.enqueue(new Callback<Object>() {
+        Call<UserResponse> call = RestClient.getService().register(body);
+        call.enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
+
+                    String userId = String.valueOf(response.body().getUser().getId());
+                    Bundle bundle = new Bundle();
+                    bundle.putString(Constants.WORKER_ID, userId);
+
                     RegisterConfirmFragment registerConfirmFragment = new RegisterConfirmFragment();
+                    registerConfirmFragment.setArguments(bundle);
                     activity.openFragment(registerConfirmFragment, true);
                 }
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 Timber.d("onFailure" + t.toString());
             }
         });

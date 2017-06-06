@@ -10,6 +10,8 @@ public class Constants {
 
     public static final String WS_REGISTER_PATH = "worker/create/";
     public static final String WS_REGISTER_WORKER_BY_AGENT_PATH = "worker/create-by-agent/";
+    public static final String WS_ACTIVATE_REGISTRATION_PATH = "worker/activate/";
+    public static final String WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH = "worker/activate/resend-code/";
     public static final String WS_LOGIN_PATH = "worker/login/";
     public static final String WS_LOCATION_PATH = "location/list/";
     public static final String WS_PROFESSION_PATH = "profession/list/";
@@ -20,6 +22,7 @@ public class Constants {
 
     public static final String AGENT_APP_NAME = "client";
     public static final String AGENT_APP_VALUE = "agent-app";
+    public static final String ACTIVATION_CODE = "activation_code";
     public static final String STATUS = "status";
     public static final String BODY = "body";
     public static final String TOKEN = "token";
@@ -34,6 +37,7 @@ public class Constants {
     public static final String SUBCOUNTY_ID = "subcounty_id";
     public static final String PROFESSIONS = "professions[]";
     public static final String AGENT_ID = "agent_id";
+    public static final String WORKER_ID = "worker_id";
     public static final String VERIFICATION_CODE = "verification_code";
 
     //error status

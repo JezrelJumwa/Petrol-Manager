@@ -1,9 +1,11 @@
 package com.sstgroup.xabaapp.service;
 
 
+import com.sstgroup.xabaapp.models.ActivationCodeResponse;
 import com.sstgroup.xabaapp.models.LocationResponse;
 import com.sstgroup.xabaapp.models.PinResponse;
 import com.sstgroup.xabaapp.models.ProfessionResponse;
+import com.sstgroup.xabaapp.models.SendNewActivationCodeResponse;
 import com.sstgroup.xabaapp.models.UserResponse;
 
 import okhttp3.RequestBody;
@@ -16,12 +18,15 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
+import static com.sstgroup.xabaapp.utils.Constants.ACTIVATION_CODE;
 import static com.sstgroup.xabaapp.utils.Constants.AGENT_APP_NAME;
 import static com.sstgroup.xabaapp.utils.Constants.NATIONAL_ID;
 import static com.sstgroup.xabaapp.utils.Constants.NEW_PIN;
 import static com.sstgroup.xabaapp.utils.Constants.OLD_PIN;
 import static com.sstgroup.xabaapp.utils.Constants.PIN;
 import static com.sstgroup.xabaapp.utils.Constants.TOKEN;
+import static com.sstgroup.xabaapp.utils.Constants.WORKER_ID;
+import static com.sstgroup.xabaapp.utils.Constants.WS_ACTIVATE_REGISTRATION_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_CHANGE_PIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_GET_USER_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOCATION_PATH;
@@ -29,6 +34,7 @@ import static com.sstgroup.xabaapp.utils.Constants.WS_LOGIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_PROFESSION_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_REGISTER_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_REGISTER_WORKER_BY_AGENT_PATH;
+import static com.sstgroup.xabaapp.utils.Constants.WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_RESET_PIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_RESET_VERIFY_PATH;
 
@@ -36,7 +42,17 @@ public interface LeadsService {
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(WS_REGISTER_PATH)
-    Call<Object> register(@Body RequestBody model);
+    Call<UserResponse> register(@Body RequestBody model);
+
+    @FormUrlEncoded
+    @POST(WS_ACTIVATE_REGISTRATION_PATH)
+    Call<ActivationCodeResponse> sendActivationCode(@Field(AGENT_APP_NAME) String agentApp,
+                                                    @Field(ACTIVATION_CODE) String activationCode);
+
+    @FormUrlEncoded
+    @POST(WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH)
+    Call<SendNewActivationCodeResponse> sendSmsWithNewActivationCode(@Field(AGENT_APP_NAME) String agentApp,
+                                                                     @Field(WORKER_ID) String workerId);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(WS_REGISTER_WORKER_BY_AGENT_PATH)
