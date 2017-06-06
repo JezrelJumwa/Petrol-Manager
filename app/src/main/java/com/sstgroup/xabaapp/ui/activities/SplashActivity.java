@@ -37,7 +37,7 @@ public class SplashActivity extends BaseActivity {
         startTimerForSplash();
 
         LinearLayout centerItems = (LinearLayout) findViewById(R.id.center_items);
-        Animation animation = AnimationUtils.loadAnimation(this, R.animator.fadeinout);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadeinout);
         centerItems.startAnimation(animation);
     }
 
