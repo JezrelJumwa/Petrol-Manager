@@ -3,6 +3,9 @@ package com.sstgroup.xabaapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.LocationResponse;
@@ -11,6 +14,7 @@ import com.sstgroup.xabaapp.models.ProfessionResponse;
 import com.sstgroup.xabaapp.models.ProfessionStructure;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.NavigationUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
 
 import retrofit2.Call;
@@ -32,15 +36,29 @@ public class SplashActivity extends BaseActivity {
         getProfessions();
 
         startTimerForSplash();
+
+        LinearLayout centerItems = (LinearLayout) findViewById(R.id.center_items);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadeinout);
+        centerItems.startAnimation(animation);
     }
 
     private void startTimerForSplash() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                goToMainScreen();
+                if (xabaDbHelper.getLoggedUser(SplashActivity.this) != null) {
+                    goToHome();
+                } else {
+                    goToMainScreen();
+                }
             }
         }, Constants.SPLASH_DURATION);
+    }
+
+    private void goToHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void goToMainScreen() {
