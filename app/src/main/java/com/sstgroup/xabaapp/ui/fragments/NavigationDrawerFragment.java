@@ -47,7 +47,8 @@ public class NavigationDrawerFragment extends BaseFragment {
     }
 
     @OnClick({R.id.nav_register_worker, R.id.nav_dashboard, R.id.nav_reports,
-            R.id.nav_my_profile, R.id.nav_notifications, R.id.nav_faq, R.id.nav_contact})
+            R.id.nav_my_profile, R.id.nav_notifications, R.id.nav_faq,
+            R.id.nav_contact, R.id.nav_logout})
     public void menuItemClick(View v) {
         selectItemAndClose((AppCompatCheckedTextView) v);
     }

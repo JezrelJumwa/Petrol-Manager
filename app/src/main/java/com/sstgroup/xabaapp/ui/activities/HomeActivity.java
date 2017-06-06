@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.ui.fragments.MyProfileFragment;
 import com.sstgroup.xabaapp.ui.fragments.NavigationDrawerFragment;
 
@@ -108,6 +109,7 @@ public class HomeActivity extends BaseActivity implements
             case R.id.nav_contact:
                 break;
             case R.id.nav_logout:
+                XabaApplication.getInstance().logout();
                 break;
 
         }

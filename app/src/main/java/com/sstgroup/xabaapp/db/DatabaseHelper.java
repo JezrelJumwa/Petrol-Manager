@@ -75,6 +75,18 @@ public class DatabaseHelper {
         return instance;
     }
 
+    public void dropDb(){
+        daoSession.getLanguageDao().deleteAll();
+        daoSession.getCountryDao().deleteAll();
+        daoSession.getCountyDao().deleteAll();
+        daoSession.getSubCountyDao().deleteAll();
+        daoSession.getIndustryDao().deleteAll();
+        daoSession.getCategoryDao().deleteAll();
+        daoSession.getProfessionDao().deleteAll();
+        daoSession.getUserDao().deleteAll();
+        daoSession.getTokenDao().deleteAll();
+    }
+
     public void deleteLocationTables() {
         daoSession.getLanguageDao().deleteAll();
         daoSession.getCountryDao().deleteAll();
