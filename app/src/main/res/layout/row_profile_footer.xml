@@ -8,6 +8,7 @@
     android:paddingBottom="15dp">
 
     <View
+        android:id="@+id/top_green_view"
         android:layout_width="match_parent"
         android:layout_height="15dp"
         android:background="@color/profession_green"/>

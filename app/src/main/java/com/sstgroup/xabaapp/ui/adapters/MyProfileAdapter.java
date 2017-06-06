@@ -20,6 +20,7 @@ import com.sstgroup.xabaapp.models.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import timber.log.Timber;
 
 /**
@@ -197,6 +198,8 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     class RowFooter extends RecyclerView.ViewHolder {
         @BindView(R.id.txt_referral_id)
         TextView txtReferralId;
+        @BindView(R.id.top_green_view)
+        View topGreenView;
 
         public RowFooter(View itemView) {
             super(itemView);
@@ -204,7 +207,26 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         void bind() {
+            if (loggedUser.getProfessions().isEmpty())
+                topGreenView.setVisibility(View.GONE);
+            else
+                topGreenView.setVisibility(View.VISIBLE);
+
             txtReferralId.setText(loggedUser.getId().toString());
+        }
+
+        @OnClick({R.id.txt_change_pin, R.id.btn_edit_profile, R.id.txt_delete_account})
+        void onClick(View view){
+            int id = view.getId();
+            switch (id){
+                case R.id.txt_change_pin:
+                    break;
+                case R.id.btn_edit_profile:
+                    break;
+                case R.id.txt_delete_account:
+                    break;
+            }
+
         }
     }
 }

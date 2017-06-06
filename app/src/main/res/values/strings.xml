@@ -86,9 +86,9 @@
     <string name="enter_pin_code">Enter PIN code.</string>
 
     <!--My Profile-->
-    <string name="change_pin">Change PIN</string>
+    <string name="change_pin"><u>Change PIN</u></string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="delete_account">Delete Account</string>
+    <string name="delete_account"><u>Delete Account</u></string>
     <string name="industry_dot">Industry:&#160;</string>
     <string name="category_dot">Category&#160;</string>
     <string name="profession_dot">Profession:&#160;</string>
