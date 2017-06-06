@@ -3,6 +3,9 @@ package com.sstgroup.xabaapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.LocationResponse;
@@ -32,6 +35,10 @@ public class SplashActivity extends BaseActivity {
         getProfessions();
 
         startTimerForSplash();
+
+        LinearLayout centerItems = (LinearLayout) findViewById(R.id.center_items);
+        Animation animation = AnimationUtils.loadAnimation(this, R.animator.fadeinout);
+        centerItems.startAnimation(animation);
     }
 
     private void startTimerForSplash() {
