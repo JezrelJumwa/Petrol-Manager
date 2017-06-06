@@ -24,7 +24,7 @@ public class ErrorUtils {
         try {
             return converter.convert(response.errorBody());
         } catch (IOException e) {
-            return new ErrorCodeAndMessage("Fail", new ErrorCodeAndMessage.Error(1000, "Error Parse Failure"));
+            return new ErrorCodeAndMessage(Constants.ERROR_STATUS_UNEXPECTED, new ErrorCodeAndMessage.Error(1000, "Error Parse Failure"));
         }
     }
 
