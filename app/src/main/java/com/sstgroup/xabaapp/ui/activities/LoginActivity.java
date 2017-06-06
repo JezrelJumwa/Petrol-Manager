@@ -9,11 +9,17 @@ import com.sstgroup.xabaapp.BuildConfig;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
+import com.sstgroup.xabaapp.models.errors.ErrorLogin;
 import com.sstgroup.xabaapp.service.RestClient;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.NavigationUtils;
 import com.sstgroup.xabaapp.utils.Validator;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -69,7 +75,7 @@ public class LoginActivity extends BaseActivity {
             Toast.makeText(this, getResources().getString(R.string.national_id_should_be_a_number), Toast.LENGTH_SHORT).show();
             return;
         }
-
+        //TODO: uncomment this
 //        if (nationalId.length() != 10) {
 //            Toast.makeText(this, getResources().getString(R.string.your_national_id_is_wrong), Toast.LENGTH_SHORT).show();
 //            return;
@@ -108,13 +114,24 @@ public class LoginActivity extends BaseActivity {
 //                        NavigationUtils.startSingleActivity(LoginActivity.this, HomeActivity.class);
 //                    }
                     NavigationUtils.startSingleActivity(LoginActivity.this, HomeActivity.class);
+                } else {
+                    ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
+                    if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)){
+                        ToastInterval.showToast(LoginActivity.this, "Ups sth went wrong");
+                    } else {
+                        ToastInterval.showToast(LoginActivity.this, errorLogin.getError());
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, getResources().getString(R.string.something_is_wrong), Toast.LENGTH_SHORT).show();
-                Timber.d("onFailure" + t.toString());
+                if (t instanceof IOException){
+                    //Add your code for displaying no network connection error
+                    ToastInterval.showToast(LoginActivity.this, "Network error");
+                } else {
+                    ToastInterval.showToast(LoginActivity.this, getString(R.string.something_is_wrong));
+                }
             }
         });
     }
