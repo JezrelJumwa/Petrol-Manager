@@ -123,4 +123,22 @@
         We have sent an activation code to your contact number. Please enter the provided code to
         verify your account.
     </string>
+    <string name="national_id_and_confirm_national_id_should_be_the_same">National ID and Confirm
+        National ID should be the same.
+    </string>
+    <string name="enter_phone_number">Enter phone number.</string>
+    <string name="pin_code_and_confirm_pin_code_should_be_the_same">PIN code and Confirm PIN code
+        should be the same!
+    </string>
+    <string name="enter_referral_code">Enter referral code.</string>
+    <string name="enter_confirm_national_id">Enter Confirm National ID.</string>
+    <string name="enter_confirm_pin_code">Enter Confirm PIN code.</string>
+    <string name="choose_industry_first">Choose Industry first.</string>
+    <string name="choose_category_first">Choose Category first.</string>
+    <string name="choose_county_first">Choose County first.</string>
+    <string name="choose_county">Choose County.</string>
+    <string name="choose_sub_county">Choose Sub-County</string>
+    <string name="choose_industry">Choose Industry.</string>
+    <string name="choose_category">Choose Category.</string>
+    <string name="choose_profession">Choose Profession.</string>
 </resources>

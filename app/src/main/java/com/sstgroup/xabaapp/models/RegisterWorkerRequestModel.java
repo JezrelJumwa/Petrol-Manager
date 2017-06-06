@@ -6,7 +6,7 @@ import com.sstgroup.xabaapp.utils.Encryption;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterWorkerRequestModel {
 
@@ -14,15 +14,15 @@ public class RegisterWorkerRequestModel {
     private String pin;
     private String phone;
     private String preferred_language;
-    private Integer country_id;
-    private Integer county_id;
-    private Integer subcounty_id;
-    private ArrayList<Integer> professions;
-    private Integer agent_id;
+    private Long country_id;
+    private Long county_id;
+    private Long subcounty_id;
+    private List<Long> professions;
+    private Long agent_id;
     private String client;
     private String token;
 
-    public RegisterWorkerRequestModel(String national_idn, String pin, String phone, String preferred_language, Integer country_id, Integer county_id, Integer subcounty_id, ArrayList<Integer> professions, Integer agent_id, String client, String token) {
+    public RegisterWorkerRequestModel(String national_idn, String pin, String phone, String preferred_language, Long country_id, Long county_id, Long subcounty_id, List<Long> professions, Long agent_id, String client, String token) {
         this.national_idn = national_idn;
         this.pin = pin;
         this.phone = phone;
@@ -42,7 +42,7 @@ public class RegisterWorkerRequestModel {
 
         String professionsString = "";
 
-        for (Integer professionId : professions) {
+        for (Long professionId : professions) {
             professionsString += "&" + Constants.PROFESSIONS + "=" + professionId;
         }
 
@@ -54,9 +54,12 @@ public class RegisterWorkerRequestModel {
                 "&" + Constants.COUNTRY_ID + "=" + country_id +
                 "&" + Constants.COUNTY_ID + "=" + county_id +
                 "&" + Constants.SUBCOUNTY_ID + "=" + subcounty_id +
-                "&" + Constants.AGENT_ID + "=" + agent_id +
                 "&" + Constants.AGENT_APP_NAME + "=" + client +
                 professionsString;
+
+        if (agent_id != null) {
+            requestBody += "&" + Constants.AGENT_ID + "=" + agent_id;
+        }
 
         if (token != null && !token.isEmpty()) {
             requestBody += "&" + Constants.TOKEN + "=" + token;

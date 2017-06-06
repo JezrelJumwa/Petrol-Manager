@@ -14,17 +14,4 @@ public class Validator {
         return !TextUtils.isDigitsOnly(field);
     }
 
-    public static boolean isPhoneValid(String phone) {
-        return Patterns.PHONE.matcher(phone).matches();
-    }
-
-    public static boolean doPasswordsMatch(String newPassword, String confirmNewPassword) {
-        return newPassword != null && !isEmpty(newPassword)
-                && confirmNewPassword != null && !isEmpty(confirmNewPassword)
-                && newPassword.equals(confirmNewPassword);
-    }
-
-    public static boolean isPasswordLengthCorrect(String password) {
-        return password != null && !isEmpty(password) && !(password.length() < 8);
-    }
 }

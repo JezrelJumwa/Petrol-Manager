@@ -1,51 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp">
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="@string/verified"
+            android:textColor="@color/dark_color"
+            android:textSize="32sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/check"/>
+
+        <Button
+            android:id="@+id/continuE"
+            style="@style/ButtonGreenStyle"
+            android:layout_marginTop="30dp"
+            android:text="@string/continuE"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/your_referral_id_is"
+                android:textColor="@color/dark_color"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/your_referral_id_is"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/your_referral_id_is"
+                android:textColor="@color/dark_color"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/register_another_worker"
+            style="@style/ButtonLinkStyle"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="@string/register_another_worker"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:text="@string/verified"
-        android:textColor="@color/dark_color"
-        android:textSize="32sp"
-        android:textStyle="bold"/>
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingBottom="30dp"
+        android:text="@string/visit_xaba"
+        android:textSize="13sp"/>
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/check"/>
-
-    <Button
-        android:id="@+id/continuE"
-        style="@style/ButtonGreenStyle"
-        android:layout_marginTop="30dp"
-        android:text="@string/continuE"/>
-
-    <TextView
-        android:id="@+id/your_referral_id_is"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/your_referral_id_is"
-        android:textColor="@color/dark_color"
-        android:textSize="16sp"/>
-
-    <Button
-        android:id="@+id/register_another_worker"
-        style="@style/ButtonLinkStyle"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:text="@string/register_another_worker"/>
-
-</LinearLayout>
+</FrameLayout>

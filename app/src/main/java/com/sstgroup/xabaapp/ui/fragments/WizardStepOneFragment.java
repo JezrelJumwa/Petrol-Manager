@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.PinResponse;
-import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.service.RestClient;
@@ -23,8 +22,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -122,7 +119,7 @@ public class WizardStepOneFragment extends BaseFragment {
         dialog.show();
     }
 
-    private void registerWorkerByAgent() {
+   /* private void registerWorkerByAgent() {
 
         ArrayList<Integer> professions = new ArrayList<>();
         professions.add(77);
@@ -145,32 +142,7 @@ public class WizardStepOneFragment extends BaseFragment {
                 Timber.d("onFailure" + t.toString());
             }
         });
-    }
-
-    private void register() {
-
-        ArrayList<Integer> professions = new ArrayList<>();
-        professions.add(77);
-        professions.add(4);
-
-        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel("1234554781", "1234", "+254701234567", "sw-KE", 1, 42, 51, professions, 12, Constants.AGENT_APP_VALUE, null);
-
-        RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateStringForRequest());
-        Call<Object> call = RestClient.getService().register(body);
-        call.enqueue(new Callback<Object>() {
-            @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
-                if (response.isSuccessful()) {
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Object> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
-            }
-        });
-    }
+    }*/
 
     private void getWorkerData() {
 

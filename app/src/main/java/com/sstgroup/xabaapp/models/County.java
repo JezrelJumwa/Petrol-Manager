@@ -27,7 +27,6 @@ public class County {
     @ToMany(referencedJoinProperty = "countyId")
     private List<SubCounty> subCounties;
     private long countryId;
-
     public Long getId() {
         return id;
     }

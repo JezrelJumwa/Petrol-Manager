@@ -29,13 +29,10 @@ import com.sstgroup.xabaapp.models.Token;
 import com.sstgroup.xabaapp.models.TokenDao;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserDao;
-import com.sstgroup.xabaapp.ui.activities.LoginActivity;
 import com.sstgroup.xabaapp.utils.Preferences;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import timber.log.Timber;
 
 /**
  * Created by julianlubenov on 5/10/17.
@@ -132,7 +129,7 @@ public class DatabaseHelper {
         countyDao.insertInTx(counties);
 
         for (County county : counties) {
-            insertOrReplaceSubCounties(county.getSubCounties());
+            insertOrReplaceSubCounties(county.getSubCounties(), county.getId());
         }
     }
 
@@ -148,44 +145,21 @@ public class DatabaseHelper {
         return counties;
     }
 
-    public void insertOrReplaceSubCounties(List<SubCounty> subCounties) {
+    public void insertOrReplaceSubCounties(List<SubCounty> subCounties, long countyId) {
         subCountyDao = daoSession.getSubCountyDao();
+        for (SubCounty subCounty : subCounties) {
+            subCounty.setCountyId(countyId);
+        }
         subCountyDao.insertInTx(subCounties);
     }
 
-   /* public List<String> getSubCounties(String county) {
-
-        List<String> subCounties = new ArrayList<>();
-
-//        Cursor cursor = countyDao.getDatabase().rawQuery("SELECT sub_county.name FROM county JOIN sub_county ON county._id=sub_county.county_id", null);
-        String countyId = "";
-
-        Cursor cursor = countyDao.getDatabase().rawQuery("SELECT _id FROM county WHERE name='" + county + "'", null);
-        while (cursor.moveToNext()) {
-            countyId = cursor.getString(0);
-        }
-        Timber.d("TEST countyId= " + countyId);
-
-        cursor = subCountyDao.getDatabase().rawQuery("SELECT name FROM sub_county WHERE county_id='" + county + "'", null);
-//        cursor = subCountyDao.getDatabase().rawQuery("SELECT name FROM sub_county", null);
-        while (cursor.moveToNext()) {
-            Timber.d("TEST moveToNext");
-            subCounties.add(cursor.getString(0));
-        }
-
-        return subCounties;
-    }*/
-
     public List<String> getSubCounties(String countyName) {
+        List<String> subCountiesString = new ArrayList<>();
         countyDao = daoSession.getCountyDao();
 
-        List<String> subCountiesString = new ArrayList<>();
-
         for (SubCounty subCounty : countyDao.queryBuilder().where(CountyDao.Properties.Name.eq(countyName)).list().get(0).getSubCounties()) {
-            Timber.d("TEST subCounty=");
             subCountiesString.add(subCounty.getName());
         }
-
         return subCountiesString;
     }
 
@@ -211,7 +185,7 @@ public class DatabaseHelper {
 
     private void insertOrReplaceCategory(List<Category> categories, long industryId) {
         categoryDao = daoSession.getCategoryDao();
-        for (Category category: categories) {
+        for (Category category : categories) {
             category.setIndustryId(industryId);
         }
         categoryDao.insertInTx(categories);
@@ -256,11 +230,11 @@ public class DatabaseHelper {
         userDao.insertOrReplace(user);
     }
 
-    public User getLoggedUser(Context context){
+    public User getLoggedUser(Context context) {
         return getUser(Preferences.getLoggedUserId(context));
     }
 
-    public User getUser(long id){
+    public User getUser(long id) {
         userDao = daoSession.getUserDao();
         List<User> users = userDao.queryBuilder().where(UserDao.Properties.Id.eq(id)).list();
         if (!users.isEmpty())
@@ -279,7 +253,7 @@ public class DatabaseHelper {
         insertOrReplaceUser(user);
     }
 
-    public long insertOrReplaceToken(Token token){
+    public long insertOrReplaceToken(Token token) {
         tokenDao = daoSession.getTokenDao();
         return tokenDao.insertOrReplace(token);
     }
@@ -322,6 +296,40 @@ public class DatabaseHelper {
         if (!industries.isEmpty())
             return industries.get(0);
 
+        return null;
+    }
+
+    public Country getCountry(String countryName) {
+        countryDao = daoSession.getCountryDao();
+        List<Country> countries = countryDao.queryBuilder().where(CountryDao.Properties.Name.eq(countryName)).list();
+        if (!countries.isEmpty()) {
+            return countries.get(0);
+        }
+
+        return null;
+    }
+
+    public Language getLanguage(String languageName) {
+        languageDao = daoSession.getLanguageDao();
+        List<Language> languages = languageDao.queryBuilder().where(LanguageDao.Properties.Name.eq(languageName)).list();
+        if (!languages.isEmpty()) {
+            return languages.get(0);
+        }
+        return null;
+    }
+
+    public List<Long> getProfessionIds(ArrayList<String> professionIds) {
+        professionDao = daoSession.getProfessionDao();
+        List<Profession> professions = professionDao.queryBuilder().where(ProfessionDao.Properties.Name.in(professionIds)).list();
+        List<Long> professionIdsList = new ArrayList<>();
+
+        for (Profession profession : professions) {
+            professionIdsList.add(profession.getProfessionId());
+        }
+
+        if (!professionIdsList.isEmpty()) {
+            return professionIdsList;
+        }
         return null;
     }
 }
