@@ -12,15 +12,15 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
-import com.sstgroup.xabaapp.db.DatabaseHelper;
-import com.sstgroup.xabaapp.models.Category;
-import com.sstgroup.xabaapp.models.Industry;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.ui.activities.EditProfileActivity;
+import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.NavigationUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
+import butterknife.OnClick;
 
 /**
  * Created by rosenstoyanov on 6/2/17.
@@ -30,13 +30,11 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private User loggedUser;
     private Context context;
     private int professionsSize;
-    private DatabaseHelper databaseHelper;
 
     public MyProfileAdapter(User loggedUser) {
         this.loggedUser = loggedUser;
         this.context = XabaApplication.getInstance().getApplicationContext();
         this.professionsSize = loggedUser.getProfessions().size();
-        this.databaseHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
     }
 
     @Override
@@ -141,7 +139,11 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 case 2:
                     txtProfileKey.setText(context.getText(R.string.genre));
                     txtProfileDetail.setText(loggedUser.getGender());
-                    ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre));
+                    if (loggedUser.getGender().equalsIgnoreCase(Constants.MALE)){
+                        ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre_male));
+                    } else {
+                        ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre_female));
+                    }
                     break;
                 case 3:
                     txtProfileKey.setText(context.getText(R.string.county_profile));
@@ -197,6 +199,8 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     class RowFooter extends RecyclerView.ViewHolder {
         @BindView(R.id.txt_referral_id)
         TextView txtReferralId;
+        @BindView(R.id.top_green_view)
+        View topGreenView;
 
         public RowFooter(View itemView) {
             super(itemView);
@@ -204,7 +208,27 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         void bind() {
+            if (loggedUser.getProfessions().isEmpty())
+                topGreenView.setVisibility(View.GONE);
+            else
+                topGreenView.setVisibility(View.VISIBLE);
+
             txtReferralId.setText(loggedUser.getId().toString());
+        }
+
+        @OnClick({R.id.txt_change_pin, R.id.btn_edit_profile, R.id.txt_delete_account})
+        void onClick(View view){
+            int id = view.getId();
+            switch (id){
+                case R.id.txt_change_pin:
+                    break;
+                case R.id.btn_edit_profile:
+                    NavigationUtils.startActivity(context, EditProfileActivity.class);
+                    break;
+                case R.id.txt_delete_account:
+                    break;
+            }
+
         }
     }
 }

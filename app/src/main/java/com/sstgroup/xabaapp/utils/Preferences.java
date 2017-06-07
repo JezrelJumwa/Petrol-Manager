@@ -19,7 +19,7 @@ public class Preferences {
         return context.getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
     }
 
-    private static SharedPreferences.Editor getEditPreference(Context context){
+    private static SharedPreferences.Editor getPrefs(Context context){
         return getPreferences(context).edit();
     }
 
@@ -56,7 +56,7 @@ public class Preferences {
     }
 
     public static void setLoggedUserId(Context context, Long loggedUserId) {
-        getEditPreference(context).putLong(LOGGED_USER_ID, loggedUserId).apply();
+        getPrefs(context).putLong(LOGGED_USER_ID, loggedUserId).apply();
         mLogedUserId = loggedUserId;
     }
 
@@ -69,5 +69,9 @@ public class Preferences {
         Long loggedUserId = getPreferences(context).getLong(LOGGED_USER_ID, -1);
         mLogedUserId = loggedUserId;
         return  loggedUserId;
+    }
+
+    public static void clear(Context context) {
+        getPrefs(context).clear().apply();
     }
 }

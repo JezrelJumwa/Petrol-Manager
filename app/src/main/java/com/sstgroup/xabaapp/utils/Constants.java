@@ -45,4 +45,8 @@ public class Constants {
     public static final String ERROR_STATUS_ERROR = "ERROR";
     public static final String ERROR_STATUS_OK = "OK";
     public static final String ERROR_STATUS_FAIL = "FAIL";
+
+    //genders
+    public static final String MALE = "male";
+    public static final String FEMALE = "female";
 }

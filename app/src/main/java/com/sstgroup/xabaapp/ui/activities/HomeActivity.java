@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.ui.fragments.MyProfileFragment;
 import com.sstgroup.xabaapp.ui.fragments.NavigationDrawerFragment;
 
@@ -31,12 +32,7 @@ public class HomeActivity extends BaseActivity implements
     @Override
     protected void init() {
 //        ViewCompat.setElevation(mToolbar, 32);
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("");
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_hamburger);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
+        setupToolbar(mToolbar, R.drawable.ic_hamburger);
     }
 
     @Override
@@ -108,6 +104,7 @@ public class HomeActivity extends BaseActivity implements
             case R.id.nav_contact:
                 break;
             case R.id.nav_logout:
+                XabaApplication.getInstance().logout();
                 break;
 
         }

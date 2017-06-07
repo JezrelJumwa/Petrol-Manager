@@ -3,9 +3,9 @@
     <item
         android:drawable="@drawable/circle_green"/>
     <item
-        android:drawable="@drawable/ic_national_id"
-        android:bottom="10dp"
+        android:drawable="@drawable/ic_genre_male"
+        android:bottom="8dp"
         android:left="8dp"
         android:right="8dp"
-        android:top="10dp"/>
+        android:top="8dp"/>
 </layer-list>

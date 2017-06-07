@@ -5,7 +5,7 @@
     <item
         android:drawable="@drawable/ic_county"
         android:bottom="8dp"
-        android:left="8dp"
-        android:right="8dp"
+        android:left="10dp"
+        android:right="10dp"
         android:top="8dp"/>
 </layer-list>
