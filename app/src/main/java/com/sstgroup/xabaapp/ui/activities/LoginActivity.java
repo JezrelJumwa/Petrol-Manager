@@ -76,10 +76,10 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         //TODO: uncomment this
-//        if (nationalId.length() != 10) {
-//            Toast.makeText(this, getResources().getString(R.string.your_national_id_is_wrong), Toast.LENGTH_SHORT).show();
-//            return;
-//        }
+        if (nationalId.length() != 10) {
+            Toast.makeText(this, getResources().getString(R.string.your_national_id_is_wrong), Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (Validator.isEmpty(pinCode)) {
             Toast.makeText(this, getResources().getString(R.string.enter_pin_code), Toast.LENGTH_SHORT).show();
@@ -117,7 +117,7 @@ public class LoginActivity extends BaseActivity {
                 } else {
                     ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
                     if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)){
-                        ToastInterval.showToast(LoginActivity.this, "Ups sth went wrong");
+                        ToastInterval.showToast(LoginActivity.this, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(LoginActivity.this, errorLogin.getError());
                     }
@@ -128,7 +128,7 @@ public class LoginActivity extends BaseActivity {
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 if (t instanceof IOException){
                     //Add your code for displaying no network connection error
-                    ToastInterval.showToast(LoginActivity.this, "Network error");
+                    ToastInterval.showToast(LoginActivity.this, getString(R.string.check_your_internet_connection));
                 } else {
                     ToastInterval.showToast(LoginActivity.this, getString(R.string.something_is_wrong));
                 }

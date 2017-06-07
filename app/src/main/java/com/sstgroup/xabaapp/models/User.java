@@ -40,16 +40,16 @@ public class User {
     private String birthdate;
     @SerializedName("country_id")
     private Long countryId;
-    @ToOne(joinProperty = "countryId")
-    private Country country;
+//    @ToOne(joinProperty = "countryId")
+//    private Country country;
     @SerializedName("county_id")
     private Long countyId;
-    @ToOne(joinProperty = "countyId")
-    private County county;
+//    @ToOne(joinProperty = "countyId")
+//    private County county;
     @SerializedName("subcounty_id")
     private Long subcountyId;
-    @ToOne(joinProperty = "subcountyId")
-    private SubCounty subCounty;
+//    @ToOne(joinProperty = "subcountyId")
+//    private SubCounty subCounty;
     @SerializedName("professions")
     @ToMany
     @JoinEntity(
@@ -99,12 +99,6 @@ public class User {
     public User() {
     }
 
-    @Generated(hash = 1591299782)
-    private transient Long country__resolvedKey;
-    @Generated(hash = 9373241)
-    private transient Long county__resolvedKey;
-    @Generated(hash = 1556866286)
-    private transient Long subCounty__resolvedKey;
     @Generated(hash = 2059307683)
     private transient Long token__resolvedKey;
 
@@ -230,94 +224,6 @@ public class User {
 
     public void setIsDefaultPin(Boolean isDefaultPin) {
         this.isDefaultPin = isDefaultPin;
-    }
-
-    /** To-one relationship, resolved on first access. */
-    @Generated(hash = 1271419885)
-    public Country getCountry() {
-        Long __key = this.countryId;
-        if (country__resolvedKey == null || !country__resolvedKey.equals(__key)) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            CountryDao targetDao = daoSession.getCountryDao();
-            Country countryNew = targetDao.load(__key);
-            synchronized (this) {
-                country = countryNew;
-                country__resolvedKey = __key;
-            }
-        }
-        return country;
-    }
-
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1795445608)
-    public void setCountry(Country country) {
-        synchronized (this) {
-            this.country = country;
-            countryId = country == null ? null : country.getCountryId();
-            country__resolvedKey = countryId;
-        }
-    }
-
-    /** To-one relationship, resolved on first access. */
-    @Generated(hash = 315446817)
-    public County getCounty() {
-        Long __key = this.countyId;
-        if (county__resolvedKey == null || !county__resolvedKey.equals(__key)) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            CountyDao targetDao = daoSession.getCountyDao();
-            County countyNew = targetDao.load(__key);
-            synchronized (this) {
-                county = countyNew;
-                county__resolvedKey = __key;
-            }
-        }
-        return county;
-    }
-
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 175798542)
-    public void setCounty(County county) {
-        synchronized (this) {
-            this.county = county;
-            countyId = county == null ? null : county.getCountyId();
-            county__resolvedKey = countyId;
-        }
-    }
-
-    /** To-one relationship, resolved on first access. */
-    @Generated(hash = 261222071)
-    public SubCounty getSubCounty() {
-        Long __key = this.subcountyId;
-        if (subCounty__resolvedKey == null
-                || !subCounty__resolvedKey.equals(__key)) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            SubCountyDao targetDao = daoSession.getSubCountyDao();
-            SubCounty subCountyNew = targetDao.load(__key);
-            synchronized (this) {
-                subCounty = subCountyNew;
-                subCounty__resolvedKey = __key;
-            }
-        }
-        return subCounty;
-    }
-
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 2107527471)
-    public void setSubCounty(SubCounty subCounty) {
-        synchronized (this) {
-            this.subCounty = subCounty;
-            subcountyId = subCounty == null ? null : subCounty.getSubCountyId();
-            subCounty__resolvedKey = subcountyId;
-        }
     }
 
     /** To-one relationship, resolved on first access. */

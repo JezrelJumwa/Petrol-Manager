@@ -272,13 +272,13 @@ public class DatabaseHelper {
         for (Profession profession : user.getProfessions()) {
             insertJoinUserProfessions(user.getId(), profession.getLoggedUserProfessionId());
         }
-        Country country = getCountry(user.getCountryId());
-        County county = getCounty(user.getCountyId());
-        SubCounty subCounty = getSubCounty(user.getSubcountyId());
+//        Country country = getCountry(user.getCountryId());
+//        County county = getCounty(user.getCountyId());
+//        SubCounty subCounty = getSubCounty(user.getSubcountyId());
 
-        user.setCountry(country);
-        user.setCounty(county);
-        user.setSubCounty(subCounty);
+//        user.setCountry(country);
+//        user.setCounty(county);
+//        user.setSubCounty(subCounty);
 
         long tokenId = insertOrReplaceToken(user.getTokenFromWS());
         user.setTokenId(tokenId);
