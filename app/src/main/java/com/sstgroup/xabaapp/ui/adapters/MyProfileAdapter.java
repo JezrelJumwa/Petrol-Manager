@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
+import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.ui.activities.EditProfileActivity;
@@ -30,11 +31,15 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private User loggedUser;
     private Context context;
     private int professionsSize;
+    private Callbacks callbacks;
+    private DatabaseHelper xabaDbHelper;
 
-    public MyProfileAdapter(User loggedUser) {
+    public MyProfileAdapter(User loggedUser, Callbacks callbacks) {
         this.loggedUser = loggedUser;
         this.context = XabaApplication.getInstance().getApplicationContext();
         this.professionsSize = loggedUser.getProfessions().size();
+        this.callbacks = callbacks;
+        this.xabaDbHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
     }
 
     @Override
@@ -147,12 +152,12 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     break;
                 case 3:
                     txtProfileKey.setText(context.getText(R.string.county_profile));
-                    txtProfileDetail.setText("1234");
+                    txtProfileDetail.setText(xabaDbHelper.getCounty(Long.valueOf(loggedUser.getCountyId())).getName());
                     ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_county));
                     break;
                 case 4:
                     txtProfileKey.setText(context.getText(R.string.sub_county_profile));
-                    txtProfileDetail.setText("1234");
+                    txtProfileDetail.setText(xabaDbHelper.getSubCounty(Long.valueOf(loggedUser.getSubcountyId())).getName());
                     ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_county));
                     break;
             }
@@ -218,17 +223,11 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         @OnClick({R.id.txt_change_pin, R.id.btn_edit_profile, R.id.txt_delete_account})
         void onClick(View view){
-            int id = view.getId();
-            switch (id){
-                case R.id.txt_change_pin:
-                    break;
-                case R.id.btn_edit_profile:
-                    NavigationUtils.startActivity(context, EditProfileActivity.class);
-                    break;
-                case R.id.txt_delete_account:
-                    break;
-            }
-
+            callbacks.onItemClick(view.getId());
         }
+    }
+
+    public interface Callbacks {
+        void onItemClick(int id);
     }
 }

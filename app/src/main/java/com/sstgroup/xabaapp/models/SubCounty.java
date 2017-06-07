@@ -14,64 +14,52 @@ public class SubCounty {
     private Long id;
 
     @SerializedName("location_id")
-    private Long locationId;
+    private Long subCountyId;
     @SerializedName("name")
     private String name;
     @SerializedName("toponym")
     private String toponym;
     private long countyId;
-
-    public Long getId() {
-        return id;
+    @Generated(hash = 1038651313)
+    public SubCounty(Long id, Long subCountyId, String name, String toponym,
+            long countyId) {
+        this.id = id;
+        this.subCountyId = subCountyId;
+        this.name = name;
+        this.toponym = toponym;
+        this.countyId = countyId;
     }
-
+    @Generated(hash = 508343104)
+    public SubCounty() {
+    }
+    public Long getId() {
+        return this.id;
+    }
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Long getLocationId() {
-        return locationId;
+    public Long getSubCountyId() {
+        return this.subCountyId;
     }
-
-    public void setLocationId(Long locationId) {
-        this.locationId = locationId;
+    public void setSubCountyId(Long subCountyId) {
+        this.subCountyId = subCountyId;
     }
-
     public String getName() {
-        return name;
+        return this.name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getToponym() {
-        return toponym;
+        return this.toponym;
     }
-
     public void setToponym(String toponym) {
         this.toponym = toponym;
     }
-
     public long getCountyId() {
         return this.countyId;
     }
-
     public void setCountyId(long countyId) {
         this.countyId = countyId;
-    }
-
-    @Generated(hash = 2111989345)
-    public SubCounty(Long id, Long locationId, String name, String toponym,
-                     long countyId) {
-        this.id = id;
-        this.locationId = locationId;
-        this.name = name;
-        this.toponym = toponym;
-        this.countyId = countyId;
-    }
-
-    @Generated(hash = 508343104)
-    public SubCounty() {
     }
 }

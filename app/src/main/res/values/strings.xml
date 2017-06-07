@@ -91,6 +91,12 @@
     <string name="industry_dot">Industry:&#160;</string>
     <string name="category_dot">Category&#160;</string>
     <string name="profession_dot">Profession:&#160;</string>
+    <string name="phone">Phone:&#160;</string>
+    <string name="genre">Genre:&#160;</string>
+    <string name="county_profile">County:&#160;</string>
+    <string name="sub_county_profile">Sub-County:&#160;</string>
+
+    <!--Nav Menu-->
     <string name="register_worker">Register Worker</string>
     <string name="dashboard">Dashboard</string>
     <string name="reports">Reports</string>
@@ -99,12 +105,11 @@
     <string name="faq">FAQ</string>
     <string name="contact">Contact</string>
     <string name="log_out">Log Out</string>
-    <string name="phone">Phone:&#160;</string>
-    <string name="genre">Genre:&#160;</string>
-    <string name="county_profile">County:&#160;</string>
-    <string name="sub_county_profile">Sub-County:&#160;</string>
 
-    <!--Nav Menu-->
+    <!--Edit Profile Screen-->
+    <string name="remove_profession"><u>Remove profession</u></string>
+    <string name="save">Save</string>
+
     <string name="welcome_to_xaba_shikanisha">Welcome to Xaba Shikanisha</string>
     <string name="we_have_made_it_easier_for_you_to_register">We\'ve made it easier for you to
         register.
