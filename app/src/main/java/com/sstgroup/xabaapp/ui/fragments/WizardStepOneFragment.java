@@ -4,6 +4,7 @@ package com.sstgroup.xabaapp.ui.fragments;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.PinResponse;
@@ -16,6 +17,7 @@ import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
 import com.sstgroup.xabaapp.utils.Preferences;
+import com.sstgroup.xabaapp.utils.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,18 +79,38 @@ public class WizardStepOneFragment extends BaseFragment {
                 showLanguagesDialog();
                 break;
             case R.id.register:
-                Intent intentToRegisterActivity = new Intent(activity, RegisterActivity.class);
-                startActivity(intentToRegisterActivity);
+                if (isValidationSuccess()) {
+                    Intent intentToRegisterActivity = new Intent(activity, RegisterActivity.class);
+                    startActivity(intentToRegisterActivity);
+                }
                 break;
             case R.id.next:
-                WizardStepTwoFragment wizardStepTwoFragment = new WizardStepTwoFragment();
-                activity.openFragment(wizardStepTwoFragment, true);
+                if (isValidationSuccess()) {
+                    WizardStepTwoFragment wizardStepTwoFragment = new WizardStepTwoFragment();
+                    activity.openFragment(wizardStepTwoFragment, true);
+                }
                 break;
             case R.id.log_in:
-                Intent intent = new Intent(activity, LoginActivity.class);
-                startActivity(intent);
+                if (isValidationSuccess()) {
+                    Intent intent = new Intent(activity, LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
+    }
+
+    private boolean isValidationSuccess() {
+        if (Validator.isEmpty(selectedCountry)) {
+            Toast.makeText(activity, getString(R.string.choose_country), Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if (Validator.isEmpty(selectedLanguage)) {
+            Toast.makeText(activity, getString(R.string.choose_language), Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 
     private void showCountriesDialog() {
@@ -118,31 +140,6 @@ public class WizardStepOneFragment extends BaseFragment {
                 });
         dialog.show();
     }
-
-   /* private void registerWorkerByAgent() {
-
-        ArrayList<Integer> professions = new ArrayList<>();
-        professions.add(77);
-        professions.add(4);
-
-        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel("1234554791", "1234", "+254701234567", "sw-KE", 1, 42, 51, professions, 34, Constants.AGENT_APP_VALUE, "79f256ee5556127042b6392006cacfc085bc042bbacb0d78d58927887eadc0b9bf5ce5711165e61606dc49a1b90cfafe26c954616fdf0fd2995cee1260d5e31b");
-
-        RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateStringForRequest());
-        Call<Object> call = RestClient.getService().registerWorkerByAgent(body);
-        call.enqueue(new Callback<Object>() {
-            @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
-                if (response.isSuccessful()) {
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Object> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
-            }
-        });
-    }*/
 
     private void getWorkerData() {
 
