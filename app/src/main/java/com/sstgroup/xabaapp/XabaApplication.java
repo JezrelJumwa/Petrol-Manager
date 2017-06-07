@@ -1,18 +1,13 @@
 package com.sstgroup.xabaapp;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.sstgroup.xabaapp.db.DatabaseHelper;
-import com.sstgroup.xabaapp.models.DaoMaster;
-import com.sstgroup.xabaapp.models.DaoSession;
 import com.sstgroup.xabaapp.models.Token;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.ui.activities.MainActivity;
 import com.sstgroup.xabaapp.utils.NavigationUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
-
-import org.greenrobot.greendao.database.Database;
 
 import timber.log.Timber;
 

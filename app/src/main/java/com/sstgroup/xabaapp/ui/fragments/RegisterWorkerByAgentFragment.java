@@ -191,6 +191,12 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
+
+                        if (!selectedCounty.equals(selectedItems.get(0))) {
+                            selectedSubCounty = "";
+                            txtSubCountySelection.setText(getString(R.string.select_sub_county));
+                        }
+
                         selectedCounty = selectedItems.get(0);
                         txtCountySelection.setText(selectedCounty);
                         subCounties = xabaDbHelper.getSubCounties(selectedCounty);
@@ -226,16 +232,34 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         switch (professionRow) {
                             case 1:
+
+                                if (!selectedIndustry.equals(selectedItems.get(0))) {
+                                    selectedCategory = "";
+                                    txtCategorySelection.setText(getString(R.string.select_category));
+                                }
+
                                 selectedIndustry = selectedItems.get(0);
                                 txtIndustrySelection.setText(selectedIndustry);
                                 categories = xabaDbHelper.getCategories(selectedIndustry);
                                 break;
                             case 2:
+
+                                if (!selectedIndustryTwo.equals(selectedItems.get(0))) {
+                                    selectedCategoryTwo = "";
+                                    txtCategorySelectionTwo.setText(getString(R.string.select_category));
+                                }
+
                                 selectedIndustryTwo = selectedItems.get(0);
                                 txtIndustrySelectionTwo.setText(selectedIndustryTwo);
                                 categoriesTwo = xabaDbHelper.getCategories(selectedIndustryTwo);
                                 break;
                             case 3:
+
+                                if (!selectedIndustryThree.equals(selectedItems.get(0))) {
+                                    selectedCategoryThree = "";
+                                    txtCategorySelectionThree.setText(getString(R.string.select_category));
+                                }
+
                                 selectedIndustryThree = selectedItems.get(0);
                                 txtIndustrySelectionThree.setText(selectedIndustryThree);
                                 categoriesThree = xabaDbHelper.getCategories(selectedIndustryThree);
@@ -281,16 +305,34 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         switch (professionRow) {
                             case 1:
+
+                                if (!selectedCategory.equals(selectedItems.get(0))) {
+                                    selectedProfession = "";
+                                    txtProfessionSelection.setText(getString(R.string.select_profession));
+                                }
+
                                 selectedCategory = selectedItems.get(0);
                                 txtCategorySelection.setText(selectedCategory);
                                 professions = xabaDbHelper.getProfessions(selectedCategory);
                                 break;
                             case 2:
+
+                                if (!selectedCategoryTwo.equals(selectedItems.get(0))) {
+                                    selectedProfessionTwo = "";
+                                    txtProfessionSelectionTwo.setText(getString(R.string.select_profession));
+                                }
+
                                 selectedCategoryTwo = selectedItems.get(0);
                                 txtCategorySelectionTwo.setText(selectedCategoryTwo);
                                 professionsTwo = xabaDbHelper.getProfessions(selectedCategoryTwo);
                                 break;
                             case 3:
+
+                                if (!selectedCategoryThree.equals(selectedItems.get(0))) {
+                                    selectedProfessionThree = "";
+                                    txtProfessionSelectionThree.setText(getString(R.string.select_profession));
+                                }
+
                                 selectedCategoryThree = selectedItems.get(0);
                                 txtCategorySelectionThree.setText(selectedCategoryThree);
                                 professionsThree = xabaDbHelper.getProfessions(selectedCategoryThree);
