@@ -130,45 +130,56 @@ public class NavigationDrawerFragment extends BaseFragment {
         return false;
     }
 
-
     private void setTintFromActiveToInactive(int id, AppCompatCheckedTextView v) {
-//        if (R.id.nav_home == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_home_inactive, 0, 0, 0);
-//        } else if (R.id.nav_profile == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_profile_inactive, 0, 0, 0);
-//        } else if (R.id.nav_feedback == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_feedback_inactive, 0, 0, 0);
-//        } else if (R.id.nav_rate_app == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_rate_app_inactice, 0, 0, 0);
-//        } else if (R.id.nav_join_artists == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_join_artists_inactive, 0, 0, 0);
-//        } else if (R.id.nav_win_art == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_share_inactive, 0, 0, 0);
-//        } else if (R.id.nav_my_purchases == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_my_purchases, 0, 0, 0);
-//        } else if (R.id.nav_instagram == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.instagram_icon, 0, 0, 0);
-//        }
+        switch (id) {
+            case R.id.nav_register_worker:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_register_worker, 0, 0, 0);
+                break;
+            case R.id.nav_dashboard:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_dashboard, 0, 0, 0);
+                break;
+            case R.id.nav_reports:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_reports, 0, 0, 0);
+                break;
+            case R.id.nav_my_profile:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_my_profile, 0, 0, 0);
+                break;
+            case R.id.nav_notifications:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_notifications, 0, 0, 0);
+                break;
+            case R.id.nav_faq:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_faq, 0, 0, 0);
+                break;
+            case R.id.nav_contact:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_contact, 0, 0, 0);
+                break;
+        }
     }
 
     private void setTintFromInactioveToActive(int id, AppCompatCheckedTextView v) {
-//        if (R.id.nav_home == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_home_active, 0, 0, 0);
-//        } else if (R.id.nav_profile == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_profile_active, 0, 0, 0);
-//        } else if (R.id.nav_feedback == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_feedback_active, 0, 0, 0);
-//        } else if (R.id.nav_rate_app == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_rate_app_actice, 0, 0, 0);
-//        } else if (R.id.nav_join_artists == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_join_artists_active, 0, 0, 0);
-//        } else if (R.id.nav_win_art == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_share_active, 0, 0, 0);
-//        } else if (R.id.nav_my_purchases == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_my_purchases, 0, 0, 0);
-//        } else if (R.id.nav_instagram == id) {
-//            v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.instagram_icon, 0, 0, 0);
-//        }
+        switch (id) {
+            case R.id.nav_register_worker:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_register_worker_selected, 0, 0, 0);
+                break;
+            case R.id.nav_dashboard:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_dashboard_selected, 0, 0, 0);
+                break;
+            case R.id.nav_reports:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_reports_selected, 0, 0, 0);
+                break;
+            case R.id.nav_my_profile:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_my_profile_selected, 0, 0, 0);
+                break;
+            case R.id.nav_notifications:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_notifications_selected, 0, 0, 0);
+                break;
+            case R.id.nav_faq:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_faq_selected, 0, 0, 0);
+                break;
+            case R.id.nav_contact:
+                v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_contact_selected, 0, 0, 0);
+                break;
+        }
     }
 
 

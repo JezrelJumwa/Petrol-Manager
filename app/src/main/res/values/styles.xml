@@ -76,6 +76,7 @@
     </style>
 
     <!--<item name="android:background">@drawable/selector_navigation</item>-->
+    <!--<item name="android:color">@color/text_gray</item>-->
     <style name="NavMenuStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
@@ -86,7 +87,7 @@
         <item name="android:paddingBottom">11dp</item>
         <item name="android:paddingTop">11dp</item>
         <item name="android:paddingRight">20dp</item>
-        <item name="android:color">@color/text_gray</item>
+        <item name="android:textColor">@drawable/selector_navigation</item>
     </style>
 
     <style name="ProfileTxtKey">
