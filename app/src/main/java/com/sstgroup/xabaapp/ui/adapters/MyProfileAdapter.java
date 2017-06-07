@@ -30,11 +30,13 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private User loggedUser;
     private Context context;
     private int professionsSize;
+    private Callbacks callbacks;
 
-    public MyProfileAdapter(User loggedUser) {
+    public MyProfileAdapter(User loggedUser, Callbacks callbacks) {
         this.loggedUser = loggedUser;
         this.context = XabaApplication.getInstance().getApplicationContext();
         this.professionsSize = loggedUser.getProfessions().size();
+        this.callbacks = callbacks;
     }
 
     @Override
@@ -218,17 +220,11 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         @OnClick({R.id.txt_change_pin, R.id.btn_edit_profile, R.id.txt_delete_account})
         void onClick(View view){
-            int id = view.getId();
-            switch (id){
-                case R.id.txt_change_pin:
-                    break;
-                case R.id.btn_edit_profile:
-                    NavigationUtils.startActivity(context, EditProfileActivity.class);
-                    break;
-                case R.id.txt_delete_account:
-                    break;
-            }
-
+            callbacks.onItemClick(view.getId());
         }
+    }
+
+    public interface Callbacks {
+        void onItemClick(int id);
     }
 }

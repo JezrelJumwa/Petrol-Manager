@@ -159,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Remove profession"/>
+                    android:text="@string/remove_profession"/>
 
             </LinearLayout>
 
@@ -343,7 +343,7 @@
                     style="@style/ButtonGreenStyle"
                     android:layout_marginBottom="30dp"
                     android:layout_marginTop="30dp"
-                    android:text="Save"/>
+                    android:text="@string/save"/>
 
             </LinearLayout>
 
