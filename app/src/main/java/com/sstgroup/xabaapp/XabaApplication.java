@@ -57,9 +57,13 @@ public class XabaApplication extends Application {
     }
 
     public void logout(){
+        String locationHash = Preferences.getLocationHash(this);
+        String professionHash = Preferences.getProfessionHash(this);
         Preferences.clear(getApplicationContext());
         DatabaseHelper.getInstance(this).dropDb();
         setToken(null);
+        Preferences.setLocationHash(this, locationHash);
+        Preferences.setProfessionHash(this, professionHash);
         NavigationUtils.startSingleActivity(getApplicationContext(), MainActivity.class);
     }
 }
