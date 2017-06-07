@@ -119,7 +119,7 @@ public class NavigationDrawerFragment extends BaseFragment {
 
             if (v != null && viewId != R.id.nav_logout) {
                 v.setChecked(true);
-                setTintFromInactioveToActive(viewId, v);
+                setTintFromInactiveToActive(viewId, v);
             }
 
             if (viewId != R.id.nav_logout) {
@@ -156,7 +156,7 @@ public class NavigationDrawerFragment extends BaseFragment {
         }
     }
 
-    private void setTintFromInactioveToActive(int id, AppCompatCheckedTextView v) {
+    private void setTintFromInactiveToActive(int id, AppCompatCheckedTextView v) {
         switch (id) {
             case R.id.nav_register_worker:
                 v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.nav_register_worker_selected, 0, 0, 0);

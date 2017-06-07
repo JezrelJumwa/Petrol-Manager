@@ -39,11 +39,17 @@ public class User {
     @SerializedName("birthdate")
     private String birthdate;
     @SerializedName("country_id")
-    private String countryId;
+    private Long countryId;
+    @ToOne(joinProperty = "countryId")
+    private Country country;
     @SerializedName("county_id")
-    private String countyId;
+    private Long countyId;
+    @ToOne(joinProperty = "countyId")
+    private County county;
     @SerializedName("subcounty_id")
-    private String subcountyId;
+    private Long subcountyId;
+    @ToOne(joinProperty = "subcountyId")
+    private SubCounty subCounty;
     @SerializedName("professions")
     @ToMany
     @JoinEntity(
@@ -60,24 +66,18 @@ public class User {
     private Boolean isPhoneVerified;
     @SerializedName("is_default_pin")
     private Boolean isDefaultPin;
-    /**
-     * Used to resolve relations
-     */
+    /** Used to resolve relations */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
-    /**
-     * Used for active entity operations.
-     */
+    /** Used for active entity operations. */
     @Generated(hash = 1507654846)
     private transient UserDao myDao;
-    @Generated(hash = 2059307683)
-    private transient Long token__resolvedKey;
 
-    @Generated(hash = 1672337806)
-    public User(Long id, String status, String agentId, String firstName, String lastName,
-            String otherName, String phone, String gender, String birthdate, String countryId,
-            String countyId, String subcountyId, Long tokenId, Boolean isPhoneVerified,
-            Boolean isDefaultPin) {
+    @Generated(hash = 2026033923)
+    public User(Long id, String status, String agentId, String firstName,
+            String lastName, String otherName, String phone, String gender,
+            String birthdate, Long countryId, Long countyId, Long subcountyId,
+            Long tokenId, Boolean isPhoneVerified, Boolean isDefaultPin) {
         this.id = id;
         this.status = status;
         this.agentId = agentId;
@@ -97,6 +97,19 @@ public class User {
 
     @Generated(hash = 586692638)
     public User() {
+    }
+
+    @Generated(hash = 1591299782)
+    private transient Long country__resolvedKey;
+    @Generated(hash = 9373241)
+    private transient Long county__resolvedKey;
+    @Generated(hash = 1556866286)
+    private transient Long subCounty__resolvedKey;
+    @Generated(hash = 2059307683)
+    private transient Long token__resolvedKey;
+
+    public Token getTokenFromWS(){
+        return this.token;
     }
 
     public Long getId() {
@@ -171,27 +184,27 @@ public class User {
         this.birthdate = birthdate;
     }
 
-    public String getCountryId() {
+    public Long getCountryId() {
         return this.countryId;
     }
 
-    public void setCountryId(String countryId) {
+    public void setCountryId(Long countryId) {
         this.countryId = countryId;
     }
 
-    public String getCountyId() {
+    public Long getCountyId() {
         return this.countyId;
     }
 
-    public void setCountyId(String countyId) {
+    public void setCountyId(Long countyId) {
         this.countyId = countyId;
     }
 
-    public String getSubcountyId() {
+    public Long getSubcountyId() {
         return this.subcountyId;
     }
 
-    public void setSubcountyId(String subcountyId) {
+    public void setSubcountyId(Long subcountyId) {
         this.subcountyId = subcountyId;
     }
 
@@ -203,13 +216,111 @@ public class User {
         this.tokenId = tokenId;
     }
 
-    public Token getTokenFromWS(){
-        return this.token;
+    public Boolean getIsPhoneVerified() {
+        return this.isPhoneVerified;
     }
 
-    /**
-     * To-one relationship, resolved on first access.
-     */
+    public void setIsPhoneVerified(Boolean isPhoneVerified) {
+        this.isPhoneVerified = isPhoneVerified;
+    }
+
+    public Boolean getIsDefaultPin() {
+        return this.isDefaultPin;
+    }
+
+    public void setIsDefaultPin(Boolean isDefaultPin) {
+        this.isDefaultPin = isDefaultPin;
+    }
+
+    /** To-one relationship, resolved on first access. */
+    @Generated(hash = 1271419885)
+    public Country getCountry() {
+        Long __key = this.countryId;
+        if (country__resolvedKey == null || !country__resolvedKey.equals(__key)) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            CountryDao targetDao = daoSession.getCountryDao();
+            Country countryNew = targetDao.load(__key);
+            synchronized (this) {
+                country = countryNew;
+                country__resolvedKey = __key;
+            }
+        }
+        return country;
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1795445608)
+    public void setCountry(Country country) {
+        synchronized (this) {
+            this.country = country;
+            countryId = country == null ? null : country.getCountryId();
+            country__resolvedKey = countryId;
+        }
+    }
+
+    /** To-one relationship, resolved on first access. */
+    @Generated(hash = 315446817)
+    public County getCounty() {
+        Long __key = this.countyId;
+        if (county__resolvedKey == null || !county__resolvedKey.equals(__key)) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            CountyDao targetDao = daoSession.getCountyDao();
+            County countyNew = targetDao.load(__key);
+            synchronized (this) {
+                county = countyNew;
+                county__resolvedKey = __key;
+            }
+        }
+        return county;
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 175798542)
+    public void setCounty(County county) {
+        synchronized (this) {
+            this.county = county;
+            countyId = county == null ? null : county.getCountyId();
+            county__resolvedKey = countyId;
+        }
+    }
+
+    /** To-one relationship, resolved on first access. */
+    @Generated(hash = 261222071)
+    public SubCounty getSubCounty() {
+        Long __key = this.subcountyId;
+        if (subCounty__resolvedKey == null
+                || !subCounty__resolvedKey.equals(__key)) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            SubCountyDao targetDao = daoSession.getSubCountyDao();
+            SubCounty subCountyNew = targetDao.load(__key);
+            synchronized (this) {
+                subCounty = subCountyNew;
+                subCounty__resolvedKey = __key;
+            }
+        }
+        return subCounty;
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 2107527471)
+    public void setSubCounty(SubCounty subCounty) {
+        synchronized (this) {
+            this.subCounty = subCounty;
+            subcountyId = subCounty == null ? null : subCounty.getSubCountyId();
+            subCounty__resolvedKey = subcountyId;
+        }
+    }
+
+    /** To-one relationship, resolved on first access. */
     @Generated(hash = 1690932140)
     public Token getToken() {
         Long __key = this.tokenId;
@@ -228,9 +339,7 @@ public class User {
         return token;
     }
 
-    /**
-     * called by internal mechanisms, do not call yourself.
-     */
+    /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1839028877)
     public void setToken(Token token) {
         synchronized (this) {
@@ -262,9 +371,7 @@ public class User {
         return professions;
     }
 
-    /**
-     * Resets a to-many relationship, making the next get call to query for a fresh result.
-     */
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
     @Generated(hash = 1823650265)
     public synchronized void resetProfessions() {
         professions = null;
@@ -306,26 +413,11 @@ public class User {
         myDao.update(this);
     }
 
-    public Boolean getIsPhoneVerified() {
-        return this.isPhoneVerified;
-    }
-
-    public void setIsPhoneVerified(Boolean isPhoneVerified) {
-        this.isPhoneVerified = isPhoneVerified;
-    }
-
-    public Boolean getIsDefaultPin() {
-        return this.isDefaultPin;
-    }
-
-    public void setIsDefaultPin(Boolean isDefaultPin) {
-        this.isDefaultPin = isDefaultPin;
-    }
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 2059241980)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getUserDao() : null;
     }
+
 }
