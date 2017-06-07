@@ -15,10 +15,19 @@ import butterknife.OnClick;
 
 public class RegisterCompleteFragment extends BaseFragment {
 
-    String userId = "";
+    private Long userId;
 
     @BindView(R.id.your_referral_id_is)
     TextView mTextViewYourReferralIdIs;
+
+    public static RegisterCompleteFragment newInstance(long userId) {
+
+        Bundle args = new Bundle();
+        args.putLong(Constants.WORKER_ID, userId);
+        RegisterCompleteFragment fragment = new RegisterCompleteFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int getLayoutId() {
@@ -29,13 +38,13 @@ public class RegisterCompleteFragment extends BaseFragment {
     protected void initFields() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            userId = bundle.getString(Constants.WORKER_ID);
+            userId = bundle.getLong(Constants.WORKER_ID, -1);
         }
     }
 
     @Override
     protected void initViews(View rootView) {
-        mTextViewYourReferralIdIs.setText(userId);
+        mTextViewYourReferralIdIs.setText(userId.toString());
     }
 
     @OnClick({R.id.continuE, R.id.register_another_worker})

@@ -92,10 +92,10 @@
     <string name="industry_dot">Industry:&#160;</string>
     <string name="category_dot">Category&#160;</string>
     <string name="profession_dot">Profession:&#160;</string>
-    <string name="phone">Phone:&#160;</string>
-    <string name="genre">Genre:&#160;</string>
-    <string name="county_profile">County:&#160;</string>
-    <string name="sub_county_profile">Sub-County:&#160;</string>
+    <string name="phone">Phone:</string>
+    <string name="genre">Genre:</string>
+    <string name="county_profile">County:</string>
+    <string name="sub_county_profile">Sub-County:</string>
 
     <!--Nav Menu-->
     <string name="register_worker">Register Worker</string>

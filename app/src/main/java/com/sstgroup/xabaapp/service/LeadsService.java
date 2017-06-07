@@ -52,7 +52,7 @@ public interface LeadsService {
     @FormUrlEncoded
     @POST(WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH)
     Call<SendNewActivationCodeResponse> sendSmsWithNewActivationCode(@Field(AGENT_APP_NAME) String agentApp,
-                                                                     @Field(WORKER_ID) String workerId);
+                                                                     @Field(WORKER_ID) Long workerId);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(WS_REGISTER_WORKER_BY_AGENT_PATH)

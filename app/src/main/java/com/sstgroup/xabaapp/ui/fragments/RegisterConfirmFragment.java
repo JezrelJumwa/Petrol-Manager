@@ -9,8 +9,11 @@ import android.widget.Toast;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.ActivationCodeResponse;
 import com.sstgroup.xabaapp.models.SendNewActivationCodeResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorLogin;
 import com.sstgroup.xabaapp.service.RestClient;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import butterknife.BindView;
@@ -21,10 +24,21 @@ import retrofit2.Response;
 import timber.log.Timber;
 
 public class RegisterConfirmFragment extends BaseFragment {
-    String userId = "";
+    private Long userId;
+    private Boolean startedFromLogin;
 
     @BindView(R.id.activation_code)
     EditText mEditTextActivationCode;
+
+    public static RegisterConfirmFragment newInstance(long userId, boolean startedFromLogin) {
+
+        Bundle args = new Bundle();
+        args.putLong(Constants.WORKER_ID, userId);
+        args.putBoolean(Constants.REGISTER_CONFIRM_STARTED_FROM_LOGIN, startedFromLogin);
+        RegisterConfirmFragment fragment = new RegisterConfirmFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int getLayoutId() {
@@ -36,7 +50,8 @@ public class RegisterConfirmFragment extends BaseFragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            userId = bundle.getString(Constants.WORKER_ID);
+            userId = bundle.getLong(Constants.WORKER_ID, -1);
+            startedFromLogin = bundle.getBoolean(Constants.REGISTER_CONFIRM_STARTED_FROM_LOGIN);
         }
     }
 
@@ -73,12 +88,18 @@ public class RegisterConfirmFragment extends BaseFragment {
                 if (response.isSuccessful()) {
                     response.body().getStatus();
 
-                    Bundle bundle = new Bundle();
-                    bundle.putString(Constants.WORKER_ID, userId);
-
-                    RegisterCompleteFragment registerCompleteFragment = new RegisterCompleteFragment();
-                    registerCompleteFragment.setArguments(bundle);
-                    activity.openFragment(registerCompleteFragment, true);
+                    if (startedFromLogin){
+                        activity.onBackPressed();
+                    } else {
+                        activity.openFragment(RegisterCompleteFragment.newInstance(userId), true);
+                    }
+                } else {
+                    ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
+                    if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)){
+                        ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
+                    } else {
+                        ToastInterval.showToast(activity, errorLogin.getError());
+                    }
                 }
             }
 

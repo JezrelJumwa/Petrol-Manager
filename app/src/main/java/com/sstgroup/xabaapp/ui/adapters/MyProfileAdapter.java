@@ -144,10 +144,10 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 case 2:
                     txtProfileKey.setText(context.getText(R.string.genre));
                     txtProfileDetail.setText(loggedUser.getGender());
-                    if (loggedUser.getGender().equalsIgnoreCase(Constants.MALE)){
-                        ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre_male));
-                    } else {
+                    if (loggedUser.getGender() != null && loggedUser.getGender().equalsIgnoreCase(Constants.FEMALE)){
                         ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre_female));
+                    } else {
+                        ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre_male));
                     }
                     break;
                 case 3:

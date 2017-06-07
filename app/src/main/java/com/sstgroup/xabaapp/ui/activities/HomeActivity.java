@@ -90,14 +90,14 @@ public class HomeActivity extends BaseActivity implements
     private void setContentFragment(int menuItemId) {
         switch (menuItemId) {
             case R.id.nav_register_worker:
-                openFragment(RegisterWorkerByAgentFragment.newInstance(), true);
+                openFragment(RegisterWorkerByAgentFragment.newInstance(), false);
                 break;
             case R.id.nav_dashboard:
                 break;
             case R.id.nav_reports:
                 break;
             case R.id.nav_my_profile:
-                openFragment(MyProfileFragment.newInstance(), true);
+                openFragment(MyProfileFragment.newInstance(), false);
                 break;
             case R.id.nav_notifications:
                 break;

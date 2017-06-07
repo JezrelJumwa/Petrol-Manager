@@ -520,14 +520,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
-
-                    String userId = String.valueOf(response.body().getUser().getId());
-                    Bundle bundle = new Bundle();
-                    bundle.putString(Constants.WORKER_ID, userId);
-
-                    RegisterConfirmFragment registerConfirmFragment = new RegisterConfirmFragment();
-                    registerConfirmFragment.setArguments(bundle);
-                    activity.openFragment(registerConfirmFragment, true);
+                    activity.openFragment(RegisterConfirmFragment.newInstance(response.body().getUser().getId(), false), true);
                 }
             }
 

@@ -20,6 +20,7 @@ public class Constants {
     public static final String WS_RESET_VERIFY_PATH = "worker/reset/verify/";
     public static final String WS_RESET_PIN_PATH = "worker/reset/pin/";
 
+//    Extras
     public static final String AGENT_APP_NAME = "client";
     public static final String AGENT_APP_VALUE = "agent-app";
     public static final String ACTIVATION_CODE = "activation_code";
@@ -39,6 +40,8 @@ public class Constants {
     public static final String AGENT_ID = "agent_id";
     public static final String WORKER_ID = "worker_id";
     public static final String VERIFICATION_CODE = "verification_code";
+    public static final String REGISTER_CONFIRM_STARTED_FROM_LOGIN = "register_confirm_started_from_login";
+
 
     //error status
     public static final String ERROR_STATUS_UNEXPECTED = "unexpected";
