@@ -41,8 +41,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".ui.activities.HomeActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activities.EditProfileActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

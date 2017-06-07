@@ -11,8 +11,7 @@
     <string name="next">Next</string>
     <string name="login_in"><u>Log In</u></string>
     <string name="refer_someone_to_get_rewards">Refer someone to get rewards</string>
-    <string
-        name="with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions">
+    <string name="with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions">
         With each referral you get extra money and you also get credits for their actions.
     </string>
     <string name="title">Title</string>
@@ -118,8 +117,7 @@
     <string name="want_some_extra_cash_become_an_agent_and_register_workers_onto_xaba">Want some
         extra cash? Become an agent and register workers onto Xaba.
     </string>
-    <string
-        name="we_have_sent_an_activation_code_to_your_contact_number_please_enter_the_provided_code_to_verify_your_account">
+    <string name="we_have_sent_an_activation_code_to_your_contact_number_please_enter_the_provided_code_to_verify_your_account">
         We have sent an activation code to your contact number. Please enter the provided code to
         verify your account.
     </string>

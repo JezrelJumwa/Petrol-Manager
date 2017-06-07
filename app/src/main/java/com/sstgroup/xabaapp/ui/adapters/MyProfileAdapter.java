@@ -17,6 +17,8 @@ import com.sstgroup.xabaapp.models.Category;
 import com.sstgroup.xabaapp.models.Industry;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.ui.activities.EditProfileActivity;
+import com.sstgroup.xabaapp.utils.NavigationUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,13 +33,11 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private User loggedUser;
     private Context context;
     private int professionsSize;
-    private DatabaseHelper databaseHelper;
 
     public MyProfileAdapter(User loggedUser) {
         this.loggedUser = loggedUser;
         this.context = XabaApplication.getInstance().getApplicationContext();
         this.professionsSize = loggedUser.getProfessions().size();
-        this.databaseHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
     }
 
     @Override
@@ -222,6 +222,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 case R.id.txt_change_pin:
                     break;
                 case R.id.btn_edit_profile:
+                    NavigationUtils.startActivity(context, EditProfileActivity.class);
                     break;
                 case R.id.txt_delete_account:
                     break;

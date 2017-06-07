@@ -32,12 +32,7 @@ public class HomeActivity extends BaseActivity implements
     @Override
     protected void init() {
 //        ViewCompat.setElevation(mToolbar, 32);
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("");
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_hamburger);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
+        setupToolbar(mToolbar, R.drawable.ic_hamburger);
     }
 
     @Override
