@@ -327,7 +327,7 @@ public class DatabaseHelper {
         return null;
     }
 
-    public List<Long> getProfessionIds(ArrayList<String> professionIds) {
+    public List<Long> getProfessionIds(List<String> professionIds) {
         professionDao = daoSession.getProfessionDao();
         List<Profession> professions = professionDao.queryBuilder().where(ProfessionDao.Properties.Name.in(professionIds)).list();
         List<Long> professionIdsList = new ArrayList<>();
@@ -338,6 +338,24 @@ public class DatabaseHelper {
 
         if (!professionIdsList.isEmpty()) {
             return professionIdsList;
+        }
+        return null;
+    }
+
+    public County getCounty(String countyName) {
+        countyDao = daoSession.getCountyDao();
+        List<County> counties = countyDao.queryBuilder().where(CountyDao.Properties.Name.eq(countyName)).list();
+        if (!counties.isEmpty()) {
+            return counties.get(0);
+        }
+        return null;
+    }
+
+    public SubCounty getSubCounty(String subCountyName) {
+        subCountyDao = daoSession.getSubCountyDao();
+        List<SubCounty> subCounties = subCountyDao.queryBuilder().where(SubCountyDao.Properties.Name.eq(subCountyName)).list();
+        if (!subCounties.isEmpty()) {
+            return subCounties.get(0);
         }
         return null;
     }

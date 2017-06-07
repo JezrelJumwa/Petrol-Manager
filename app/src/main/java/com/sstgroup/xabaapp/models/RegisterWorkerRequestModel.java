@@ -36,15 +36,33 @@ public class RegisterWorkerRequestModel {
         this.token = token;
     }
 
-    public String generateStringForRequest() {
+    public String generateRegisterWorkerAgentRequest() {
 
-        String requestBody = "";
+        String requestBody;
 
-        String professionsString = "";
+        requestBody = Constants.AGENT_APP_NAME + "=" + client +
+                "&" + Constants.NATIONAL_ID + "=" + getEncryptedAndURLEncodedNationalIdn() +
+                "&" + Constants.PIN + "=" + pin +
+                "&" + Constants.PHONE + "=" + phone +
+                "&" + Constants.PREFERRED_LANGUAGE + "=" + preferred_language +
+                "&" + Constants.COUNTRY_ID + "=" + country_id +
+                "&" + Constants.COUNTY_ID + "=" + county_id +
+                "&" + Constants.SUBCOUNTY_ID + "=" + subcounty_id;
 
         for (Long professionId : professions) {
-            professionsString += "&" + Constants.PROFESSIONS + "=" + professionId;
+            requestBody += "&" + Constants.PROFESSIONS + "=" + professionId;
         }
+
+        if (agent_id != null) {
+            requestBody += "&" + Constants.AGENT_ID + "=" + agent_id;
+        }
+
+        return requestBody;
+    }
+
+    public String generateRegisterWorkerByAgentRequest() {
+
+        String requestBody;
 
         requestBody = Constants.AGENT_APP_NAME + "=" + client +
                 "&" + Constants.NATIONAL_ID + "=" + getEncryptedAndURLEncodedNationalIdn() +
@@ -54,15 +72,12 @@ public class RegisterWorkerRequestModel {
                 "&" + Constants.COUNTRY_ID + "=" + country_id +
                 "&" + Constants.COUNTY_ID + "=" + county_id +
                 "&" + Constants.SUBCOUNTY_ID + "=" + subcounty_id +
-                "&" + Constants.AGENT_APP_NAME + "=" + client +
-                professionsString;
+                "&" + Constants.AGENT_ID + "=" + agent_id +
+                "&" + Constants.TOKEN + "=" + token;
 
-        if (agent_id != null) {
-            requestBody += "&" + Constants.AGENT_ID + "=" + agent_id;
-        }
 
-        if (token != null && !token.isEmpty()) {
-            requestBody += "&" + Constants.TOKEN + "=" + token;
+        for (Long professionId : professions) {
+            requestBody += "&" + Constants.PROFESSIONS + "=" + professionId;
         }
 
         return requestBody;

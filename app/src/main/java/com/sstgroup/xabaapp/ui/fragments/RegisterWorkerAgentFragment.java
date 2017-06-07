@@ -72,6 +72,9 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     @BindView(R.id.txt_profession_selection_three)
     TextView txtProfessionSelectionThree;
 
+    @BindView(R.id.add_another_profession)
+    Button mButtonAddAnotherProfession;
+
     @BindView(R.id.pin_code)
     EditText mEditTextPinCode;
     @BindView(R.id.confirm_pin_code)
@@ -79,11 +82,10 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     @BindView(R.id.referral_code)
     EditText mEditTextReferralCode;
 
-    @BindView(R.id.add_another_profession)
-    Button mButtonAddAnotherProfession;
-
-    private Long countryId;
     private String languageCode;
+    private Long countryId;
+    private Long countyId;
+    private Long subCountyId;
 
     List<String> counties = new ArrayList<>();
     List<String> subCounties = new ArrayList<>();
@@ -183,6 +185,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                         selectedCounty = selectedItems.get(0);
                         txtCountySelection.setText(selectedCounty);
                         subCounties = xabaDbHelper.getSubCounties(selectedCounty);
+                        countyId = xabaDbHelper.getCounty(selectedCounty).getId();
                     }
                 });
         dialog.show();
@@ -201,6 +204,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedSubCounty = selectedItems.get(0);
                         txtSubCountySelection.setText(selectedSubCounty);
+                        subCountyId = xabaDbHelper.getSubCounty(selectedSubCounty).getId();
                     }
                 });
         dialog.show();
@@ -447,7 +451,13 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             return;
         }
 
-        ArrayList<String> professions = new ArrayList<>();
+        if (Validator.isNotNumber(referralCode)) {
+            Toast.makeText(activity, getResources().getString(R.string.referral_code_should_be_a_number), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        List<String> professions = new ArrayList<>();
         if (!Validator.isEmpty(selectedProfession)) {
             professions.add(selectedProfession);
         }
@@ -460,9 +470,9 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
         List<Long> professionIds = xabaDbHelper.getProfessionIds(professions);
 
-        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, pinCode, phoneNumber, languageCode, countryId, 42L, 51L, professionIds, null, Constants.AGENT_APP_VALUE, null);
+        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, pinCode, phoneNumber, languageCode, countryId, countyId, subCountyId, professionIds, Long.valueOf(referralCode), Constants.AGENT_APP_VALUE, null);
 
-        RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateStringForRequest());
+        RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerAgentRequest());
         Call<UserResponse> call = RestClient.getService().register(body);
         call.enqueue(new Callback<UserResponse>() {
             @Override
