@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="15dp">
+    android:layout_height="wrap_content">
 
     <View
         android:id="@+id/top_green_view"
@@ -53,11 +52,12 @@
         android:layout_marginRight="20dp"
         android:layout_height="wrap_content"
         android:text="@string/edit_profile"
-        android:layout_marginBottom="20dp"
         style="@style/ButtonGreenStyle"/>
 
     <TextView
         android:id="@+id/txt_delete_account"
+        android:paddingTop="20dp"
+        android:paddingBottom="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="13sp"
