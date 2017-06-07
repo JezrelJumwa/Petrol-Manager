@@ -46,7 +46,11 @@ public class RegisterCompleteFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.register_another_worker:
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.WORKER_ID, userId);
+
                 RegisterWorkerByAgentFragment registerWorkerByAgentFragment = new RegisterWorkerByAgentFragment();
+                registerWorkerByAgentFragment.setArguments(bundle);
                 activity.openFragment(registerWorkerByAgentFragment, false);
                 break;
         }
