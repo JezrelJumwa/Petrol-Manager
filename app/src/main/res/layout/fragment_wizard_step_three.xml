@@ -1,86 +1,92 @@
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingEnd="30dp"
-    android:paddingStart="30dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp">
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/arrow_back"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/wizard_step_3"/>
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/arrow_back"/>
+
+            <ImageView
+                android:id="@+id/video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/wizard_step_3"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:text="@string/refer_someone_to_get_rewards"
+                android:textColor="@color/dark_color"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/green_line"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions"
+                android:textColor="@color/dark_color"
+                android:textSize="18sp"/>
+
+            <Button
+                style="@style/ButtonLinkStyle"
+                android:layout_marginTop="30dp"/>
+
+            <Button
+                android:id="@+id/register"
+                style="@style/ButtonGreenStyle"
+                android:layout_marginTop="10dp"
+                android:text="@string/register_now_not_underlined"/>
+
+            <Button
+                android:id="@+id/log_in"
+                style="@style/ButtonLinkStyle"
+                android:layout_marginTop="5dp"
+                android:text="@string/login_in"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:text="@string/refer_someone_to_get_rewards"
-            android:textColor="@color/dark_color"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/green_line"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions"
-            android:textColor="@color/dark_color"
-            android:textSize="18sp"/>
-
-        <Button
-            style="@style/ButtonLinkStyle"
-            android:layout_marginTop="30dp"/>
-
-        <Button
-            android:id="@+id/register"
-            style="@style/ButtonGreenStyle"
-            android:layout_marginTop="10dp"
-            android:text="@string/register_now_not_underlined"/>
-
-        <Button
-            android:id="@+id/log_in"
-            style="@style/ButtonLinkStyle"
-            android:layout_marginTop="5dp"
-            android:text="@string/login_in"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

@@ -7,9 +7,9 @@ import android.widget.Toast;
 
 import com.sstgroup.xabaapp.BuildConfig;
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
-import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.models.errors.ErrorLogin;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
@@ -26,7 +26,6 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
 
 public class LoginActivity extends BaseActivity {
 
@@ -105,6 +104,7 @@ public class LoginActivity extends BaseActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     User user = response.body().getUser();
+                    XabaApplication.getInstance().setToken(user.getTokenFromWS());
                     xabaDbHelper.insertLoggedUser(LoginActivity.this, user);
 //                    if (!user.getIsPhoneVerified()){
 //

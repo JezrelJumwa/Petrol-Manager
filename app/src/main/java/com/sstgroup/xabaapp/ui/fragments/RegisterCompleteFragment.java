@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.ui.activities.HomeActivity;
+import com.sstgroup.xabaapp.ui.activities.LoginActivity;
 import com.sstgroup.xabaapp.utils.Constants;
 
 import butterknife.BindView;
@@ -42,7 +42,7 @@ public class RegisterCompleteFragment extends BaseFragment {
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.continuE:
-                Intent intent = new Intent(activity, HomeActivity.class);
+                Intent intent = new Intent(activity, LoginActivity.class);
                 startActivity(intent);
                 break;
             case R.id.register_another_worker:
