@@ -311,6 +311,24 @@ public class DatabaseHelper {
         return null;
     }
 
+    public County getCounty(long countyId) {
+        countyDao = daoSession.getCountyDao();
+        List<County> counties = countyDao.queryBuilder().where(CountyDao.Properties.CountyId.eq(countyId)).list();
+        if (!counties.isEmpty())
+            return counties.get(0);
+
+        return null;
+    }
+
+    public SubCounty getSubCounty(long subCountyId) {
+        subCountyDao = daoSession.getSubCountyDao();
+        List<SubCounty> subCounties = subCountyDao.queryBuilder().where(SubCountyDao.Properties.SubCountyId.eq(subCountyId)).list();
+        if (!subCounties.isEmpty())
+            return subCounties.get(0);
+
+        return null;
+    }
+
     public Industry getIndustry(long industryId) {
         industryDao = daoSession.getIndustryDao();
         List<Industry> industries = industryDao.queryBuilder().where(IndustryDao.Properties.IndustryId.eq(industryId)).list();

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Validator;
@@ -28,6 +29,7 @@ public class EditProfileActivity extends BaseActivity {
     private List<String> subCounties;
     private String selectedCounty;
     private String selectedSubCounty;
+    private User user;
 
     @Override
     protected int getLayoutId() {
@@ -41,6 +43,10 @@ public class EditProfileActivity extends BaseActivity {
         counties = new ArrayList<>();
         subCounties = new ArrayList<>();
         counties = xabaDbHelper.getCounties();
+        user = xabaDbHelper.getLoggedUser(this);
+
+        txtCountySelection.setText(xabaDbHelper.getCounty(Long.valueOf(user.getCountyId())).getName());
+        txtSubCountySelection.setText(xabaDbHelper.getSubCounty(Long.valueOf(user.getSubcountyId())).getName());
     }
 
     @OnClick({R.id.grp_county, R.id.grp_sub_county})
