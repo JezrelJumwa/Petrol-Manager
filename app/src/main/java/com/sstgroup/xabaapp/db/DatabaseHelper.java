@@ -272,8 +272,17 @@ public class DatabaseHelper {
         for (Profession profession : user.getProfessions()) {
             insertJoinUserProfessions(user.getId(), profession.getLoggedUserProfessionId());
         }
+//        Country country = getCountry(user.getCountryId());
+//        County county = getCounty(user.getCountyId());
+//        SubCounty subCounty = getSubCounty(user.getSubcountyId());
+
+//        user.setCountry(country);
+//        user.setCounty(county);
+//        user.setSubCounty(subCounty);
+
         long tokenId = insertOrReplaceToken(user.getTokenFromWS());
         user.setTokenId(tokenId);
+
         insertOrReplaceUser(user);
     }
 
@@ -310,6 +319,15 @@ public class DatabaseHelper {
         List<Category> categories = categoryDao.queryBuilder().where(CategoryDao.Properties.CategoryId.eq(categoryId)).list();
         if (!categories.isEmpty())
             return categories.get(0);
+
+        return null;
+    }
+
+    public Country getCountry(long countryId) {
+        countryDao = daoSession.getCountryDao();
+        List<Country> counties = countryDao.queryBuilder().where(CountryDao.Properties.CountryId.eq(countryId)).list();
+        if (!counties.isEmpty())
+            return counties.get(0);
 
         return null;
     }

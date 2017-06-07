@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Transient;
 
 @Entity
 public class Profession {
@@ -15,13 +16,13 @@ public class Profession {
     private Long professionId;
     @SerializedName("name")
     private String name;
+    @Transient
     @SerializedName("id")
     private Long loggedUserProfessionId;
-    @Generated(hash = 1568584522)
-    public Profession(Long professionId, String name, Long loggedUserProfessionId) {
+    @Generated(hash = 1426892760)
+    public Profession(Long professionId, String name) {
         this.professionId = professionId;
         this.name = name;
-        this.loggedUserProfessionId = loggedUserProfessionId;
     }
     @Generated(hash = 900874100)
     public Profession() {

@@ -39,11 +39,17 @@ public class User {
     @SerializedName("birthdate")
     private String birthdate;
     @SerializedName("country_id")
-    private String countryId;
+    private Long countryId;
+//    @ToOne(joinProperty = "countryId")
+//    private Country country;
     @SerializedName("county_id")
-    private String countyId;
+    private Long countyId;
+//    @ToOne(joinProperty = "countyId")
+//    private County county;
     @SerializedName("subcounty_id")
-    private String subcountyId;
+    private Long subcountyId;
+//    @ToOne(joinProperty = "subcountyId")
+//    private SubCounty subCounty;
     @SerializedName("professions")
     @ToMany
     @JoinEntity(
@@ -60,24 +66,18 @@ public class User {
     private Boolean isPhoneVerified;
     @SerializedName("is_default_pin")
     private Boolean isDefaultPin;
-    /**
-     * Used to resolve relations
-     */
+    /** Used to resolve relations */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
-    /**
-     * Used for active entity operations.
-     */
+    /** Used for active entity operations. */
     @Generated(hash = 1507654846)
     private transient UserDao myDao;
-    @Generated(hash = 2059307683)
-    private transient Long token__resolvedKey;
 
-    @Generated(hash = 1672337806)
-    public User(Long id, String status, String agentId, String firstName, String lastName,
-            String otherName, String phone, String gender, String birthdate, String countryId,
-            String countyId, String subcountyId, Long tokenId, Boolean isPhoneVerified,
-            Boolean isDefaultPin) {
+    @Generated(hash = 2026033923)
+    public User(Long id, String status, String agentId, String firstName,
+            String lastName, String otherName, String phone, String gender,
+            String birthdate, Long countryId, Long countyId, Long subcountyId,
+            Long tokenId, Boolean isPhoneVerified, Boolean isDefaultPin) {
         this.id = id;
         this.status = status;
         this.agentId = agentId;
@@ -97,6 +97,13 @@ public class User {
 
     @Generated(hash = 586692638)
     public User() {
+    }
+
+    @Generated(hash = 2059307683)
+    private transient Long token__resolvedKey;
+
+    public Token getTokenFromWS(){
+        return this.token;
     }
 
     public Long getId() {
@@ -171,27 +178,27 @@ public class User {
         this.birthdate = birthdate;
     }
 
-    public String getCountryId() {
+    public Long getCountryId() {
         return this.countryId;
     }
 
-    public void setCountryId(String countryId) {
+    public void setCountryId(Long countryId) {
         this.countryId = countryId;
     }
 
-    public String getCountyId() {
+    public Long getCountyId() {
         return this.countyId;
     }
 
-    public void setCountyId(String countyId) {
+    public void setCountyId(Long countyId) {
         this.countyId = countyId;
     }
 
-    public String getSubcountyId() {
+    public Long getSubcountyId() {
         return this.subcountyId;
     }
 
-    public void setSubcountyId(String subcountyId) {
+    public void setSubcountyId(Long subcountyId) {
         this.subcountyId = subcountyId;
     }
 
@@ -203,13 +210,23 @@ public class User {
         this.tokenId = tokenId;
     }
 
-    public Token getTokenFromWS(){
-        return this.token;
+    public Boolean getIsPhoneVerified() {
+        return this.isPhoneVerified;
     }
 
-    /**
-     * To-one relationship, resolved on first access.
-     */
+    public void setIsPhoneVerified(Boolean isPhoneVerified) {
+        this.isPhoneVerified = isPhoneVerified;
+    }
+
+    public Boolean getIsDefaultPin() {
+        return this.isDefaultPin;
+    }
+
+    public void setIsDefaultPin(Boolean isDefaultPin) {
+        this.isDefaultPin = isDefaultPin;
+    }
+
+    /** To-one relationship, resolved on first access. */
     @Generated(hash = 1690932140)
     public Token getToken() {
         Long __key = this.tokenId;
@@ -228,9 +245,7 @@ public class User {
         return token;
     }
 
-    /**
-     * called by internal mechanisms, do not call yourself.
-     */
+    /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1839028877)
     public void setToken(Token token) {
         synchronized (this) {
@@ -262,9 +277,7 @@ public class User {
         return professions;
     }
 
-    /**
-     * Resets a to-many relationship, making the next get call to query for a fresh result.
-     */
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
     @Generated(hash = 1823650265)
     public synchronized void resetProfessions() {
         professions = null;
@@ -306,26 +319,11 @@ public class User {
         myDao.update(this);
     }
 
-    public Boolean getIsPhoneVerified() {
-        return this.isPhoneVerified;
-    }
-
-    public void setIsPhoneVerified(Boolean isPhoneVerified) {
-        this.isPhoneVerified = isPhoneVerified;
-    }
-
-    public Boolean getIsDefaultPin() {
-        return this.isDefaultPin;
-    }
-
-    public void setIsDefaultPin(Boolean isDefaultPin) {
-        this.isDefaultPin = isDefaultPin;
-    }
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 2059241980)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getUserDao() : null;
     }
+
 }

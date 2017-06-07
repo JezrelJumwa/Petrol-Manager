@@ -42,6 +42,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
     protected void initFields() {
         mRvMyProfile.setLayoutManager(new LinearLayoutManager(activity));
         User loggedUser = xabaDbHelper.getLoggedUser(activity);
+        loggedUser.refresh();
         MyProfileAdapter adapter = new MyProfileAdapter(loggedUser, this);
         mRvMyProfile.setAdapter(adapter);
     }
