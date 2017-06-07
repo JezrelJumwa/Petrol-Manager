@@ -59,6 +59,7 @@ public class XabaApplication extends Application {
     public void logout(){
         Preferences.clear(getApplicationContext());
         DatabaseHelper.getInstance(this).dropDb();
+        setToken(null);
         NavigationUtils.startSingleActivity(getApplicationContext(), MainActivity.class);
     }
 }
