@@ -15,8 +15,6 @@ import java.util.List;
 public class Country {
 
     @Id
-    private Long id;
-
     @SerializedName("country_id")
     private Long countryId;
     @SerializedName("name")
@@ -30,14 +28,6 @@ public class Country {
     @SerializedName("counties")
     @ToMany(referencedJoinProperty = "countryId")
     private List<County> counties;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getCountryId() {
         return countryId;
@@ -91,10 +81,9 @@ public class Country {
     @Generated(hash = 753128027)
     private transient CountryDao myDao;
 
-    @Generated(hash = 1230699080)
-    public Country(Long id, Long countryId, String name, String code,
-                   Long currencyId, Long timezoneId) {
-        this.id = id;
+    @Generated(hash = 563658970)
+    public Country(Long countryId, String name, String code, Long currencyId,
+                   Long timezoneId) {
         this.countryId = countryId;
         this.name = name;
         this.code = code;
@@ -110,7 +99,7 @@ public class Country {
      * To-many relationship, resolved on first access (and after reset).
      * Changes to to-many relations are not persisted, make changes to the target entity.
      */
-    @Generated(hash = 1461778680)
+    @Generated(hash = 2044699499)
     public List<County> getCounties() {
         if (counties == null) {
             final DaoSession daoSession = this.daoSession;
@@ -118,7 +107,7 @@ public class Country {
                 throw new DaoException("Entity is detached from DAO context");
             }
             CountyDao targetDao = daoSession.getCountyDao();
-            List<County> countiesNew = targetDao._queryCountry_Counties(id);
+            List<County> countiesNew = targetDao._queryCountry_Counties(countryId);
             synchronized (this) {
                 if (counties == null) {
                     counties = countiesNew;
@@ -172,7 +161,9 @@ public class Country {
         myDao.update(this);
     }
 
-    /** called by internal mechanisms, do not call yourself. */
+    /**
+     * called by internal mechanisms, do not call yourself.
+     */
     @Generated(hash = 1445920194)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;

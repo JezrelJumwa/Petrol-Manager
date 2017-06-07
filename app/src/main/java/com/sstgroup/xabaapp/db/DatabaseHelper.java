@@ -75,7 +75,7 @@ public class DatabaseHelper {
         return instance;
     }
 
-    public void dropDb(){
+    public void dropDb() {
         daoSession.getLanguageDao().deleteAll();
         daoSession.getCountryDao().deleteAll();
         daoSession.getCountyDao().deleteAll();
@@ -121,7 +121,7 @@ public class DatabaseHelper {
         countryDao.insertInTx(countries);
 
         for (Country country : countries) {
-            insertOrReplaceCounties(country.getCounties());
+            insertOrReplaceCounties(country.getCounties(), country.getCountryId());
         }
     }
 
@@ -136,12 +136,15 @@ public class DatabaseHelper {
         return countries;
     }
 
-    public void insertOrReplaceCounties(List<County> counties) {
+    public void insertOrReplaceCounties(List<County> counties, long countryId) {
         countyDao = daoSession.getCountyDao();
+        for (County county : counties) {
+            county.setCountryId(countryId);
+        }
         countyDao.insertInTx(counties);
 
         for (County county : counties) {
-            insertOrReplaceSubCounties(county.getSubCounties(), county.getId());
+            insertOrReplaceSubCounties(county.getSubCounties(), county.getCountyId());
         }
     }
 

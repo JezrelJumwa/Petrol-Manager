@@ -185,7 +185,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                         selectedCounty = selectedItems.get(0);
                         txtCountySelection.setText(selectedCounty);
                         subCounties = xabaDbHelper.getSubCounties(selectedCounty);
-                        countyId = xabaDbHelper.getCounty(selectedCounty).getId();
+                        countyId = xabaDbHelper.getCounty(selectedCounty).getCountyId();
                     }
                 });
         dialog.show();
@@ -204,7 +204,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedSubCounty = selectedItems.get(0);
                         txtSubCountySelection.setText(selectedSubCounty);
-                        subCountyId = xabaDbHelper.getSubCounty(selectedSubCounty).getId();
+                        subCountyId = xabaDbHelper.getSubCounty(selectedSubCounty).getSubCountyId();
                     }
                 });
         dialog.show();
