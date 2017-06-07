@@ -59,6 +59,11 @@ public class LoginFragment extends BaseFragment {
             mEditTextNationalId.setText("1234569870");
             mEditTextPinCode.setText("1234");
         }
+
+//        if (BuildConfig.DEBUG){
+//            mEditTextNationalId.setText("235720441");
+//            mEditTextPinCode.setText("0000");
+//        }
     }
 
     @Override
@@ -94,10 +99,10 @@ public class LoginFragment extends BaseFragment {
             return;
         }
         //TODO: uncomment this
-        if (nationalId.length() != 10) {
-            ToastInterval.showToast(activity, getString(R.string.your_national_id_is_wrong));
-            return;
-        }
+//        if (nationalId.length() != 10) {
+//            ToastInterval.showToast(activity, getString(R.string.your_national_id_is_wrong));
+//            return;
+//        }
 
         if (Validator.isEmpty(pinCode)) {
             ToastInterval.showToast(activity, getString(R.string.enter_pin_code));
