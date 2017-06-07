@@ -12,18 +12,15 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
-import com.sstgroup.xabaapp.db.DatabaseHelper;
-import com.sstgroup.xabaapp.models.Category;
-import com.sstgroup.xabaapp.models.Industry;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.ui.activities.EditProfileActivity;
+import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.NavigationUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import timber.log.Timber;
 
 /**
  * Created by rosenstoyanov on 6/2/17.
@@ -142,7 +139,11 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 case 2:
                     txtProfileKey.setText(context.getText(R.string.genre));
                     txtProfileDetail.setText(loggedUser.getGender());
-                    ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre));
+                    if (loggedUser.getGender().equalsIgnoreCase(Constants.MALE)){
+                        ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre_male));
+                    } else {
+                        ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre_female));
+                    }
                     break;
                 case 3:
                     txtProfileKey.setText(context.getText(R.string.county_profile));
