@@ -41,6 +41,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".ui.activities.HomeActivity"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activities.EditProfileActivity"

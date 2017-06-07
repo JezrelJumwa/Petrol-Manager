@@ -10,6 +10,7 @@ import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.ui.fragments.MyProfileFragment;
 import com.sstgroup.xabaapp.ui.fragments.NavigationDrawerFragment;
+import com.sstgroup.xabaapp.ui.fragments.RegisterWorkerByAgentFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -89,6 +90,7 @@ public class HomeActivity extends BaseActivity implements
     private void setContentFragment(int menuItemId) {
         switch (menuItemId) {
             case R.id.nav_register_worker:
+                openFragment(RegisterWorkerByAgentFragment.newInstance(), true);
                 break;
             case R.id.nav_dashboard:
                 break;

@@ -10,9 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Preferences;
 import com.sstgroup.xabaapp.utils.Validator;
@@ -104,6 +106,14 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
     private String selectedCategoryThree = "";
     private String selectedProfessionThree = "";
 
+    public static RegisterWorkerByAgentFragment newInstance() {
+
+        Bundle args = new Bundle();
+        RegisterWorkerByAgentFragment fragment = new RegisterWorkerByAgentFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_register_worker_by_agent;
@@ -116,10 +126,12 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
         counties = xabaDbHelper.getCounties();
         industries = xabaDbHelper.getIndustries();
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            userId = Long.valueOf(bundle.getString(Constants.WORKER_ID));
-        }
+//        Bundle bundle = getArguments();
+//        if (bundle != null) {
+//            userId = Long.valueOf(bundle.getString(Constants.WORKER_ID));
+//        }
+
+        userId = xabaDbHelper.getLoggedUser(activity).getId();
     }
 
     @Override
@@ -432,7 +444,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
         List<Long> professionIds = xabaDbHelper.getProfessionIds(professions);
 
-        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, null, phoneNumber, languageCode, countryId, countyId, subCountyId, professionIds, userId, Constants.AGENT_APP_VALUE, "8ddd91cb344c5cd0d48c3550720d9d518edadb63ff2e0f5fb37c6aa78af619c8cc54957f44ce82c5ec4f374b194f7e30889f4d6da0796e5bfe371b33d6aeb697");
+        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, null, phoneNumber, languageCode, countryId, countyId, subCountyId, professionIds, userId, Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue());
 
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerByAgentRequest());
         Call<Object> call = RestClient.getService().registerWorkerByAgent(body);
@@ -440,7 +452,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(activity, getString(R.string.worker_is_registered), Toast.LENGTH_LONG).show();
+                    ToastInterval.showToast(activity, getString(R.string.worker_is_registered));
                 }
             }
 
