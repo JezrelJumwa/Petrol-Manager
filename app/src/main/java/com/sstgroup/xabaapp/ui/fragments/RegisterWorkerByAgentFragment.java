@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
@@ -209,7 +208,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
     private void showSubCountiesDialog() {
 
         if (Validator.isEmpty(selectedCounty)) {
-            Toast.makeText(activity, getString(R.string.choose_county_first), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getString(R.string.choose_county_first));
             return;
         }
 
@@ -277,19 +276,19 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
         switch (professionRow) {
             case 1:
                 if (Validator.isEmpty(selectedIndustry)) {
-                    Toast.makeText(activity, getString(R.string.choose_industry_first), Toast.LENGTH_SHORT).show();
+                    ToastInterval.showToast(activity, getString(R.string.choose_industry_first));
                     isSuccessValidation = false;
                 }
                 break;
             case 2:
                 if (Validator.isEmpty(selectedIndustryTwo)) {
-                    Toast.makeText(activity, getString(R.string.choose_industry_first), Toast.LENGTH_SHORT).show();
+                    ToastInterval.showToast(activity, getString(R.string.choose_industry_first));
                     isSuccessValidation = false;
                 }
                 break;
             case 3:
                 if (Validator.isEmpty(selectedIndustryThree)) {
-                    Toast.makeText(activity, getString(R.string.choose_industry_first), Toast.LENGTH_SHORT).show();
+                    ToastInterval.showToast(activity, getString(R.string.choose_industry_first));
                     isSuccessValidation = false;
                 }
                 break;
@@ -351,19 +350,19 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
         switch (professionRow) {
             case 1:
                 if (Validator.isEmpty(selectedCategory)) {
-                    Toast.makeText(activity, getString(R.string.choose_category_first), Toast.LENGTH_SHORT).show();
+                    ToastInterval.showToast(activity, getString(R.string.choose_category_first));
                     isSuccessValidation = false;
                 }
                 break;
             case 2:
                 if (Validator.isEmpty(selectedCategoryTwo)) {
-                    Toast.makeText(activity, getString(R.string.choose_category_first), Toast.LENGTH_SHORT).show();
+                    ToastInterval.showToast(activity, getString(R.string.choose_category_first));
                     isSuccessValidation = false;
                 }
                 break;
             case 3:
                 if (Validator.isEmpty(selectedCategoryThree)) {
-                    Toast.makeText(activity, getString(R.string.choose_category_first), Toast.LENGTH_SHORT).show();
+                    ToastInterval.showToast(activity, getString(R.string.choose_category_first));
                     isSuccessValidation = false;
                 }
                 break;
@@ -414,61 +413,61 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
         // validations for National ID
         if (Validator.isEmpty(nationalId)) {
-            Toast.makeText(activity, getResources().getString(R.string.enter_national_id), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.enter_national_id));
             return;
         }
 
         if (isNotNumber(nationalId)) {
-            Toast.makeText(activity, getResources().getString(R.string.national_id_should_be_a_number), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.national_id_should_be_a_number));
             return;
         }
 
         if (nationalId.length() != 10) {
-            Toast.makeText(activity, getResources().getString(R.string.your_national_id_is_wrong), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.your_national_id_is_wrong));
             return;
         }
 
         // validations for Confirm National ID
         if (Validator.isEmpty(confirmNationalId)) {
-            Toast.makeText(activity, getResources().getString(R.string.enter_confirm_national_id), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.enter_confirm_national_id));
             return;
         }
 
         if (!nationalId.equals(confirmNationalId)) {
-            Toast.makeText(activity, getResources().getString(R.string.national_id_and_confirm_national_id_should_be_the_same), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.national_id_and_confirm_national_id_should_be_the_same));
             return;
         }
 
         // validations for Phone Number
         if (Validator.isEmpty(phoneNumber)) {
-            Toast.makeText(activity, getResources().getString(R.string.enter_phone_number), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.enter_phone_number));
             return;
         }
 
         //  validations for Locations
         if (Validator.isEmpty(selectedCounty)) {
-            Toast.makeText(activity, getResources().getString(R.string.choose_county), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.choose_county));
             return;
         }
 
         if (Validator.isEmpty(selectedSubCounty)) {
-            Toast.makeText(activity, getResources().getString(R.string.choose_sub_county), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.choose_sub_county));
             return;
         }
 
         //  validations for Professions
         if (Validator.isEmpty(selectedIndustry)) {
-            Toast.makeText(activity, getResources().getString(R.string.choose_industry), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.choose_industry));
             return;
         }
 
         if (Validator.isEmpty(selectedCategory)) {
-            Toast.makeText(activity, getResources().getString(R.string.choose_category), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.choose_category));
             return;
         }
 
         if (Validator.isEmpty(selectedProfession)) {
-            Toast.makeText(activity, getResources().getString(R.string.choose_profession), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getResources().getString(R.string.choose_profession));
             return;
         }
 

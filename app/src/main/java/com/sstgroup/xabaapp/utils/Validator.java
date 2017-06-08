@@ -2,7 +2,7 @@ package com.sstgroup.xabaapp.utils;
 
 
 import android.text.TextUtils;
-import android.util.Patterns;
+
 
 public class Validator {
 

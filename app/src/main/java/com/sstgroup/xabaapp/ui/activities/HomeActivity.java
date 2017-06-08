@@ -2,15 +2,14 @@ package com.sstgroup.xabaapp.ui.activities;
 
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.ui.fragments.MyProfileFragment;
 import com.sstgroup.xabaapp.ui.fragments.NavigationDrawerFragment;
 import com.sstgroup.xabaapp.ui.fragments.RegisterWorkerByAgentFragment;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,8 +42,8 @@ public class HomeActivity extends BaseActivity implements
     }
 
     @OnClick(R.id.iv_add_profile)
-    void addProfile(){
-        Toast.makeText(this, "Add profile", Toast.LENGTH_SHORT).show();
+    void addProfile() {
+        ToastInterval.showToast(this, "Add profile");
     }
 
     @Override

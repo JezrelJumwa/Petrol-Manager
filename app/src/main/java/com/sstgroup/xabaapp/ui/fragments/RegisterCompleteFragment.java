@@ -44,7 +44,7 @@ public class RegisterCompleteFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
-        mTextViewYourReferralIdIs.setText(userId.toString());
+        mTextViewYourReferralIdIs.setText(String.valueOf(userId));
     }
 
     @OnClick({R.id.continuE, R.id.register_another_worker})

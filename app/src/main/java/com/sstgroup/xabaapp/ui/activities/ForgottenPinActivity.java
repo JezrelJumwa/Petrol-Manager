@@ -2,11 +2,11 @@ package com.sstgroup.xabaapp.ui.activities;
 
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.PinResponse;
 import com.sstgroup.xabaapp.service.RestClient;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
 import com.sstgroup.xabaapp.utils.Validator;
@@ -50,17 +50,17 @@ public class ForgottenPinActivity extends BaseActivity {
         String nationalId = mEditTextNationalId.getText().toString();
 
         if (Validator.isEmpty(nationalId)) {
-            Toast.makeText(this, getResources().getString(R.string.enter_national_id), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(this, getResources().getString(R.string.enter_national_id));
             return;
         }
 
         if (Validator.isNotNumber(nationalId)) {
-            Toast.makeText(this, getResources().getString(R.string.national_id_should_be_a_number), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(this, getResources().getString(R.string.national_id_should_be_a_number));
             return;
         }
 
         if (nationalId.length() != 10) {
-            Toast.makeText(this, getResources().getString(R.string.your_national_id_is_wrong), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(this, getResources().getString(R.string.your_national_id_is_wrong));
             return;
         }
 
@@ -71,15 +71,14 @@ public class ForgottenPinActivity extends BaseActivity {
             @Override
             public void onResponse(Call<PinResponse> call, Response<PinResponse> response) {
                 if (response.isSuccessful()) {
-                    response.body().getStatus();
-                    Toast.makeText(ForgottenPinActivity.this, getResources().getString(R.string.pin_is_reset), Toast.LENGTH_SHORT).show();
+                    ToastInterval.showToast(ForgottenPinActivity.this, getResources().getString(R.string.pin_is_reset));
                     finish();
                 }
             }
 
             @Override
             public void onFailure(Call<PinResponse> call, Throwable t) {
-                Toast.makeText(ForgottenPinActivity.this, getResources().getString(R.string.something_is_wrong), Toast.LENGTH_SHORT).show();
+                ToastInterval.showToast(ForgottenPinActivity.this, getResources().getString(R.string.something_is_wrong));
                 Timber.d("onFailure" + t.toString());
             }
         });
