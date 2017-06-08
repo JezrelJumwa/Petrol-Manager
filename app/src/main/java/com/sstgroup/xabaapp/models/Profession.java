@@ -1,6 +1,7 @@
 package com.sstgroup.xabaapp.models;
 
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Entity;
@@ -19,14 +20,23 @@ public class Profession {
     @Transient
     @SerializedName("id")
     private Long loggedUserProfessionId;
+    @Transient
+    @Expose
+    private Industry industry;
+    @Transient
+    @Expose
+    private Category category;
+
     @Generated(hash = 1426892760)
     public Profession(Long professionId, String name) {
         this.professionId = professionId;
         this.name = name;
     }
+
     @Generated(hash = 900874100)
     public Profession() {
     }
+
     public Long getProfessionId() {
         return this.professionId;
     }
@@ -46,4 +56,19 @@ public class Profession {
         this.loggedUserProfessionId = loggedUserProfessionId;
     }
 
+    public void setIndustry(Industry industry) {
+        this.industry = industry;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Industry getIndustry() {
+        return industry;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
 }

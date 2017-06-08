@@ -136,7 +136,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.txt_name)
         TextView txtName;
 
-        public RowHeader(View itemView) {
+        RowHeader(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -154,7 +154,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.iv_left_icon)
         ImageView ivProfileLeftIcon;
 
-        public RowItem(View itemView) {
+        RowItem(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -202,7 +202,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.txt_profession)
         TextView txtProfession;
 
-        public RowProfession(View itemView) {
+        RowProfession(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -224,7 +224,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.top_green_view)
         View topGreenView;
 
-        public RowFooter(View itemView) {
+        RowFooter(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

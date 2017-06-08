@@ -1,0 +1,106 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_profession_one"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/profession_green"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/grp_industry_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/industry"
+            android:textColor="@color/dark_color"
+            android:textSize="16sp"/>
+
+        <LinearLayout
+            android:id="@+id/grp_industry"
+            style="@style/SpinnerLayoutStyle"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/txt_industry_selection"
+                style="@style/SpinnerTextViewStyle"
+                android:text="@string/select_industry"/>
+
+            <ImageView
+                style="@style/SpinnerImageViewStyle"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/grp_category_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/category"
+            android:textColor="@color/dark_color"
+            android:textSize="16sp"/>
+
+        <LinearLayout
+            android:id="@+id/grp_category"
+            style="@style/SpinnerLayoutStyle"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/txt_category_selection"
+                style="@style/SpinnerTextViewStyle"
+                android:text="@string/select_category"/>
+
+            <ImageView
+                style="@style/SpinnerImageViewStyle"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/profession"
+        android:textColor="@color/dark_color"
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:id="@+id/grp_profession"
+        style="@style/SpinnerLayoutStyle"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/txt_profession_selection"
+            style="@style/SpinnerTextViewStyle"
+            android:text="@string/select_profession"/>
+
+        <ImageView
+            android:id="@+id/iv_profession_down_arrow"
+            style="@style/SpinnerImageViewStyle"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/remove_profession_one"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/remove_profession"/>
+
+</LinearLayout>
