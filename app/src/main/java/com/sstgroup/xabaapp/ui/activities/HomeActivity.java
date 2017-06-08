@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
+import com.sstgroup.xabaapp.ui.fragments.DashboardFragment;
 import com.sstgroup.xabaapp.ui.fragments.MyProfileFragment;
 import com.sstgroup.xabaapp.ui.fragments.NavigationDrawerFragment;
 import com.sstgroup.xabaapp.ui.fragments.RegisterWorkerByAgentFragment;
@@ -92,6 +93,7 @@ public class HomeActivity extends BaseActivity implements
                 openFragment(RegisterWorkerByAgentFragment.newInstance(), false);
                 break;
             case R.id.nav_dashboard:
+                openFragment(DashboardFragment.newInstance(), false);
                 break;
             case R.id.nav_reports:
                 break;
