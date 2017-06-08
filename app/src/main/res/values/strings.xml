@@ -111,6 +111,11 @@
     <string name="remove_profession"><u>Remove profession</u></string>
     <string name="save">Save</string>
 
+    <!--Delete account dialog-->
+    <string name="are_you_sure_you_want_to_delete_your_account">Are you sure you want to delete your account?</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+
     <string name="welcome_to_xaba_shikanisha">Welcome to Xaba Shikanisha</string>
     <string name="we_have_made_it_easier_for_you_to_register">We\'ve made it easier for you to
         register.

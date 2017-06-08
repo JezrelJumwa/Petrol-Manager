@@ -3,7 +3,7 @@ package com.sstgroup.xabaapp.utils;
 
 public class Constants {
 
-    public static final int SPLASH_DURATION = 1800;
+    public static final int SPLASH_DURATION = 3000;
 
     // web service
     public static final String BASE_URL = "http://ec2-52-59-94-240.eu-central-1.compute.amazonaws.com/api/v1/en-US/";
@@ -52,4 +52,30 @@ public class Constants {
     //genders
     public static final String MALE = "male";
     public static final String FEMALE = "female";
+
+
+    class NotEnougthMemory extends Exception {
+
+    }
+
+    public void main(){
+        try {
+            meh();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void meh() throws Exception {
+        me3();
+    }
+
+    public static void me3() throws Exception {
+        me4();
+    }
+
+    public static void me4() throws Exception {
+        throw new IllegalStateException();
+    }
 }
