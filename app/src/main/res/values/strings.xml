@@ -68,7 +68,7 @@
     </string>
     <string name="building_connections">Building Connections</string>
     <string name="visit_xaba">Visit www.xaba.org</string>
-    <string name="pin_is_reset">Pin is reset!</string>
+    <string name="pin_is_reset">Pin is reset.</string>
     <string name="need_help_with_your_pin">Need help with your PIN?</string>
     <string name="enter_your_national_id_we_will_send_a_pin_to_your_preferred_number">Enter your
         national ID. We will send a PIN to your preferred number.
@@ -137,7 +137,7 @@
     </string>
     <string name="enter_phone_number">Enter phone number.</string>
     <string name="pin_code_and_confirm_pin_code_should_be_the_same">PIN code and Confirm PIN code
-        should be the same!
+        should be the same.
     </string>
     <string name="enter_referral_code">Enter referral code.</string>
     <string name="enter_confirm_national_id">Enter Confirm National ID.</string>

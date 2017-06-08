@@ -4,11 +4,7 @@ import com.sstgroup.xabaapp.network.adapter.AdapterCallback;
 import com.sstgroup.xabaapp.network.adapter.objects.CountryModel;
 import com.sstgroup.xabaapp.network.adapter.objects.IndustryModel;
 import com.sstgroup.xabaapp.network.adapter.objects.ProfileModel;
-import com.sstgroup.xabaapp.network.retrofit.objects.IndustriesRetrofitResponse;
 
-import java.io.IOError;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 /**

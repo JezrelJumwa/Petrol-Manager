@@ -4,7 +4,6 @@ package com.sstgroup.xabaapp.ui.fragments;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.PinResponse;
@@ -14,6 +13,7 @@ import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.activities.LoginActivity;
 import com.sstgroup.xabaapp.ui.activities.RegisterActivity;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
 import com.sstgroup.xabaapp.utils.Preferences;
@@ -50,21 +50,21 @@ public class WizardStepOneFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-        selectedCountry = Preferences.getSelectedCountry(activity);
-        selectedLanguage = Preferences.getSelectedLanguage(activity);
-
         countries = xabaDbHelper.getCountries();
         languages = xabaDbHelper.getLanguages();
+
+        selectedCountry = Preferences.getSelectedCountry(activity);
+        selectedLanguage = Preferences.getSelectedLanguage(activity);
     }
 
     @Override
     protected void initViews(View rootView) {
 
-        if (!selectedCountry.isEmpty()) {
+        if (!Validator.isEmpty(selectedCountry)) {
             txtCountrySelection.setText(selectedCountry);
         }
 
-        if (!selectedLanguage.isEmpty()) {
+        if (!Validator.isEmpty(selectedLanguage)) {
             txtLanguageSelection.setText(selectedLanguage);
         }
     }
@@ -101,12 +101,12 @@ public class WizardStepOneFragment extends BaseFragment {
 
     private boolean isValidationSuccess() {
         if (Validator.isEmpty(selectedCountry)) {
-            Toast.makeText(activity, getString(R.string.choose_country), Toast.LENGTH_LONG).show();
+            ToastInterval.showToast(activity, getString(R.string.choose_country));
             return false;
         }
 
         if (Validator.isEmpty(selectedLanguage)) {
-            Toast.makeText(activity, getString(R.string.choose_language), Toast.LENGTH_LONG).show();
+            ToastInterval.showToast(activity, getString(R.string.choose_language));
             return false;
         }
 

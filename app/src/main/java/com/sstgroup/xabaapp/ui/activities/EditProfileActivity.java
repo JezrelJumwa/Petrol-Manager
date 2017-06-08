@@ -45,12 +45,12 @@ public class EditProfileActivity extends BaseActivity {
         counties = xabaDbHelper.getCounties();
         user = xabaDbHelper.getLoggedUser(this);
 
-        txtCountySelection.setText(xabaDbHelper.getCounty(Long.valueOf(user.getCountyId())).getName());
-        txtSubCountySelection.setText(xabaDbHelper.getSubCounty(Long.valueOf(user.getSubcountyId())).getName());
+        txtCountySelection.setText(xabaDbHelper.getCounty(user.getCountyId()).getName());
+        txtSubCountySelection.setText(xabaDbHelper.getSubCounty(user.getSubcountyId()).getName());
     }
 
     @OnClick({R.id.grp_county, R.id.grp_sub_county})
-    public void onClick(View view){
+    public void onClick(View view) {
         int id = view.getId();
 
         switch (id) {

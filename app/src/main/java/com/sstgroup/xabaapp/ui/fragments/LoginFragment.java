@@ -98,11 +98,11 @@ public class LoginFragment extends BaseFragment {
             ToastInterval.showToast(activity, getString(R.string.national_id_should_be_a_number));
             return;
         }
-        //TODO: uncomment this
-//        if (nationalId.length() != 10) {
-//            ToastInterval.showToast(activity, getString(R.string.your_national_id_is_wrong));
-//            return;
-//        }
+
+        if (nationalId.length() != 10) {
+            ToastInterval.showToast(activity, getString(R.string.your_national_id_is_wrong));
+            return;
+        }
 
         if (Validator.isEmpty(pinCode)) {
             ToastInterval.showToast(activity, getString(R.string.enter_pin_code));

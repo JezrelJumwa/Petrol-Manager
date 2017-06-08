@@ -4,7 +4,6 @@ package com.sstgroup.xabaapp.ui.fragments;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.ActivationCodeResponse;
@@ -77,7 +76,7 @@ public class RegisterConfirmFragment extends BaseFragment {
         String activationCode = mEditTextActivationCode.getText().toString();
 
         if (Validator.isEmpty(activationCode)) {
-            Toast.makeText(activity, getString(R.string.enter_activation_code), Toast.LENGTH_SHORT).show();
+            ToastInterval.showToast(activity, getString(R.string.enter_activation_code));
             return;
         }
 
@@ -86,16 +85,15 @@ public class RegisterConfirmFragment extends BaseFragment {
             @Override
             public void onResponse(Call<ActivationCodeResponse> call, Response<ActivationCodeResponse> response) {
                 if (response.isSuccessful()) {
-                    response.body().getStatus();
 
-                    if (startedFromLogin){
+                    if (startedFromLogin) {
                         activity.onBackPressed();
                     } else {
                         activity.openFragment(RegisterCompleteFragment.newInstance(userId), true);
                     }
                 } else {
                     ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
-                    if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)){
+                    if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(activity, errorLogin.getError());
@@ -117,7 +115,7 @@ public class RegisterConfirmFragment extends BaseFragment {
             public void onResponse(Call<SendNewActivationCodeResponse> call, Response<SendNewActivationCodeResponse> response) {
                 if (response.isSuccessful()) {
                     response.body().getStatus();
-                    Toast.makeText(activity, getString(R.string.new_activation_code_is_sent_via_sms), Toast.LENGTH_LONG).show();
+                    ToastInterval.showToast(activity, getString(R.string.new_activation_code_is_sent_via_sms));
                 }
             }
 
