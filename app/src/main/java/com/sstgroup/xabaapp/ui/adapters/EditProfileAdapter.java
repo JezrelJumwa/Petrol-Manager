@@ -160,9 +160,9 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     class RowEditProfession extends RecyclerView.ViewHolder {
-        @BindView(R.id.grp_industry)
+        @BindView(R.id.grp_industry_wrap)
         LinearLayout grpIndustry;
-        @BindView(R.id.grp_category)
+        @BindView(R.id.grp_category_wrap)
         LinearLayout grpCategory;
         @BindView(R.id.iv_profession_down_arrow)
         ImageView ivProfessionArrow;
@@ -190,7 +190,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             }
         }
 
-        @OnClick(R.id.remove_profession_one)
+        @OnClick({R.id.remove_profession_one, R.id.grp_industry, R.id.grp_category})
         public void onClick(View view) {
             clickCallbacks.onItemClick(view, getAdapterPosition());
         }
