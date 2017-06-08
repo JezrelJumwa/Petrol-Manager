@@ -2,15 +2,27 @@ package com.sstgroup.xabaapp.ui.fragments;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.VideoView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.ui.activities.LoginActivity;
 import com.sstgroup.xabaapp.ui.activities.RegisterActivity;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class WizardStepThreeFragment extends BaseFragment {
+
+    @BindView(R.id.video_frame_layout)
+    FrameLayout mFrameLayout;
+    @BindView(R.id.video)
+    VideoView mVideoView;
+    @BindView(R.id.play_button)
+    ImageButton mImageButton;
 
     @Override
     protected int getLayoutId() {
@@ -19,7 +31,8 @@ public class WizardStepThreeFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-
+        String path = "android.resource://" + activity.getPackageName() + "/" + R.raw.wildlife;
+        mVideoView.setVideoURI(Uri.parse(path));
     }
 
     @Override
@@ -27,11 +40,21 @@ public class WizardStepThreeFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.back, R.id.register, R.id.log_in})
+    @OnClick({R.id.back, R.id.video_frame_layout, R.id.play_button, R.id.register, R.id.log_in})
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 activity.onBackPressed();
+                break;
+            case R.id.video_frame_layout:
+            case R.id.play_button:
+                if (mImageButton.getVisibility() == View.VISIBLE) {
+                    mImageButton.setVisibility(View.INVISIBLE);
+                    mVideoView.start();
+                } else {
+                    mImageButton.setVisibility(View.VISIBLE);
+                    mVideoView.pause();
+                }
                 break;
             case R.id.register:
                 Intent intentToRegisterActivity = new Intent(activity, RegisterActivity.class);
