@@ -42,12 +42,28 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.selectedSubCounty = subCounty;
     }
 
+    public ArrayList<Profession> getProfessions() {
+        return professions;
+    }
+
     public County getSelectedCounty() {
         return selectedCounty;
     }
 
     public SubCounty getSelectedSubCounty() {
         return selectedSubCounty;
+    }
+
+    public void setSelectedCounty(County selectedCounty) {
+        this.selectedCounty = selectedCounty;
+        notifyItemChanged(0);
+        this.selectedSubCounty = null;
+        notifyItemChanged(1);
+    }
+
+    public void setSelectedSubCounty(SubCounty selectedSubCounty) {
+        this.selectedSubCounty = selectedSubCounty;
+        notifyItemChanged(1);
     }
 
     @Override
@@ -107,7 +123,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 view.setVisibility(View.GONE);
 
                 txtTitle.setText(context.getString(R.string.county));
-                if (selectedCounty != null)
+                if (selectedCounty == null)
                     txtSelectedItem.setText(context.getString(R.string.select_county));
                 else
                     txtSelectedItem.setText(selectedCounty.getName());
@@ -115,7 +131,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 view.setVisibility(View.VISIBLE);
 
                 txtTitle.setText(context.getString(R.string.sub_county));
-                if (selectedSubCounty != null)
+                if (selectedSubCounty == null)
                     txtSelectedItem.setText(context.getString(R.string.select_sub_county));
                 else
                     txtSelectedItem.setText(selectedSubCounty.getName());
