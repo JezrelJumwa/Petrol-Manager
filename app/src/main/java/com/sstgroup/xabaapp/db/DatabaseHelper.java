@@ -249,6 +249,25 @@ public class DatabaseHelper {
         return professions;
     }
 
+    public void updateLoggedUser(User user, Token token){
+        joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
+
+        joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
+        List<JoinUsersWithProfessions> list = joinUsersProfessionDao
+                .queryBuilder()
+                .where(JoinUsersWithProfessionsDao.Properties.UserId.eq(user.getId())).list();
+        joinUsersProfessionDao.deleteInTx(list);
+
+        user.setTokenId(token.getId());
+        for (Profession profession : user.getProfessions()) {
+            insertJoinUserProfessions(user.getId(), profession.getLoggedUserProfessionId());
+        }
+
+        insertOrReplaceUser(user);
+        daoSession.getUserDao().detachAll();
+        daoSession.getJoinUsersWithProfessionsDao().detachAll();
+    }
+
     public void insertOrReplaceUser(User user) {
         userDao = daoSession.getUserDao();
         userDao.insertOrReplace(user);

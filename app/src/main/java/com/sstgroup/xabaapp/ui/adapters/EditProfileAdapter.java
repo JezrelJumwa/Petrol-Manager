@@ -227,7 +227,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         @OnClick({R.id.remove_profession_one, R.id.grp_industry, R.id.grp_category, R.id.grp_profession})
         public void onClick(View view) {
-            if (view.getId() == R.id.grp_profession && !getProfessionAtPosition(getAdapterPosition()).isNew())
+            if (view.getId() == R.id.grp_profession && ivProfessionArrow.getVisibility() == View.GONE)
                 return;
 
             clickCallbacks.onItemClick(view, getAdapterPosition());
