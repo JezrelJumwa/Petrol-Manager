@@ -73,7 +73,7 @@ public class RegisterConfirmFragment extends BaseFragment {
 
     private void verify() {
 
-        String activationCode = mEditTextActivationCode.getText().toString();
+        String activationCode = mEditTextActivationCode.getText().toString().trim();
 
         if (Validator.isEmpty(activationCode)) {
             ToastInterval.showToast(activity, getString(R.string.enter_activation_code));

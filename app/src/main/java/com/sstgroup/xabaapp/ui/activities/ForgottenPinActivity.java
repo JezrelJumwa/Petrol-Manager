@@ -47,7 +47,7 @@ public class ForgottenPinActivity extends BaseActivity {
 
     private void resetPinAndSendSMS() {
 
-        String nationalId = mEditTextNationalId.getText().toString();
+        String nationalId = mEditTextNationalId.getText().toString().trim();
 
         if (Validator.isEmpty(nationalId)) {
             ToastInterval.showToast(this, getResources().getString(R.string.enter_national_id));
@@ -59,7 +59,7 @@ public class ForgottenPinActivity extends BaseActivity {
             return;
         }
 
-        if (nationalId.length() != 10) {
+        if (Validator.isNotCorrectNationalIdSize(nationalId)) {
             ToastInterval.showToast(this, getResources().getString(R.string.your_national_id_is_wrong));
             return;
         }
