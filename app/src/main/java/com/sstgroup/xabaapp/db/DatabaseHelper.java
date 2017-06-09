@@ -303,6 +303,8 @@ public class DatabaseHelper {
         user.setTokenId(tokenId);
 
         insertOrReplaceUser(user);
+        daoSession.getUserDao().detachAll();
+        daoSession.getJoinUsersWithProfessionsDao().detachAll();
     }
 
     public long insertOrReplaceToken(Token token) {

@@ -22,6 +22,7 @@ import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
 
 public class EditProfileActivity extends BaseActivity implements EditProfileAdapter.ClickCallbacks {
 
@@ -140,23 +140,24 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
     }
 
     private void saveProfile() {
+        showLoader();
         StringBuilder stringBuilder = new StringBuilder();
 
         County county = editProfileAdapter.getSelectedCounty();
         SubCounty subCounty = editProfileAdapter.getSelectedSubCounty();
         ArrayList<Profession> selectedProfessions = editProfileAdapter.getProfessions();
         if (county == null){
-            ToastInterval.showToast(this, "Select county");
+            ToastInterval.showToast(this, getString(R.string.select_county));
             return;
         }
 
         if (subCounty == null){
-            ToastInterval.showToast(this, "Select SubCounty");
+            ToastInterval.showToast(this, getString(R.string.select_sub_county));
             return;
         }
 
         if(selectedProfessions.isEmpty()){
-            ToastInterval.showToast(this, "Add at least one profession");
+            ToastInterval.showToast(this, getString(R.string.add_at_least_one_profession));
             return;
         }
 
@@ -179,7 +180,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
 
         for (Profession profession : selectedProfessions) {
             if(profession == null || profession.getProfessionId() == null){
-                ToastInterval.showToast(this, "Complete or remove not finished profession selection.");
+                ToastInterval.showToast(this, getString(R.string.complete_or_remove_professions));
                 return;
             }
 
@@ -191,27 +192,13 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
 
         RequestBody body = RequestBody.create(MediaType.parse("text"), stringBuilder.toString());
         Call<UserResponse> call = RestClient.getService().updateWorker(body);
-//        call.enqueue(new BaseXabaCall<Object>() {
-//            @Override
-//            public void onSuccess(Call<Object> call, Response<Object> response) {
-//                ToastInterval.showToast(EditProfileActivity.this, "Profile has been updated");
-//                finish();
-//            }
-//
-//            @Override
-//            public void onFailure(String error) {
-//                ToastInterval.showToast(EditProfileActivity.this, error);
-//            }
-//        });
+
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     User user = response.body().getUser();
                     xabaDbHelper.updateLoggedUser(user, XabaApplication.getInstance().getToken());
-
-                    ToastInterval.showToast(EditProfileActivity.this, "Profile has been updated");
-                    setResult(RESULT_OK);
                     finish();
                 } else {
                     ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
@@ -228,11 +215,18 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                         ToastInterval.showToast(EditProfileActivity.this, errorLogin.getErrors().getMessage());
                     }
                 }
+                hideLoader();
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
+                if (t instanceof IOException) {
+                    //Add your code for displaying no network connection error
+                    ToastInterval.showToast(EditProfileActivity.this, getString(R.string.check_your_internet_connection));
+                } else {
+                    ToastInterval.showToast(EditProfileActivity.this, getString(R.string.something_is_wrong));
+                }
+                hideLoader();
             }
         });
     }
