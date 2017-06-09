@@ -410,4 +410,31 @@ public class DatabaseHelper {
         }
         return null;
     }
+
+    public Profession getProfession(String professionName) {
+        professionDao = daoSession.getProfessionDao();
+        List<Profession> professions = professionDao.queryBuilder().where(ProfessionDao.Properties.Name.eq(professionName)).list();
+        if (!professions.isEmpty()) {
+            return professions.get(0);
+        }
+        return null;
+    }
+
+    public Industry getIndustry(String industryName) {
+        industryDao = daoSession.getIndustryDao();
+        List<Industry> industries = industryDao.queryBuilder().where(IndustryDao.Properties.Name.eq(industryName)).list();
+        if (!industries.isEmpty()) {
+            return industries.get(0);
+        }
+        return null;
+    }
+
+    public Category getCategory(String categoryName) {
+        categoryDao = daoSession.getCategoryDao();
+        List<Category> subCounties = categoryDao.queryBuilder().where(CategoryDao.Properties.Name.eq(categoryName)).list();
+        if (!subCounties.isEmpty()) {
+            return subCounties.get(0);
+        }
+        return null;
+    }
 }
