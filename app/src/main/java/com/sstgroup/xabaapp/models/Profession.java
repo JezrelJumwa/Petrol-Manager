@@ -26,6 +26,9 @@ public class Profession {
     @Transient
     @Expose
     private Category category;
+    @Transient
+    @Expose
+    private boolean isNew;
 
     @Generated(hash = 1426892760)
     public Profession(Long professionId, String name) {
@@ -70,5 +73,13 @@ public class Profession {
 
     public Category getCategory() {
         return category;
+    }
+
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean aNew) {
+        isNew = aNew;
     }
 }
