@@ -109,6 +109,8 @@
 
     <!--Edit Profile Screen-->
     <string name="remove_profession"><u>Remove profession</u></string>
+    <string name="add_at_least_one_profession">Add at least one profession</string>
+    <string name="complete_or_remove_professions">AComplete or remove not finished profession selection</string>
     <string name="save">Save</string>
 
     <!--Delete account dialog-->

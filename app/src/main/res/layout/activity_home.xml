@@ -7,7 +7,7 @@
     android:background="@color/white"
     tools:context=".ui.activities.HomeActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -34,11 +34,18 @@
         </android.support.v7.widget.Toolbar>
 
         <FrameLayout
+            android:layout_below="@id/toolbar"
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </LinearLayout>
+        <com.sstgroup.xabaapp.ui.widgets.DimmedProgressBar
+            android:id="@+id/progress"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 
 
     <fragment

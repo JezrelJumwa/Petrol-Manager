@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -19,10 +20,16 @@ import android.view.inputmethod.InputMethodManager;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.db.DatabaseHelper;
+import com.sstgroup.xabaapp.ui.widgets.DimmedProgressBar;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
+    @Nullable
+    @BindView(R.id.progress)
+    DimmedProgressBar progressBar;
+
     protected DatabaseHelper xabaDbHelper;
     protected boolean hasBackArrow;
 
@@ -34,6 +41,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         init();
+    }
+
+    protected void showLoader(){
+        if (progressBar != null)
+            progressBar.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideLoader(){
+        if (progressBar != null)
+            progressBar.setVisibility(View.GONE);
     }
 
     protected void setupToolbar(Toolbar toolbar, @DrawableRes int icId) {
