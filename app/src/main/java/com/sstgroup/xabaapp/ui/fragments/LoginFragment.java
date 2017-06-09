@@ -55,7 +55,7 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             mEditTextNationalId.setText("1234569870");
             mEditTextPinCode.setText("1234");
         }
@@ -99,7 +99,7 @@ public class LoginFragment extends BaseFragment {
             return;
         }
 
-        if (nationalId.length() != 10) {
+        if (Validator.isNotCorrectNationalIdSize(nationalId)) {
             ToastInterval.showToast(activity, getString(R.string.your_national_id_is_wrong));
             return;
         }
@@ -114,7 +114,7 @@ public class LoginFragment extends BaseFragment {
             return;
         }
 
-        if (pinCode.length() != 4) {
+        if (Validator.isNotCorrectPinCodeSize(pinCode)) {
             ToastInterval.showToast(activity, getString(R.string.your_pin_code_is_wrong));
             return;
         }
@@ -128,7 +128,7 @@ public class LoginFragment extends BaseFragment {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     User user = response.body().getUser();
-                    if (!user.getIsPhoneVerified()){
+                    if (!user.getIsPhoneVerified()) {
                         activity.openFragment(RegisterConfirmFragment.newInstance(user.getId(), true), true);
                     }
 //                    else if (!user.getIsDefaultPin()){
@@ -141,7 +141,7 @@ public class LoginFragment extends BaseFragment {
                     }
                 } else {
                     ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
-                    if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)){
+                    if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(activity, errorLogin.getError());
@@ -151,7 +151,7 @@ public class LoginFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-                if (t instanceof IOException){
+                if (t instanceof IOException) {
                     //Add your code for displaying no network connection error
                     ToastInterval.showToast(activity, getString(R.string.check_your_internet_connection));
                 } else {

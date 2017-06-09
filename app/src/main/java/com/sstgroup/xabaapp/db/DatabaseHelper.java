@@ -249,6 +249,25 @@ public class DatabaseHelper {
         return professions;
     }
 
+    public void updateLoggedUser(User user, Token token){
+        joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
+
+        joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
+        List<JoinUsersWithProfessions> list = joinUsersProfessionDao
+                .queryBuilder()
+                .where(JoinUsersWithProfessionsDao.Properties.UserId.eq(user.getId())).list();
+        joinUsersProfessionDao.deleteInTx(list);
+
+        user.setTokenId(token.getId());
+        for (Profession profession : user.getProfessions()) {
+            insertJoinUserProfessions(user.getId(), profession.getLoggedUserProfessionId());
+        }
+
+        insertOrReplaceUser(user);
+        daoSession.getUserDao().detachAll();
+        daoSession.getJoinUsersWithProfessionsDao().detachAll();
+    }
+
     public void insertOrReplaceUser(User user) {
         userDao = daoSession.getUserDao();
         userDao.insertOrReplace(user);
@@ -284,6 +303,8 @@ public class DatabaseHelper {
         user.setTokenId(tokenId);
 
         insertOrReplaceUser(user);
+        daoSession.getUserDao().detachAll();
+        daoSession.getJoinUsersWithProfessionsDao().detachAll();
     }
 
     public long insertOrReplaceToken(Token token) {
@@ -405,6 +426,33 @@ public class DatabaseHelper {
     public SubCounty getSubCounty(String subCountyName) {
         subCountyDao = daoSession.getSubCountyDao();
         List<SubCounty> subCounties = subCountyDao.queryBuilder().where(SubCountyDao.Properties.Name.eq(subCountyName)).list();
+        if (!subCounties.isEmpty()) {
+            return subCounties.get(0);
+        }
+        return null;
+    }
+
+    public Profession getProfession(String professionName) {
+        professionDao = daoSession.getProfessionDao();
+        List<Profession> professions = professionDao.queryBuilder().where(ProfessionDao.Properties.Name.eq(professionName)).list();
+        if (!professions.isEmpty()) {
+            return professions.get(0);
+        }
+        return null;
+    }
+
+    public Industry getIndustry(String industryName) {
+        industryDao = daoSession.getIndustryDao();
+        List<Industry> industries = industryDao.queryBuilder().where(IndustryDao.Properties.Name.eq(industryName)).list();
+        if (!industries.isEmpty()) {
+            return industries.get(0);
+        }
+        return null;
+    }
+
+    public Category getCategory(String categoryName) {
+        categoryDao = daoSession.getCategoryDao();
+        List<Category> subCounties = categoryDao.queryBuilder().where(CategoryDao.Properties.Name.eq(categoryName)).list();
         if (!subCounties.isEmpty()) {
             return subCounties.get(0);
         }

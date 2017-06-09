@@ -5,10 +5,12 @@ import android.widget.EditText;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.PinResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorStatusAndError;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import butterknife.BindView;
@@ -47,7 +49,7 @@ public class ForgottenPinActivity extends BaseActivity {
 
     private void resetPinAndSendSMS() {
 
-        String nationalId = mEditTextNationalId.getText().toString();
+        String nationalId = mEditTextNationalId.getText().toString().trim();
 
         if (Validator.isEmpty(nationalId)) {
             ToastInterval.showToast(this, getResources().getString(R.string.enter_national_id));
@@ -59,7 +61,7 @@ public class ForgottenPinActivity extends BaseActivity {
             return;
         }
 
-        if (nationalId.length() != 10) {
+        if (Validator.isNotCorrectNationalIdSize(nationalId)) {
             ToastInterval.showToast(this, getResources().getString(R.string.your_national_id_is_wrong));
             return;
         }
@@ -73,6 +75,9 @@ public class ForgottenPinActivity extends BaseActivity {
                 if (response.isSuccessful()) {
                     ToastInterval.showToast(ForgottenPinActivity.this, getResources().getString(R.string.pin_is_reset));
                     finish();
+                } else {
+                    ErrorStatusAndError errorStatusAndError = ErrorUtils.parseStatusAndError(response);
+                    ToastInterval.showToast(ForgottenPinActivity.this, errorStatusAndError.getError());
                 }
             }
 

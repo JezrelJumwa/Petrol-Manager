@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RestClient {
 
     private static Retrofit retrofit;
-    private static LeadsService service;
+    private static XabaService service;
 
     static {
 
@@ -27,10 +27,10 @@ public class RestClient {
                 .client(client)
                 .build();
 
-        service = retrofit.create(LeadsService.class);
+        service = retrofit.create(XabaService.class);
     }
 
-    public static LeadsService getService() {
+    public static XabaService getService() {
         return service;
     }
 

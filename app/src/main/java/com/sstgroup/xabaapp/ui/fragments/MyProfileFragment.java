@@ -2,7 +2,6 @@ package com.sstgroup.xabaapp.ui.fragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,7 +15,6 @@ import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.NavigationUtils;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by rosenstoyanov on 6/2/17.
@@ -28,6 +26,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
 
     @BindView(R.id.rv_profile)
     RecyclerView mRvMyProfile;
+    private MyProfileAdapter myProfileAdapter;
 
     public static MyProfileFragment newInstance() {
 
@@ -48,8 +47,8 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
         mRvMyProfile.setLayoutManager(new LinearLayoutManager(activity));
         User loggedUser = xabaDbHelper.getLoggedUser(activity);
         loggedUser.refresh();
-        MyProfileAdapter adapter = new MyProfileAdapter(loggedUser, this);
-        mRvMyProfile.setAdapter(adapter);
+        myProfileAdapter = new MyProfileAdapter(loggedUser, this);
+        mRvMyProfile.setAdapter(myProfileAdapter);
     }
 
     @Override
@@ -57,7 +56,14 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
 
     }
 
-    private void showDeleteAccountDialog(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        User user = xabaDbHelper.getLoggedUser(activity);
+        myProfileAdapter.updateUser(user);
+    }
+
+    private void showDeleteAccountDialog() {
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.dialog_delete_account);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_white_rect);
@@ -86,7 +92,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
 
     @Override
     public void onItemClick(int id) {
-        switch (id){
+        switch (id) {
             case R.id.txt_change_pin:
                 break;
             case R.id.btn_edit_profile:

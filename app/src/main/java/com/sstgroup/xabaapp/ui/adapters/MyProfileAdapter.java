@@ -3,13 +3,11 @@ package com.sstgroup.xabaapp.ui.adapters;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
@@ -17,9 +15,7 @@ import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.User;
-import com.sstgroup.xabaapp.ui.activities.EditProfileActivity;
 import com.sstgroup.xabaapp.utils.Constants;
-import com.sstgroup.xabaapp.utils.NavigationUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -131,12 +127,18 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return size + professionsSize + 1;
     }
 
+    public void updateUser(User loggedUser) {
+        this.professionsSize = loggedUser.getProfessions().size();
+        this.loggedUser = loggedUser;
+        notifyDataSetChanged();
+    }
+
     class RowHeader extends RecyclerView.ViewHolder {
 
         @BindView(R.id.txt_name)
         TextView txtName;
 
-        public RowHeader(View itemView) {
+        RowHeader(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -154,7 +156,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.iv_left_icon)
         ImageView ivProfileLeftIcon;
 
-        public RowItem(View itemView) {
+        RowItem(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -202,7 +204,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.txt_profession)
         TextView txtProfession;
 
-        public RowProfession(View itemView) {
+        RowProfession(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -224,7 +226,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.top_green_view)
         View topGreenView;
 
-        public RowFooter(View itemView) {
+        RowFooter(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
