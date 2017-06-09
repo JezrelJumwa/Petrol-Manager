@@ -2,7 +2,6 @@ package com.sstgroup.xabaapp.ui.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import com.sstgroup.xabaapp.models.County;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
+import com.sstgroup.xabaapp.utils.Validator;
 
 import java.util.ArrayList;
 
@@ -42,6 +42,10 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.selectedSubCounty = subCounty;
     }
 
+    public Profession getProfessionAtPosition(int position) {
+        return professions.get(position - 2);
+    }
+
     public ArrayList<Profession> getProfessions() {
         return professions;
     }
@@ -55,10 +59,12 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public void setSelectedCounty(County selectedCounty) {
-        this.selectedCounty = selectedCounty;
-        notifyItemChanged(0);
-        this.selectedSubCounty = null;
-        notifyItemChanged(1);
+        if (selectedCounty.getCountyId() != this.selectedSubCounty.getCountyId()){
+            this.selectedCounty = selectedCounty;
+            notifyItemChanged(0);
+            this.selectedSubCounty = null;
+            notifyItemChanged(1);
+        }
     }
 
     public void setSelectedSubCounty(SubCounty selectedSubCounty) {
@@ -105,6 +111,12 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return 3 + professions.size();
     }
 
+    public void updateProfession(int position, Profession profession) {
+        profession.setNew(true);
+        professions.set(position - 2, profession);
+        notifyItemChanged(position);
+    }
+
     class RowCountySub extends RecyclerView.ViewHolder {
         @BindView(R.id.txt_selector_title)
         TextView txtTitle;
@@ -147,7 +159,9 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void addProfession() {
         int professionsSize = professions.size();
         if (professionsSize < 3) {
-            professions.add(new Profession());
+            Profession profession = new Profession();
+            profession.setNew(true);
+            professions.add(profession);
             notifyItemInserted(2 + professionsSize + 1);
         } else {
             ToastInterval.showToast(context, "Can not add more than 3 professions.");
@@ -168,6 +182,10 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         ImageView ivProfessionArrow;
         @BindView(R.id.txt_profession_selection)
         TextView txtProfessionSelection;
+        @BindView(R.id.txt_category_selection)
+        TextView txtCategorySelection;
+        @BindView(R.id.txt_industry_selection)
+        TextView txtIndustrySelection;
 
         public RowEditProfession(View itemView) {
             super(itemView);
@@ -177,8 +195,25 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         void bind(int position) {
             Profession profession = professions.get(position - 2);
 
-            if (TextUtils.isEmpty(profession.getName())) {
-                txtProfessionSelection.setText(context.getString(R.string.select_profession));
+            if (profession.isNew()) {
+                if (profession.getIndustry() == null) {
+                    txtIndustrySelection.setText(context.getString(R.string.select_industry));
+                } else {
+                    txtIndustrySelection.setText(profession.getIndustry().getName());
+                }
+
+                if (profession.getCategory() == null) {
+                    txtCategorySelection.setText(context.getString(R.string.select_category));
+                } else {
+                    txtCategorySelection.setText(profession.getCategory().getName());
+                }
+
+                if (Validator.isEmpty(profession.getName())){
+                    txtProfessionSelection.setText(context.getString(R.string.select_profession));
+                } else {
+                    txtProfessionSelection.setText(profession.getName());
+                }
+
                 grpIndustry.setVisibility(View.VISIBLE);
                 grpCategory.setVisibility(View.VISIBLE);
                 ivProfessionArrow.setVisibility(View.VISIBLE);
@@ -190,8 +225,11 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             }
         }
 
-        @OnClick({R.id.remove_profession_one, R.id.grp_industry, R.id.grp_category})
+        @OnClick({R.id.remove_profession_one, R.id.grp_industry, R.id.grp_category, R.id.grp_profession})
         public void onClick(View view) {
+            if (view.getId() == R.id.grp_profession && !getProfessionAtPosition(getAdapterPosition()).isNew())
+                return;
+
             clickCallbacks.onItemClick(view, getAdapterPosition());
         }
     }
