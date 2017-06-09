@@ -37,8 +37,9 @@ import static com.sstgroup.xabaapp.utils.Constants.WS_REGISTER_WORKER_BY_AGENT_P
 import static com.sstgroup.xabaapp.utils.Constants.WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_RESET_PIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_RESET_VERIFY_PATH;
+import static com.sstgroup.xabaapp.utils.Constants.WS_UPDATE_WORKER_PATH;
 
-public interface LeadsService {
+public interface XabaService {
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(WS_REGISTER_PATH)
@@ -91,4 +92,8 @@ public interface LeadsService {
     @POST(WS_RESET_PIN_PATH)
     Call<PinResponse> resetPin(@Field(AGENT_APP_NAME) String agentApp,
                                @Field(NATIONAL_ID) String nationalId);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(WS_UPDATE_WORKER_PATH)
+    Call<UserResponse> updateWorker(@Body RequestBody model);
 }

@@ -6,19 +6,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.Category;
 import com.sstgroup.xabaapp.models.County;
 import com.sstgroup.xabaapp.models.Industry;
 import com.sstgroup.xabaapp.models.Profession;
+import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.models.UserResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
+import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.adapters.EditProfileAdapter;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
+import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
 
 public class EditProfileActivity extends BaseActivity implements EditProfileAdapter.ClickCallbacks {
 
@@ -50,8 +63,14 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         categories = new ArrayList<>();
         professions = new ArrayList<>();
         User user = xabaDbHelper.getLoggedUser(this);
-        user.refresh();
-        editProfileAdapter = new EditProfileAdapter(this, new ArrayList<>(user.getProfessions()), xabaDbHelper.getCounty(user.getCountyId()), xabaDbHelper.getSubCounty(user.getSubcountyId()));
+        County county = xabaDbHelper.getCounty(user.getCountyId());
+        subCounties = xabaDbHelper.getSubCounties(county.getName());
+
+        for (Profession profession : user.getProfessions()){
+            profession.setNew(false);
+        }
+
+        editProfileAdapter = new EditProfileAdapter(this, new ArrayList<>(user.getProfessions()), county, xabaDbHelper.getSubCounty(user.getSubcountyId()));
         mRvEditProfile.setLayoutManager(new LinearLayoutManager(this));
         mRvEditProfile.setAdapter(editProfileAdapter);
     }
@@ -64,7 +83,6 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                         String selectedCounty = selectedItems.get(0);
                         editProfileAdapter.setSelectedCounty(xabaDbHelper.getCounty(selectedCounty));
                         subCounties = xabaDbHelper.getSubCounties(selectedCounty);
-
                     }
                 });
         dialog.show();
@@ -115,7 +133,108 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
             case R.id.grp_profession:
                 showProfessionsDialog(position, professions);
                 break;
+            case R.id.btn_save:
+                saveProfile();
+                break;
         }
+    }
+
+    private void saveProfile() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        County county = editProfileAdapter.getSelectedCounty();
+        SubCounty subCounty = editProfileAdapter.getSelectedSubCounty();
+        ArrayList<Profession> selectedProfessions = editProfileAdapter.getProfessions();
+        if (county == null){
+            ToastInterval.showToast(this, "Select county");
+            return;
+        }
+
+        if (subCounty == null){
+            ToastInterval.showToast(this, "Select SubCounty");
+            return;
+        }
+
+        if(selectedProfessions.isEmpty()){
+            ToastInterval.showToast(this, "Add at least one profession");
+            return;
+        }
+
+        stringBuilder.append(Constants.AGENT_APP_NAME);
+        stringBuilder.append("=");
+        stringBuilder.append(Constants.AGENT_APP_VALUE);
+        stringBuilder.append("&");
+        stringBuilder.append(Constants.COUNTY_ID);
+        stringBuilder.append("=");
+        stringBuilder.append(editProfileAdapter.getSelectedCounty().getCountyId());
+        stringBuilder.append("&");
+        stringBuilder.append(Constants.SUBCOUNTY_ID);
+        stringBuilder.append("=" );
+        stringBuilder.append(editProfileAdapter.getSelectedSubCounty().getSubCountyId());
+        stringBuilder.append("&");
+        stringBuilder.append(Constants.TOKEN);
+        stringBuilder.append("=");
+        stringBuilder.append(XabaApplication.getInstance().getToken().getValue());
+
+
+        for (Profession profession : selectedProfessions) {
+            if(profession == null || profession.getProfessionId() == null){
+                ToastInterval.showToast(this, "Complete or remove not finished profession selection.");
+                return;
+            }
+
+            stringBuilder.append("&");
+            stringBuilder.append(Constants.PROFESSIONS);
+            stringBuilder.append("=");
+            stringBuilder.append(profession.getProfessionId());
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("text"), stringBuilder.toString());
+        Call<UserResponse> call = RestClient.getService().updateWorker(body);
+//        call.enqueue(new BaseXabaCall<Object>() {
+//            @Override
+//            public void onSuccess(Call<Object> call, Response<Object> response) {
+//                ToastInterval.showToast(EditProfileActivity.this, "Profile has been updated");
+//                finish();
+//            }
+//
+//            @Override
+//            public void onFailure(String error) {
+//                ToastInterval.showToast(EditProfileActivity.this, error);
+//            }
+//        });
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    User user = response.body().getUser();
+                    xabaDbHelper.updateLoggedUser(user, XabaApplication.getInstance().getToken());
+
+                    ToastInterval.showToast(EditProfileActivity.this, "Profile has been updated");
+                    setResult(RESULT_OK);
+                    finish();
+                } else {
+                    ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
+
+                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                        XabaApplication.getInstance().logout();
+                        //from this point we logout user
+                        return;
+                    }
+
+                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_STATUS_UNEXPECTED)){
+                        ToastInterval.showToast(EditProfileActivity.this, getString(R.string.something_is_wrong));
+                    } else {
+                        ToastInterval.showToast(EditProfileActivity.this, errorLogin.getErrors().getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Timber.d("onFailure" + t.toString());
+            }
+        });
     }
 
     private void showIndustriesDialog(final int professionRow, List<String> options) {

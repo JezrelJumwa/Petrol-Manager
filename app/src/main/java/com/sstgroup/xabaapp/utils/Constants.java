@@ -19,6 +19,7 @@ public class Constants {
     public static final String WS_CHANGE_PIN_PATH = "worker/change-pin/";
     public static final String WS_RESET_VERIFY_PATH = "worker/reset/verify/";
     public static final String WS_RESET_PIN_PATH = "worker/reset/pin/";
+    public static final String WS_UPDATE_WORKER_PATH = "worker/update/";
 
 //    Extras
     public static final String AGENT_APP_NAME = "client";
@@ -44,6 +45,7 @@ public class Constants {
 
 
     //error status
+    public static final String ERROR_UNAUTHORIZED = "Unauthorized";
     public static final String ERROR_STATUS_UNEXPECTED = "unexpected";
     public static final String ERROR_STATUS_ERROR = "ERROR";
     public static final String ERROR_STATUS_OK = "OK";

@@ -1,6 +1,5 @@
 package com.sstgroup.xabaapp.utils;
 
-import com.sstgroup.xabaapp.models.errors.BaseError;
 import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.models.errors.ErrorLogin;
 import com.sstgroup.xabaapp.service.RestClient;
@@ -38,4 +37,5 @@ public class ErrorUtils {
             return new ErrorLogin(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
         }
     }
+
 }
