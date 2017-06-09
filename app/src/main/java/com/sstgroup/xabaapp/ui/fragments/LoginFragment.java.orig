@@ -141,7 +141,11 @@ public class LoginFragment extends BaseFragment {
                     }
                 } else {
                     ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
+<<<<<<< HEAD
+                    if (errorLogin.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)){
+=======
                     if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+>>>>>>> develop
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(activity, errorLogin.getError());

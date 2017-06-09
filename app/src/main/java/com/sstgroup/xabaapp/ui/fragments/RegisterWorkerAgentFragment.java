@@ -29,8 +29,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-import static com.sstgroup.xabaapp.utils.Validator.isNotNumber;
-
 
 public class RegisterWorkerAgentFragment extends BaseFragment {
 
@@ -411,12 +409,12 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             return;
         }
 
-        if (isNotNumber(nationalId)) {
+        if (Validator.isNotNumber(nationalId)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.national_id_should_be_a_number));
             return;
         }
 
-        if (nationalId.length() != 10) {
+        if (Validator.isNotCorrectNationalIdSize(nationalId)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.your_national_id_is_wrong));
             return;
         }
@@ -435,6 +433,11 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         // validations for Phone Number
         if (Validator.isEmpty(phoneNumber)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.enter_phone_number));
+            return;
+        }
+
+        if (!Validator.isCorrectPhoneNumber(phoneNumber)) {
+            ToastInterval.showToast(activity, getResources().getString(R.string.your_phone_number_should_look_like));
             return;
         }
 
@@ -471,7 +474,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             return;
         }
 
-        if (pinCode.length() != 4) {
+        if (Validator.isNotCorrectPinCodeSize(pinCode)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.your_pin_code_is_wrong));
             return;
         }
@@ -481,7 +484,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             ToastInterval.showToast(activity, getResources().getString(R.string.enter_confirm_pin_code));
             return;
         }
-        if (!pinCode.equals(confirmPinCode)) {
+
+        if (!Validator.isMatch(pinCode, confirmPinCode)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.pin_code_and_confirm_pin_code_should_be_the_same));
             return;
         }
