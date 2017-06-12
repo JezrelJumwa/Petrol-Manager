@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CirclesProgress">
+        <attr name="first_value_minimal" format="float" />
+        <attr name="first_value_maximum" format="float" />
+        <attr name="second_value_minimal" format="float" />
+        <attr name="second_value_maximum" format="float" />
+
+        <attr name="first_value" format="float" />
+        <attr name="second_value" format="float" />
+    </declare-styleable>
+</resources>

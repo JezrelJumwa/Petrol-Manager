@@ -27,4 +27,6 @@
     <color name="light_green">#eaf5dd</color>
     <color name="profession_green">#d3ebb4</color>
 
+    <color name="dashboard_light_gray">#f2f2f2</color>
+
 </resources>
