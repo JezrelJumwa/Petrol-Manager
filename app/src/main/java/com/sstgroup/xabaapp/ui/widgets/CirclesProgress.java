@@ -105,10 +105,10 @@ public class CirclesProgress extends View {
         float height = canvas.getHeight(); //Seems that canvas.getHeight differs from the measured mHeight
 
         //Draw first Arc
-        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 10.0f, 160.0f, false, paint);
+        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 190.0f, 160.0f, false, paint);
 
         //Draw second Arc
-        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 190.0f, 160.0f, false, paint);
+        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 10.0f, 160.0f, false, paint);
 
         canvas.drawPoint(width / 2, height / 2, paint);
 
@@ -116,11 +116,11 @@ public class CirclesProgress extends View {
         //Draw first value Arc
         paint.setColor(ContextCompat.getColor(getContext(), R.color.text_green));
         float sweepAngle = (mValueFirst / (mFirstMax - mFirstMin)) * 160;
-        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 10.0f, sweepAngle, false, paint);
+        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 190, sweepAngle, false, paint);
 
         //Draw second value Arc
         paint.setColor(ContextCompat.getColor(getContext(), R.color.red));
         sweepAngle = (mValueSecond / (mSecondMax - mSecondMin)) * 160;
-        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 190.0f, sweepAngle, false, paint);
+        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 170, -sweepAngle, false, paint);
     }
 }
