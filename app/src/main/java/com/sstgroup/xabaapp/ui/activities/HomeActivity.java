@@ -6,7 +6,9 @@ import android.support.v7.widget.Toolbar;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
+import com.sstgroup.xabaapp.ui.fragments.ContactFragment;
 import com.sstgroup.xabaapp.ui.fragments.DashboardFragment;
+import com.sstgroup.xabaapp.ui.fragments.FaqFragment;
 import com.sstgroup.xabaapp.ui.fragments.MyProfileFragment;
 import com.sstgroup.xabaapp.ui.fragments.NavigationDrawerFragment;
 import com.sstgroup.xabaapp.ui.fragments.RegisterWorkerByAgentFragment;
@@ -103,8 +105,10 @@ public class HomeActivity extends BaseActivity implements
             case R.id.nav_notifications:
                 break;
             case R.id.nav_faq:
+                openFragment(FaqFragment.newInstance(), false);
                 break;
             case R.id.nav_contact:
+                openFragment(ContactFragment.newInstance(), false);
                 break;
             case R.id.nav_logout:
                 XabaApplication.getInstance().logout();

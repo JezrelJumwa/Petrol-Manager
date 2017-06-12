@@ -25,6 +25,7 @@
         <EditText
             android:id="@+id/pin_code"
             style="@style/EditTextStyle"
+            android:layout_marginTop="10dp"
             android:inputType="number"/>
 
         <TextView
@@ -38,6 +39,7 @@
         <EditText
             android:id="@+id/confirm_pin_code"
             style="@style/EditTextStyle"
+            android:layout_marginTop="10dp"
             android:inputType="number"/>
 
         <TextView
@@ -51,6 +53,7 @@
         <EditText
             android:id="@+id/referral_code"
             style="@style/EditTextStyle"
+            android:layout_marginTop="10dp"
             android:inputType="number"/>
 
         <Button
