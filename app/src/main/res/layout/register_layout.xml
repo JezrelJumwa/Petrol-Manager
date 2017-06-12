@@ -283,6 +283,17 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/remove_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/remove"
+            android:textSize="12sp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -364,6 +375,17 @@
                 style="@style/SpinnerImageViewStyle"/>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/remove_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/remove"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
