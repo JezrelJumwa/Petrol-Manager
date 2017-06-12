@@ -35,7 +35,7 @@
     <string name="register_another_worker">
         <u>Register another worker</u>
     </string>
-    <string name="your_referral_id_is">Your referral ID is:&#160;</string>
+    <string name="your_referral_id_is">Your referral ID is:</string>
     <string name="add_another_profession">
         <u>Add another profession</u>
     </string>
@@ -160,4 +160,9 @@
     <string name="referral_code_should_be_a_number">Referral Code should be a number.</string>
     <string name="worker_is_registered">Worker is registered.</string>
     <string name="your_phone_number_should_look_like">Your phone number should look like: +2547XXXXXXXX</string>
+    <string name="register_another_worker_button">Register another worker</string>
+    <string name="lorem_ipsum_nullam_arcu">Nullam arcu ante, malesuada placerat purus eu, gravida cursus dolor.</string>
+    <string name="kes">KES</string>
+    <string name="registered_workers">Registered Workers</string>
+    <string name="e_wallet_balance">E-Wallet Balance</string>
 </resources>
