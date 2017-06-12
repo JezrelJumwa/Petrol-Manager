@@ -36,7 +36,7 @@
             android:id="@+id/national_id"
             style="@style/EditTextStyle"
             android:layout_marginTop="20dp"
-            android:hint="@string/national_id"
+            android:hint="@string/national_id_colon"
             android:inputType="number"/>
 
         <TextView

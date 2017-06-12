@@ -15,8 +15,10 @@
         With each referral you get extra money and you also get credits for their actions.
     </string>
     <string name="title">Title</string>
-    <string name="national_id">National ID:&#160;</string>
-    <string name="pin_code">PIN Code:</string>
+    <string name="national_id">National ID</string>
+    <string name="national_id_colon">National ID:&#160;</string>
+    <string name="pin_code">PIN Code</string>
+    <string name="pin_code_colon">PIN Code:</string>
     <string name="forgot_pin">
         <u>Forgot PIN?</u>
     </string>
@@ -67,7 +69,8 @@
         <u>Do you remember it?</u>
     </string>
     <string name="building_connections">Building Connections</string>
-    <string name="visit_xaba">Visit www.xaba.org</string>
+    <string name="visit_xaba">Visit:&#160;</string>
+    <string name="visit_xaba_url">www.xaba.org</string>
     <string name="pin_is_reset">Pin is reset.</string>
     <string name="need_help_with_your_pin">Need help with your PIN?</string>
     <string name="enter_your_national_id_we_will_send_a_pin_to_your_preferred_number">Enter your
@@ -141,22 +144,22 @@
     <string name="pin_code_and_confirm_pin_code_should_be_the_same">PIN code and Confirm PIN code
         should be the same.
     </string>
-    <string name="enter_referral_code">Enter referral code.</string>
-    <string name="enter_confirm_national_id">Enter Confirm National ID.</string>
-    <string name="enter_confirm_pin_code">Enter Confirm PIN code.</string>
-    <string name="choose_industry_first">Choose Industry first.</string>
-    <string name="choose_category_first">Choose Category first.</string>
-    <string name="choose_county_first">Choose County first.</string>
-    <string name="choose_county">Choose County.</string>
+    <string name="enter_referral_code">Enter referral code</string>
+    <string name="enter_confirm_national_id">Enter Confirm National ID</string>
+    <string name="enter_confirm_pin_code">Enter Confirm PIN code</string>
+    <string name="choose_industry_first">Choose Industry first</string>
+    <string name="choose_category_first">Choose Category first</string>
+    <string name="choose_county_first">Choose County first</string>
+    <string name="choose_county">Choose County</string>
     <string name="choose_sub_county">Choose Sub-County</string>
-    <string name="choose_industry">Choose Industry.</string>
-    <string name="choose_category">Choose Category.</string>
-    <string name="choose_profession">Choose Profession.</string>
-    <string name="enter_activation_code">Enter Activation Code.</string>
+    <string name="choose_industry">Choose Industry</string>
+    <string name="choose_category">Choose Category</string>
+    <string name="choose_profession">Choose Profession</string>
+    <string name="enter_activation_code">Enter Activation Code</string>
     <string name="new_activation_code_is_sent_via_sms">New Actiovation code is sent via SMS.
     </string>
-    <string name="choose_country">Choose Country.</string>
-    <string name="choose_language">Choose Language.</string>
+    <string name="choose_country">Choose Country</string>
+    <string name="choose_language">Choose Language</string>
     <string name="referral_code_should_be_a_number">Referral Code should be a number.</string>
     <string name="worker_is_registered">Worker is registered.</string>
     <string name="your_phone_number_should_look_like">Your phone number should look like: +2547XXXXXXXX</string>
@@ -165,4 +168,13 @@
     <string name="kes">KES</string>
     <string name="registered_workers">Registered Workers</string>
     <string name="e_wallet_balance">E-Wallet Balance</string>
+
+    <!--Change Pin Screen-->
+    <string name="change_your_pin">Change your PIN</string>
+    <string name="old_pin">Old PIN</string>
+    <string name="new_pin">New PIN</string>
+    <string name="change_pin_not_underline">Change PIN</string>
+    <string name="retype_pin">Retype PIN</string>
+    <string name="fields_not_empty">Fields should not be empty</string>
+    <string name="new_pint_retype_should_match">New pin and retype PIN should match</string>
 </resources>

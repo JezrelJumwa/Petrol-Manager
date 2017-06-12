@@ -5,11 +5,11 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/back"
@@ -37,6 +37,7 @@
     <EditText
         android:id="@+id/national_id"
         style="@style/EditTextStyle"
+        android:layout_marginTop="10dp"
         android:inputType="number"/>
 
     <TextView
@@ -50,6 +51,7 @@
     <EditText
         android:id="@+id/confirm_national_id"
         style="@style/EditTextStyle"
+        android:layout_marginTop="10dp"
         android:inputType="number"/>
 
     <TextView
@@ -63,6 +65,7 @@
     <EditText
         android:id="@+id/phone_number"
         style="@style/EditTextStyle"
+        android:layout_marginTop="10dp"
         android:inputType="phone"/>
 
     <TextView

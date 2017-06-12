@@ -18,5 +18,15 @@ public class PinResponse {
     }
 
     private class Worker {
+        private Integer id;
+        private String token;
+
+        public Integer getId() {
+            return id;
+        }
+
+        public String getToken() {
+            return token;
+        }
     }
 }
