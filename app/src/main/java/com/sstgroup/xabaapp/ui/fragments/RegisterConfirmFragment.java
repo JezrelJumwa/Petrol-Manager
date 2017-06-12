@@ -13,6 +13,7 @@ import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
+import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import butterknife.BindView;
@@ -69,6 +70,11 @@ public class RegisterConfirmFragment extends BaseFragment {
                 resendPinSms();
                 break;
         }
+    }
+
+    @OnClick(R.id.txt_visit_url)
+    public void openUrl() {
+        Utils.openUrl(Constants.VISIT_XABA_URL, activity);
     }
 
     private void verify() {
