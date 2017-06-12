@@ -66,13 +66,29 @@
 
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
+        android:layout_gravity="bottom|center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
         android:paddingBottom="30dp"
-        android:text="@string/visit_xaba"
-        android:textSize="13sp"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visit_xaba"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/txt_visit_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:textColor="@color/text_green"
+            android:text="@string/visit_xaba_url"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
 
     <com.sstgroup.xabaapp.ui.widgets.DimmedProgressBar
         android:id="@+id/progress"

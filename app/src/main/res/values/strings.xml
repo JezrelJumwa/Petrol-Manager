@@ -67,7 +67,8 @@
         <u>Do you remember it?</u>
     </string>
     <string name="building_connections">Building Connections</string>
-    <string name="visit_xaba">Visit www.xaba.org</string>
+    <string name="visit_xaba">Visit:&#160;</string>
+    <string name="visit_xaba_url">www.xaba.org</string>
     <string name="pin_is_reset">Pin is reset.</string>
     <string name="need_help_with_your_pin">Need help with your PIN?</string>
     <string name="enter_your_national_id_we_will_send_a_pin_to_your_preferred_number">Enter your

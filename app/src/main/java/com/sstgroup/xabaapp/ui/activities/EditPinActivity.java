@@ -9,6 +9,7 @@ import com.sstgroup.xabaapp.models.PinResponse;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import butterknife.BindView;
@@ -38,6 +39,11 @@ public class EditPinActivity extends BaseActivity {
     protected void init() {
         setupToolbar(toolbar, R.drawable.arrow_back);
         hasBackArrow = true;
+    }
+
+    @OnClick(R.id.txt_visit_url)
+    public void openUrl(){
+        Utils.openUrl(Constants.VISIT_XABA_URL, this);
     }
 
     @OnClick(R.id.btn_change_pin)
