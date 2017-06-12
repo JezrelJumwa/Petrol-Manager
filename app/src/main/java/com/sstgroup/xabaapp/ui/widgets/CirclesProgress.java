@@ -101,8 +101,8 @@ public class CirclesProgress extends View {
 
         float x = mPadding;
         float y = mPadding;
-        float width = canvas.getWidth(); //Seems that canvas.getWidth differs from the measured mWidth
-        float height = canvas.getHeight(); //Seems that canvas.getHeight differs from the measured mHeight
+        float width = Math.min(getWidth(), canvas.getWidth()); //Seems that canvas.getWidth differs from the measured mWidth
+        float height = Math.min(getWidth(), canvas.getHeight()); //Seems that canvas.getHeight differs from the measured mHeight
 
         //Draw first Arc
         canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 190.0f, 160.0f, false, paint);
