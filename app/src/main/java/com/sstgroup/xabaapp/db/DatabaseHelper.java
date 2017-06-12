@@ -32,6 +32,7 @@ import com.sstgroup.xabaapp.models.UserDao;
 import com.sstgroup.xabaapp.utils.Preferences;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -75,7 +76,7 @@ public class DatabaseHelper {
         return instance;
     }
 
-    public void dropDb(){
+    public void dropDb() {
 //        daoSession.getLanguageDao().deleteAll();
 //        daoSession.getCountryDao().deleteAll();
 //        daoSession.getCountyDao().deleteAll();
@@ -109,7 +110,7 @@ public class DatabaseHelper {
         List<String> languages = new ArrayList<>();
         languageDao = daoSession.getLanguageDao();
 
-        Cursor cursor = languageDao.getDatabase().rawQuery("SELECT name FROM language", null);
+        Cursor cursor = languageDao.getDatabase().rawQuery("SELECT name FROM language ORDER BY name", null);
         while (cursor.moveToNext()) {
             languages.add(cursor.getString(0));
         }
@@ -129,14 +130,14 @@ public class DatabaseHelper {
         List<String> countries = new ArrayList<>();
         countryDao = daoSession.getCountryDao();
 
-        Cursor cursor = countryDao.getDatabase().rawQuery("SELECT name FROM country", null);
+        Cursor cursor = countryDao.getDatabase().rawQuery("SELECT name FROM country ORDER BY name", null);
         while (cursor.moveToNext()) {
             countries.add(cursor.getString(0));
         }
         return countries;
     }
 
-    public void insertOrReplaceCounties(List<County> counties, long countryId) {
+    private void insertOrReplaceCounties(List<County> counties, long countryId) {
         countyDao = daoSession.getCountyDao();
         for (County county : counties) {
             county.setCountryId(countryId);
@@ -153,14 +154,14 @@ public class DatabaseHelper {
         List<String> counties = new ArrayList<>();
         countyDao = daoSession.getCountyDao();
 
-        Cursor cursor = countyDao.getDatabase().rawQuery("SELECT name FROM county", null);
+        Cursor cursor = countyDao.getDatabase().rawQuery("SELECT name FROM county ORDER BY name", null);
         while (cursor.moveToNext()) {
             counties.add(cursor.getString(0));
         }
         return counties;
     }
 
-    public void insertOrReplaceSubCounties(List<SubCounty> subCounties, long countyId) {
+    private void insertOrReplaceSubCounties(List<SubCounty> subCounties, long countyId) {
         subCountyDao = daoSession.getSubCountyDao();
         for (SubCounty subCounty : subCounties) {
             subCounty.setCountyId(countyId);
@@ -175,6 +176,8 @@ public class DatabaseHelper {
         for (SubCounty subCounty : countyDao.queryBuilder().where(CountyDao.Properties.Name.eq(countyName)).list().get(0).getSubCounties()) {
             subCountiesString.add(subCounty.getName());
         }
+
+        Collections.sort(subCountiesString);
         return subCountiesString;
     }
 
@@ -191,7 +194,7 @@ public class DatabaseHelper {
         List<String> industries = new ArrayList<>();
         industryDao = daoSession.getIndustryDao();
 
-        Cursor cursor = industryDao.getDatabase().rawQuery("SELECT name FROM industry", null);
+        Cursor cursor = industryDao.getDatabase().rawQuery("SELECT name FROM industry ORDER BY name", null);
         while (cursor.moveToNext()) {
             industries.add(cursor.getString(0));
         }
@@ -218,6 +221,7 @@ public class DatabaseHelper {
             categories.add(category.getName());
         }
 
+        Collections.sort(categories);
         return categories;
     }
 
@@ -246,10 +250,11 @@ public class DatabaseHelper {
             professions.add(profession.getName());
         }
 
+        Collections.sort(professions);
         return professions;
     }
 
-    public void updateLoggedUser(User user, Token token){
+    public void updateLoggedUser(User user, Token token) {
         joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
 
         joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();

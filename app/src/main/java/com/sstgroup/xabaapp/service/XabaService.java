@@ -20,6 +20,7 @@ import retrofit2.http.Query;
 
 import static com.sstgroup.xabaapp.utils.Constants.ACTIVATION_CODE;
 import static com.sstgroup.xabaapp.utils.Constants.AGENT_APP_NAME;
+import static com.sstgroup.xabaapp.utils.Constants.HASH;
 import static com.sstgroup.xabaapp.utils.Constants.NATIONAL_ID;
 import static com.sstgroup.xabaapp.utils.Constants.NEW_PIN;
 import static com.sstgroup.xabaapp.utils.Constants.OLD_PIN;
@@ -71,10 +72,10 @@ public interface XabaService {
                              @Field(PIN) String pin);
 
     @GET(WS_LOCATION_PATH)
-    Call<LocationResponse> getLocations(@Query(AGENT_APP_NAME) String agentApp);
+    Call<LocationResponse> getLocations(@Query(AGENT_APP_NAME) String agentApp, @Query(HASH) String hash);
 
     @GET(WS_PROFESSION_PATH)
-    Call<ProfessionResponse> getProfessions(@Query(AGENT_APP_NAME) String agentApp);
+    Call<ProfessionResponse> getProfessions(@Query(AGENT_APP_NAME) String agentApp, @Query(HASH) String hash);
 
     @FormUrlEncoded
     @POST(WS_CHANGE_PIN_PATH)

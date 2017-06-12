@@ -69,20 +69,22 @@ public class SplashActivity extends BaseActivity {
 
     private void getLocations() {
 
-        Call<LocationResponse> call = RestClient.getService().getLocations(Constants.AGENT_APP_VALUE);
+        final String savedLocationHash = Preferences.getLocationHash(SplashActivity.this);
+
+        Call<LocationResponse> call = RestClient.getService().getLocations(Constants.AGENT_APP_VALUE, savedLocationHash);
         call.enqueue(new Callback<LocationResponse>() {
             @Override
             public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
                 if (response.isSuccessful()) {
                     LocationStructure locationStructure = response.body().getLocationStructure();
 
-                    String savedLocationHash = Preferences.getLocationHash(SplashActivity.this);
-
-                    if (!savedLocationHash.equals(locationStructure.getHash())) {
-                        Preferences.setLocationHash(SplashActivity.this, locationStructure.hash);
-                        xabaDbHelper.deleteLocationTables();
-                        xabaDbHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
-                        xabaDbHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
+                    if (!locationStructure.isNotModified) {
+                        if (!savedLocationHash.equals(locationStructure.getHash())) {
+                            Preferences.setLocationHash(SplashActivity.this, locationStructure.hash);
+                            xabaDbHelper.deleteLocationTables();
+                            xabaDbHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
+                            xabaDbHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
+                        }
                     }
                 }
             }
@@ -96,19 +98,21 @@ public class SplashActivity extends BaseActivity {
 
     private void getProfessions() {
 
-        Call<ProfessionResponse> call = RestClient.getService().getProfessions(Constants.AGENT_APP_VALUE);
+        final String savedProfessionHash = Preferences.getProfessionHash(SplashActivity.this);
+
+        Call<ProfessionResponse> call = RestClient.getService().getProfessions(Constants.AGENT_APP_VALUE, savedProfessionHash);
         call.enqueue(new Callback<ProfessionResponse>() {
             @Override
             public void onResponse(Call<ProfessionResponse> call, Response<ProfessionResponse> response) {
                 if (response.isSuccessful()) {
                     ProfessionStructure professionStructure = response.body().getProfessionStructure();
 
-                    String savedProfessionHash = Preferences.getProfessionHash(SplashActivity.this);
-
-                    if (!savedProfessionHash.equals(professionStructure.getHash())) {
-                        Preferences.setProfessionHash(SplashActivity.this, professionStructure.hash);
-                        xabaDbHelper.deleteProfessionTables();
-                        xabaDbHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
+                    if (!professionStructure.isNotModified) {
+                        if (!savedProfessionHash.equals(professionStructure.getHash())) {
+                            Preferences.setProfessionHash(SplashActivity.this, professionStructure.hash);
+                            xabaDbHelper.deleteProfessionTables();
+                            xabaDbHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
+                        }
                     }
                 }
             }

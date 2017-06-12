@@ -28,9 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="E-Wallet Balance"
+                android:text="@string/e_wallet_balance"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -43,15 +43,15 @@
                     android:layout_height="wrap_content"
                     android:text="700"
                     android:textColor="@color/text_green"
-                    android:textSize="30sp"
+                    android:textSize="33sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
-                    android:text="KES"
-                    android:textColor="@color/gray_color"
+                    android:text="@string/kes"
+                    android:textColor="@color/dashboard_dark_gray"
                     android:textSize="21sp" />
             </LinearLayout>
         </LinearLayout>
@@ -67,9 +67,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Registered Workers"
+                android:text="@string/registered_workers"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -82,15 +82,15 @@
                     android:layout_height="wrap_content"
                     android:text="12.575"
                     android:textColor="@color/red"
-                    android:textSize="30sp"
+                    android:textSize="33sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
-                    android:text="KES"
-                    android:textColor="@color/gray_color"
+                    android:text="@string/kes"
+                    android:textColor="@color/dashboard_dark_gray"
                     android:textSize="21sp" />
             </LinearLayout>
         </LinearLayout>
@@ -102,8 +102,9 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:background="@color/text_green"
-        android:text="Register another worker"
+        android:text="@string/register_another_worker_button"
         android:textAllCaps="false"
+        android:textSize="13.75sp"
         android:textColor="@color/white" />
 
     <TextView
@@ -111,8 +112,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Nullam arcu ante, malesuada placerat purus eu, gravida cursus dolor."
-        android:textColor="@color/black"
+        android:text="@string/lorem_ipsum_nullam_arcu"
+        android:textStyle="normal"
+        android:textColor="@color/dashboard_text_gray"
         android:textSize="20sp" />
 
     <View
@@ -132,7 +134,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your referral ID is: " />
+            android:textColor="@color/text_light_gray"
+            android:textSize="20sp"
+            android:text="@string/your_referral_id_is" />
 
         <TextView
             android:layout_width="wrap_content"
