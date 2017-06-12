@@ -56,29 +56,6 @@ public class Constants {
     public static final String MALE = "male";
     public static final String FEMALE = "female";
 
-
-    class NotEnougthMemory extends Exception {
-
-    }
-
-    public void main(){
-        try {
-            meh();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static void meh() throws Exception {
-        me3();
-    }
-
-    public static void me3() throws Exception {
-        me4();
-    }
-
-    public static void me4() throws Exception {
-        throw new IllegalStateException();
-    }
+    //visit xaba url
+    public static final String VISIT_XABA_URL = "http://www.xaba.org";
 }

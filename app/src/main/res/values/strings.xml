@@ -69,7 +69,8 @@
         <u>Do you remember it?</u>
     </string>
     <string name="building_connections">Building Connections</string>
-    <string name="visit_xaba">Visit www.xaba.org</string>
+    <string name="visit_xaba">Visit:&#160;</string>
+    <string name="visit_xaba_url">www.xaba.org</string>
     <string name="pin_is_reset">Pin is reset.</string>
     <string name="need_help_with_your_pin">Need help with your PIN?</string>
     <string name="enter_your_national_id_we_will_send_a_pin_to_your_preferred_number">Enter your
@@ -162,4 +163,13 @@
     <string name="referral_code_should_be_a_number">Referral Code should be a number.</string>
     <string name="worker_is_registered">Worker is registered.</string>
     <string name="your_phone_number_should_look_like">Your phone number should look like: +2547XXXXXXXX</string>
+
+    <!--Change Pin Screen-->
+    <string name="change_your_pin">Change your PIN</string>
+    <string name="old_pin">Old PIN</string>
+    <string name="new_pin">New PIN</string>
+    <string name="change_pin_not_underline">Change PIN</string>
+    <string name="retype_pin">Retype PIN</string>
+    <string name="fields_not_empty">Fields should not be empty</string>
+    <string name="new_pint_retype_should_match">New pin and retype PIN should match</string>
 </resources>

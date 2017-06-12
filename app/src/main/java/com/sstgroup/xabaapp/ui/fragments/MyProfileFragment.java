@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.ui.activities.EditPinActivity;
 import com.sstgroup.xabaapp.ui.activities.EditProfileActivity;
 import com.sstgroup.xabaapp.ui.adapters.MyProfileAdapter;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
@@ -94,6 +95,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
     public void onItemClick(int id) {
         switch (id) {
             case R.id.txt_change_pin:
+                NavigationUtils.startActivity(activity, EditPinActivity.class);
                 break;
             case R.id.btn_edit_profile:
                 NavigationUtils.startActivity(activity, EditProfileActivity.class);

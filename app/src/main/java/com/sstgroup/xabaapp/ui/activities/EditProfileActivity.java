@@ -146,17 +146,21 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         County county = editProfileAdapter.getSelectedCounty();
         SubCounty subCounty = editProfileAdapter.getSelectedSubCounty();
         ArrayList<Profession> selectedProfessions = editProfileAdapter.getProfessions();
+
         if (county == null){
+            hideLoader();
             ToastInterval.showToast(this, getString(R.string.select_county));
             return;
         }
 
         if (subCounty == null){
+            hideLoader();
             ToastInterval.showToast(this, getString(R.string.select_sub_county));
             return;
         }
 
         if(selectedProfessions.isEmpty()){
+            hideLoader();
             ToastInterval.showToast(this, getString(R.string.add_at_least_one_profession));
             return;
         }
@@ -180,6 +184,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
 
         for (Profession profession : selectedProfessions) {
             if(profession == null || profession.getProfessionId() == null){
+                hideLoader();
                 ToastInterval.showToast(this, getString(R.string.complete_or_remove_professions));
                 return;
             }
