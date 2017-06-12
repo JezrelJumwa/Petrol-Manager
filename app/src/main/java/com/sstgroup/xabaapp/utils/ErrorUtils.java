@@ -18,6 +18,9 @@ import retrofit2.Response;
 public class ErrorUtils {
 
     public static ErrorCodeAndMessage parseErrorCodeMessage(Response<?> response) {
+//        JSONObject object = (JSONObject) JSONValue.parse(jsonString);
+//        response.errorBody().string()
+//        response.errorBody().string()
         Converter<ResponseBody, ErrorCodeAndMessage> converter =
                 RestClient.getRetrofit()
                         .responseBodyConverter(ErrorCodeAndMessage.class, ErrorCodeAndMessage.class.getAnnotations());
