@@ -28,6 +28,7 @@ public class Constants {
     public static final String STATUS = "status";
     public static final String BODY = "body";
     public static final String TOKEN = "token";
+    public static final String HASH = "hash";
     public static final String NATIONAL_ID = "national_idn";
     public static final String PIN = "pin";
     public static final String OLD_PIN = "old_pin";

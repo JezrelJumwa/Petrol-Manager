@@ -17,6 +17,8 @@ public class LocationStructure {
     public ArrayList<Timezone> timezones;
     @SerializedName("hash")
     public String hash;
+    @SerializedName("not_modified")
+    public Boolean isNotModified;
 
     public ArrayList<Language> getLanguages() {
         return languages;
@@ -36,5 +38,9 @@ public class LocationStructure {
 
     public String getHash() {
         return hash;
+    }
+
+    public Boolean isNotModified() {
+        return isNotModified;
     }
 }

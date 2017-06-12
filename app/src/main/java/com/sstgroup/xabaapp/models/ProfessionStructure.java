@@ -11,6 +11,8 @@ public class ProfessionStructure {
     public ArrayList<Industry> industries;
     @SerializedName("hash")
     public String hash;
+    @SerializedName("not_modified")
+    public Boolean isNotModified;
 
     public ArrayList<Industry> getIndustries() {
         return industries;
@@ -18,5 +20,9 @@ public class ProfessionStructure {
 
     public String getHash() {
         return hash;
+    }
+
+    public Boolean isNotModified() {
+        return isNotModified;
     }
 }
