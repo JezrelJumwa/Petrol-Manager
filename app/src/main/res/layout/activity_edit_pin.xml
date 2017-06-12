@@ -1,0 +1,82 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xaba_red_logo_big"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/green_line"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="@string/change_your_pin"
+            android:textColor="@color/dark_color"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/et_old_pin"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="20dp"
+            android:hint="@string/old_pin"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/et_new_pin"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="20dp"
+            android:hint="@string/new_pin"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/et_retype_pin"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="20dp"
+            android:hint="@string/retype_pin"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/btn_change_pin"
+            style="@style/ButtonGreenStyle"
+            android:layout_marginTop="20dp"
+            android:text="@string/change_pin_not_underline"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingBottom="30dp"
+        android:text="@string/visit_xaba"
+        android:textSize="13sp"/>
+
+    <com.sstgroup.xabaapp.ui.widgets.DimmedProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+</FrameLayout>
