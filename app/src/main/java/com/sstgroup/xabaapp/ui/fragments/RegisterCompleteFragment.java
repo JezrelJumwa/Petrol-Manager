@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.ui.activities.LoginActivity;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -63,5 +64,10 @@ public class RegisterCompleteFragment extends BaseFragment {
                 activity.openFragment(registerWorkerByAgentFragment, false);*/
                 break;
         }
+    }
+
+    @OnClick(R.id.txt_visit_url)
+    public void openUrl() {
+        Utils.openUrl(Constants.VISIT_XABA_URL, activity);
     }
 }

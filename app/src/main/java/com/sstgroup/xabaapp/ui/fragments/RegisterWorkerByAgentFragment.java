@@ -59,6 +59,8 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
     TextView txtCategorySelectionTwo;
     @BindView(R.id.txt_profession_selection_two)
     TextView txtProfessionSelectionTwo;
+    @BindView(R.id.remove_two)
+    TextView txtRemoveTwo;
 
     @BindView(R.id.layout_profession_three)
     LinearLayout mLinearLayoutProfessionThree;
@@ -68,6 +70,8 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
     TextView txtCategorySelectionThree;
     @BindView(R.id.txt_profession_selection_three)
     TextView txtProfessionSelectionThree;
+    @BindView(R.id.remove_three)
+    TextView txtRemoveThree;
 
     @BindView(R.id.add_another_profession)
     Button mButtonAddAnotherProfession;
@@ -135,7 +139,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
     protected void initViews(View rootView) {
     }
 
-    @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.add_another_profession, R.id.register})
+    @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.register})
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -173,6 +177,12 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                 break;
             case R.id.grp_profession_three:
                 showProfessionsDialog(3, professionsThree);
+                break;
+            case R.id.remove_two:
+                removeProfessionTwo();
+                break;
+            case R.id.remove_three:
+                removeProfessionThree();
                 break;
             case R.id.add_another_profession:
                 addAnotherProfession();
@@ -391,6 +401,16 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                     }
                 });
         dialog.show();
+    }
+
+    private void removeProfessionTwo() {
+        mLinearLayoutProfessionTwo.setVisibility(View.GONE);
+        mButtonAddAnotherProfession.setVisibility(View.VISIBLE);
+    }
+
+    private void removeProfessionThree() {
+        mLinearLayoutProfessionThree.setVisibility(View.GONE);
+        mButtonAddAnotherProfession.setVisibility(View.VISIBLE);
     }
 
     private void addAnotherProfession() {

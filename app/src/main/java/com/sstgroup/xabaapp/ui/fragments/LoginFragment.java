@@ -19,6 +19,7 @@ import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.NavigationUtils;
+import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import java.io.IOException;
@@ -82,6 +83,11 @@ public class LoginFragment extends BaseFragment {
                 startActivity(intent);
                 break;
         }
+    }
+
+    @OnClick(R.id.txt_visit_url)
+    public void openUrl() {
+        Utils.openUrl(Constants.VISIT_XABA_URL, activity);
     }
 
     private void login() {

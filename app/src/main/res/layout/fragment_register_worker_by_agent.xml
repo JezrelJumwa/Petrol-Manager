@@ -8,9 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f4f4f4"
-        android:orientation="vertical"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp">
+        android:orientation="vertical">
 
         <include layout="@layout/register_layout"/>
 
@@ -19,6 +17,8 @@
             style="@style/ButtonGreenStyle"
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
             android:text="@string/register"/>
 
     </LinearLayout>
