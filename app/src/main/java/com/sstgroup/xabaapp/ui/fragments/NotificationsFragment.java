@@ -1,6 +1,7 @@
 package com.sstgroup.xabaapp.ui.fragments;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ public class NotificationsFragment extends BaseFragment {
     RecyclerView rvNotifications;
     @BindView(R.id.txt_notification_types)
     TextView tvNotificationTypes;
+    @BindView(R.id.srl_notifications)
+    SwipeRefreshLayout srlNotifications;
 
     public static NotificationsFragment newInstance() {
 
@@ -55,6 +58,11 @@ public class NotificationsFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
+        srlNotifications.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
 
+            }
+        });
     }
 }
