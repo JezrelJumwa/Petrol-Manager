@@ -83,8 +83,13 @@ public class CirclesProgress extends View {
 //        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
-        mWidth = Math.min(widthSize, heightSize);
-        mHeight = Math.min(widthSize, heightSize);
+        if (heightSize > 0 && widthSize > 0) {
+            mWidth = Math.min(widthSize, heightSize);
+            mHeight = Math.min(widthSize, heightSize);
+        } else {
+            mWidth = Math.max(widthSize, heightSize);
+            mHeight = Math.max(widthSize, heightSize);
+        }
 
         setMeasuredDimension(mWidth, mHeight);
     }
