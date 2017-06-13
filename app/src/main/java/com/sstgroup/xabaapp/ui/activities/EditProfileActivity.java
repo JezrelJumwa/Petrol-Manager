@@ -2,6 +2,7 @@ package com.sstgroup.xabaapp.ui.activities;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -73,6 +74,8 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         editProfileAdapter = new EditProfileAdapter(this, new ArrayList<>(user.getProfessions()), county, xabaDbHelper.getSubCounty(user.getSubcountyId()));
         mRvEditProfile.setLayoutManager(new LinearLayoutManager(this));
         mRvEditProfile.setAdapter(editProfileAdapter);
+
+        ((SimpleItemAnimator) mRvEditProfile.getItemAnimator()).setSupportsChangeAnimations(false);
     }
 
     private void showCountiesDialog() {

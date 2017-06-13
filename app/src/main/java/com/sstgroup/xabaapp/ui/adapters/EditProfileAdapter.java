@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,7 +15,6 @@ import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.County;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.SubCounty;
-import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import java.util.ArrayList;
@@ -33,6 +33,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private SubCounty selectedSubCounty;
     private ArrayList<Profession> professions;
     private ClickCallbacks clickCallbacks;
+    private boolean removeAddProfessionButton;
 
     public EditProfileAdapter(ClickCallbacks clickCallbacks, ArrayList<Profession> professions, County county, SubCounty subCounty) {
         this.context = XabaApplication.getInstance().getApplicationContext();
@@ -59,7 +60,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public void setSelectedCounty(County selectedCounty) {
-        if (selectedCounty.getCountyId() != this.selectedSubCounty.getCountyId()){
+        if (selectedCounty.getCountyId() != this.selectedSubCounty.getCountyId()) {
             this.selectedCounty = selectedCounty;
             notifyItemChanged(0);
             this.selectedSubCounty = null;
@@ -92,6 +93,8 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((RowCountySub) holder).bind(position);
         } else if (holder instanceof RowEditProfession) {
             ((RowEditProfession) holder).bind(position);
+        } else if (holder instanceof RowFooter) {
+            ((RowFooter) holder).bind();
         }
     }
 
@@ -158,19 +161,27 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void addProfession() {
         int professionsSize = professions.size();
-        if (professionsSize < 3) {
-            Profession profession = new Profession();
-            profession.setNew(true);
-            professions.add(profession);
-            notifyItemInserted(2 + professionsSize + 1);
-        } else {
-            ToastInterval.showToast(context, "Can not add more than 3 professions.");
+        Profession profession = new Profession();
+        profession.setNew(true);
+        professions.add(profession);
+        notifyItemInserted(2 + professionsSize + 1);
+
+        if (professions.size() >= 3) {
+            removeAddProfessionButton = true;
+            notifyItemChanged(getItemCount());
         }
     }
 
     public void removeProfessionAt(int position) {
+        int size = professions.size();
+
         professions.remove(position - 2);
         notifyItemRemoved(position);
+
+        if (size >= 3) {
+            removeAddProfessionButton = false;
+            notifyItemChanged(getItemCount() - 1);
+        }
     }
 
     class RowEditProfession extends RecyclerView.ViewHolder {
@@ -187,7 +198,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         @BindView(R.id.txt_industry_selection)
         TextView txtIndustrySelection;
 
-        public RowEditProfession(View itemView) {
+        RowEditProfession(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -208,7 +219,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     txtCategorySelection.setText(profession.getCategory().getName());
                 }
 
-                if (Validator.isEmpty(profession.getName())){
+                if (Validator.isEmpty(profession.getName())) {
                     txtProfessionSelection.setText(context.getString(R.string.select_profession));
                 } else {
                     txtProfessionSelection.setText(profession.getName());
@@ -235,10 +246,20 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     class RowFooter extends RecyclerView.ViewHolder {
+        @BindView(R.id.add_another_profession)
+        Button btnAddProfession;
 
         public RowFooter(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        void bind() {
+            if (removeAddProfessionButton) {
+                btnAddProfession.setVisibility(View.GONE);
+            } else {
+                btnAddProfession.setVisibility(View.VISIBLE);
+            }
         }
 
         @OnClick({R.id.add_another_profession, R.id.btn_save})
