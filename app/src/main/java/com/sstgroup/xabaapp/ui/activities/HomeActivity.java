@@ -11,6 +11,7 @@ import com.sstgroup.xabaapp.ui.fragments.DashboardFragment;
 import com.sstgroup.xabaapp.ui.fragments.FaqFragment;
 import com.sstgroup.xabaapp.ui.fragments.MyProfileFragment;
 import com.sstgroup.xabaapp.ui.fragments.NavigationDrawerFragment;
+import com.sstgroup.xabaapp.ui.fragments.NotificationsFragment;
 import com.sstgroup.xabaapp.ui.fragments.RegisterWorkerByAgentFragment;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 
@@ -103,6 +104,7 @@ public class HomeActivity extends BaseActivity implements
                 openFragment(MyProfileFragment.newInstance(), false);
                 break;
             case R.id.nav_notifications:
+                openFragment(NotificationsFragment.newInstance(), false);
                 break;
             case R.id.nav_faq:
                 openFragment(FaqFragment.newInstance(), false);
