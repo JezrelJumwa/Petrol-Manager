@@ -11,7 +11,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_edit_profile"
         android:layout_below="@id/toolbar"
-        android:background="@color/white"
+        android:background="@color/gray_light"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
