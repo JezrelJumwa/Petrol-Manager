@@ -182,6 +182,15 @@
     <string name="email">Email</string>
     <string name="message">Message</string>
     <string name="send">Send</string>
+
+    <!--Notifications Screen-->
+    <string name="all_notifications">All Notifications</string>
+    <string name="payout_done">Payout Done</string>
+    <string name="validated_registration">Validated Registration</string>
+    <string name="apply">Apply</string>
+
+
+
     <string name="question_title_1">What is Xaba?</string>
     <string name="question_title_2">What is Xaba Shikanisha?</string>
     <string name="question_title_3">Who should register on Xaba Shikanisha?</string>

@@ -20,13 +20,14 @@
 
     <color name="text_red">#e51f28</color>
     <color name="text_black">#000000</color>
-    <color name="text_gray">#4d4d4d</color>
-    <color name="text_semi_dark_gray">#505050</color>
+    <color name="text_gray_0">#c8c8c8</color>
+    <color name="text_gray_1">#a3a3a3</color>
+    <color name="text_gray_2">#747474</color>
+    <color name="text_gray_3">#4d4d4d</color>
+    <color name="text_gray_4">#505050</color>
+    <color name="text_gray_5">#353535</color>
     <color name="text_green">#76bd1d</color>
     <color name="text_blue">#1dbda8</color>
-    <color name="text_light_gray">#747474</color>
-    <color name="text_dark_gray">#353535</color>
-    <color name="text_semi_light_gray">#c8c8c8</color>
     <color name="text_white">#ffffff</color>
 
     <color name="light_green">#eaf5dd</color>

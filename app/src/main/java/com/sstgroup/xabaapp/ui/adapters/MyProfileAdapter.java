@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
@@ -16,6 +17,7 @@ import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -155,6 +157,8 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         TextView txtProfileDetail;
         @BindView(R.id.iv_left_icon)
         ImageView ivProfileLeftIcon;
+        @BindView(R.id.grp_container)
+        LinearLayout grpContainer;
 
         RowItem(View itemView) {
             super(itemView);
@@ -190,6 +194,9 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     txtProfileKey.setText(context.getText(R.string.sub_county_profile));
                     txtProfileDetail.setText(xabaDbHelper.getSubCounty(Long.valueOf(loggedUser.getSubcountyId())).getName());
                     ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_county));
+                    RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) grpContainer.getLayoutParams();
+                    params.setMargins(Utils.dpToPx(15f, context), Utils.dpToPx(8f, context), Utils.dpToPx(15f, context), Utils.dpToPx(16f, context));
+                    grpContainer.setLayoutParams(params);
                     break;
             }
 
