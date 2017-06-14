@@ -31,7 +31,7 @@
         android:id="@+id/nav_reports"
         style="@style/NavMenuStyle"
         android:drawableLeft="@drawable/nav_reports"
-        android:drawablePadding="18dp"
+        android:drawablePadding="22dp"
         android:text="@string/reports"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
