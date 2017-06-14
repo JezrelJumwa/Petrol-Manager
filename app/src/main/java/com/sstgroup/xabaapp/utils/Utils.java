@@ -2,7 +2,9 @@ package com.sstgroup.xabaapp.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -18,7 +20,7 @@ import java.util.Date;
 
 public class Utils {
 
-    public static void openUrl(String url, Context context){
+    public static void openUrl(String url, Context context) {
 
         if (!url.startsWith("http://") && !url.startsWith("https://"))
             url = "http://" + url;
@@ -28,7 +30,18 @@ public class Utils {
 
     }
 
-    public static String dateFromat(Date date, String format){
+    public static int dpToPx(float dp, Context context) {
+        Resources r = context.getResources();
+        int px = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dp,
+                r.getDisplayMetrics()
+        );
+
+        return px;
+    }
+
+    public static String dateFromat(Date date, String format) {
         DateFormat df = new SimpleDateFormat(format);
 
         return df.format(date);
