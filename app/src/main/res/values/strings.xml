@@ -178,4 +178,8 @@
     <string name="retype_pin">Retype PIN</string>
     <string name="fields_not_empty">Fields should not be empty</string>
     <string name="new_pint_retype_should_match">New pin and retype PIN should match</string>
+    <string name="get_in_touch">Get in Touch</string>
+    <string name="email">Email</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
 </resources>

@@ -37,4 +37,6 @@
     <color name="dashboard_dark_gray">#d4d4d4</color>
     <color name="dashboard_text_gray">#4b4b4b</color>
 
+    <color name="contact_gray">#f7f7f7</color>
+
 </resources>
