@@ -2,29 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:padding="25dp"
+    android:background="@color/white"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
-        android:textSize="22dp"
-        android:textColor="@color/text_gray_4"
-        android:lineSpacingExtra="5dp"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/are_you_sure_you_want_to_delete_your_account" />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rb_all_notification"
+            style="@style/RadioButtonGreen"
+            android:text="All Notifications" />
+
+        <RadioButton
+            android:id="@+id/rb_payout_done"
+            style="@style/RadioButtonGreen"
+            android:checked="true"
+            android:text="Payout Done" />
+
+        <RadioButton
+            android:id="@+id/rb_validated_registration"
+            style="@style/RadioButtonGreen"
+            android:text="Validated Registration" />
+
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -40,14 +50,12 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/btn_delete"
+            android:id="@+id/btn_apply"
             android:layout_width="120dp"
             android:layout_height="45dp"
-            android:textAllCaps="false"
-            android:textColor="@color/text_white"
             android:textSize="14sp"
-            android:background="@color/red"
-            android:text="@string/delete"/>
+            style="@style/ButtonGreenStyle"
+            android:text="Apply"/>
 
     </LinearLayout>
 
