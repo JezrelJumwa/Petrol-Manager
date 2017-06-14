@@ -25,7 +25,7 @@
             <TextView
                 android:id="@+id/txt_notification_types"
                 style="@style/SpinnerTextViewStyle"
-                android:text="Validated Registration"/>
+                android:text="@string/all_notifications"/>
 
             <ImageView
                 style="@style/SpinnerImageViewStyle"/>
