@@ -17,7 +17,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="title1"/>
+                android:text="@string/question_title_1"/>
 
             <ImageView
                 android:id="@+id/img_1"
@@ -41,7 +41,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne2"/>
+                android:text="@string/question_title_2"/>
 
             <ImageView
                 android:id="@+id/img_2"
@@ -65,7 +65,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne3"/>
+                android:text="@string/question_title_3"/>
 
             <ImageView
                 android:id="@+id/img_3"
@@ -89,7 +89,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne4"/>
+                android:text="@string/question_title_4"/>
 
             <ImageView
                 android:id="@+id/img_4"
@@ -113,7 +113,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne5"/>
+                android:text="@string/question_title_5"/>
 
             <ImageView
                 android:id="@+id/img_5"
@@ -137,7 +137,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne6"/>
+                android:text="@string/question_title_6"/>
 
             <ImageView
                 android:id="@+id/img_6"
@@ -161,7 +161,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne7"/>
+                android:text="@string/question_title_7"/>
 
             <ImageView
                 android:id="@+id/img_7"
@@ -185,7 +185,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne8"/>
+                android:text="@string/question_title_8"/>
 
             <ImageView
                 android:id="@+id/img_8"
@@ -209,7 +209,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne9"/>
+                android:text="@string/question_title_9"/>
 
             <ImageView
                 android:id="@+id/img_9"
@@ -233,7 +233,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne10"/>
+                android:text="@string/question_title_10"/>
 
             <ImageView
                 android:id="@+id/img_10"

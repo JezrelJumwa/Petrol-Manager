@@ -182,4 +182,14 @@
     <string name="email">Email</string>
     <string name="message">Message</string>
     <string name="send">Send</string>
+    <string name="question_title_1">What is Xaba?</string>
+    <string name="question_title_2">What is Xaba Shikanisha?</string>
+    <string name="question_title_3">Who should register on Xaba Shikanisha?</string>
+    <string name="question_title_4">How does Xaba Shikanisha work?</string>
+    <string name="question_title_5">What is the cost of using the service?</string>
+    <string name="question_title_6">How do I pay for the service?</string>
+    <string name="question_title_7">How do I activate my account?</string>
+    <string name="question_title_8">How do I update my details?</string>
+    <string name="question_title_9">How do I become an agent?</string>
+    <string name="question_title_10">Where can I find the Xaba terms and conditions?</string>
 </resources>
