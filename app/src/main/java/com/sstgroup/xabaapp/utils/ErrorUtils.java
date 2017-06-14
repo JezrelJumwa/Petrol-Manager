@@ -2,6 +2,7 @@ package com.sstgroup.xabaapp.utils;
 
 import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.models.errors.ErrorLogin;
+import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
 import com.sstgroup.xabaapp.models.errors.ErrorStatusAndError;
 import com.sstgroup.xabaapp.service.RestClient;
 
@@ -50,6 +51,17 @@ public class ErrorUtils {
             return converter.convert(response.errorBody());
         } catch (IOException e) {
             return new ErrorStatusAndError(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
+        }
+    }
+
+    public static ErrorRegisterWorker parseRegisterWorkerError(Response<?> response) {
+        Converter<ResponseBody, ErrorRegisterWorker> converter =
+                RestClient.getRetrofit()
+                        .responseBodyConverter(ErrorRegisterWorker.class, ErrorRegisterWorker.class.getAnnotations());
+        try {
+            return converter.convert(response.errorBody());
+        } catch (IOException e) {
+            return new ErrorRegisterWorker(null, null);
         }
     }
 }

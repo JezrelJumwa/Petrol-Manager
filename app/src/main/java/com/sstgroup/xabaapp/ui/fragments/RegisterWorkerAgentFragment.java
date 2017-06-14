@@ -544,6 +544,17 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     activity.openFragment(RegisterConfirmFragment.newInstance(response.body().getUser().getId(), false), true);
+                } else {
+                  /*  ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
+                    if (errorRegisterWorker.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                        ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
+                    } else {
+                        if (errorRegisterWorker.getError().getNationalIdErrors() != null) {
+                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getNationalIdErrors().get(0));
+                        } else if (errorRegisterWorker.getError().getReferralCodeErrors() != null) {
+                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getReferralCodeErrors().get(0));
+                        }
+                    }*/
                 }
             }
 
