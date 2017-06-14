@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.Notification;
 import com.sstgroup.xabaapp.ui.adapters.NotificationAdapter;
+import com.sstgroup.xabaapp.ui.dialogs.NotificationsFilterDialog;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +23,7 @@ import butterknife.OnClick;
  * Created by rosenstoyanov on 6/12/17.
  */
 
-public class NotificationsFragment extends BaseFragment {
+public class NotificationsFragment extends BaseFragment implements NotificationsFilterDialog.Clicks {
 
     @BindView(R.id.rv_notifications)
     RecyclerView rvNotifications;
@@ -45,17 +46,12 @@ public class NotificationsFragment extends BaseFragment {
         return R.layout.fragment_notifications;
     }
 
-    @OnClick({R.id.grp_notification_types, R.id.iv_period})
-    public void onClick(View view){
-        int id = view.getId();
-
-        switch (id){
-            case R.id.grp_notification_types:
-                break;
-            case R.id.iv_period:
-                break;
-
-        }
+    @OnClick(R.id.grp_notification_types)
+    public void onClick() {
+        NotificationsFilterDialog notificationsFilterDialog
+                = new NotificationsFilterDialog(activity, this,
+                tvNotificationTypes.getText().toString());
+        notificationsFilterDialog.show();
     }
 
     @Override
@@ -63,7 +59,7 @@ public class NotificationsFragment extends BaseFragment {
 
     }
 
-    private void showSwipeLoading(){
+    private void showSwipeLoading() {
         if (refreshLayout != null)
             refreshLayout.post(new Runnable() {
                 @Override
@@ -73,7 +69,7 @@ public class NotificationsFragment extends BaseFragment {
             });
     }
 
-    private void hideSwipeLoading(){
+    private void hideSwipeLoading() {
         if (refreshLayout != null)
             refreshLayout.setRefreshing(false);
     }
@@ -83,12 +79,12 @@ public class NotificationsFragment extends BaseFragment {
         showSwipeLoading();
 
         ArrayList<Notification> notifications = new ArrayList<>();
-        notifications.add(new Notification(1,"Tekst", "Name", new Date()));
-        notifications.add(new Notification(2,"Tekst", "Name", new Date()));
-        notifications.add(new Notification(1,"Tekst", "Name", new Date()));
-        notifications.add(new Notification(2,"Tekst", "Name", new Date()));
-        notifications.add(new Notification(1,"Tekst", "Name", new Date()));
-        notifications.add(new Notification(2,"Tekst", "Name", new Date()));
+        notifications.add(new Notification(1, "Tekst", "Name", new Date()));
+        notifications.add(new Notification(2, "Tekst", "Name", new Date()));
+        notifications.add(new Notification(1, "Tekst", "Name", new Date()));
+        notifications.add(new Notification(2, "Tekst", "Name", new Date()));
+        notifications.add(new Notification(1, "Tekst", "Name", new Date()));
+        notifications.add(new Notification(2, "Tekst", "Name", new Date()));
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -107,5 +103,20 @@ public class NotificationsFragment extends BaseFragment {
                 hideSwipeLoading();
             }
         });
+    }
+
+    @Override
+    public void showAll(String selectedText) {
+        tvNotificationTypes.setText(selectedText);
+    }
+
+    @Override
+    public void showPayouts(String selectedText) {
+        tvNotificationTypes.setText(selectedText);
+    }
+
+    @Override
+    public void showValidated(String selectedText) {
+        tvNotificationTypes.setText(selectedText);
     }
 }
