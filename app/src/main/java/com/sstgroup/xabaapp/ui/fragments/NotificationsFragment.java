@@ -93,12 +93,18 @@ public class NotificationsFragment extends BaseFragment implements Notifications
         call.enqueue(new Callback<XabaResponse<NotificationResponse>>() {
             @Override
             public void onResponse(Call<XabaResponse<NotificationResponse>> call, Response<XabaResponse<NotificationResponse>> response) {
-
+                if (response.isSuccessful()){
+                    //TODO: save db
+                } else {
+                    //TODO: request db
+                }
+                hideSwipeLoading();
             }
 
             @Override
             public void onFailure(Call<XabaResponse<NotificationResponse>> call, Throwable t) {
-
+                hideSwipeLoading();
+                //TODO: check exeption for no internet request db
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.sstgroup.xabaapp.ui.adapters;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.Notification;
+import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Utils;
 
 import java.util.List;
 
@@ -108,19 +111,20 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         void bind(Notification notification) {
-//            if (notification.getType() == Notification.PAY_TYPE) {
-//                ivNotification.setImageResource(R.drawable.ic_wallet);
-//                txtText.setText(notification.getText());
-//                txtTypeText.setText("PAYOUT DONE");
-//                txtTypeText.setTextColor(ContextCompat.getColor(txtTypeText.getContext(), R.color.text_green));
-//                txtDate.setText(Utils.dateFromat(notification.getDate(), Constants.DATE_FORMAT_DASHES));
-//            } else {
-//                ivNotification.setImageResource(R.drawable.ic_valid_account);
-//                txtText.setText(SpanableUtils.boldSpan(notification.getName() + notification.getText(), 0, notification.getName().length()));
-//                txtTypeText.setText("VALIDATED ACCOUNT");
-//                txtTypeText.setTextColor(ContextCompat.getColor(txtTypeText.getContext(), R.color.text_blue));
-//                txtDate.setText(Utils.dateFromat(notification.getDate(), Constants.DATE_FORMAT_DASHES));
-//            }
+            if (notification.getType().equals(Constants.NOTIFICATION_PAYOUT)) {
+                ivNotification.setImageResource(R.drawable.ic_wallet);
+                txtText.setText(notification.getText());
+                txtTypeText.setText(notification.getSubtext());
+                txtTypeText.setTextColor(ContextCompat.getColor(txtTypeText.getContext(), R.color.text_green));
+                txtDate.setText(Utils.dateFromat(notification.getDate(), Constants.DATE_FORMAT_DASHES));
+            } else if (notification.getType().equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)){
+                ivNotification.setImageResource(R.drawable.ic_valid_account);
+                //TODO: init HTML parsing for getText
+                txtText.setText(notification.getText());
+                txtTypeText.setText(notification.getSubtext());
+                txtTypeText.setTextColor(ContextCompat.getColor(txtTypeText.getContext(), R.color.text_blue));
+                txtDate.setText(Utils.dateFromat(notification.getDate(), Constants.DATE_FORMAT_DASHES));
+            }
         }
     }
 }
