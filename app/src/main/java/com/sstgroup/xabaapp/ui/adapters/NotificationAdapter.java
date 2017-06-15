@@ -71,7 +71,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void loadMoreFinished() {
         int position = notifications.size();
         notifications.remove(position - 1);
-        notifyItemChanged(position);
+        notifyItemChanged(position - 1);
     }
 
     private Notification getItemAt(int position) {
