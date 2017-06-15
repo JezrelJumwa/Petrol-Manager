@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/welcome_to_xaba"
+                android:text="@string/welcome_to_xaba_shikanisha"
                 android:textColor="@color/dark_color"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -123,7 +123,7 @@
                 style="@style/ButtonLinkStyle"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/login_in"/>
+                android:text="@string/login_u"/>
 
         </LinearLayout>
 

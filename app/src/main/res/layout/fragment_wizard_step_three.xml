@@ -99,7 +99,7 @@
                 style="@style/ButtonLinkStyle"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/login_in"/>
+                android:text="@string/login_u"/>
 
         </LinearLayout>
 

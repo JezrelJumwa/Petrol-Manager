@@ -4,12 +4,12 @@
     <string name="and_i_want_to">and I want to</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
+    <string name="login_u"><u>Login</u></string>
     <string name="get_an_account">Get an account</string>
     <string name="with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard">With our
         easy process it only takes a couple of minutes to get onboard.
     </string>
     <string name="next">Next</string>
-    <string name="login_in"><u>Log In</u></string>
     <string name="refer_someone_to_get_rewards">Refer someone to get rewards</string>
     <string name="with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions">
         With each referral you get extra money and you also get credits for their actions.
@@ -56,7 +56,7 @@
     <string name="select_category">Select Category</string>
     <string name="profession">Profession</string>
     <string name="select_profession">Select Profession</string>
-    <string name="welcome_to_xaba">Welcome to Xaba</string>
+    <string name="welcome_to_xaba_shikanisha">Welcome to Xaba Shikanisha</string>
     <string name="register_now">
         <u>Register Now</u>
     </string>
@@ -122,7 +122,6 @@
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
 
-    <string name="welcome_to_xaba_shikanisha">Welcome to Xaba Shikanisha</string>
     <string name="we_have_made_it_easier_for_you_to_register">We\'ve made it easier for you to
         register.
     </string>
@@ -205,4 +204,5 @@
     <string name="question_title_8">How do I update my details?</string>
     <string name="question_title_9">How do I become an agent?</string>
     <string name="question_title_10">Where can I find the Xaba terms and conditions?</string>
+    <string name="join_our_social_movement">Join our social movement</string>
 </resources>
