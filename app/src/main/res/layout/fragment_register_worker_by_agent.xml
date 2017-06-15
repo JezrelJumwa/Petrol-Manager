@@ -17,8 +17,8 @@
             style="@style/ButtonGreenStyle"
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:text="@string/register"/>
 
     </LinearLayout>

@@ -10,10 +10,12 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
 import com.sstgroup.xabaapp.models.UserResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
 import com.sstgroup.xabaapp.utils.Validator;
 
@@ -128,6 +130,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
+        mEditTextPhoneNumber.setText("+254771161480");
     }
 
     @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.register})
@@ -417,7 +420,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
         String nationalId = mEditTextNationalId.getText().toString().trim();
         String confirmNationalId = mEditTextConfirmNationalId.getText().toString().trim();
-        String phoneNumber = mEditTextPhoneNumber.getText().toString().trim();
+        String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+","");
 
         String pinCode = mEditTextPinCode.getText().toString().trim();
         String confirmPinCode = mEditTextConfirmPinCode.getText().toString().trim();
@@ -511,10 +514,10 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         }
 
         // validations for Referral code
-        if (Validator.isEmpty(referralCode)) {
+      /*  if (Validator.isEmpty(referralCode)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.enter_referral_code));
             return;
-        }
+        }*/
 
         if (Validator.isNotNumber(referralCode)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.referral_code_should_be_a_number));
@@ -545,7 +548,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                 if (response.isSuccessful()) {
                     activity.openFragment(RegisterConfirmFragment.newInstance(response.body().getUser().getId(), false), true);
                 } else {
-                  /*  ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
+                    ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
                     if (errorRegisterWorker.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
@@ -554,7 +557,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                         } else if (errorRegisterWorker.getError().getReferralCodeErrors() != null) {
                             ToastInterval.showToast(activity, errorRegisterWorker.getError().getReferralCodeErrors().get(0));
                         }
-                    }*/
+                    }
                 }
             }
 

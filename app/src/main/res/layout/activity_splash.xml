@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/xaba_logo"/>
+            android:src="@drawable/xaba_green_logo_big"/>
 
         <ImageView
             android:layout_width="wrap_content"
