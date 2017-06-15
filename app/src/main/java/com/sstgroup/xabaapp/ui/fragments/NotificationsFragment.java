@@ -120,7 +120,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
             }
         }
 
-        xabaDbHelper.insertOrReplaceNotifications(notifications);
+//        xabaDbHelper.insertOrReplaceNotifications(notifications);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -129,7 +129,8 @@ public class NotificationsFragment extends BaseFragment implements Notifications
             }
         }, 2000);
 
-        notificationAdapter = new NotificationAdapter(xabaDbHelper.getAllNotifications());
+//        notificationAdapter = new NotificationAdapter(xabaDbHelper.getAllNotifications());
+        notificationAdapter = new NotificationAdapter(notifications);
         rvNotifications.setAdapter(notificationAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         endlessScrollListener = new EndlessScrollListener(linearLayoutManager) {
@@ -167,18 +168,18 @@ public class NotificationsFragment extends BaseFragment implements Notifications
     @Override
     public void showAll(String selectedText) {
         tvNotificationTypes.setText(selectedText);
-        notificationAdapter.replaceAllNotification(xabaDbHelper.getAllNotifications());
+//        notificationAdapter.replaceAllNotification(xabaDbHelper.getAllNotifications());
     }
 
     @Override
     public void showPayouts(String selectedText) {
         tvNotificationTypes.setText(selectedText);
-        notificationAdapter.replaceAllNotification(xabaDbHelper.getNotificationsByType(Constants.NOTIFICATION_PAYOUT));
+//        notificationAdapter.replaceAllNotification(xabaDbHelper.getNotificationsByType(Constants.NOTIFICATION_PAYOUT));
     }
 
     @Override
     public void showValidated(String selectedText) {
         tvNotificationTypes.setText(selectedText);
-        notificationAdapter.replaceAllNotification(xabaDbHelper.getNotificationsByType(Constants.NOTIFICATION_REFERRAL_VALIDATION));
+//        notificationAdapter.replaceAllNotification(xabaDbHelper.getNotificationsByType(Constants.NOTIFICATION_REFERRAL_VALIDATION));
     }
 }

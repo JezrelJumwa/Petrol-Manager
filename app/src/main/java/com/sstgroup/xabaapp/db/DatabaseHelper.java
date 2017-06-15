@@ -92,6 +92,7 @@ public class DatabaseHelper {
 //        daoSession.getProfessionDao().deleteAll();
         daoSession.getUserDao().deleteAll();
         daoSession.getTokenDao().deleteAll();
+        daoSession.getNotificationDao().deleteAll();
     }
 
     public void deleteLocationTables() {
