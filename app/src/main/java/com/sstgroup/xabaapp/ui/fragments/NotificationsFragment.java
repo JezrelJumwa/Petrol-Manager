@@ -12,6 +12,7 @@ import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.Notification;
 import com.sstgroup.xabaapp.ui.adapters.NotificationAdapter;
 import com.sstgroup.xabaapp.ui.dialogs.NotificationsFilterDialog;
+import com.sstgroup.xabaapp.ui.widgets.EndlessScrollListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +32,9 @@ public class NotificationsFragment extends BaseFragment implements Notifications
     TextView tvNotificationTypes;
     @BindView(R.id.srl_notifications)
     SwipeRefreshLayout refreshLayout;
+    private EndlessScrollListener endlessScrollListener;
+    private NotificationAdapter notificationAdapter;
+    private boolean canLoadMore = true;
 
     public static NotificationsFragment newInstance() {
 
@@ -79,12 +83,10 @@ public class NotificationsFragment extends BaseFragment implements Notifications
         showSwipeLoading();
 
         ArrayList<Notification> notifications = new ArrayList<>();
-        notifications.add(new Notification(1, "Tekst", "Name", new Date()));
-        notifications.add(new Notification(2, "Tekst", "Name", new Date()));
-        notifications.add(new Notification(1, "Tekst", "Name", new Date()));
-        notifications.add(new Notification(2, "Tekst", "Name", new Date()));
-        notifications.add(new Notification(1, "Tekst", "Name", new Date()));
-        notifications.add(new Notification(2, "Tekst", "Name", new Date()));
+        for (int i = 0; i < 30; i++){
+            notifications.add(new Notification(1, "Tekst", "Name", new Date()));
+            notifications.add(new Notification(2, "Tekst", "Name", new Date()));
+        }
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -93,10 +95,33 @@ public class NotificationsFragment extends BaseFragment implements Notifications
             }
         }, 2000);
 
-        NotificationAdapter adapter = new NotificationAdapter(notifications);
-        rvNotifications.setAdapter(adapter);
-        rvNotifications.setLayoutManager(new LinearLayoutManager(activity));
+        notificationAdapter = new NotificationAdapter(notifications);
+        rvNotifications.setAdapter(notificationAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
+        endlessScrollListener = new EndlessScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                if (canLoadMore) {
+                    canLoadMore = false;
+                    rvNotifications.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            notificationAdapter.loadMoreStarted();
+                        }
+                    });
 
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            notificationAdapter.loadMoreFinished();
+                            canLoadMore = true;
+                        }
+                    }, 3000);
+                }
+            }
+        };
+        rvNotifications.setLayoutManager(linearLayoutManager);
+        rvNotifications.addOnScrollListener(endlessScrollListener);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

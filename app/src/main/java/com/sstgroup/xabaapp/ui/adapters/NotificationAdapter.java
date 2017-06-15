@@ -23,7 +23,9 @@ import butterknife.ButterKnife;
  * Created by rosenstoyanov on 6/13/17.
  */
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationHolder> {
+public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private final int VIEW_ITEM = 0;
+    private final int VIEW_PROGRESS = 1;
 
     private ArrayList<Notification> notifications;
 
@@ -32,13 +34,28 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     @Override
-    public NotificationHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new NotificationHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_notification, parent, false));
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == VIEW_ITEM) {
+            return new NotificationHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_notification, parent, false));
+        }
+
+        return new BottomProgressHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_bottom_progress, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(NotificationHolder holder, int position) {
-        holder.bind(getItemAt(position));
+    public int getItemViewType(int position) {
+        if (getItemAt(position) == null) {
+            return VIEW_PROGRESS;
+        } else {
+            return VIEW_ITEM;
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof NotificationHolder) {
+            ((NotificationHolder) holder).bind(getItemAt(position));
+        }
     }
 
     @Override
@@ -46,8 +63,26 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return notifications != null ? notifications.size() : 0;
     }
 
-    private Notification getItemAt(int position){
+    public void loadMoreStarted() {
+        notifications.add(null);
+        notifyItemChanged(notifications.size() - 1);
+    }
+
+    public void loadMoreFinished() {
+        int position = notifications.size();
+        notifications.remove(position - 1);
+        notifyItemChanged(position - 1);
+    }
+
+    private Notification getItemAt(int position) {
         return notifications.get(position);
+    }
+
+    class BottomProgressHolder extends RecyclerView.ViewHolder {
+
+        BottomProgressHolder(View itemView) {
+            super(itemView);
+        }
     }
 
     class NotificationHolder extends RecyclerView.ViewHolder {
@@ -65,8 +100,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(Notification notification){
-            if (notification.getType() == Notification.PAY_TYPE){
+        void bind(Notification notification) {
+            if (notification.getType() == Notification.PAY_TYPE) {
                 ivNotification.setImageResource(R.drawable.ic_wallet);
                 txtText.setText(notification.getText());
                 txtTypeText.setText("PAYOUT DONE");
