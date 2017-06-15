@@ -23,7 +23,7 @@ public class Constants {
     public static final String WS_LOAD_NOTIFICATIONS = "worker/notifications/list/";
 
 //    Extras
-    public static final String AGENT_APP_NAME = "client";
+    public static final String AGENT_APP_KEY = "client";
     public static final String AGENT_APP_VALUE = "agent-app";
     public static final String ACTIVATION_CODE = "activation_code";
     public static final String STATUS = "status";

@@ -467,12 +467,17 @@ public class DatabaseHelper {
         return null;
     }
 
-    public void saveNotifications(ArrayList<Notification> notifications){
+    public void insertOrReplaceNotifications(ArrayList<Notification> notifications) {
         notificationDao = daoSession.getNotificationDao();
         notificationDao.insertOrReplaceInTx(notifications);
     }
 
-    public List<Notification> getNotificationsByType(String type){
+    public List<Notification> getAllNotifications() {
+        notificationDao = daoSession.getNotificationDao();
+        return notificationDao.loadAll();
+    }
+
+    public List<Notification> getNotificationsByType(String type) {
         notificationDao = daoSession.getNotificationDao();
         return notificationDao.queryBuilder().where(NotificationDao.Properties.Type.eq(type)).list();
     }

@@ -21,7 +21,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 import static com.sstgroup.xabaapp.utils.Constants.ACTIVATION_CODE;
-import static com.sstgroup.xabaapp.utils.Constants.AGENT_APP_NAME;
+import static com.sstgroup.xabaapp.utils.Constants.AGENT_APP_KEY;
 import static com.sstgroup.xabaapp.utils.Constants.HASH;
 import static com.sstgroup.xabaapp.utils.Constants.NATIONAL_ID;
 import static com.sstgroup.xabaapp.utils.Constants.NEW_PIN;
@@ -53,12 +53,12 @@ public interface XabaService {
 
     @FormUrlEncoded
     @POST(WS_ACTIVATE_REGISTRATION_PATH)
-    Call<ActivationCodeResponse> sendActivationCode(@Field(AGENT_APP_NAME) String agentApp,
+    Call<ActivationCodeResponse> sendActivationCode(@Field(AGENT_APP_KEY) String agentApp,
                                                     @Field(ACTIVATION_CODE) String activationCode);
 
     @FormUrlEncoded
     @POST(WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH)
-    Call<SendNewActivationCodeResponse> sendSmsWithNewActivationCode(@Field(AGENT_APP_NAME) String agentApp,
+    Call<SendNewActivationCodeResponse> sendSmsWithNewActivationCode(@Field(AGENT_APP_KEY) String agentApp,
                                                                      @Field(WORKER_ID) Long workerId);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
@@ -67,36 +67,36 @@ public interface XabaService {
 
     @FormUrlEncoded
     @POST(WS_GET_USER_PATH)
-    Call<UserResponse> getWorkerData(@Field(AGENT_APP_NAME) String agentApp,
+    Call<UserResponse> getWorkerData(@Field(AGENT_APP_KEY) String agentApp,
                                      @Field(TOKEN) String token);
 
     @FormUrlEncoded
     @POST(WS_LOGIN_PATH)
-    Call<UserResponse> login(@Field(AGENT_APP_NAME) String agentApp,
+    Call<UserResponse> login(@Field(AGENT_APP_KEY) String agentApp,
                              @Field(NATIONAL_ID) String nationalId,
                              @Field(PIN) String pin);
 
     @GET(WS_LOCATION_PATH)
-    Call<LocationResponse> getLocations(@Query(AGENT_APP_NAME) String agentApp, @Query(HASH) String hash);
+    Call<LocationResponse> getLocations(@Query(AGENT_APP_KEY) String agentApp, @Query(HASH) String hash);
 
     @GET(WS_PROFESSION_PATH)
-    Call<ProfessionResponse> getProfessions(@Query(AGENT_APP_NAME) String agentApp, @Query(HASH) String hash);
+    Call<ProfessionResponse> getProfessions(@Query(AGENT_APP_KEY) String agentApp, @Query(HASH) String hash);
 
     @FormUrlEncoded
     @POST(WS_CHANGE_PIN_PATH)
-    Call<PinResponse> changePin(@Field(AGENT_APP_NAME) String agentApp,
+    Call<PinResponse> changePin(@Field(AGENT_APP_KEY) String agentApp,
                                 @Field(TOKEN) String token,
                                 @Field(OLD_PIN) String oldPin,
                                 @Field(NEW_PIN) String newPin);
 
     @FormUrlEncoded
     @POST(WS_RESET_VERIFY_PATH)
-    Call<PinResponse> sendVerificationCodeForResetPIN(@Field(AGENT_APP_NAME) String agentApp,
+    Call<PinResponse> sendVerificationCodeForResetPIN(@Field(AGENT_APP_KEY) String agentApp,
                                                       @Field(NATIONAL_ID) String nationalId);
 
     @FormUrlEncoded
     @POST(WS_RESET_PIN_PATH)
-    Call<PinResponse> resetPin(@Field(AGENT_APP_NAME) String agentApp,
+    Call<PinResponse> resetPin(@Field(AGENT_APP_KEY) String agentApp,
                                @Field(NATIONAL_ID) String nationalId);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
@@ -106,8 +106,8 @@ public interface XabaService {
     @FormUrlEncoded
     @POST(WS_LOAD_NOTIFICATIONS)
     Call<XabaResponse<NotificationResponse>> loadNotifications(
-            @Field(AGENT_APP_NAME) String agentApp,
+            @Field(AGENT_APP_KEY) String agentApp,
             @Field(TOKEN) String token,
-            @Field(NOTIFICATION_FILTER) String description,
+            @Field(NOTIFICATION_FILTER) String filter,
             @Field(NOTIFICATION_LAST_ITEM) Integer lastItemId);
 }

@@ -40,7 +40,7 @@ public class RegisterWorkerRequestModel {
 
         String requestBody;
 
-        requestBody = Constants.AGENT_APP_NAME + "=" + client +
+        requestBody = Constants.AGENT_APP_KEY + "=" + client +
                 "&" + Constants.NATIONAL_ID + "=" + getEncryptedAndURLEncodedNationalIdn() +
                 "&" + Constants.PIN + "=" + pin +
                 "&" + Constants.PHONE + "=" + phone +
@@ -64,7 +64,7 @@ public class RegisterWorkerRequestModel {
 
         String requestBody;
 
-        requestBody = Constants.AGENT_APP_NAME + "=" + client +
+        requestBody = Constants.AGENT_APP_KEY + "=" + client +
                 "&" + Constants.NATIONAL_ID + "=" + getEncryptedAndURLEncodedNationalIdn() +
                 "&" + Constants.PIN + "=" + pin +
                 "&" + Constants.PHONE + "=" + phone +

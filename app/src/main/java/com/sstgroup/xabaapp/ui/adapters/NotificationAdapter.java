@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.Notification;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,9 +23,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private final int VIEW_ITEM = 0;
     private final int VIEW_PROGRESS = 1;
 
-    private ArrayList<Notification> notifications;
+    private List<Notification> notifications;
 
-    public NotificationAdapter(ArrayList<Notification> notifications) {
+    public NotificationAdapter(List<Notification> notifications) {
         this.notifications = notifications;
     }
 
@@ -45,6 +45,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         } else {
             return VIEW_ITEM;
         }
+    }
+
+    public void replaceAllNotification(List<Notification> notifications){
+        this.notifications = notifications;
+        notifyDataSetChanged();
+    }
+
+    public void addMoreNotifications(List<Notification> notifications){
+        int size = notifications.size();
+        this.notifications.addAll(notifications);
+        notifyItemRangeInserted(size, notifications.size());
     }
 
     @Override
