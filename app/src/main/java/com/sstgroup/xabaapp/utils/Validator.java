@@ -15,7 +15,7 @@ public class Validator {
     }
 
     public static boolean isNotCorrectNationalIdSize(String field) {
-        return field.length() != 10;
+        return field.length() > 10;
     }
 
     public static boolean isNotCorrectPinCodeSize(String field) {

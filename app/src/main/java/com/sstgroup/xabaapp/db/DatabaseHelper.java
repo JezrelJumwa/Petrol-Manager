@@ -11,6 +11,8 @@ import com.sstgroup.xabaapp.models.Country;
 import com.sstgroup.xabaapp.models.CountryDao;
 import com.sstgroup.xabaapp.models.County;
 import com.sstgroup.xabaapp.models.CountyDao;
+import com.sstgroup.xabaapp.models.Currency;
+import com.sstgroup.xabaapp.models.CurrencyDao;
 import com.sstgroup.xabaapp.models.DaoMaster;
 import com.sstgroup.xabaapp.models.DaoSession;
 import com.sstgroup.xabaapp.models.Industry;
@@ -50,6 +52,7 @@ public class DatabaseHelper {
     private static DaoMaster daoMaster;
     private static DaoSession daoSession;
     private static LanguageDao languageDao;
+    private static CurrencyDao currencyDao;
     private static CountryDao countryDao;
     private static CountyDao countyDao;
     private static SubCountyDao subCountyDao;
@@ -93,6 +96,7 @@ public class DatabaseHelper {
 
     public void deleteLocationTables() {
         daoSession.getLanguageDao().deleteAll();
+        daoSession.getCurrencyDao().deleteAll();
         daoSession.getCountryDao().deleteAll();
         daoSession.getCountyDao().deleteAll();
         daoSession.getSubCountyDao().deleteAll();
@@ -107,6 +111,22 @@ public class DatabaseHelper {
     public void insertOrReplaceLanguages(ArrayList<Language> languages) {
         languageDao = daoSession.getLanguageDao();
         languageDao.insertInTx(languages);
+    }
+
+    public void insertOrReplaceCurrencies(ArrayList<Currency> currencies) {
+        currencyDao = daoSession.getCurrencyDao();
+        currencyDao.insertInTx(currencies);
+    }
+
+    public List<String> getCurrencies() {
+        List<String> currencies = new ArrayList<>();
+        currencyDao = daoSession.getCurrencyDao();
+
+        Cursor cursor = currencyDao.getDatabase().rawQuery("SELECT code FROM currency", null);
+        while (cursor.moveToNext()) {
+            currencies.add(cursor.getString(0));
+        }
+        return currencies;
     }
 
     public List<String> getLanguages() {

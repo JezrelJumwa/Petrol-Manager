@@ -11,10 +11,12 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
+import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
 import com.sstgroup.xabaapp.utils.Validator;
 
@@ -137,6 +139,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
+        mEditTextPhoneNumber.setText("+254771161480");
     }
 
     @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.register})
@@ -426,7 +429,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
         String nationalId = mEditTextNationalId.getText().toString().trim();
         String confirmNationalId = mEditTextConfirmNationalId.getText().toString().trim();
-        String phoneNumber = mEditTextPhoneNumber.getText().toString().trim();
+        String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+","");
 
 
         // validations for National ID
@@ -517,6 +520,15 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             public void onResponse(Call<Object> call, Response<Object> response) {
                 if (response.isSuccessful()) {
                     ToastInterval.showToast(activity, getString(R.string.worker_is_registered));
+                }else {
+                    ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
+                    if (errorRegisterWorker.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                        ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
+                    } else {
+                        if (errorRegisterWorker.getError().getNationalIdErrors() != null) {
+                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getNationalIdErrors().get(0));
+                        }
+                    }
                 }
             }
 

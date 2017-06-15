@@ -83,6 +83,7 @@ public class SplashActivity extends BaseActivity {
                             Preferences.setLocationHash(SplashActivity.this, locationStructure.hash);
                             xabaDbHelper.deleteLocationTables();
                             xabaDbHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
+                            xabaDbHelper.insertOrReplaceCurrencies(locationStructure.getCurrencies());
                             xabaDbHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
                         }
                     }

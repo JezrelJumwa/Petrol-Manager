@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:src="@drawable/xaba_red_logo"/>
+                android:src="@drawable/xaba_red_logo_bigger"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/welcome_to_xaba"
+                android:text="@string/welcome_to_xaba_shikanisha"
                 android:textColor="@color/dark_color"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -102,7 +102,7 @@
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard"
+                android:text="@string/we_have_made_it_easier_for_you_to_register"
                 android:textColor="@color/dark_color"
                 android:textSize="18sp"/>
 
@@ -123,7 +123,7 @@
                 style="@style/ButtonLinkStyle"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/login_in"/>
+                android:text="@string/login_u"/>
 
         </LinearLayout>
 

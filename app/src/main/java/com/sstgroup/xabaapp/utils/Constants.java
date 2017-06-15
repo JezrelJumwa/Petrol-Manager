@@ -6,7 +6,8 @@ public class Constants {
     public static final int SPLASH_DURATION = 3000;
 
     // web service
-    public static final String BASE_URL = "http://ec2-52-59-94-240.eu-central-1.compute.amazonaws.com/api/v1/en-US/";
+//    public static final String BASE_URL = "http://ec2-52-59-94-240.eu-central-1.compute.amazonaws.com/api/v1/en-US/";
+    public static final String BASE_URL = "http://dev.xaba.org/api/v1/en-US/";
 
     public static final String WS_REGISTER_PATH = "worker/create/";
     public static final String WS_REGISTER_WORKER_BY_AGENT_PATH = "worker/create-by-agent/";
