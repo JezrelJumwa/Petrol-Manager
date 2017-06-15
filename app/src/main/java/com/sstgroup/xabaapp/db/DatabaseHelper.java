@@ -23,6 +23,8 @@ import com.sstgroup.xabaapp.models.JoinUsersWithProfessions;
 import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsDao;
 import com.sstgroup.xabaapp.models.Language;
 import com.sstgroup.xabaapp.models.LanguageDao;
+import com.sstgroup.xabaapp.models.Notification;
+import com.sstgroup.xabaapp.models.NotificationDao;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.ProfessionDao;
 import com.sstgroup.xabaapp.models.SubCounty;
@@ -61,6 +63,7 @@ public class DatabaseHelper {
     private static TokenDao tokenDao;
     private static JoinUsersWithProfessionsDao joinUsersProfessionDao;
     private static JoinCategoriesWithProfessionsDao joinCategoryProfessionDao;
+    private static NotificationDao notificationDao;
 
     private DatabaseHelper() {
 
@@ -89,6 +92,7 @@ public class DatabaseHelper {
 //        daoSession.getProfessionDao().deleteAll();
         daoSession.getUserDao().deleteAll();
         daoSession.getTokenDao().deleteAll();
+        daoSession.getNotificationDao().deleteAll();
     }
 
     public void deleteLocationTables() {
@@ -482,5 +486,20 @@ public class DatabaseHelper {
             return subCounties.get(0);
         }
         return null;
+    }
+
+    public void insertOrReplaceNotifications(ArrayList<Notification> notifications) {
+        notificationDao = daoSession.getNotificationDao();
+        notificationDao.insertOrReplaceInTx(notifications);
+    }
+
+    public List<Notification> getAllNotifications() {
+        notificationDao = daoSession.getNotificationDao();
+        return notificationDao.loadAll();
+    }
+
+    public List<Notification> getNotificationsByType(String type) {
+        notificationDao = daoSession.getNotificationDao();
+        return notificationDao.queryBuilder().where(NotificationDao.Properties.Type.eq(type)).list();
     }
 }

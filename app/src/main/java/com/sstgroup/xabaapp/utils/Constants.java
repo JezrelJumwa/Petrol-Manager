@@ -21,9 +21,10 @@ public class Constants {
     public static final String WS_RESET_VERIFY_PATH = "worker/reset/verify/";
     public static final String WS_RESET_PIN_PATH = "worker/reset/pin/";
     public static final String WS_UPDATE_WORKER_PATH = "worker/update/";
+    public static final String WS_LOAD_NOTIFICATIONS = "worker/notifications/list/";
 
 //    Extras
-    public static final String AGENT_APP_NAME = "client";
+    public static final String AGENT_APP_KEY = "client";
     public static final String AGENT_APP_VALUE = "agent-app";
     public static final String ACTIVATION_CODE = "activation_code";
     public static final String STATUS = "status";
@@ -44,6 +45,13 @@ public class Constants {
     public static final String WORKER_ID = "worker_id";
     public static final String VERIFICATION_CODE = "verification_code";
     public static final String REGISTER_CONFIRM_STARTED_FROM_LOGIN = "register_confirm_started_from_login";
+    public static final String NOTIFICATION_FILTER = "filter[description]";
+    public static final String NOTIFICATION_LAST_ITEM = "next_page_params[from_id]";
+
+
+    //Notification types
+    public static final String NOTIFICATION_PAYOUT = "payout";
+    public static final String NOTIFICATION_REFERRAL_VALIDATION = "referral_validation";
 
 
     //error status
