@@ -3,10 +3,12 @@ package com.sstgroup.xabaapp.service;
 
 import com.sstgroup.xabaapp.models.ActivationCodeResponse;
 import com.sstgroup.xabaapp.models.LocationResponse;
+import com.sstgroup.xabaapp.models.NotificationResponse;
 import com.sstgroup.xabaapp.models.PinResponse;
 import com.sstgroup.xabaapp.models.ProfessionResponse;
 import com.sstgroup.xabaapp.models.SendNewActivationCodeResponse;
 import com.sstgroup.xabaapp.models.UserResponse;
+import com.sstgroup.xabaapp.models.XabaResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -23,6 +25,8 @@ import static com.sstgroup.xabaapp.utils.Constants.AGENT_APP_NAME;
 import static com.sstgroup.xabaapp.utils.Constants.HASH;
 import static com.sstgroup.xabaapp.utils.Constants.NATIONAL_ID;
 import static com.sstgroup.xabaapp.utils.Constants.NEW_PIN;
+import static com.sstgroup.xabaapp.utils.Constants.NOTIFICATION_FILTER;
+import static com.sstgroup.xabaapp.utils.Constants.NOTIFICATION_LAST_ITEM;
 import static com.sstgroup.xabaapp.utils.Constants.OLD_PIN;
 import static com.sstgroup.xabaapp.utils.Constants.PIN;
 import static com.sstgroup.xabaapp.utils.Constants.TOKEN;
@@ -30,6 +34,7 @@ import static com.sstgroup.xabaapp.utils.Constants.WORKER_ID;
 import static com.sstgroup.xabaapp.utils.Constants.WS_ACTIVATE_REGISTRATION_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_CHANGE_PIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_GET_USER_PATH;
+import static com.sstgroup.xabaapp.utils.Constants.WS_LOAD_NOTIFICATIONS;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOCATION_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOGIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_PROFESSION_PATH;
@@ -97,4 +102,12 @@ public interface XabaService {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(WS_UPDATE_WORKER_PATH)
     Call<UserResponse> updateWorker(@Body RequestBody model);
+
+    @FormUrlEncoded
+    @POST(WS_LOAD_NOTIFICATIONS)
+    Call<XabaResponse<NotificationResponse>> loadNotifications(
+            @Field(AGENT_APP_NAME) String agentApp,
+            @Field(TOKEN) String token,
+            @Field(NOTIFICATION_FILTER) String description,
+            @Field(NOTIFICATION_LAST_ITEM) Integer lastItemId);
 }

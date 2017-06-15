@@ -15,7 +15,6 @@ import com.sstgroup.xabaapp.ui.dialogs.NotificationsFilterDialog;
 import com.sstgroup.xabaapp.ui.widgets.EndlessScrollListener;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -84,8 +83,8 @@ public class NotificationsFragment extends BaseFragment implements Notifications
 
         ArrayList<Notification> notifications = new ArrayList<>();
         for (int i = 0; i < 30; i++){
-            notifications.add(new Notification(1, "Tekst", "Name", new Date()));
-            notifications.add(new Notification(2, "Tekst", "Name", new Date()));
+//            notifications.add(new Notification(1, "Tekst", "Name", new Date()));
+//            notifications.add(new Notification(2, "Tekst", "Name", new Date()));
         }
 
         new Handler().postDelayed(new Runnable() {
