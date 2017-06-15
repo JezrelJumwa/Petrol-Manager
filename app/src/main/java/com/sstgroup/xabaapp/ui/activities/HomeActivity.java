@@ -13,6 +13,7 @@ import com.sstgroup.xabaapp.ui.fragments.MyProfileFragment;
 import com.sstgroup.xabaapp.ui.fragments.NavigationDrawerFragment;
 import com.sstgroup.xabaapp.ui.fragments.NotificationsFragment;
 import com.sstgroup.xabaapp.ui.fragments.RegisterWorkerByAgentFragment;
+import com.sstgroup.xabaapp.ui.fragments.ReportsFragment;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 
 import butterknife.BindView;
@@ -90,6 +91,10 @@ public class HomeActivity extends BaseActivity implements
         mInForeground = true;
     }
 
+    public void loadUserProfile() {
+        //TODO: load user profile
+    }
+
     private void setContentFragment(int menuItemId) {
         switch (menuItemId) {
             case R.id.nav_register_worker:
@@ -99,6 +104,7 @@ public class HomeActivity extends BaseActivity implements
                 openFragment(DashboardFragment.newInstance(), false);
                 break;
             case R.id.nav_reports:
+                openFragment(ReportsFragment.newInstance(), false);
                 break;
             case R.id.nav_my_profile:
                 openFragment(MyProfileFragment.newInstance(), false);

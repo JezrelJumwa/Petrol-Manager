@@ -189,6 +189,10 @@
     <string name="validated_registration">Validated Registration</string>
     <string name="apply">Apply</string>
 
+    <!--Reports Screen-->
+    <string name="commission_logs">Commission Logs</string>
+    <string name="referred_workers">Referred Workers</string>
+
 
 
     <string name="question_title_1">What is Xaba?</string>

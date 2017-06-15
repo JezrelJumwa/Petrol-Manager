@@ -4,10 +4,12 @@ package com.sstgroup.xabaapp.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.ui.activities.BaseActivity;
@@ -43,6 +45,17 @@ public abstract class BaseFragment extends Fragment {
         super.onAttach(context);
         this.activity = (BaseActivity) context;
         xabaDbHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
+    }
+
+    public void openFragment(Fragment toOpen, boolean addToBackStack) {
+        if (activity != null) {
+            FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.grp_container, toOpen);
+            if (addToBackStack) {
+                ft.addToBackStack(null);
+            }
+            ft.commit();
+        }
     }
 
     @Override
