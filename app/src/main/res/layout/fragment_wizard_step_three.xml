@@ -80,7 +80,7 @@
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/with_each_referral_you_get_extra_money_and_you_also_get_credits_for_their_actions"
+                android:text="@string/refer_friends_to_xaba_and_get_rewarded_or_become_a_xaba_agent_and_register_workers_for_extra_cash"
                 android:textColor="@color/dark_color"
                 android:textSize="18sp"/>
 
