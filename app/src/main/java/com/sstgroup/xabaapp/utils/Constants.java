@@ -58,7 +58,7 @@ public class Constants {
     public static final String FEMALE = "female";
 
     //visit xaba url
-    public static final String VISIT_XABA_URL = "http://www.xaba.org";
+    public static final String VISIT_XABA_URL = "http://dev.xaba.org/";
 
     public static final String DATE_FORMAT_DASHES = "- d-MMM-yyyy";
 }

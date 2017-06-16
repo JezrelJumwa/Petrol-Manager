@@ -63,12 +63,28 @@
 
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:paddingBottom="30dp"
-        android:text="@string/visit_xaba"
-        android:textSize="13sp"/>
+        android:orientation="horizontal"
+        android:paddingBottom="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visit_xaba"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/txt_visit_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="@string/visit_xaba_url"
+            android:textColor="@color/text_green"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
 
 </FrameLayout>

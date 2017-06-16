@@ -11,6 +11,7 @@ import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
+import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import butterknife.BindView;
@@ -35,7 +36,7 @@ public class ForgottenPinActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.send_new_pin, R.id.do_you_remember_it})
+    @OnClick({R.id.send_new_pin, R.id.do_you_remember_it, R.id.txt_visit_url})
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.send_new_pin:
@@ -43,6 +44,9 @@ public class ForgottenPinActivity extends BaseActivity {
                 break;
             case R.id.do_you_remember_it:
                 finish();
+                break;
+            case R.id.txt_visit_url:
+                Utils.openUrl(Constants.VISIT_XABA_URL, this);
                 break;
         }
     }
