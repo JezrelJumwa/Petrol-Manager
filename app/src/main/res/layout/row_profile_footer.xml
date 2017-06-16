@@ -64,5 +64,4 @@
         android:text="@string/delete_account"
         android:textColor="@color/text_red"/>
 
-
 </LinearLayout>

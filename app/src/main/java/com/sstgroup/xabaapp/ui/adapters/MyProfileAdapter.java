@@ -244,7 +244,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             else
                 topGreenView.setVisibility(View.VISIBLE);
 
-            txtReferralId.setText(loggedUser.getId().toString());
+            txtReferralId.setText(String.valueOf(loggedUser.getId()));
         }
 
         @OnClick({R.id.txt_change_pin, R.id.btn_edit_profile, R.id.txt_delete_account})

@@ -47,7 +47,7 @@
         <activity
             android:name=".ui.activities.EditProfileActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activities.EditPinActivity"></activity>
+        <activity android:name=".ui.activities.EditPinActivity"/>
     </application>
 
 </manifest>
