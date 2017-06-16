@@ -11,10 +11,9 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.Notification;
 import com.sstgroup.xabaapp.utils.Constants;
-import com.sstgroup.xabaapp.utils.SpanableUtils;
 import com.sstgroup.xabaapp.utils.Utils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,9 +26,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private final int VIEW_ITEM = 0;
     private final int VIEW_PROGRESS = 1;
 
-    private ArrayList<Notification> notifications;
+    private List<Notification> notifications;
 
-    public NotificationAdapter(ArrayList<Notification> notifications) {
+    public NotificationAdapter(List<Notification> notifications) {
         this.notifications = notifications;
     }
 
@@ -49,6 +48,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         } else {
             return VIEW_ITEM;
         }
+    }
+
+    public void replaceAllNotification(List<Notification> notifications){
+        this.notifications = notifications;
+        notifyDataSetChanged();
+    }
+
+    public void addMoreNotifications(List<Notification> notifications){
+        int size = notifications.size();
+        this.notifications.addAll(notifications);
+        notifyItemRangeInserted(size, notifications.size());
     }
 
     @Override
@@ -101,16 +111,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         void bind(Notification notification) {
-            if (notification.getType() == Notification.PAY_TYPE) {
+            if (notification.getType().equals(Constants.NOTIFICATION_PAYOUT)) {
                 ivNotification.setImageResource(R.drawable.ic_wallet);
                 txtText.setText(notification.getText());
-                txtTypeText.setText("PAYOUT DONE");
+                txtTypeText.setText(notification.getSubtext());
                 txtTypeText.setTextColor(ContextCompat.getColor(txtTypeText.getContext(), R.color.text_green));
                 txtDate.setText(Utils.dateFromat(notification.getDate(), Constants.DATE_FORMAT_DASHES));
-            } else {
+            } else if (notification.getType().equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)){
                 ivNotification.setImageResource(R.drawable.ic_valid_account);
-                txtText.setText(SpanableUtils.boldSpan(notification.getName() + notification.getText(), 0, notification.getName().length()));
-                txtTypeText.setText("VALIDATED ACCOUNT");
+                //TODO: init HTML parsing for getText
+                txtText.setText(notification.getText());
+                txtTypeText.setText(notification.getSubtext());
                 txtTypeText.setTextColor(ContextCompat.getColor(txtTypeText.getContext(), R.color.text_blue));
                 txtDate.setText(Utils.dateFromat(notification.getDate(), Constants.DATE_FORMAT_DASHES));
             }

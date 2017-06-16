@@ -168,7 +168,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
             return;
         }
 
-        stringBuilder.append(Constants.AGENT_APP_NAME);
+        stringBuilder.append(Constants.AGENT_APP_KEY);
         stringBuilder.append("=");
         stringBuilder.append(Constants.AGENT_APP_VALUE);
         stringBuilder.append("&");
