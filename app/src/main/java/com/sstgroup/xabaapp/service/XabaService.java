@@ -6,6 +6,7 @@ import com.sstgroup.xabaapp.models.LocationResponse;
 import com.sstgroup.xabaapp.models.NotificationResponse;
 import com.sstgroup.xabaapp.models.PinResponse;
 import com.sstgroup.xabaapp.models.ProfessionResponse;
+import com.sstgroup.xabaapp.models.ReferredWorkersResponse;
 import com.sstgroup.xabaapp.models.SendNewActivationCodeResponse;
 import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.models.XabaResponse;
@@ -38,6 +39,7 @@ import static com.sstgroup.xabaapp.utils.Constants.WS_LOAD_NOTIFICATIONS;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOCATION_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOGIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_PROFESSION_PATH;
+import static com.sstgroup.xabaapp.utils.Constants.WS_REFERRED_WORKERS;
 import static com.sstgroup.xabaapp.utils.Constants.WS_REGISTER_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_REGISTER_WORKER_BY_AGENT_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH;
@@ -110,4 +112,10 @@ public interface XabaService {
             @Field(TOKEN) String token,
             @Field(NOTIFICATION_FILTER) String filter,
             @Field(NOTIFICATION_LAST_ITEM) Integer lastItemId);
+
+    @FormUrlEncoded
+    @POST(WS_REFERRED_WORKERS)
+    Call<XabaResponse<ReferredWorkersResponse>> loadReferredWorkers(
+            @Field(AGENT_APP_KEY) String agentApp,
+            @Field(TOKEN) String token);
 }

@@ -7,7 +7,8 @@ public class Constants {
 
     // web service
 //    public static final String BASE_URL = "http://ec2-52-59-94-240.eu-central-1.compute.amazonaws.com/api/v1/en-US/";
-    public static final String BASE_URL = "http://dev.xaba.org/api/v1/en-US/";
+//    public static final String BASE_URL = "http://dev.xaba.org/api/v1/en-US/";
+    public static final String BASE_URL = "http://shikanishadev.xaba.org/api/v1/en-US/";
 
     public static final String WS_REGISTER_PATH = "worker/create/";
     public static final String WS_REGISTER_WORKER_BY_AGENT_PATH = "worker/create-by-agent/";
@@ -22,6 +23,7 @@ public class Constants {
     public static final String WS_RESET_PIN_PATH = "worker/reset/pin/";
     public static final String WS_UPDATE_WORKER_PATH = "worker/update/";
     public static final String WS_LOAD_NOTIFICATIONS = "worker/notifications/list/";
+    public static final String WS_REFERRED_WORKERS = "worker/referred-workers/list/";
 
 //    Extras
     public static final String AGENT_APP_KEY = "client";

@@ -21,7 +21,7 @@ public class XabaResponse<T> {
         return status;
     }
 
-    public T getProfessionStructure() {
+    public T getBody() {
         return body;
     }
 }
