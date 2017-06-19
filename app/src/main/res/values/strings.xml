@@ -194,8 +194,6 @@
     <string name="commission_logs">Commission Logs</string>
     <string name="referred_workers">Referred Workers</string>
 
-
-
     <string name="question_title_1">What is Xaba?</string>
     <string name="question_title_2">What is Xaba Shikanisha?</string>
     <string name="question_title_3">Who should register on Xaba Shikanisha?</string>
@@ -207,4 +205,11 @@
     <string name="question_title_9">How do I become an agent?</string>
     <string name="question_title_10">Where can I find the Xaba terms and conditions?</string>
     <string name="join_our_social_movement">Join our social movement</string>
+
+    <!--Referred workers-->
+    <string name="validated">Validated</string>
+    <string name="pending">Pending</string>
+    <string name="rejected">Rejected</string>
+    <string name="invalid_data">Invalid data</string>
+
 </resources>
