@@ -22,8 +22,6 @@ import com.sstgroup.xabaapp.utils.NavigationUtils;
 import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
-import java.io.IOException;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -56,9 +54,15 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
+//        if (BuildConfig.DEBUG) {
+//            mEditTextNationalId.setText("1234569870");
+//            mEditTextPinCode.setText("1234");
+//        }
+
+        //user with notification data
         if (BuildConfig.DEBUG) {
-            mEditTextNationalId.setText("1234569870");
-            mEditTextPinCode.setText("1234");
+            mEditTextNationalId.setText("235720441");
+            mEditTextPinCode.setText("0000");
         }
 
 //        if (BuildConfig.DEBUG){
@@ -157,12 +161,7 @@ public class LoginFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-                if (t instanceof IOException) {
-                    //Add your code for displaying no network connection error
-                    ToastInterval.showToast(activity, getString(R.string.check_your_internet_connection));
-                } else {
-                    ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
-                }
+                Utils.onFailiourUtils(activity, t);
             }
         });
     }

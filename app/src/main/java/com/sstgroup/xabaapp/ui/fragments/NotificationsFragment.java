@@ -1,7 +1,6 @@
 package com.sstgroup.xabaapp.ui.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,14 +12,17 @@ import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.Notification;
 import com.sstgroup.xabaapp.models.NotificationResponse;
 import com.sstgroup.xabaapp.models.XabaResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.adapters.NotificationAdapter;
 import com.sstgroup.xabaapp.ui.dialogs.NotificationsFilterDialog;
 import com.sstgroup.xabaapp.ui.widgets.EndlessScrollListener;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
+import com.sstgroup.xabaapp.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,6 +45,9 @@ public class NotificationsFragment extends BaseFragment implements Notifications
     private EndlessScrollListener endlessScrollListener;
     private NotificationAdapter notificationAdapter;
     private boolean canLoadMore = true;
+
+    private String selectedFilter;
+    private Integer fromId;
 
     public static NotificationsFragment newInstance() {
 
@@ -68,7 +73,6 @@ public class NotificationsFragment extends BaseFragment implements Notifications
 
     @Override
     protected void initFields() {
-
     }
 
     private void showSwipeLoading() {
@@ -86,25 +90,56 @@ public class NotificationsFragment extends BaseFragment implements Notifications
             refreshLayout.setRefreshing(false);
     }
 
-    private void loadNotifications(String filter, Integer lastId){
+    private void loadNotifications() {
         Call<XabaResponse<NotificationResponse>> call = RestClient.getService().loadNotifications(
                 Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(),
-                filter, lastId);
+                selectedFilter, fromId);
         call.enqueue(new Callback<XabaResponse<NotificationResponse>>() {
             @Override
             public void onResponse(Call<XabaResponse<NotificationResponse>> call, Response<XabaResponse<NotificationResponse>> response) {
-                if (response.isSuccessful()){
-                    //TODO: save db
+                if (response.isSuccessful()) {
+
+                    if (response.body().getBody().getNextPageParams() != null) {
+                        fromId = response.body().getBody().getNextPageParams().getFromId();
+                    } else {
+                        fromId = null;
+                    }
+
+                    ArrayList<Notification> notifications = response.body().getBody().getItems();
+//                    if (notifications.size() < 50){
+//                        canLoadMore = false;
+//                    } else {
+//                        canLoadMore = true;
+//                    }
+                    xabaDbHelper.insertOrReplaceNotifications(notifications);
+                    notificationAdapter.replaceAllNotification(notifications);
                 } else {
-                    //TODO: request db
+                    ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
+
+                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                        XabaApplication.getInstance().logout();
+                        //from this point we logout user
+                        return;
+                    }
+
+                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                        ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
+                    }
+
+                    loadNotificationsFromDb();
                 }
+                canLoadMore = true;
                 hideSwipeLoading();
+                notificationAdapter.loadMoreFinished();
             }
 
             @Override
             public void onFailure(Call<XabaResponse<NotificationResponse>> call, Throwable t) {
                 hideSwipeLoading();
-                //TODO: check exeption for no internet request db
+                loadNotificationsFromDb();
+                Utils.onFailiourUtils(activity, t);
+                notificationAdapter.loadMoreFinished();
+                canLoadMore = true;
             }
         });
     }
@@ -113,30 +148,11 @@ public class NotificationsFragment extends BaseFragment implements Notifications
     protected void initViews(View rootView) {
         showSwipeLoading();
 
-        ArrayList<Notification> notifications = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            if (i % 2 == 0){
-                notifications.add(new Notification(i,
-                        Constants.NOTIFICATION_PAYOUT,
-                        "You were transferred 502.200 KES", "Payout done", new Date()));
-            } else {
-                notifications.add(new Notification(i,
-                        Constants.NOTIFICATION_REFERRAL_VALIDATION,
-                        "John Doe has registered.", "Validated account", new Date()));
-            }
-        }
+        selectedFilter = "";
+        fromId = null;
+        loadNotifications();
 
-//        xabaDbHelper.insertOrReplaceNotifications(notifications);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                hideSwipeLoading();
-            }
-        }, 2000);
-
-//        notificationAdapter = new NotificationAdapter(xabaDbHelper.getAllNotifications());
-        notificationAdapter = new NotificationAdapter(notifications);
+        notificationAdapter = new NotificationAdapter(xabaDbHelper.getAllNotifications());
         rvNotifications.setAdapter(notificationAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         endlessScrollListener = new EndlessScrollListener(linearLayoutManager) {
@@ -150,14 +166,6 @@ public class NotificationsFragment extends BaseFragment implements Notifications
                             notificationAdapter.loadMoreStarted();
                         }
                     });
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            notificationAdapter.loadMoreFinished();
-                            canLoadMore = true;
-                        }
-                    }, 3000);
                 }
             }
         };
@@ -167,25 +175,41 @@ public class NotificationsFragment extends BaseFragment implements Notifications
             @Override
             public void onRefresh() {
                 hideSwipeLoading();
+                fromId = null;
+                loadNotifications();
             }
         });
+    }
+
+    private void loadNotificationsFromDb() {
+        fromId = null;
+        if (selectedFilter.equals("")) {
+            notificationAdapter.replaceAllNotification(xabaDbHelper.getAllNotifications());
+        } else if (selectedFilter.equals(Constants.NOTIFICATION_PAYOUT)) {
+            notificationAdapter.replaceAllNotification(xabaDbHelper.getNotificationsByType(Constants.NOTIFICATION_PAYOUT));
+        } else if (selectedFilter.equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)) {
+            notificationAdapter.replaceAllNotification(xabaDbHelper.getNotificationsByType(Constants.NOTIFICATION_REFERRAL_VALIDATION));
+        }
     }
 
     @Override
     public void showAll(String selectedText) {
         tvNotificationTypes.setText(selectedText);
-//        notificationAdapter.replaceAllNotification(xabaDbHelper.getAllNotifications());
+        selectedFilter = "";
+        loadNotifications();
     }
 
     @Override
     public void showPayouts(String selectedText) {
         tvNotificationTypes.setText(selectedText);
-//        notificationAdapter.replaceAllNotification(xabaDbHelper.getNotificationsByType(Constants.NOTIFICATION_PAYOUT));
+        selectedFilter = Constants.NOTIFICATION_PAYOUT;
+        loadNotifications();
     }
 
     @Override
     public void showValidated(String selectedText) {
         tvNotificationTypes.setText(selectedText);
-//        notificationAdapter.replaceAllNotification(xabaDbHelper.getNotificationsByType(Constants.NOTIFICATION_REFERRAL_VALIDATION));
+        selectedFilter = Constants.NOTIFICATION_REFERRAL_VALIDATION;
+        loadNotifications();
     }
 }

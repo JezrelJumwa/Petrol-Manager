@@ -1,7 +1,11 @@
 package com.sstgroup.xabaapp.service;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sstgroup.xabaapp.utils.Constants;
+
+import java.util.Date;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -15,6 +19,10 @@ public class RestClient {
 
     static {
 
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer());
+        Gson gson = gsonBuilder.create();
+
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -23,7 +31,7 @@ public class RestClient {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
 
