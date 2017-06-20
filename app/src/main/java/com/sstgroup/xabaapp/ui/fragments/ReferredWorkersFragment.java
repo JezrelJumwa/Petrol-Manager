@@ -17,6 +17,7 @@ import com.sstgroup.xabaapp.ui.adapters.ReferredWorkerAdapter;
 import com.sstgroup.xabaapp.ui.widgets.EndlessScrollListener;
 import com.sstgroup.xabaapp.utils.Constants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -59,6 +60,7 @@ public class ReferredWorkersFragment extends BaseFragment {
         showSwipeLoading();
 
         loadReferredWorkers();
+//        loadDemoData();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -124,7 +126,7 @@ public class ReferredWorkersFragment extends BaseFragment {
             public void onResponse(Call<XabaResponse<ReferredWorkersResponse>> call, Response<XabaResponse<ReferredWorkersResponse>> response) {
                 if (response.isSuccessful()) {
                     mReferredWorkers = response.body().getBody().getItems();
-                    referredWorkerAdapter = new ReferredWorkerAdapter(mReferredWorkers);
+                    referredWorkerAdapter = new ReferredWorkerAdapter(mReferredWorkers, getContext());
                     rvReferredWorkers.setAdapter(referredWorkerAdapter);
                     //TODO: save db
                 } else {
@@ -136,8 +138,25 @@ public class ReferredWorkersFragment extends BaseFragment {
             @Override
             public void onFailure(Call<XabaResponse<ReferredWorkersResponse>> call, Throwable t) {
                 hideSwipeLoading();
-                //TODO: check exeption for no internet request db
+                //TODO: check exception for no internet request db
             }
         });
+    }
+
+    private void loadDemoData() {
+
+        ArrayList<ReferredWorker> referredWorkers = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            if (i % 3 == 0) {
+                referredWorkers.add(new ReferredWorker(2, "", "active", "Sasho", " Sasho2", "17-feb-2017", "17-feb-2017", ""));
+            } else if (i % 3 == 1) {
+                referredWorkers.add(new ReferredWorker(1, "", "pending", "Pesho", "Pesho2", "17-feb-2017", "17-feb-2017", ""));
+            } else if (i % 3 == 2) {
+                referredWorkers.add(new ReferredWorker(1, "", "inactive", "Atanas", "Atanas2", "17-feb-2017", "17-feb-2017", ""));
+            }
+        }
+
+        referredWorkerAdapter = new ReferredWorkerAdapter(referredWorkers, getContext());
+        rvReferredWorkers.setAdapter(referredWorkerAdapter);
     }
 }

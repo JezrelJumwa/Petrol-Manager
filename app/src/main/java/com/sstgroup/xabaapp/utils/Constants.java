@@ -24,6 +24,7 @@ public class Constants {
     public static final String WS_UPDATE_WORKER_PATH = "worker/update/";
     public static final String WS_LOAD_NOTIFICATIONS = "worker/notifications/list/";
     public static final String WS_REFERRED_WORKERS = "worker/referred-workers/list/";
+    public static final String WS_COMMISSIONS = "worker/commissions/list/";
 
 //    Extras
     public static final String AGENT_APP_KEY = "client";
