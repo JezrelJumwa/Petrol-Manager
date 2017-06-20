@@ -44,7 +44,9 @@ public class NotificationsFragment extends BaseFragment implements Notifications
     SwipeRefreshLayout refreshLayout;
     private EndlessScrollListener endlessScrollListener;
     private NotificationAdapter notificationAdapter;
-    private boolean canLoadMore = true;
+    private boolean loadMoreTriggered = false;
+    private boolean isLoading = false;
+
 
     private String selectedFilter;
     private Integer fromId;
@@ -91,6 +93,11 @@ public class NotificationsFragment extends BaseFragment implements Notifications
     }
 
     private void loadNotifications() {
+
+        if (fromId == null && endlessScrollListener != null) {
+            endlessScrollListener.resetState();
+        }
+
         Call<XabaResponse<NotificationResponse>> call = RestClient.getService().loadNotifications(
                 Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(),
                 selectedFilter, fromId);
@@ -106,13 +113,18 @@ public class NotificationsFragment extends BaseFragment implements Notifications
                     }
 
                     ArrayList<Notification> notifications = response.body().getBody().getItems();
-//                    if (notifications.size() < 50){
-//                        canLoadMore = false;
-//                    } else {
-//                        canLoadMore = true;
-//                    }
+
+                    if (loadMoreTriggered) {
+                        notificationAdapter.addMoreNotifications(notifications);
+                        loadMoreTriggered = false;
+                        refreshLayout.setEnabled(true);
+                        notificationAdapter.loadMoreFinished();
+                    } else {
+                        hideSwipeLoading();
+                        notificationAdapter.replaceAllNotification(notifications);
+                    }
+
                     xabaDbHelper.insertOrReplaceNotifications(notifications);
-                    notificationAdapter.replaceAllNotification(notifications);
                 } else {
                     ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
 
@@ -126,20 +138,25 @@ public class NotificationsFragment extends BaseFragment implements Notifications
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     }
 
+                    hideSwipeLoading();
+                    notificationAdapter.loadMoreFinished();
                     loadNotificationsFromDb();
                 }
-                canLoadMore = true;
-                hideSwipeLoading();
-                notificationAdapter.loadMoreFinished();
+
+                isLoading = false;
             }
 
             @Override
             public void onFailure(Call<XabaResponse<NotificationResponse>> call, Throwable t) {
+                loadMoreTriggered = false;
                 hideSwipeLoading();
+                notificationAdapter.loadMoreFinished();
+                refreshLayout.setEnabled(true);
+
                 loadNotificationsFromDb();
                 Utils.onFailiourUtils(activity, t);
-                notificationAdapter.loadMoreFinished();
-                canLoadMore = true;
+
+                isLoading = false;
             }
         });
     }
@@ -150,7 +167,6 @@ public class NotificationsFragment extends BaseFragment implements Notifications
 
         selectedFilter = "";
         fromId = null;
-        loadNotifications();
 
         notificationAdapter = new NotificationAdapter(xabaDbHelper.getAllNotifications());
         rvNotifications.setAdapter(notificationAdapter);
@@ -158,31 +174,44 @@ public class NotificationsFragment extends BaseFragment implements Notifications
         endlessScrollListener = new EndlessScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                if (canLoadMore) {
-                    canLoadMore = false;
-                    rvNotifications.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            notificationAdapter.loadMoreStarted();
-                        }
-                    });
+                if (!isLoading){
+                    loadMoreTriggered = true;
+                    refreshLayout.setEnabled(false);
+                    notificationAdapter.loadMoreStarted();
+                    loadNotifications();
                 }
             }
         };
+
         rvNotifications.setLayoutManager(linearLayoutManager);
         rvNotifications.addOnScrollListener(endlessScrollListener);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                hideSwipeLoading();
-                fromId = null;
-                loadNotifications();
+                //TODO: disable bottom loader
+                if (!isLoading){
+                    isLoading = true;
+                    loadMoreTriggered = false;
+                    fromId = null;
+
+                    if (isAdded()) {
+                        loadNotifications();
+                    } else {
+                        hideSwipeLoading();
+                    }
+
+                } else {
+                    hideSwipeLoading();
+                }
             }
         });
+
+        loadNotifications();
     }
 
     private void loadNotificationsFromDb() {
         fromId = null;
+
         if (selectedFilter.equals("")) {
             notificationAdapter.replaceAllNotification(xabaDbHelper.getAllNotifications());
         } else if (selectedFilter.equals(Constants.NOTIFICATION_PAYOUT)) {

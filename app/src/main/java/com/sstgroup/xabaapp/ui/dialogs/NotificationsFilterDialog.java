@@ -90,6 +90,9 @@ public class NotificationsFilterDialog extends Dialog {
                             clicks.showValidated(getContext().getString(R.string.validated_registration));
                         dismiss();
                         break;
+                    default:
+                        dismiss();
+                        break;
                 }
                 break;
         }
