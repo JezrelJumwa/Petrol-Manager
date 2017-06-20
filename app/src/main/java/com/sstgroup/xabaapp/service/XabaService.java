@@ -2,6 +2,7 @@ package com.sstgroup.xabaapp.service;
 
 
 import com.sstgroup.xabaapp.models.ActivationCodeResponse;
+import com.sstgroup.xabaapp.models.CommissionLogsResponse;
 import com.sstgroup.xabaapp.models.LocationResponse;
 import com.sstgroup.xabaapp.models.NotificationResponse;
 import com.sstgroup.xabaapp.models.PinResponse;
@@ -34,6 +35,7 @@ import static com.sstgroup.xabaapp.utils.Constants.TOKEN;
 import static com.sstgroup.xabaapp.utils.Constants.WORKER_ID;
 import static com.sstgroup.xabaapp.utils.Constants.WS_ACTIVATE_REGISTRATION_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_CHANGE_PIN_PATH;
+import static com.sstgroup.xabaapp.utils.Constants.WS_COMMISSIONS;
 import static com.sstgroup.xabaapp.utils.Constants.WS_GET_USER_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOAD_NOTIFICATIONS;
 import static com.sstgroup.xabaapp.utils.Constants.WS_LOCATION_PATH;
@@ -118,4 +120,11 @@ public interface XabaService {
     Call<XabaResponse<ReferredWorkersResponse>> loadReferredWorkers(
             @Field(AGENT_APP_KEY) String agentApp,
             @Field(TOKEN) String token);
+
+    @FormUrlEncoded
+    @POST(WS_COMMISSIONS)
+    Call<XabaResponse<CommissionLogsResponse>> loadCommissionLogs(
+            @Field(AGENT_APP_KEY) String agentApp,
+            @Field(TOKEN) String token);
+
 }

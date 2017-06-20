@@ -89,7 +89,7 @@ public class ReferredWorkerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return referredWorkers.get(position);
     }
 
-    class BottomProgressHolder extends RecyclerView.ViewHolder {
+    private class BottomProgressHolder extends RecyclerView.ViewHolder {
 
         BottomProgressHolder(View itemView) {
             super(itemView);
@@ -123,7 +123,7 @@ public class ReferredWorkerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 text = context.getString(R.string.pending) + " - " + referredWorker.getFirstName() + " " + referredWorker.getLastName();
             } else if (referredWorker.getStatus().equals(STATUS_INACTIVE)) {
                 imageViewStatus.setBackgroundColor(ContextCompat.getColor(imageViewStatus.getContext(), R.color.referred_worker_red));
-                text = context.getString(R.string.rejected) + " - " + referredWorker.getFirstName() + " " + referredWorker.getLastName() + " - ";
+                text = context.getString(R.string.rejected) + " - " + referredWorker.getFirstName() + " " + referredWorker.getLastName();
                 txtIsValid.setText(context.getString(R.string.invalid_data));
             }
 

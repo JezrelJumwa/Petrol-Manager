@@ -59,8 +59,8 @@ public class ReferredWorkersFragment extends BaseFragment {
     protected void initViews(View rootView) {
         showSwipeLoading();
 
-//        loadReferredWorkers();
-        loadDemoData();
+        loadReferredWorkers();
+//        loadDemoData();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -138,25 +138,25 @@ public class ReferredWorkersFragment extends BaseFragment {
             @Override
             public void onFailure(Call<XabaResponse<ReferredWorkersResponse>> call, Throwable t) {
                 hideSwipeLoading();
-                //TODO: check exeption for no internet request db
+                //TODO: check exception for no internet request db
             }
         });
     }
 
     private void loadDemoData() {
 
-        ArrayList<ReferredWorker> notifications = new ArrayList<>();
+        ArrayList<ReferredWorker> referredWorkers = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             if (i % 3 == 0) {
-                notifications.add(new ReferredWorker(2, "", "active", "Sasho", " Sasho2", "17-feb-2017", "17-feb-2017", ""));
+                referredWorkers.add(new ReferredWorker(2, "", "active", "Sasho", " Sasho2", "17-feb-2017", "17-feb-2017", ""));
             } else if (i % 3 == 1) {
-                notifications.add(new ReferredWorker(1, "", "pending", "Pesho", "Pesho2", "17-feb-2017", "17-feb-2017", ""));
+                referredWorkers.add(new ReferredWorker(1, "", "pending", "Pesho", "Pesho2", "17-feb-2017", "17-feb-2017", ""));
             } else if (i % 3 == 2) {
-                notifications.add(new ReferredWorker(1, "", "inactive", "Atanas", "Atanas2", "17-feb-2017", "17-feb-2017", ""));
+                referredWorkers.add(new ReferredWorker(1, "", "inactive", "Atanas", "Atanas2", "17-feb-2017", "17-feb-2017", ""));
             }
         }
 
-        referredWorkerAdapter = new ReferredWorkerAdapter(notifications, getContext());
+        referredWorkerAdapter = new ReferredWorkerAdapter(referredWorkers, getContext());
         rvReferredWorkers.setAdapter(referredWorkerAdapter);
     }
 }
