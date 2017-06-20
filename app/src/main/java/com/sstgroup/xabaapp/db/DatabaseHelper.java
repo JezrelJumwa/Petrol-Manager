@@ -495,11 +495,14 @@ public class DatabaseHelper {
 
     public List<Notification> getAllNotifications() {
         notificationDao = daoSession.getNotificationDao();
-        return notificationDao.loadAll();
+        return notificationDao.queryBuilder()
+                .orderDesc(NotificationDao.Properties.Date).list();
     }
 
     public List<Notification> getNotificationsByType(String type) {
         notificationDao = daoSession.getNotificationDao();
-        return notificationDao.queryBuilder().where(NotificationDao.Properties.Type.eq(type)).list();
+        return notificationDao.queryBuilder()
+                .where(NotificationDao.Properties.Description.eq(type))
+                .orderDesc(NotificationDao.Properties.Date).list();
     }
 }

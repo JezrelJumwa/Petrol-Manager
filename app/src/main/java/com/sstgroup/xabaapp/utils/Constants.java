@@ -50,11 +50,9 @@ public class Constants {
     public static final String NOTIFICATION_FILTER = "filter[description]";
     public static final String NOTIFICATION_LAST_ITEM = "next_page_params[from_id]";
 
-
     //Notification types
     public static final String NOTIFICATION_PAYOUT = "payout";
     public static final String NOTIFICATION_REFERRAL_VALIDATION = "referral_validation";
-
 
     //error status
     public static final String ERROR_UNAUTHORIZED = "Unauthorized";

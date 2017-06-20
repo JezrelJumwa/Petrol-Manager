@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
+import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,6 +32,15 @@ public class Utils {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         context.startActivity(browserIntent);
 
+    }
+
+    public static void onFailiourUtils(Context context, Throwable throwable){
+        if (throwable instanceof IOException) {
+            //Add your code for displaying no network connection error
+            ToastInterval.showToast(context, context.getString(R.string.check_your_internet_connection));
+        } else {
+            ToastInterval.showToast(context, context.getString(R.string.something_is_wrong));
+        }
     }
 
     public static int dpToPx(float dp, Context context) {

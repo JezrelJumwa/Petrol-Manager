@@ -2,6 +2,7 @@ package com.sstgroup.xabaapp.ui.adapters;
 
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,12 +51,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    public void replaceAllNotification(List<Notification> notifications){
+    public void replaceAllNotification(List<Notification> notifications) {
         this.notifications = notifications;
         notifyDataSetChanged();
     }
 
-    public void addMoreNotifications(List<Notification> notifications){
+    public void addMoreNotifications(List<Notification> notifications) {
         int size = notifications.size();
         this.notifications.addAll(notifications);
         notifyItemRangeInserted(size, notifications.size());
@@ -80,8 +81,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void loadMoreFinished() {
         int position = notifications.size();
-        notifications.remove(position - 1);
-        notifyItemChanged(position - 1);
+        if (position > 1 && notifications.get(position - 1) == null) {
+            notifications.remove(position - 1);
+            notifyItemChanged(position - 1);
+        }
     }
 
     private Notification getItemAt(int position) {
@@ -111,16 +114,22 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         void bind(Notification notification) {
-            if (notification.getType().equals(Constants.NOTIFICATION_PAYOUT)) {
+            if (notification.getDescription().equals(Constants.NOTIFICATION_PAYOUT)) {
                 ivNotification.setImageResource(R.drawable.ic_wallet);
                 txtText.setText(notification.getText());
                 txtTypeText.setText(notification.getSubtext());
                 txtTypeText.setTextColor(ContextCompat.getColor(txtTypeText.getContext(), R.color.text_green));
                 txtDate.setText(Utils.dateFromat(notification.getDate(), Constants.DATE_FORMAT_DASHES));
-            } else if (notification.getType().equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)){
+            } else if (notification.getDescription().equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)) {
                 ivNotification.setImageResource(R.drawable.ic_valid_account);
                 //TODO: init HTML parsing for getText
-                txtText.setText(notification.getText());
+                //<b>Owen Mburu</b> has registered
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    txtText.setText(Html.fromHtml(notification.getText(), Html.FROM_HTML_MODE_LEGACY));
+                } else {
+                    txtText.setText(Html.fromHtml(notification.getText()));
+                }
+//                txtText.setText(Html.fromHtml(notification.getText()));
                 txtTypeText.setText(notification.getSubtext());
                 txtTypeText.setTextColor(ContextCompat.getColor(txtTypeText.getContext(), R.color.text_blue));
                 txtDate.setText(Utils.dateFromat(notification.getDate(), Constants.DATE_FORMAT_DASHES));
