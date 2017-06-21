@@ -7,9 +7,11 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.Currency;
 import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.ui.activities.HomeActivity;
 import com.sstgroup.xabaapp.ui.widgets.CirclesProgress;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by julianlubenov on 6/8/17.
@@ -70,6 +72,13 @@ public class DashboardFragment extends BaseFragment {
         circlesProgress.setmSecondMax(user.getPayoutThreshold());
         circlesProgress.setmSecondMin(0);
         circlesProgress.setmValueSecond((user.getTotalReferrals() * user.getPerWorker()));
-
     }
+
+    @OnClick(R.id.btn_register_another_worker)
+    public void onClick(){
+        if (activity instanceof HomeActivity){
+            ((HomeActivity) activity).openAddWorker();
+        }
+    }
+
 }
