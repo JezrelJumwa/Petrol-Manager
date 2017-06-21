@@ -8,14 +8,23 @@ import android.view.View;
 import android.widget.Button;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
+import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.activities.EditPinActivity;
 import com.sstgroup.xabaapp.ui.activities.EditProfileActivity;
 import com.sstgroup.xabaapp.ui.adapters.MyProfileAdapter;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
+import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.NavigationUtils;
+import com.sstgroup.xabaapp.utils.Utils;
 
 import butterknife.BindView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by rosenstoyanov on 6/2/17.
@@ -66,7 +75,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
 
     private void showDeleteAccountDialog() {
         final Dialog dialog = new Dialog(activity);
-        dialog.setContentView(R.layout.dialog_delete_account);
+        dialog.setContentView(R.layout.dialog_deactivate_account);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_white_rect);
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
@@ -82,8 +91,33 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastInterval.showToast(activity, "Delete Clicked");
                 dialog.dismiss();
+                activity.showLoader();
+                RestClient.getService().deactivateAccount(Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue()).enqueue(new Callback<Object>() {
+                    @Override
+                    public void onResponse(Call<Object> call, Response<Object> response) {
+                        if (response.isSuccessful()){
+                            XabaApplication.getInstance().logout();
+                        } else {
+                            ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
+
+                            if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                                XabaApplication.getInstance().logout();
+                                //from this point we logout user
+                                return;
+                            }
+
+                            ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
+                        }
+                        activity.hideLoader();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Object> call, Throwable t) {
+                        Utils.onFailureUtils(activity, t);
+                        activity.hideLoader();
+                    }
+                });
             }
         });
 

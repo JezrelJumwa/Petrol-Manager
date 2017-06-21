@@ -13,7 +13,7 @@ import android.view.animation.Transformation;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 
-import java.io.IOException;
+import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,8 +34,8 @@ public class Utils {
 
     }
 
-    public static void onFailiourUtils(Context context, Throwable throwable){
-        if (throwable instanceof IOException) {
+    public static void onFailureUtils(Context context, Throwable throwable){
+        if (throwable instanceof UnknownHostException) {
             //Add your code for displaying no network connection error
             ToastInterval.showToast(context, context.getString(R.string.check_your_internet_connection));
         } else {
