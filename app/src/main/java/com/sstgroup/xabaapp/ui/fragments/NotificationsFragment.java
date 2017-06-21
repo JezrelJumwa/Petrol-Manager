@@ -155,7 +155,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
                 refreshLayout.setEnabled(true);
 
                 loadNotificationsFromDb();
-                Utils.onFailiourUtils(activity, t);
+                Utils.onFailureUtils(activity, t);
             }
         });
     }

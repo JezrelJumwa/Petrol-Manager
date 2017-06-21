@@ -11,13 +11,13 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
-        android:textSize="22dp"
+        android:textSize="22sp"
         android:textColor="@color/text_gray_4"
         android:lineSpacingExtra="5dp"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/are_you_sure_you_want_to_delete_your_account" />
+        android:text="@string/are_you_sure_you_want_to_deactivate_your_account" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
             android:textColor="@color/text_white"
             android:textSize="14sp"
             android:background="@color/red"
-            android:text="@string/delete"/>
+            android:text="@string/deactivate"/>
 
     </LinearLayout>
 

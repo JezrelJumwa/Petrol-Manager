@@ -43,12 +43,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         init();
     }
 
-    protected void showLoader(){
+    public void showLoader(){
         if (progressBar != null)
             progressBar.setVisibility(View.VISIBLE);
     }
 
-    protected void hideLoader(){
+    public void hideLoader(){
         if (progressBar != null)
             progressBar.setVisibility(View.GONE);
     }
