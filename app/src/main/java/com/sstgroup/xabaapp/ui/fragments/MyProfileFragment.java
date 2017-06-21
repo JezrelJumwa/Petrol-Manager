@@ -75,7 +75,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
 
     private void showDeleteAccountDialog() {
         final Dialog dialog = new Dialog(activity);
-        dialog.setContentView(R.layout.dialog_delete_account);
+        dialog.setContentView(R.layout.dialog_deactivate_account);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_white_rect);
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
