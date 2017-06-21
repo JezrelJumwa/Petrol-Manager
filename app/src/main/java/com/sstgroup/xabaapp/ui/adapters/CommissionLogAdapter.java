@@ -2,7 +2,9 @@ package com.sstgroup.xabaapp.ui.adapters;
 
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.CommissionLog;
+import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Utils;
 
 import java.util.List;
 
@@ -24,6 +28,8 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private final int VIEW_ITEM = 0;
     private final int VIEW_PROGRESS = 1;
+
+    private final String STATUS_PAYMENT = "payment";
 
     public CommissionLogAdapter(List<CommissionLog> commissionLogs, Context context) {
         this.commissionLogs = commissionLogs;
@@ -109,8 +115,20 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         void bind(CommissionLog commissionLog) {
 
-            txtText.setText(commissionLog.getText());
-            txtDate.setText(commissionLog.getCreatedAt());
+            if (commissionLog.getDescription().equals(STATUS_PAYMENT)) {
+                imageViewStatus.setBackgroundColor(ContextCompat.getColor(imageViewStatus.getContext(), R.color.referred_worker_blue));
+            } else {
+                imageViewStatus.setBackgroundColor(ContextCompat.getColor(imageViewStatus.getContext(), R.color.referred_worker_green));
+            }
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+
+                txtText.setText(Html.fromHtml(commissionLog.getText(), Html.FROM_HTML_MODE_LEGACY));
+            } else {
+                txtText.setText(Html.fromHtml(commissionLog.getText()));
+            }
+
+            txtDate.setText(Utils.dateFromat(commissionLog.getCreatedAt(), Constants.DATE_FORMAT_REFERRED_WORKERS));
             txtValue.setText(commissionLog.getAmount());
         }
     }

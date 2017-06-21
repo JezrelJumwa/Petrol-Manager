@@ -3,8 +3,10 @@ package com.sstgroup.xabaapp.models;
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+
+import java.util.Date;
 
 @Entity
 public class ReferredWorker {
@@ -21,14 +23,14 @@ public class ReferredWorker {
     @SerializedName("last_name")
     private String lastName;
     @SerializedName("created_at")
-    private String createdAt;
+    private Date createdAt;
     @SerializedName("updated_at")
-    private String updatedAt;
+    private Date updatedAt;
     @SerializedName("phone")
     private String phone;
-    @Generated(hash = 1612488604)
+    @Generated(hash = 537918187)
     public ReferredWorker(Integer id, String nationalId, String status,
-            String firstName, String lastName, String createdAt, String updatedAt,
+            String firstName, String lastName, Date createdAt, Date updatedAt,
             String phone) {
         this.id = id;
         this.nationalId = nationalId;
@@ -72,16 +74,16 @@ public class ReferredWorker {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return this.createdAt;
     }
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-    public String getUpdatedAt() {
+    public Date getUpdatedAt() {
         return this.updatedAt;
     }
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
     public String getPhone() {

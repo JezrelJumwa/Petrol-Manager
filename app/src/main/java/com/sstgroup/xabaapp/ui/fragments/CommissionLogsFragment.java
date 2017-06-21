@@ -18,6 +18,7 @@ import com.sstgroup.xabaapp.ui.widgets.EndlessScrollListener;
 import com.sstgroup.xabaapp.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -60,8 +61,8 @@ public class CommissionLogsFragment extends BaseFragment {
     protected void initViews(View rootView) {
         showSwipeLoading();
 
-//        loadCommissionLogs();
-        loadDemoData();
+        loadCommissionLogs();
+//        loadDemoData();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -149,11 +150,11 @@ public class CommissionLogsFragment extends BaseFragment {
         ArrayList<CommissionLog> commissionLogs = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             if (i % 3 == 0) {
-                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", "17-feb-2017", "Paid to your account"));
+                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", new Date(), "Paid to your account"));
             } else if (i % 3 == 1) {
-                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", "17-feb-2017", "Paid to your account"));
+                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", new Date(), "Paid to your account"));
             } else if (i % 3 == 2) {
-                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", "17-feb-2017", "Paid to your account"));
+                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", new Date(), "Paid to your account"));
             }
         }
 

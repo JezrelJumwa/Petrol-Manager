@@ -18,6 +18,7 @@ import com.sstgroup.xabaapp.ui.widgets.EndlessScrollListener;
 import com.sstgroup.xabaapp.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -148,11 +149,11 @@ public class ReferredWorkersFragment extends BaseFragment {
         ArrayList<ReferredWorker> referredWorkers = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             if (i % 3 == 0) {
-                referredWorkers.add(new ReferredWorker(2, "", "active", "Sasho", " Sasho2", "17-feb-2017", "17-feb-2017", ""));
+                referredWorkers.add(new ReferredWorker(2, "", "active", "Sasho", " Sasho2", new Date(), new Date(), ""));
             } else if (i % 3 == 1) {
-                referredWorkers.add(new ReferredWorker(1, "", "pending", "Pesho", "Pesho2", "17-feb-2017", "17-feb-2017", ""));
+                referredWorkers.add(new ReferredWorker(1, "", "pending", "Pesho", "Pesho2", new Date(), new Date(), ""));
             } else if (i % 3 == 2) {
-                referredWorkers.add(new ReferredWorker(1, "", "inactive", "Atanas", "Atanas2", "17-feb-2017", "17-feb-2017", ""));
+                referredWorkers.add(new ReferredWorker(1, "", "inactive", "Atanas", "Atanas2", new Date(), new Date(), ""));
             }
         }
 

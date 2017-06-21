@@ -42,6 +42,7 @@ public class ReportsFragment extends BaseFragment implements TabLayout.OnTabSele
         tabLayout.addOnTabSelectedListener(this);
 
         commissionTab.select();
+        onTabSelected(commissionTab);
     }
 
     @Override

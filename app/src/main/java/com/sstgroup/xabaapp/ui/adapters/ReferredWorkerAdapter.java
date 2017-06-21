@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.ReferredWorker;
+import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Utils;
 
 import java.util.List;
 
@@ -114,6 +116,8 @@ public class ReferredWorkerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         void bind(ReferredWorker referredWorker) {
 
             String text = "";
+            String textDate = Utils.dateFromat(referredWorker.getCreatedAt(), Constants.DATE_FORMAT_REFERRED_WORKERS);
+            String textIsValid = "";
 
             if (referredWorker.getStatus().equals(STATUS_ACTIVE)) {
                 imageViewStatus.setBackgroundColor(ContextCompat.getColor(imageViewStatus.getContext(), R.color.referred_worker_green));
@@ -124,11 +128,13 @@ public class ReferredWorkerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             } else if (referredWorker.getStatus().equals(STATUS_INACTIVE)) {
                 imageViewStatus.setBackgroundColor(ContextCompat.getColor(imageViewStatus.getContext(), R.color.referred_worker_red));
                 text = context.getString(R.string.rejected) + " - " + referredWorker.getFirstName() + " " + referredWorker.getLastName();
-                txtIsValid.setText(context.getString(R.string.invalid_data));
+                textDate += " - ";
+                textIsValid = context.getString(R.string.invalid_data);
             }
 
             txtText.setText(text);
-            txtDate.setText(referredWorker.getCreatedAt());
+            txtDate.setText(textDate);
+            txtIsValid.setText(textIsValid);
         }
     }
 }

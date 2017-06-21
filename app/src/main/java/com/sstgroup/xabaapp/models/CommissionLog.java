@@ -7,6 +7,8 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 
+import java.util.Date;
+
 @Entity
 public class CommissionLog {
 
@@ -22,13 +24,12 @@ public class CommissionLog {
     @SerializedName("description")
     private String description;
     @SerializedName("created_at")
-    private String createdAt;
+    private Date createdAt;
     @SerializedName("text")
     private String text;
-
-    @Generated(hash = 1522190633)
+    @Generated(hash = 189566262)
     public CommissionLog(Integer id, String amount, String currencyId, String type,
-                         String description, String createdAt, String text) {
+            String description, Date createdAt, String text) {
         this.id = id;
         this.amount = amount;
         this.currencyId = currencyId;
@@ -37,66 +38,50 @@ public class CommissionLog {
         this.createdAt = createdAt;
         this.text = text;
     }
-
     @Generated(hash = 346068186)
     public CommissionLog() {
     }
-
     public Integer getId() {
         return this.id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public String getAmount() {
         return this.amount;
     }
-
     public void setAmount(String amount) {
         this.amount = amount;
     }
-
     public String getCurrencyId() {
         return this.currencyId;
     }
-
     public void setCurrencyId(String currencyId) {
         this.currencyId = currencyId;
     }
-
     public String getType() {
         return this.type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
-
     public String getDescription() {
         return this.description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return this.createdAt;
     }
-
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
     public String getText() {
         return this.text;
     }
-
     public void setText(String text) {
         this.text = text;
     }
-
 
 }
