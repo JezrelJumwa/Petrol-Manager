@@ -148,15 +148,14 @@ public class NotificationsFragment extends BaseFragment implements Notifications
 
             @Override
             public void onFailure(Call<XabaResponse<NotificationResponse>> call, Throwable t) {
-                loadMoreTriggered = false;
                 hideSwipeLoading();
+                loadMoreTriggered = false;
+                isLoading = false;
                 notificationAdapter.loadMoreFinished();
                 refreshLayout.setEnabled(true);
 
                 loadNotificationsFromDb();
                 Utils.onFailiourUtils(activity, t);
-
-                isLoading = false;
             }
         });
     }
@@ -175,6 +174,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 if (!isLoading){
+                    isLoading = true;
                     loadMoreTriggered = true;
                     refreshLayout.setEnabled(false);
                     notificationAdapter.loadMoreStarted();
