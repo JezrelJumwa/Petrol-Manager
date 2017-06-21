@@ -150,9 +150,9 @@ public class CommissionLogsFragment extends BaseFragment {
         ArrayList<CommissionLog> commissionLogs = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             if (i % 3 == 0) {
-                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", new Date(), "Paid to your account"));
+                commissionLogs.add(new CommissionLog(8, "15", "2", "payout", "payout", new Date(), "Paid to your account"));
             } else if (i % 3 == 1) {
-                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", new Date(), "Paid to your account"));
+                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "asd", new Date(), "Paid to your account"));
             } else if (i % 3 == 2) {
                 commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", new Date(), "Paid to your account"));
             }

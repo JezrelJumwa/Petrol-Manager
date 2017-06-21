@@ -27,6 +27,8 @@ import com.sstgroup.xabaapp.models.Notification;
 import com.sstgroup.xabaapp.models.NotificationDao;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.ProfessionDao;
+import com.sstgroup.xabaapp.models.ReferredWorker;
+import com.sstgroup.xabaapp.models.ReferredWorkerDao;
 import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.models.SubCountyDao;
 import com.sstgroup.xabaapp.models.Token;
@@ -64,6 +66,7 @@ public class DatabaseHelper {
     private static JoinUsersWithProfessionsDao joinUsersProfessionDao;
     private static JoinCategoriesWithProfessionsDao joinCategoryProfessionDao;
     private static NotificationDao notificationDao;
+    private static ReferredWorkerDao referredWorkerDao;
 
     private DatabaseHelper() {
 
@@ -504,5 +507,15 @@ public class DatabaseHelper {
         return notificationDao.queryBuilder()
                 .where(NotificationDao.Properties.Description.eq(type))
                 .orderAsc(NotificationDao.Properties.Date).list();
+    }
+
+    public List<ReferredWorker> getAllReferredWorkers() {
+        referredWorkerDao = daoSession.getReferredWorkerDao();
+        return referredWorkerDao.queryBuilder().list();
+    }
+
+    public void insertOrReplaceReferredWorkers(ArrayList<ReferredWorker> referredWorkers) {
+        referredWorkerDao = daoSession.getReferredWorkerDao();
+        referredWorkerDao.insertOrReplaceInTx(referredWorkers);
     }
 }

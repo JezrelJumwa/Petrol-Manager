@@ -29,7 +29,7 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final int VIEW_ITEM = 0;
     private final int VIEW_PROGRESS = 1;
 
-    private final String STATUS_PAYMENT = "payment";
+    private final String STATUS_PAYMENT = "payout";
 
     public CommissionLogAdapter(List<CommissionLog> commissionLogs, Context context) {
         this.commissionLogs = commissionLogs;

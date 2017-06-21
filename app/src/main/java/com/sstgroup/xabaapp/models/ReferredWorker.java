@@ -13,7 +13,7 @@ public class ReferredWorker {
 
     @Id
     @SerializedName("id")
-    private Integer id;
+    private Long id;
     @SerializedName("national_idn")
     private String nationalId;
     @SerializedName("status")
@@ -28,8 +28,8 @@ public class ReferredWorker {
     private Date updatedAt;
     @SerializedName("phone")
     private String phone;
-    @Generated(hash = 537918187)
-    public ReferredWorker(Integer id, String nationalId, String status,
+    @Generated(hash = 1617554447)
+    public ReferredWorker(Long id, String nationalId, String status,
             String firstName, String lastName, Date createdAt, Date updatedAt,
             String phone) {
         this.id = id;
@@ -44,10 +44,10 @@ public class ReferredWorker {
     @Generated(hash = 644006678)
     public ReferredWorker() {
     }
-    public Integer getId() {
+    public Long getId() {
         return this.id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getNationalId() {
@@ -92,5 +92,4 @@ public class ReferredWorker {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
 }

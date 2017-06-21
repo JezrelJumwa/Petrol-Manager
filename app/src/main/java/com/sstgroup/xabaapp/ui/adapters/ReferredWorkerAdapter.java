@@ -83,8 +83,10 @@ public class ReferredWorkerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public void loadMoreFinished() {
         int position = referredWorkers.size();
-        referredWorkers.remove(position - 1);
-        notifyItemChanged(position - 1);
+        if (position > 1 && referredWorkers.get(position - 1) == null) {
+            referredWorkers.remove(position - 1);
+            notifyItemRemoved(position - 1);
+        }
     }
 
     private ReferredWorker getItemAt(int position) {
