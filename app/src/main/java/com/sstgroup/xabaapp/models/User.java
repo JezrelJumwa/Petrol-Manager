@@ -10,6 +10,7 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.JoinEntity;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.ToOne;
+import org.greenrobot.greendao.annotation.Transient;
 
 import java.util.List;
 
@@ -47,7 +48,14 @@ public class User {
     private Long subcountyId;
 //    @ToOne(joinProperty = "subcountyId")
 //    private SubCounty subCounty;
-    @SerializedName("professions")
+    @Transient
+    @SerializedName("commissions")
+    private UserCommissions userCommissions;
+    private Integer currentBalance;
+    private Integer payoutThreshold;
+    private Integer totalReferrals;
+    private Integer perWorker;
+    private Long currencyId;
     @ToMany
     @JoinEntity(
             entity = JoinUsersWithProfessions.class,
@@ -70,11 +78,12 @@ public class User {
     @Generated(hash = 1507654846)
     private transient UserDao myDao;
 
-    @Generated(hash = 2026033923)
-    public User(Long id, String status, String agentId, String firstName,
-            String lastName, String otherName, String phone, String gender,
-            String birthdate, Long countryId, Long countyId, Long subcountyId,
-            Long tokenId, Boolean isPhoneVerified, Boolean isDefaultPin) {
+    @Generated(hash = 978501528)
+    public User(Long id, String status, String agentId, String firstName, String lastName,
+            String otherName, String phone, String gender, String birthdate, Long countryId,
+            Long countyId, Long subcountyId, Integer currentBalance, Integer payoutThreshold,
+            Integer totalReferrals, Integer perWorker, Long currencyId, Long tokenId,
+            Boolean isPhoneVerified, Boolean isDefaultPin) {
         this.id = id;
         this.status = status;
         this.agentId = agentId;
@@ -87,6 +96,11 @@ public class User {
         this.countryId = countryId;
         this.countyId = countyId;
         this.subcountyId = subcountyId;
+        this.currentBalance = currentBalance;
+        this.payoutThreshold = payoutThreshold;
+        this.totalReferrals = totalReferrals;
+        this.perWorker = perWorker;
+        this.currencyId = currencyId;
         this.tokenId = tokenId;
         this.isPhoneVerified = isPhoneVerified;
         this.isDefaultPin = isDefaultPin;
@@ -316,11 +330,54 @@ public class User {
         myDao.update(this);
     }
 
+    public Integer getCurrentBalance() {
+        return this.currentBalance;
+    }
+
+    public void setCurrentBalance(Integer currentBalance) {
+        this.currentBalance = currentBalance;
+    }
+
+    public Integer getPayoutThreshold() {
+        return this.payoutThreshold;
+    }
+
+    public void setPayoutThreshold(Integer payoutThreshold) {
+        this.payoutThreshold = payoutThreshold;
+    }
+
+    public Integer getTotalReferrals() {
+        return this.totalReferrals;
+    }
+
+    public void setTotalReferrals(Integer totalReferrals) {
+        this.totalReferrals = totalReferrals;
+    }
+
+    public Integer getPerWorker() {
+        return this.perWorker;
+    }
+
+    public void setPerWorker(Integer perWorker) {
+        this.perWorker = perWorker;
+    }
+
+    public Long getCurrencyId() {
+        return this.currencyId;
+    }
+
+    public void setCurrencyId(Long currencyId) {
+        this.currencyId = currencyId;
+    }
+
+    public UserCommissions getUserCommissions() {
+        return userCommissions;
+    }
+
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 2059241980)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getUserDao() : null;
     }
-
 }

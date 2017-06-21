@@ -2,14 +2,32 @@ package com.sstgroup.xabaapp.ui.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.models.Currency;
+import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.ui.widgets.CirclesProgress;
+
+import butterknife.BindView;
 
 /**
  * Created by julianlubenov on 6/8/17.
  */
 
 public class DashboardFragment extends BaseFragment {
+    @BindView(R.id.txt_referral_id)
+    TextView txtReferralId;
+    @BindView(R.id.txt_total_registered_workers)
+    TextView txtTotalRegisteredWorkers;
+    @BindView(R.id.txt_balance)
+    TextView txtBalance;
+    @BindView(R.id.txt_balance_currency)
+    TextView txtBalanceCurrency;
+    @BindView(R.id.txt_registered_workers)
+    TextView txtWorkersToGo;
+    @BindView(R.id.round_circle_progresses)
+    CirclesProgress circlesProgress;
 
     public static DashboardFragment newInstance() {
 
@@ -32,6 +50,26 @@ public class DashboardFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
+        User user = xabaDbHelper.getLoggedUser(activity);
+        txtReferralId.setText(String.valueOf(user.getId()));
+        txtTotalRegisteredWorkers.setText(String.valueOf(user.getTotalReferrals()));
+
+        Currency currency = xabaDbHelper.getCurrency(user.getCurrencyId());
+
+        //!!!!!Math abs because server sends negative values some times
+        txtBalance.setText(String.valueOf(Math.abs(user.getCurrentBalance())));
+        txtBalanceCurrency.setText(currency.getCode());
+
+        txtWorkersToGo.setText(String.valueOf(user.getPayoutThreshold() - (user.getTotalReferrals() * user.getPerWorker())));
+
+        circlesProgress.setmFirstMax(user.getPayoutThreshold());
+        circlesProgress.setmFirstMin(0);
+        //!!!!!Math abs because server sends negative values some times
+        circlesProgress.setmValueFirst(Math.abs(user.getCurrentBalance()));
+
+        circlesProgress.setmSecondMax(user.getPayoutThreshold());
+        circlesProgress.setmSecondMin(0);
+        circlesProgress.setmValueSecond((user.getTotalReferrals() * user.getPerWorker()));
 
     }
 }

@@ -168,8 +168,8 @@
     <string name="register_another_worker_button">Register another worker</string>
     <string name="lorem_ipsum_nullam_arcu">Nullam arcu ante, malesuada placerat purus eu, gravida cursus dolor.</string>
     <string name="kes">KES</string>
-    <string name="registered_workers">Registered Workers</string>
-    <string name="e_wallet_balance">E-Wallet Balance</string>
+    <string name="registered_workers">Workers to go</string>
+    <string name="e_wallet_balance">Current Balance</string>
 
     <!--Change Pin Screen-->
     <string name="change_your_pin">Change your PIN</string>
@@ -211,5 +211,6 @@
     <string name="pending">Pending</string>
     <string name="rejected">Rejected</string>
     <string name="invalid_data">Invalid data</string>
+    <string name="total_registered_workers">Total registered workers:</string>
 
 </resources>
