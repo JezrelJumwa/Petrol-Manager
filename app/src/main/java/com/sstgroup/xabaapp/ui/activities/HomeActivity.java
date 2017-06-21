@@ -6,6 +6,10 @@ import android.support.v7.widget.Toolbar;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
+import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.models.UserResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
+import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.fragments.ContactFragment;
 import com.sstgroup.xabaapp.ui.fragments.DashboardFragment;
 import com.sstgroup.xabaapp.ui.fragments.FaqFragment;
@@ -15,9 +19,14 @@ import com.sstgroup.xabaapp.ui.fragments.NotificationsFragment;
 import com.sstgroup.xabaapp.ui.fragments.RegisterWorkerByAgentFragment;
 import com.sstgroup.xabaapp.ui.fragments.ReportsFragment;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
+import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends BaseActivity implements
         NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -88,11 +97,47 @@ public class HomeActivity extends BaseActivity implements
             mDrawer.setUp(R.id.navigation_drawer,
                     (DrawerLayout) findViewById(R.id.drawer_layout));
         }
+
+        if (mFirstRun){
+            loadUserProfile();
+        }
+
         mInForeground = true;
     }
 
     public void loadUserProfile() {
-        //TODO: load user profile
+        Call<UserResponse> call = RestClient.getService().getWorkerData(Constants.AGENT_APP_VALUE,
+                XabaApplication.getInstance().getToken().getValue());
+
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    User user = response.body().getUser();
+                    if (response.body().getUser() != null) {
+
+                        if (user.getTokenFromWS() == null) {
+                            user.setToken(XabaApplication.getInstance().getToken());
+                        }
+
+                        xabaDbHelper.insertLoggedUser(HomeActivity.this, response.body().getUser());
+                    }
+                } else {
+                    ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
+
+                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                        XabaApplication.getInstance().logout();
+                        //from this point we logout user
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+
+            }
+        });
+
     }
 
     private void setContentFragment(int menuItemId) {
