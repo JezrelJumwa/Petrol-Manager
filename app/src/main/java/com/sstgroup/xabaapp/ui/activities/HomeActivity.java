@@ -124,5 +124,9 @@ public class HomeActivity extends BaseActivity implements
 
         }
     }
+
+    public void openAddWorker() {
+        mDrawer.selectAddWorker();
+    }
 }
 

@@ -1,7 +1,6 @@
 package com.sstgroup.xabaapp.ui.widgets;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -92,6 +91,30 @@ public class CirclesProgress extends View {
         }
 
         setMeasuredDimension(mWidth, mHeight);
+    }
+
+    public void setmFirstMin(float mFirstMin) {
+        this.mFirstMin = mFirstMin;
+    }
+
+    public void setmFirstMax(float mFirstMax) {
+        this.mFirstMax = mFirstMax;
+    }
+
+    public void setmSecondMin(float mSecondMin) {
+        this.mSecondMin = mSecondMin;
+    }
+
+    public void setmSecondMax(float mSecondMax) {
+        this.mSecondMax = mSecondMax;
+    }
+
+    public void setmValueFirst(float mValueFirst) {
+        this.mValueFirst = mValueFirst;
+    }
+
+    public void setmValueSecond(float mValueSecond) {
+        this.mValueSecond = mValueSecond;
     }
 
     @Override
