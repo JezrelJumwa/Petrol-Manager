@@ -34,6 +34,7 @@ import com.sstgroup.xabaapp.models.SubCountyDao;
 import com.sstgroup.xabaapp.models.Token;
 import com.sstgroup.xabaapp.models.TokenDao;
 import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.models.UserCommissions;
 import com.sstgroup.xabaapp.models.UserDao;
 import com.sstgroup.xabaapp.utils.Preferences;
 
@@ -120,6 +121,12 @@ public class DatabaseHelper {
     public void insertOrReplaceCurrencies(ArrayList<Currency> currencies) {
         currencyDao = daoSession.getCurrencyDao();
         currencyDao.insertInTx(currencies);
+    }
+
+    public Currency getCurrency(Long id){
+        currencyDao = daoSession.getCurrencyDao();
+
+        return currencyDao.loadByRowId(id);
     }
 
     public List<String> getCurrencies() {
@@ -330,6 +337,14 @@ public class DatabaseHelper {
 //        user.setCountry(country);
 //        user.setCounty(county);
 //        user.setSubCounty(subCounty);
+
+        UserCommissions userCommissions = user.getUserCommissions();
+
+        user.setCurrentBalance(userCommissions.getCurrentBalance());
+        user.setPayoutThreshold(userCommissions.getPayoutThreshold());
+        user.setTotalReferrals(userCommissions.getTotalReferrals());
+        user.setPerWorker(userCommissions.getPerWorker());
+        user.setCurrencyId(userCommissions.getCurrencyId());
 
         long tokenId = insertOrReplaceToken(user.getTokenFromWS());
         user.setTokenId(tokenId);

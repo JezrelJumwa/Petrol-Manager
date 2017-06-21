@@ -104,46 +104,50 @@ public class NotificationsFragment extends BaseFragment implements Notifications
         call.enqueue(new Callback<XabaResponse<NotificationResponse>>() {
             @Override
             public void onResponse(Call<XabaResponse<NotificationResponse>> call, Response<XabaResponse<NotificationResponse>> response) {
-                if (response.isSuccessful()) {
+                if (notificationAdapter != null && refreshLayout != null
+                        && xabaDbHelper != null && activity != null) {
+                    if (response.isSuccessful()) {
 
-                    if (response.body().getBody().getNextPageParams() != null) {
-                        fromId = response.body().getBody().getNextPageParams().getFromId();
+                        if (response.body().getBody().getNextPageParams() != null) {
+                            fromId = response.body().getBody().getNextPageParams().getFromId();
+                        } else {
+                            fromId = null;
+                        }
+
+                        ArrayList<Notification> notifications = response.body().getBody().getItems();
+
+                        if (loadMoreTriggered) {
+                            loadMoreTriggered = false;
+                            notificationAdapter.loadMoreFinished();
+                            refreshLayout.setEnabled(true);
+                            notificationAdapter.addMoreNotifications(notifications);
+                        } else {
+                            hideSwipeLoading();
+                            notificationAdapter.replaceAllNotification(notifications);
+                        }
+
+                        xabaDbHelper.insertOrReplaceNotifications(notifications);
                     } else {
-                        fromId = null;
-                    }
+                        ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
 
-                    ArrayList<Notification> notifications = response.body().getBody().getItems();
+                        if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                            XabaApplication.getInstance().logout();
+                            //from this point we logout user
+                            return;
+                        }
 
-                    if (loadMoreTriggered) {
-                        notificationAdapter.addMoreNotifications(notifications);
-                        loadMoreTriggered = false;
-                        refreshLayout.setEnabled(true);
-                        notificationAdapter.loadMoreFinished();
-                    } else {
+                        if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                            ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
+                        }
+
                         hideSwipeLoading();
-                        notificationAdapter.replaceAllNotification(notifications);
+                        notificationAdapter.loadMoreFinished();
+                        loadNotificationsFromDb();
                     }
 
-                    xabaDbHelper.insertOrReplaceNotifications(notifications);
-                } else {
-                    ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
-
-                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
-                        XabaApplication.getInstance().logout();
-                        //from this point we logout user
-                        return;
-                    }
-
-                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
-                        ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
-                    }
-
-                    hideSwipeLoading();
-                    notificationAdapter.loadMoreFinished();
-                    loadNotificationsFromDb();
+                    isLoading = false;
                 }
 
-                isLoading = false;
             }
 
             @Override
@@ -155,7 +159,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
                 refreshLayout.setEnabled(true);
 
                 loadNotificationsFromDb();
-                Utils.onFailiourUtils(activity, t);
+                Utils.onFailureUtils(activity, t);
             }
         });
     }
@@ -173,7 +177,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
         endlessScrollListener = new EndlessScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                if (!isLoading){
+                if (!isLoading) {
                     isLoading = true;
                     loadMoreTriggered = true;
                     refreshLayout.setEnabled(false);
@@ -189,7 +193,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
             @Override
             public void onRefresh() {
                 //TODO: disable bottom loader
-                if (!isLoading){
+                if (!isLoading) {
                     isLoading = true;
                     loadMoreTriggered = false;
                     fromId = null;
@@ -225,6 +229,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
     public void showAll(String selectedText) {
         tvNotificationTypes.setText(selectedText);
         selectedFilter = "";
+        showSwipeLoading();
         loadNotifications();
     }
 
@@ -232,6 +237,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
     public void showPayouts(String selectedText) {
         tvNotificationTypes.setText(selectedText);
         selectedFilter = Constants.NOTIFICATION_PAYOUT;
+        showSwipeLoading();
         loadNotifications();
     }
 
@@ -239,6 +245,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
     public void showValidated(String selectedText) {
         tvNotificationTypes.setText(selectedText);
         selectedFilter = Constants.NOTIFICATION_REFERRAL_VALIDATION;
+        showSwipeLoading();
         loadNotifications();
     }
 }

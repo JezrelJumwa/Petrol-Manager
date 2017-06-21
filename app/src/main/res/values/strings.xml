@@ -94,7 +94,7 @@
     <!--My Profile-->
     <string name="change_pin"><u>Change PIN</u></string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="delete_account"><u>Delete Account</u></string>
+    <string name="deactivate_account"><u>Deactivate Account</u></string>
     <string name="industry_dot">Industry:&#160;</string>
     <string name="category_dot">Category&#160;</string>
     <string name="profession_dot">Profession:&#160;</string>
@@ -120,9 +120,9 @@
     <string name="save">Save</string>
 
     <!--Delete account dialog-->
-    <string name="are_you_sure_you_want_to_delete_your_account">Are you sure you want to delete your account?</string>
+    <string name="are_you_sure_you_want_to_deactivate_your_account">Are you sure you want to deactivate your account?</string>
     <string name="cancel">Cancel</string>
-    <string name="delete">Delete</string>
+    <string name="deactivate">Deactivate</string>
 
     <string name="we_have_made_it_easier_for_you_to_register">We\'ve made it easier for you to
         register.
@@ -168,8 +168,8 @@
     <string name="register_another_worker_button">Register another worker</string>
     <string name="lorem_ipsum_nullam_arcu">Nullam arcu ante, malesuada placerat purus eu, gravida cursus dolor.</string>
     <string name="kes">KES</string>
-    <string name="registered_workers">Registered Workers</string>
-    <string name="e_wallet_balance">E-Wallet Balance</string>
+    <string name="registered_workers">Workers to go</string>
+    <string name="e_wallet_balance">Current Balance</string>
 
     <!--Change Pin Screen-->
     <string name="change_your_pin">Change your PIN</string>
@@ -211,5 +211,6 @@
     <string name="pending">Pending</string>
     <string name="rejected">Rejected</string>
     <string name="invalid_data">Invalid data</string>
+    <string name="total_registered_workers">Total registered workers:</string>
 
 </resources>

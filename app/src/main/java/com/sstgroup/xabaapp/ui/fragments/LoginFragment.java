@@ -161,7 +161,7 @@ public class LoginFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-                Utils.onFailiourUtils(activity, t);
+                Utils.onFailureUtils(activity, t);
             }
         });
     }

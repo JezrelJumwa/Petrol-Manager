@@ -13,11 +13,15 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.sstgroup.xabaapp.R;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 
 public class NavigationDrawerFragment extends BaseFragment {
     private static final String STATE_SELECTED_ID = "selected_navigation_drawer_menu_id";
+
+    @BindView(R.id.nav_register_worker)
+    AppCompatCheckedTextView addWorker;
 
     protected DrawerLayout mDrawerLayout;
     private NavigationDrawerCallbacks mCallbacks;
@@ -107,6 +111,10 @@ public class NavigationDrawerFragment extends BaseFragment {
 
     public View getCurrentSelectItem() {
         return mCurrentSelectedItem;
+    }
+
+    public void selectAddWorker() {
+        selectItemAndClose(addWorker);
     }
 
     private boolean selectItem(AppCompatCheckedTextView v) {

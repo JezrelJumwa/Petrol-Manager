@@ -25,8 +25,10 @@ public class Constants {
     public static final String WS_LOAD_NOTIFICATIONS = "worker/notifications/list/";
     public static final String WS_REFERRED_WORKERS = "worker/referred-workers/list/";
     public static final String WS_COMMISSIONS = "worker/commissions/list/";
+    public static final String WS_DEACTIVATE_ACCOUNT = "worker/deactivate/";
 
-//    Extras
+
+    //    Extras
     public static final String AGENT_APP_KEY = "client";
     public static final String AGENT_APP_VALUE = "agent-app";
     public static final String ACTIVATION_CODE = "activation_code";
