@@ -76,14 +76,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void loadMoreStarted() {
         notifications.add(null);
-        notifyItemChanged(notifications.size() - 1);
+        notifyItemInserted(notifications.size() - 1);
     }
 
     public void loadMoreFinished() {
         int position = notifications.size();
         if (position > 1 && notifications.get(position - 1) == null) {
             notifications.remove(position - 1);
-            notifyItemChanged(position - 1);
+            notifyItemRemoved(position - 1);
         }
     }
 

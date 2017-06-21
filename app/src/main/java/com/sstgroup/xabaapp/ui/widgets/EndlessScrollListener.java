@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 public abstract class EndlessScrollListener extends RecyclerView.OnScrollListener{
-    private int visibleThreshold = 8;
+    private int visibleThreshold = 2;
     private int currentPage = 0;
     private int previousTotalItemCount = 0;
     private boolean loading = true;
@@ -68,10 +68,13 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
             previousTotalItemCount = totalItemCount;
         }
 
-        if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
-            currentPage++;
-            onLoadMore(currentPage, totalItemCount, view);
-            loading = true;
+//        if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
+        if ((lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
+            if (dy > 0) {//check for scroll down)
+                currentPage++;
+                onLoadMore(currentPage, totalItemCount, view);
+//                loading = true;
+            }
         }
     }
 
