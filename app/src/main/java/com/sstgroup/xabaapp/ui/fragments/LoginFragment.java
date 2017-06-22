@@ -131,7 +131,8 @@ public class LoginFragment extends BaseFragment {
 
         nationalId = Encryption.encryptionRSA(nationalId);
 
-        Call<UserResponse> call = RestClient.getService().login(Constants.AGENT_APP_VALUE, nationalId,
+        Call<UserResponse> call = RestClient.getService().login(XabaApplication.getInstance().getLanguageCode(),
+                Constants.AGENT_APP_VALUE, nationalId,
                 pinCode);
         call.enqueue(new Callback<UserResponse>() {
             @Override

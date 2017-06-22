@@ -71,7 +71,7 @@ public class SplashActivity extends BaseActivity {
 
         final String savedLocationHash = Preferences.getLocationHash(SplashActivity.this);
 
-        Call<LocationResponse> call = RestClient.getService().getLocations(Constants.AGENT_APP_VALUE, savedLocationHash);
+        Call<LocationResponse> call = RestClient.getService().getLocations(XabaApplication.getInstance().getLanguageCode(), Constants.AGENT_APP_VALUE, savedLocationHash);
         call.enqueue(new Callback<LocationResponse>() {
             @Override
             public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
@@ -101,7 +101,8 @@ public class SplashActivity extends BaseActivity {
 
         final String savedProfessionHash = Preferences.getProfessionHash(SplashActivity.this);
 
-        Call<ProfessionResponse> call = RestClient.getService().getProfessions(Constants.AGENT_APP_VALUE, savedProfessionHash);
+        Call<ProfessionResponse> call = RestClient.getService().getProfessions(XabaApplication.getInstance().getLanguageCode(),
+                Constants.AGENT_APP_VALUE, savedProfessionHash);
         call.enqueue(new Callback<ProfessionResponse>() {
             @Override
             public void onResponse(Call<ProfessionResponse> call, Response<ProfessionResponse> response) {

@@ -128,6 +128,7 @@ public class ReferredWorkersFragment extends BaseFragment {
         }
 
         Call<XabaResponse<ReferredWorkersResponse>> call = RestClient.getService().loadReferredWorkers(
+                XabaApplication.getInstance().getLanguageCode(),
                 Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue());
         call.enqueue(new Callback<XabaResponse<ReferredWorkersResponse>>() {
             @Override
@@ -183,7 +184,7 @@ public class ReferredWorkersFragment extends BaseFragment {
                 refreshLayout.setEnabled(true);
 
                 loadReferredWorkersFromDb();
-                Utils.onFailiourUtils(activity, t);
+                Utils.onFailureUtils(activity, t);
             }
         });
     }

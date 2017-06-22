@@ -8,30 +8,31 @@ public class Constants {
     // web service
 //    public static final String BASE_URL = "http://ec2-52-59-94-240.eu-central-1.compute.amazonaws.com/api/v1/en-US/";
 //    public static final String BASE_URL = "http://dev.xaba.org/api/v1/en-US/";
-    public static final String BASE_URL = "http://shikanishadev.xaba.org/api/v1/en-US/";
+    public static final String BASE_URL = "http://shikanishadev.xaba.org/api/v1/";
 
-    public static final String WS_REGISTER_PATH = "worker/create/";
-    public static final String WS_REGISTER_WORKER_BY_AGENT_PATH = "worker/create-by-agent/";
-    public static final String WS_ACTIVATE_REGISTRATION_PATH = "worker/activate/";
-    public static final String WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH = "worker/activate/resend-code/";
-    public static final String WS_LOGIN_PATH = "worker/login/";
-    public static final String WS_LOCATION_PATH = "location/list/";
-    public static final String WS_PROFESSION_PATH = "profession/list/";
-    public static final String WS_GET_USER_PATH = "worker/get-user/";
-    public static final String WS_CHANGE_PIN_PATH = "worker/change-pin/";
-    public static final String WS_RESET_VERIFY_PATH = "worker/reset/verify/";
-    public static final String WS_RESET_PIN_PATH = "worker/reset/pin/";
-    public static final String WS_UPDATE_WORKER_PATH = "worker/update/";
-    public static final String WS_LOAD_NOTIFICATIONS = "worker/notifications/list/";
-    public static final String WS_REFERRED_WORKERS = "worker/referred-workers/list/";
-    public static final String WS_COMMISSIONS = "worker/commissions/list/";
-    public static final String WS_DEACTIVATE_ACCOUNT = "worker/deactivate/";
+    public static final String WS_REGISTER_PATH = "{language}/worker/create/";
+    public static final String WS_REGISTER_WORKER_BY_AGENT_PATH = "{language}/worker/create-by-agent/";
+    public static final String WS_ACTIVATE_REGISTRATION_PATH = "{language}/worker/activate/";
+    public static final String WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH = "{language}/worker/activate/resend-code/";
+    public static final String WS_LOGIN_PATH = "{language}/worker/login/";
+    public static final String WS_LOCATION_PATH = "{language}/location/list/";
+    public static final String WS_PROFESSION_PATH = "{language}/profession/list/";
+    public static final String WS_GET_USER_PATH = "{language}/worker/get-user/";
+    public static final String WS_CHANGE_PIN_PATH = "{language}/worker/change-pin/";
+    public static final String WS_RESET_VERIFY_PATH = "{language}/worker/reset/verify/";
+    public static final String WS_RESET_PIN_PATH = "{language}/worker/reset/pin/";
+    public static final String WS_UPDATE_WORKER_PATH = "{language}/worker/update/";
+    public static final String WS_LOAD_NOTIFICATIONS = "{language}/worker/notifications/list/";
+    public static final String WS_REFERRED_WORKERS = "{language}/worker/referred-workers/list/";
+    public static final String WS_COMMISSIONS = "{language}/worker/commissions/list/";
+    public static final String WS_DEACTIVATE_ACCOUNT = "{language}/worker/deactivate/";
 
 
     //    Extras
     public static final String AGENT_APP_KEY = "client";
     public static final String AGENT_APP_VALUE = "agent-app";
     public static final String ACTIVATION_CODE = "activation_code";
+    public static final String LANGUAGE = "language";
     public static final String STATUS = "status";
     public static final String BODY = "body";
     public static final String TOKEN = "token";

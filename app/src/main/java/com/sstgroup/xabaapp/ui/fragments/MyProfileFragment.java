@@ -93,7 +93,8 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
             public void onClick(View v) {
                 dialog.dismiss();
                 activity.showLoader();
-                RestClient.getService().deactivateAccount(Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue()).enqueue(new Callback<Object>() {
+                RestClient.getService().deactivateAccount(XabaApplication.getInstance().getLanguageCode(),
+                        Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue()).enqueue(new Callback<Object>() {
                     @Override
                     public void onResponse(Call<Object> call, Response<Object> response) {
                         if (response.isSuccessful()){

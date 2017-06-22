@@ -3,6 +3,7 @@ package com.sstgroup.xabaapp;
 import android.app.Application;
 
 import com.sstgroup.xabaapp.db.DatabaseHelper;
+import com.sstgroup.xabaapp.models.Language;
 import com.sstgroup.xabaapp.models.Token;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.ui.activities.MainActivity;
@@ -19,6 +20,7 @@ import timber.log.Timber;
 public class XabaApplication extends Application {
     private static XabaApplication instance;
     private Token mLoggedUserToken;
+    private Language language;
 
 
     public static XabaApplication getInstance() {
@@ -37,6 +39,15 @@ public class XabaApplication extends Application {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+
+        language = DatabaseHelper.getInstance(this).getLanguage(Preferences.getSelectedLanguage(this));
+    }
+
+    public String getLanguageCode() {
+        if (language == null)
+            return "en-US";
+
+        return language.getLanguageCode();
     }
 
     public boolean isAuthenticated() {
@@ -51,7 +62,15 @@ public class XabaApplication extends Application {
         return this.mLoggedUserToken;
     }
 
-    public void logout(){
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public void logout() {
         String locationHash = Preferences.getLocationHash(this);
         String professionHash = Preferences.getProfessionHash(this);
         Preferences.clear(getApplicationContext());

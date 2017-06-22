@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.ActivationCodeResponse;
 import com.sstgroup.xabaapp.models.SendNewActivationCodeResponse;
 import com.sstgroup.xabaapp.models.errors.ErrorLogin;
@@ -86,7 +87,8 @@ public class RegisterConfirmFragment extends BaseFragment {
             return;
         }
 
-        Call<ActivationCodeResponse> call = RestClient.getService().sendActivationCode(Constants.AGENT_APP_VALUE, activationCode);
+        Call<ActivationCodeResponse> call = RestClient.getService().sendActivationCode(
+                XabaApplication.getInstance().getLanguageCode(), Constants.AGENT_APP_VALUE, activationCode);
         call.enqueue(new Callback<ActivationCodeResponse>() {
             @Override
             public void onResponse(Call<ActivationCodeResponse> call, Response<ActivationCodeResponse> response) {
@@ -115,7 +117,8 @@ public class RegisterConfirmFragment extends BaseFragment {
     }
 
     private void resendPinSms() {
-        Call<SendNewActivationCodeResponse> call = RestClient.getService().sendSmsWithNewActivationCode(Constants.AGENT_APP_VALUE, userId);
+        Call<SendNewActivationCodeResponse> call = RestClient.getService().sendSmsWithNewActivationCode(
+                XabaApplication.getInstance().getLanguageCode(), Constants.AGENT_APP_VALUE, userId);
         call.enqueue(new Callback<SendNewActivationCodeResponse>() {
             @Override
             public void onResponse(Call<SendNewActivationCodeResponse> call, Response<SendNewActivationCodeResponse> response) {

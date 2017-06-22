@@ -199,7 +199,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         }
 
         RequestBody body = RequestBody.create(MediaType.parse("text"), stringBuilder.toString());
-        Call<UserResponse> call = RestClient.getService().updateWorker(body);
+        Call<UserResponse> call = RestClient.getService().updateWorker(XabaApplication.getInstance().getLanguageCode(), body);
 
         call.enqueue(new Callback<UserResponse>() {
             @Override

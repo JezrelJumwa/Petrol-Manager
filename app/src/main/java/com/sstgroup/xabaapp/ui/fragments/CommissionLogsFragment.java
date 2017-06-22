@@ -122,6 +122,7 @@ public class CommissionLogsFragment extends BaseFragment {
 
     private void loadCommissionLogs() {
         Call<XabaResponse<CommissionLogsResponse>> call = RestClient.getService().loadCommissionLogs(
+                XabaApplication.getInstance().getLanguageCode(),
                 Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue());
         call.enqueue(new Callback<XabaResponse<CommissionLogsResponse>>() {
             @Override
