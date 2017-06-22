@@ -55,16 +55,16 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-        if (BuildConfig.DEBUG) {
-            mEditTextNationalId.setText("1234569870");
-            mEditTextPinCode.setText("1234");
-        }
+//        if (BuildConfig.DEBUG) {
+//            mEditTextNationalId.setText("1234569870");
+//            mEditTextPinCode.setText("1234");
+//        }
 
         //user with notification data
-//        if (BuildConfig.DEBUG) {
-//            mEditTextNationalId.setText("235720441");
-//            mEditTextPinCode.setText("0000");
-//        }
+        if (BuildConfig.DEBUG) {
+            mEditTextNationalId.setText("235720441");
+            mEditTextPinCode.setText("0000");
+        }
     }
 
     @Override
