@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.sstgroup.xabaapp.models.Category;
 import com.sstgroup.xabaapp.models.CategoryDao;
+import com.sstgroup.xabaapp.models.CommissionLog;
+import com.sstgroup.xabaapp.models.CommissionLogDao;
 import com.sstgroup.xabaapp.models.Country;
 import com.sstgroup.xabaapp.models.CountryDao;
 import com.sstgroup.xabaapp.models.County;
@@ -67,6 +69,7 @@ public class DatabaseHelper {
     private static JoinUsersWithProfessionsDao joinUsersProfessionDao;
     private static JoinCategoriesWithProfessionsDao joinCategoryProfessionDao;
     private static NotificationDao notificationDao;
+    private static CommissionLogDao commissionLogDao;
     private static ReferredWorkerDao referredWorkerDao;
 
     private DatabaseHelper() {
@@ -123,7 +126,7 @@ public class DatabaseHelper {
         currencyDao.insertInTx(currencies);
     }
 
-    public Currency getCurrency(Long id){
+    public Currency getCurrency(Long id) {
         currencyDao = daoSession.getCurrencyDao();
 
         return currencyDao.loadByRowId(id);
@@ -526,7 +529,7 @@ public class DatabaseHelper {
 
     public List<ReferredWorker> getAllReferredWorkers() {
         referredWorkerDao = daoSession.getReferredWorkerDao();
-        return referredWorkerDao.queryBuilder().list();
+        return referredWorkerDao.queryBuilder().orderDesc(ReferredWorkerDao.Properties.CreatedAt).list();
     }
 
     public void insertOrReplaceReferredWorkers(ArrayList<ReferredWorker> referredWorkers) {
@@ -537,5 +540,23 @@ public class DatabaseHelper {
     public void updateToken(Token token) {
         tokenDao = daoSession.getTokenDao();
         tokenDao.update(token);
+    }
+
+    public void insertOrReplaceCommissionLogs(ArrayList<CommissionLog> commissionLogs) {
+        commissionLogDao = daoSession.getCommissionLogDao();
+        commissionLogDao.insertOrReplaceInTx(commissionLogs);
+    }
+
+    public List<CommissionLog> getAllCommissionLogs() {
+        commissionLogDao = daoSession.getCommissionLogDao();
+        return commissionLogDao.queryBuilder()
+                .orderAsc(CommissionLogDao.Properties.CreatedAt).list();
+    }
+
+    public List<CommissionLog> getAllCommissionLogsByType(String type) {
+        commissionLogDao = daoSession.getCommissionLogDao();
+        return commissionLogDao.queryBuilder()
+                .where(CommissionLogDao.Properties.Description.eq(type))
+                .orderAsc(CommissionLogDao.Properties.Description).list();
     }
 }

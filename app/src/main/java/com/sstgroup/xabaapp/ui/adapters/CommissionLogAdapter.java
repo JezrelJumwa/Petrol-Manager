@@ -1,7 +1,6 @@
 package com.sstgroup.xabaapp.ui.adapters;
 
 
-import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -23,17 +22,15 @@ import butterknife.ButterKnife;
 
 public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<CommissionLog> commissionLogs;
-    private Context context;
-
     private final int VIEW_ITEM = 0;
     private final int VIEW_PROGRESS = 1;
 
+    private List<CommissionLog> commissionLogs;
+
     private final String STATUS_PAYMENT = "payout";
 
-    public CommissionLogAdapter(List<CommissionLog> commissionLogs, Context context) {
+    public CommissionLogAdapter(List<CommissionLog> commissionLogs) {
         this.commissionLogs = commissionLogs;
-        this.context = context;
     }
 
     @Override

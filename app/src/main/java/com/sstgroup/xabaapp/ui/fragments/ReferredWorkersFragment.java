@@ -206,8 +206,5 @@ public class ReferredWorkersFragment extends BaseFragment {
                 referredWorkers.add(new ReferredWorker(1l, "", "inactive", "Atanas", "Atanas2", new Date(), new Date(), ""));
             }
         }
-
-        referredWorkerAdapter = new ReferredWorkerAdapter(referredWorkers, getContext());
-        rvReferredWorkers.setAdapter(referredWorkerAdapter);
     }
 }

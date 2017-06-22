@@ -1,7 +1,6 @@
 package com.sstgroup.xabaapp.ui.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,14 +11,17 @@ import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.CommissionLog;
 import com.sstgroup.xabaapp.models.CommissionLogsResponse;
 import com.sstgroup.xabaapp.models.XabaResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.adapters.CommissionLogAdapter;
 import com.sstgroup.xabaapp.ui.widgets.EndlessScrollListener;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
+import com.sstgroup.xabaapp.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import retrofit2.Call;
@@ -34,9 +36,11 @@ public class CommissionLogsFragment extends BaseFragment {
     SwipeRefreshLayout refreshLayout;
     private CommissionLogAdapter commissionLogAdapter;
     private EndlessScrollListener endlessScrollListener;
-    private boolean canLoadMore = true;
+    private boolean loadMoreTriggered = false;
+    private boolean isLoading = false;
 
-    private List<CommissionLog> mCommissionLogs;
+    private String selectedFilter;
+    private Integer fromId;
 
     public static CommissionLogsFragment newInstance() {
 
@@ -57,54 +61,6 @@ public class CommissionLogsFragment extends BaseFragment {
 
     }
 
-    @Override
-    protected void initViews(View rootView) {
-        showSwipeLoading();
-
-        loadCommissionLogs();
-//        loadDemoData();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                hideSwipeLoading();
-            }
-        }, 2000);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
-        endlessScrollListener = new EndlessScrollListener(linearLayoutManager) {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                if (canLoadMore) {
-                    canLoadMore = false;
-                    rvCommissionLogs.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            commissionLogAdapter.loadMoreStarted();
-                        }
-                    });
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            commissionLogAdapter.loadMoreFinished();
-                            canLoadMore = true;
-                        }
-                    }, 3000);
-                }
-            }
-        };
-
-        rvCommissionLogs.setLayoutManager(linearLayoutManager);
-        rvCommissionLogs.addOnScrollListener(endlessScrollListener);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                hideSwipeLoading();
-            }
-        });
-    }
-
     private void showSwipeLoading() {
         if (refreshLayout != null)
             refreshLayout.post(new Runnable() {
@@ -120,30 +76,139 @@ public class CommissionLogsFragment extends BaseFragment {
             refreshLayout.setRefreshing(false);
     }
 
+    @Override
+    protected void initViews(View rootView) {
+        showSwipeLoading();
+
+        selectedFilter = "";
+        fromId = null;
+
+        commissionLogAdapter = new CommissionLogAdapter(xabaDbHelper.getAllCommissionLogs());
+        rvCommissionLogs.setAdapter(commissionLogAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
+        endlessScrollListener = new EndlessScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                if (!isLoading) {
+                    isLoading = true;
+                    loadMoreTriggered = true;
+                    refreshLayout.setEnabled(false);
+                    commissionLogAdapter.loadMoreStarted();
+                    loadCommissionLogs();
+                }
+            }
+        };
+
+        rvCommissionLogs.setLayoutManager(linearLayoutManager);
+        rvCommissionLogs.addOnScrollListener(endlessScrollListener);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //TODO: disable bottom loader
+                if (!isLoading) {
+                    isLoading = true;
+                    loadMoreTriggered = false;
+                    fromId = null;
+
+                    if (isAdded()) {
+                        loadCommissionLogs();
+                    } else {
+                        hideSwipeLoading();
+                    }
+
+                } else {
+                    hideSwipeLoading();
+                }
+            }
+        });
+
+        loadCommissionLogs();
+    }
+
+
     private void loadCommissionLogs() {
+
+        if (fromId == null && endlessScrollListener != null) {
+            endlessScrollListener.resetState();
+        }
+
         Call<XabaResponse<CommissionLogsResponse>> call = RestClient.getService().loadCommissionLogs(
                 XabaApplication.getInstance().getLanguageCode(),
-                Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue());
+                Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(),
+                selectedFilter, fromId);
         call.enqueue(new Callback<XabaResponse<CommissionLogsResponse>>() {
             @Override
             public void onResponse(Call<XabaResponse<CommissionLogsResponse>> call, Response<XabaResponse<CommissionLogsResponse>> response) {
-                if (response.isSuccessful()) {
-                    mCommissionLogs = response.body().getBody().getItems();
-                    commissionLogAdapter = new CommissionLogAdapter(mCommissionLogs, getContext());
-                    rvCommissionLogs.setAdapter(commissionLogAdapter);
-                    //TODO: save db
-                } else {
-                    //TODO: request db
+                if (commissionLogAdapter != null && refreshLayout != null
+                        && xabaDbHelper != null && activity != null) {
+                    if (response.isSuccessful()) {
+
+                        if (response.body().getBody().getNextPageParams() != null) {
+                            fromId = response.body().getBody().getNextPageParams().getFromId();
+                        } else {
+                            fromId = null;
+                        }
+
+                        ArrayList<CommissionLog> commissionLogs = response.body().getBody().getItems();
+
+                        if (loadMoreTriggered) {
+                            loadMoreTriggered = false;
+                            commissionLogAdapter.loadMoreFinished();
+                            refreshLayout.setEnabled(true);
+                            commissionLogAdapter.addMoreCommissionLogs(commissionLogs);
+                        } else {
+                            hideSwipeLoading();
+                            commissionLogAdapter.replaceAllCommissionLogs(commissionLogs);
+                        }
+
+                        xabaDbHelper.insertOrReplaceCommissionLogs(commissionLogs);
+                    } else {
+                        ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
+
+                        if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                            XabaApplication.getInstance().logout();
+                            //from this point we logout user
+                            return;
+                        }
+
+                        if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                            ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
+                        }
+
+                        hideSwipeLoading();
+                        commissionLogAdapter.loadMoreFinished();
+                        loadCommissionLogsFromDb();
+                    }
+
+                    isLoading = false;
                 }
-                hideSwipeLoading();
             }
 
             @Override
             public void onFailure(Call<XabaResponse<CommissionLogsResponse>> call, Throwable t) {
                 hideSwipeLoading();
-                //TODO: check exception for no internet request db
+                loadMoreTriggered = false;
+                isLoading = false;
+                commissionLogAdapter.loadMoreFinished();
+                refreshLayout.setEnabled(true);
+
+                loadCommissionLogsFromDb();
+                Utils.onFailureUtils(activity, t);
+
             }
         });
+    }
+
+    private void loadCommissionLogsFromDb() {
+        fromId = null;
+
+        if (selectedFilter.equals("")) {
+            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogs());
+        } else if (selectedFilter.equals(Constants.NOTIFICATION_PAYOUT)) {
+            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogsByType(Constants.NOTIFICATION_PAYOUT));
+        } else if (selectedFilter.equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)) {
+            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogsByType(Constants.NOTIFICATION_REFERRAL_VALIDATION));
+        }
     }
 
     private void loadDemoData() {
@@ -151,15 +216,12 @@ public class CommissionLogsFragment extends BaseFragment {
         ArrayList<CommissionLog> commissionLogs = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             if (i % 3 == 0) {
-                commissionLogs.add(new CommissionLog(8, "15", "2", "payout", "payout", new Date(), "Paid to your account"));
+                commissionLogs.add(new CommissionLog(8l, "15", "2", "payout", "payout", new Date(), "Paid to your account"));
             } else if (i % 3 == 1) {
-                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "asd", new Date(), "Paid to your account"));
+                commissionLogs.add(new CommissionLog(8l, "15", "2", "credit", "asd", new Date(), "Paid to your account"));
             } else if (i % 3 == 2) {
-                commissionLogs.add(new CommissionLog(8, "15", "2", "credit", "payout", new Date(), "Paid to your account"));
+                commissionLogs.add(new CommissionLog(8l, "15", "2", "credit", "payout", new Date(), "Paid to your account"));
             }
         }
-
-        commissionLogAdapter = new CommissionLogAdapter(commissionLogs, getContext());
-        rvCommissionLogs.setAdapter(commissionLogAdapter);
     }
 }

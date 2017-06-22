@@ -138,7 +138,9 @@ public interface XabaService {
     Call<XabaResponse<CommissionLogsResponse>> loadCommissionLogs(
             @Path(LANGUAGE) String language,
             @Field(AGENT_APP_KEY) String agentApp,
-            @Field(TOKEN) String token);
+            @Field(TOKEN) String token,
+            @Field(NOTIFICATION_FILTER) String filter,
+            @Field(NOTIFICATION_LAST_ITEM) Integer lastItemId);
 
     @FormUrlEncoded
     @POST(WS_DEACTIVATE_ACCOUNT)
