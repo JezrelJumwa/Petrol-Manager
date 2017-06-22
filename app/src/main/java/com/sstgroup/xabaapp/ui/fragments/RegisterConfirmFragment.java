@@ -22,7 +22,6 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
 
 public class RegisterConfirmFragment extends BaseFragment {
     private Long userId;
@@ -93,7 +92,6 @@ public class RegisterConfirmFragment extends BaseFragment {
             @Override
             public void onResponse(Call<ActivationCodeResponse> call, Response<ActivationCodeResponse> response) {
                 if (response.isSuccessful()) {
-
                     if (startedFromLogin) {
                         activity.onBackPressed();
                     } else {
@@ -101,7 +99,7 @@ public class RegisterConfirmFragment extends BaseFragment {
                     }
                 } else {
                     ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
-                    if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                    if (errorLogin.getError().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(activity, errorLogin.getError());
@@ -111,7 +109,7 @@ public class RegisterConfirmFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<ActivationCodeResponse> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
+                Utils.onFailureUtils(activity, t);
             }
         });
     }
@@ -130,7 +128,7 @@ public class RegisterConfirmFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<SendNewActivationCodeResponse> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
+                Utils.onFailureUtils(activity, t);
             }
         });
     }

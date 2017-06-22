@@ -143,7 +143,8 @@ public class LoginFragment extends BaseFragment {
                         activity.openFragment(RegisterConfirmFragment.newInstance(user.getId(), true), true);
                     }
 //                    else if (!user.getIsDefaultPin()){
-//
+//                        //TODO: keep in mind token
+//                        NavigationUtils.startActivity(activity, EditPinActivity.class);
 //                    }
                     else {
                         XabaApplication.getInstance().setToken(user.getTokenFromWS());
@@ -152,7 +153,7 @@ public class LoginFragment extends BaseFragment {
                     }
                 } else {
                     ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
-                    if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                    if (errorLogin.getError().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(activity, errorLogin.getError());
