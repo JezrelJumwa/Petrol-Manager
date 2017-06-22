@@ -3,6 +3,9 @@ package com.sstgroup.xabaapp.ui.activities;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.network.adapter.NetworkAdapterService;
 import com.sstgroup.xabaapp.ui.fragments.WizardStepOneFragment;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
+import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.Validator;
 
 public class MainActivity extends BaseActivity {
 
@@ -18,6 +21,12 @@ public class MainActivity extends BaseActivity {
 
         WizardStepOneFragment wizardStepOneFragment = new WizardStepOneFragment();
         openFragment(wizardStepOneFragment, false);
+
+        String message = getIntent().getExtras().getString(Constants.LOG_OUT_MESSAGE, "");
+
+        if (!Validator.isEmpty(message)){
+            ToastInterval.showToast(this, message);
+        }
 
   /*      Timber.d("MainActivity onCreate called!");
 

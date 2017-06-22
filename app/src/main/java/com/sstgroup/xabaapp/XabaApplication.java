@@ -1,12 +1,14 @@
 package com.sstgroup.xabaapp;
 
 import android.app.Application;
+import android.os.Bundle;
 
 import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.Language;
 import com.sstgroup.xabaapp.models.Token;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.ui.activities.MainActivity;
+import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.NavigationUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
 
@@ -80,7 +82,10 @@ public class XabaApplication extends Application {
         setToken(null);
         Preferences.setLocationHash(this, locationHash);
         Preferences.setProfessionHash(this, professionHash);
-        NavigationUtils.startSingleActivity(getApplicationContext(), MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.LOG_OUT_MESSAGE, getString(R.string.session_has_expired));
+        NavigationUtils.startSingleActivityWithExtra(getApplicationContext(), bundle, MainActivity.class);
+//        NavigationUtils.startSingleActivity(getApplicationContext(), MainActivity.class);
     }
 
     public void logout(String message) {
@@ -91,6 +96,8 @@ public class XabaApplication extends Application {
         setToken(null);
         Preferences.setLocationHash(this, locationHash);
         Preferences.setProfessionHash(this, professionHash);
-        NavigationUtils.startSingleActivity(getApplicationContext(), MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.LOG_OUT_MESSAGE, message);
+        NavigationUtils.startSingleActivityWithExtra(getApplicationContext(), bundle, MainActivity.class);
     }
 }
