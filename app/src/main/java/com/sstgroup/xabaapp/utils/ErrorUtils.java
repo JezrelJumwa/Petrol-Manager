@@ -4,6 +4,7 @@ import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.models.errors.ErrorLogin;
 import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
 import com.sstgroup.xabaapp.models.errors.ErrorStatusAndError;
+import com.sstgroup.xabaapp.models.errors.ErrorWithDictionary;
 import com.sstgroup.xabaapp.service.RestClient;
 
 import java.io.IOException;
@@ -62,6 +63,17 @@ public class ErrorUtils {
             return converter.convert(response.errorBody());
         } catch (IOException e) {
             return new ErrorRegisterWorker(null, null);
+        }
+    }
+
+    public static ErrorWithDictionary parseErrorWithDictionary(Response<?> response) {
+        Converter<ResponseBody, ErrorWithDictionary> converter =
+                RestClient.getRetrofit()
+                        .responseBodyConverter(ErrorWithDictionary.class, ErrorWithDictionary.class.getAnnotations());
+        try {
+            return converter.convert(response.errorBody());
+        } catch (IOException e) {
+            return new ErrorWithDictionary(Constants.ERROR_STATUS_UNEXPECTED, null);
         }
     }
 }

@@ -94,7 +94,8 @@ public interface XabaService {
 
     @FormUrlEncoded
     @POST(WS_CHANGE_PIN_PATH)
-    Call<PinResponse> changePin(@Field(AGENT_APP_KEY) String agentApp,
+    Call<PinResponse> changePin(@Path(LANGUAGE) String language,
+                                @Field(AGENT_APP_KEY) String agentApp,
                                 @Field(TOKEN) String token,
                                 @Field(OLD_PIN) String oldPin,
                                 @Field(NEW_PIN) String newPin);

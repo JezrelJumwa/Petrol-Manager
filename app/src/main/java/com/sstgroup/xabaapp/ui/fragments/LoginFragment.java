@@ -12,6 +12,7 @@ import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.models.errors.ErrorLogin;
 import com.sstgroup.xabaapp.service.RestClient;
+import com.sstgroup.xabaapp.ui.activities.EditPinActivity;
 import com.sstgroup.xabaapp.ui.activities.ForgottenPinActivity;
 import com.sstgroup.xabaapp.ui.activities.HomeActivity;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
@@ -54,18 +55,13 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-//        if (BuildConfig.DEBUG) {
-//            mEditTextNationalId.setText("1234569870");
-//            mEditTextPinCode.setText("1234");
-//        }
-
-        //user with notification data
         if (BuildConfig.DEBUG) {
-            mEditTextNationalId.setText("235720441");
-            mEditTextPinCode.setText("0000");
+            mEditTextNationalId.setText("1234569870");
+            mEditTextPinCode.setText("1234");
         }
 
-//        if (BuildConfig.DEBUG){
+        //user with notification data
+//        if (BuildConfig.DEBUG) {
 //            mEditTextNationalId.setText("235720441");
 //            mEditTextPinCode.setText("0000");
 //        }
@@ -141,19 +137,19 @@ public class LoginFragment extends BaseFragment {
                     User user = response.body().getUser();
                     if (!user.getIsPhoneVerified()) {
                         activity.openFragment(RegisterConfirmFragment.newInstance(user.getId(), true), true);
-                    }
-//                    else if (!user.getIsDefaultPin()){
-//                        //TODO: keep in mind token
-//                        NavigationUtils.startActivity(activity, EditPinActivity.class);
-//                    }
-                    else {
+                    } else if (!user.getIsDefaultPin()) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString(Constants.TOKEN, user.getTokenFromWS().getValue());
+                        bundle.putBoolean(Constants.REGISTER_CONFIRM_STARTED_FROM_LOGIN, true);
+                        NavigationUtils.startActivityWithExtra(activity, bundle, EditPinActivity.class);
+                    } else {
                         XabaApplication.getInstance().setToken(user.getTokenFromWS());
                         xabaDbHelper.insertLoggedUser(activity, user);
                         NavigationUtils.startSingleActivity(activity, HomeActivity.class);
                     }
                 } else {
                     ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
-                    if (errorLogin.getError().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                    if (errorLogin.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(activity, errorLogin.getError());

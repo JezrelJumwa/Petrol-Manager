@@ -20,6 +20,15 @@ public class NavigationUtils {
         mContext.startActivity(intent);
     }
 
+    public static void startSingleActivityWithExtra(Context mContext, Bundle bundle, Class<?> cls) {
+        Intent intent = new Intent().setClass(mContext, cls);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP
+//                | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtras(bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        mContext.startActivity(intent);
+    }
+
     public static void startSingleActivityNoAnimation(Context mContext, Class<?> cls) {
         Intent intent = new Intent().setClass(mContext, cls);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
