@@ -53,6 +53,7 @@ public class Constants {
     public static final String REGISTER_CONFIRM_STARTED_FROM_LOGIN = "register_confirm_started_from_login";
     public static final String NOTIFICATION_FILTER = "filter[description]";
     public static final String NOTIFICATION_LAST_ITEM = "next_page_params[from_id]";
+    public static final String LOG_OUT_MESSAGE = "log_out_message";
 
     //Notification types
     public static final String NOTIFICATION_PAYOUT = "payout";

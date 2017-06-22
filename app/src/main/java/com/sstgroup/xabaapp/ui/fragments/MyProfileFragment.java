@@ -98,7 +98,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
                     @Override
                     public void onResponse(Call<Object> call, Response<Object> response) {
                         if (response.isSuccessful()){
-                            XabaApplication.getInstance().logout();
+                            XabaApplication.getInstance().logout(getString(R.string.account_deactivated_success));
                         } else {
                             ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
 
