@@ -533,4 +533,9 @@ public class DatabaseHelper {
         referredWorkerDao = daoSession.getReferredWorkerDao();
         referredWorkerDao.insertOrReplaceInTx(referredWorkers);
     }
+
+    public void updateToken(Token token) {
+        tokenDao = daoSession.getTokenDao();
+        tokenDao.update(token);
+    }
 }

@@ -17,7 +17,11 @@ public class PinResponse {
         return status;
     }
 
-    private class Worker {
+    public Worker getWorker() {
+        return worker;
+    }
+
+    public class Worker {
         private Integer id;
         private String token;
 

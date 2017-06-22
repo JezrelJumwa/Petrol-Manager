@@ -44,10 +44,12 @@ public class XabaApplication extends Application {
     }
 
     public String getLanguageCode() {
-        if (language == null)
-            return "en-US";
-
-        return language.getLanguageCode();
+        return "en-US";
+//to be able to request languages service
+//        if (language == null)
+//            return "en-US";
+//
+//        return language.getLanguageCode();
     }
 
     public boolean isAuthenticated() {
@@ -71,6 +73,17 @@ public class XabaApplication extends Application {
     }
 
     public void logout() {
+        String locationHash = Preferences.getLocationHash(this);
+        String professionHash = Preferences.getProfessionHash(this);
+        Preferences.clear(getApplicationContext());
+        DatabaseHelper.getInstance(this).dropDb();
+        setToken(null);
+        Preferences.setLocationHash(this, locationHash);
+        Preferences.setProfessionHash(this, professionHash);
+        NavigationUtils.startSingleActivity(getApplicationContext(), MainActivity.class);
+    }
+
+    public void logout(String message) {
         String locationHash = Preferences.getLocationHash(this);
         String professionHash = Preferences.getProfessionHash(this);
         Preferences.clear(getApplicationContext());

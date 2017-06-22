@@ -1,14 +1,18 @@
 package com.sstgroup.xabaapp.ui.activities;
 
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.PinResponse;
+import com.sstgroup.xabaapp.models.Token;
+import com.sstgroup.xabaapp.models.errors.ErrorWithDictionary;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
@@ -17,7 +21,6 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
 
 public class EditPinActivity extends BaseActivity {
     @BindView(R.id.toolbar)
@@ -28,6 +31,8 @@ public class EditPinActivity extends BaseActivity {
     EditText etNewPin;
     @BindView(R.id.et_retype_pin)
     EditText etConfirmPin;
+    private String token;
+    private boolean startedFromLogin;
 
 
     @Override
@@ -39,6 +44,12 @@ public class EditPinActivity extends BaseActivity {
     protected void init() {
         setupToolbar(toolbar, R.drawable.arrow_back);
         hasBackArrow = true;
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            token = bundle.getString(Constants.TOKEN, "");
+            startedFromLogin = bundle.getBoolean(Constants.REGISTER_CONFIRM_STARTED_FROM_LOGIN, false);
+        }
     }
 
     @OnClick(R.id.txt_visit_url)
@@ -65,14 +76,36 @@ public class EditPinActivity extends BaseActivity {
             return;
         }
 
-        Call<PinResponse> call = RestClient.getService().changePin(Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(), oldPin, newPin);
+        if (Validator.isEmpty(token)){
+            token = XabaApplication.getInstance().getToken().getValue();
+        }
+
+        Call<PinResponse> call = RestClient.getService().changePin(XabaApplication.getInstance().getLanguageCode(), Constants.AGENT_APP_VALUE, token, oldPin, newPin);
         call.enqueue(new Callback<PinResponse>() {
             @Override
             public void onResponse(Call<PinResponse> call, Response<PinResponse> response) {
                 if (response.isSuccessful()) {
-                    response.body().getStatus();
+                    if (startedFromLogin){
+                        onBackPressed();
+                    } else {
+                        Token token = XabaApplication.getInstance().getToken();
+                        token.setValue(response.body().getWorker().getToken());
+                        xabaDbHelper.updateToken(token);
+                    }
                 } else {
 
+                    ErrorWithDictionary error = ErrorUtils.parseErrorWithDictionary(response);
+
+                    if (error.getErrors() != null
+                            && error.getErrors().getOldPin() != null
+                            && !error.getErrors().getOldPin().isEmpty()){
+
+                        ToastInterval.showToast(EditPinActivity.this, error.getErrors().getOldPin().get(0));
+                        hideLoader();
+                        return;
+                    }
+
+                    ToastInterval.showToast(EditPinActivity.this, getString(R.string.something_is_wrong));
                 }
 
                 hideLoader();
@@ -80,7 +113,7 @@ public class EditPinActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<PinResponse> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
+                Utils.onFailureUtils(EditPinActivity.this, t);
 
                 hideLoader();
             }
