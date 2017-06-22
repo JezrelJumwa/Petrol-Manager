@@ -106,7 +106,7 @@ public class HomeActivity extends BaseActivity implements
     }
 
     public void loadUserProfile() {
-        Call<UserResponse> call = RestClient.getService().getWorkerData(Constants.AGENT_APP_VALUE,
+        Call<UserResponse> call = RestClient.getService().getWorkerData(XabaApplication.getInstance().getLanguageCode(), Constants.AGENT_APP_VALUE,
                 XabaApplication.getInstance().getToken().getValue());
 
         call.enqueue(new Callback<UserResponse>() {

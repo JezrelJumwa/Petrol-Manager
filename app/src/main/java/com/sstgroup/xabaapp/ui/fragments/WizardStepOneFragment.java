@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
+import com.sstgroup.xabaapp.models.Language;
 import com.sstgroup.xabaapp.ui.activities.LoginActivity;
 import com.sstgroup.xabaapp.ui.activities.RegisterActivity;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
@@ -124,6 +126,9 @@ public class WizardStepOneFragment extends BaseFragment {
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         selectedLanguage = selectedItems.get(0);
                         txtLanguageSelection.setText(selectedLanguage);
+
+                        Language language = xabaDbHelper.getLanguage(selectedLanguage);
+                        XabaApplication.getInstance().setLanguage(language);
 
                         Preferences.setSelectedLanguage(activity, selectedLanguage);
                     }

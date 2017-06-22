@@ -99,6 +99,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
         }
 
         Call<XabaResponse<NotificationResponse>> call = RestClient.getService().loadNotifications(
+                XabaApplication.getInstance().getLanguageCode(),
                 Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(),
                 selectedFilter, fromId);
         call.enqueue(new Callback<XabaResponse<NotificationResponse>>() {

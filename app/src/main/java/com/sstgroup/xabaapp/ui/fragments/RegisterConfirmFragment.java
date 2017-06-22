@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.ActivationCodeResponse;
 import com.sstgroup.xabaapp.models.SendNewActivationCodeResponse;
 import com.sstgroup.xabaapp.models.errors.ErrorLogin;
@@ -21,7 +22,6 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
 
 public class RegisterConfirmFragment extends BaseFragment {
     private Long userId;
@@ -86,12 +86,12 @@ public class RegisterConfirmFragment extends BaseFragment {
             return;
         }
 
-        Call<ActivationCodeResponse> call = RestClient.getService().sendActivationCode(Constants.AGENT_APP_VALUE, activationCode);
+        Call<ActivationCodeResponse> call = RestClient.getService().sendActivationCode(
+                XabaApplication.getInstance().getLanguageCode(), Constants.AGENT_APP_VALUE, activationCode);
         call.enqueue(new Callback<ActivationCodeResponse>() {
             @Override
             public void onResponse(Call<ActivationCodeResponse> call, Response<ActivationCodeResponse> response) {
                 if (response.isSuccessful()) {
-
                     if (startedFromLogin) {
                         activity.onBackPressed();
                     } else {
@@ -99,7 +99,7 @@ public class RegisterConfirmFragment extends BaseFragment {
                     }
                 } else {
                     ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
-                    if (errorLogin.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                    if (errorLogin.getError().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(activity, errorLogin.getError());
@@ -109,13 +109,14 @@ public class RegisterConfirmFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<ActivationCodeResponse> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
+                Utils.onFailureUtils(activity, t);
             }
         });
     }
 
     private void resendPinSms() {
-        Call<SendNewActivationCodeResponse> call = RestClient.getService().sendSmsWithNewActivationCode(Constants.AGENT_APP_VALUE, userId);
+        Call<SendNewActivationCodeResponse> call = RestClient.getService().sendSmsWithNewActivationCode(
+                XabaApplication.getInstance().getLanguageCode(), Constants.AGENT_APP_VALUE, userId);
         call.enqueue(new Callback<SendNewActivationCodeResponse>() {
             @Override
             public void onResponse(Call<SendNewActivationCodeResponse> call, Response<SendNewActivationCodeResponse> response) {
@@ -127,7 +128,7 @@ public class RegisterConfirmFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<SendNewActivationCodeResponse> call, Throwable t) {
-                Timber.d("onFailure" + t.toString());
+                Utils.onFailureUtils(activity, t);
             }
         });
     }

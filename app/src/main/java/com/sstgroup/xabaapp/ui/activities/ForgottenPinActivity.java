@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.PinResponse;
 import com.sstgroup.xabaapp.models.errors.ErrorStatusAndError;
 import com.sstgroup.xabaapp.service.RestClient;
@@ -72,7 +73,8 @@ public class ForgottenPinActivity extends BaseActivity {
 
         nationalId = Encryption.encryptionRSA(nationalId);
 
-        Call<PinResponse> call = RestClient.getService().resetPin(Constants.AGENT_APP_VALUE, nationalId);
+        Call<PinResponse> call = RestClient.getService().resetPin(XabaApplication.getInstance().getLanguageCode(),
+                Constants.AGENT_APP_VALUE, nationalId);
         call.enqueue(new Callback<PinResponse>() {
             @Override
             public void onResponse(Call<PinResponse> call, Response<PinResponse> response) {
