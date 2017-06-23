@@ -18,6 +18,7 @@ import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Utils;
+import com.sstgroup.xabaapp.utils.Validator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -142,7 +143,11 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         void bind() {
-            txtName.setText(loggedUser.getFirstName() + " " + loggedUser.getLastName());
+            if (Validator.isEmpty(loggedUser.getFirstName()) && Validator.isEmpty(loggedUser.getLastName())){
+                txtName.setText(XabaApplication.getInstance().getString(R.string.pending_validation));
+            } else {
+                txtName.setText(loggedUser.getFirstName() + " " + loggedUser.getLastName());
+            }
         }
     }
 

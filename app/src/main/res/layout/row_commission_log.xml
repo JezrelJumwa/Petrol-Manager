@@ -6,6 +6,7 @@
     android:background="@color/referred_worker_gray">
 
     <LinearLayout
+        android:id="@+id/grp_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

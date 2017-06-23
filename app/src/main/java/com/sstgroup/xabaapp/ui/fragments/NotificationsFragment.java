@@ -46,6 +46,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
 
     private String selectedFilter;
     private Integer fromId;
+    private boolean moreItems;
 
     public static NotificationsFragment newInstance() {
 
@@ -117,10 +118,21 @@ public class NotificationsFragment extends BaseFragment implements Notifications
                             loadMoreTriggered = false;
                             notificationAdapter.loadMoreFinished();
                             refreshLayout.setEnabled(true);
-                            notificationAdapter.addMoreNotifications(notifications);
+
+                            if (moreItems){
+                                notificationAdapter.addMoreNotifications(notifications);
+                            }
+
+                            if (response.body().getBody().getMoreItems() != null) {
+                                moreItems = response.body().getBody().getMoreItems();
+                            }
                         } else {
                             hideSwipeLoading();
                             notificationAdapter.replaceAllNotification(notifications);
+
+                            if (response.body().getBody().getMoreItems() != null) {
+                                moreItems = response.body().getBody().getMoreItems();
+                            }
                         }
 
                         xabaDbHelper.insertOrReplaceNotifications(notifications);
@@ -167,6 +179,7 @@ public class NotificationsFragment extends BaseFragment implements Notifications
 
         selectedFilter = "";
         fromId = null;
+        moreItems = true;
 
         notificationAdapter = new NotificationAdapter(xabaDbHelper.getAllNotifications());
         rvNotifications.setAdapter(notificationAdapter);

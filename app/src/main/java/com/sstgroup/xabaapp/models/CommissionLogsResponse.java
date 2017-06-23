@@ -10,13 +10,13 @@ public class CommissionLogsResponse {
     @SerializedName("items")
     private ArrayList<CommissionLog> items;
     @SerializedName("more_items")
-    private String moreItems;
+    private Boolean moreItems;
     @SerializedName("next_page_params")
     private NextPageParams nextPageParams;
     @SerializedName("per_page")
     private Integer perPage;
 
-    public CommissionLogsResponse(ArrayList<CommissionLog> items, String moreItems, NextPageParams nextPageParams, Integer perPage) {
+    public CommissionLogsResponse(ArrayList<CommissionLog> items, Boolean moreItems, NextPageParams nextPageParams, Integer perPage) {
         this.items = items;
         this.moreItems = moreItems;
         this.nextPageParams = nextPageParams;
@@ -31,11 +31,11 @@ public class CommissionLogsResponse {
         this.items = items;
     }
 
-    public String getMoreItems() {
+    public Boolean getMoreItems() {
         return moreItems;
     }
 
-    public void setMoreItems(String moreItems) {
+    public void setMoreItems(Boolean moreItems) {
         this.moreItems = moreItems;
     }
 

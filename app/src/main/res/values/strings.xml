@@ -228,5 +228,6 @@
     <string name="last_week">Last Week</string>
     <string name="last_30_days">Last 30 Days</string>
     <string name="all_types">All Types</string>
+    <string name="pending_validation">Pending Validation</string>
 
 </resources>

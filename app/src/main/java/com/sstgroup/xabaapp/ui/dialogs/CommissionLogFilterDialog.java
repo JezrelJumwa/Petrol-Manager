@@ -68,10 +68,10 @@ public class CommissionLogFilterDialog extends Dialog {
                     rbPeriodToday.setChecked(true);
                     break;
                 case 7:
-                    rbPeriod30Days.setChecked(true);
+                    rbPeriodLastWeek.setChecked(true);
                     break;
                 case 30:
-                    rbPeriodLastWeek.setChecked(true);
+                    rbPeriod30Days.setChecked(true);
                     break;
             }
         }
