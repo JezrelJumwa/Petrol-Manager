@@ -23,10 +23,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Created by rosenstoyanov on 6/2/17.
- */
-
 public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private User loggedUser;
     private Context context;

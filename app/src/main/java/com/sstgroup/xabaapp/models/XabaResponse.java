@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import static com.sstgroup.xabaapp.utils.Constants.BODY;
 import static com.sstgroup.xabaapp.utils.Constants.STATUS;
 
-/**
- * Created by rosenstoyanov on 6/15/17.
- */
-
 public class XabaResponse<T> {
 
     @SerializedName(STATUS)

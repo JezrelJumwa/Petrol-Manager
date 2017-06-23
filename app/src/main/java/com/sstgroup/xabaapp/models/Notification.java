@@ -8,9 +8,6 @@ import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
 
-/**
- * Created by rosenstoyanov on 6/13/17.
- */
 @Entity
 public class Notification {
 

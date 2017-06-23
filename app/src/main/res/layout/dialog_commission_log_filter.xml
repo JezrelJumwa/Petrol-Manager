@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:text="@string/filters"
+        android:textColor="@color/text_gray_8"
+        android:textSize="19sp" />
+
+    <TextView
+        style="@style/CommissionFilterGroupTitle"
+        android:text="@string/date" />
+
+    <RadioGroup
+        android:id="@+id/grp_radio_buttons_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="10dp">
+
+        <RadioButton
+            android:id="@+id/rb_period_all"
+            style="@style/RadioButtonGreen"
+            android:text="@string/all" />
+
+        <RadioButton
+            android:id="@+id/rb_period_today"
+            style="@style/RadioButtonGreen"
+            android:text="@string/today" />
+
+        <RadioButton
+            android:id="@+id/rb_period_last_30_days"
+            style="@style/RadioButtonGreen"
+            android:text="@string/last_week" />
+
+        <RadioButton
+            android:id="@+id/rb_period_last_week"
+            style="@style/RadioButtonGreen"
+            android:text="@string/last_30_days" />
+
+    </RadioGroup>
+
+    <TextView
+        style="@style/CommissionFilterGroupTitle"
+        android:text="@string/type" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="10dp">
+
+        <RadioGroup
+            android:id="@+id/grp_radio_buttons_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rb_types_all"
+                style="@style/RadioButtonGreen"
+                android:text="All Types" />
+
+            <RadioButton
+                android:id="@+id/rb_types_payouts"
+                style="@style/RadioButtonGreen"
+                android:text="@string/payout_done" />
+
+            <RadioButton
+                android:id="@+id/rb_validated_registration"
+                style="@style/RadioButtonGreen"
+                android:text="@string/validated_registration" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                style="@style/ButtonGreenBorder"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="@string/cancel" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minWidth="25dp" />
+
+            <Button
+                android:id="@+id/btn_apply"
+                style="@style/ButtonGreenStyle"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="@string/apply"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

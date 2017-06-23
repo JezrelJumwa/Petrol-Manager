@@ -8,9 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 
-/**
- * Created by rosen.stoyanov on 21.12.2015 г..
- */
 public class NavigationUtils {
     public static void startSingleActivity(Context mContext, Class<?> cls) {
         Intent intent = new Intent().setClass(mContext, cls);

@@ -12,10 +12,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by rosenstoyanov on 5/5/17.
- */
-
 public class DateDeserializer implements JsonDeserializer<Date> {
     private static final String[] DATE_FORMATS = new String[] {
             "yyyy-MM-dd HH:mm:ss",

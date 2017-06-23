@@ -4,10 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-/**
- * Created by rosenstoyanov on 6/15/17.
- */
-
 public class ReferredWorkersResponse {
 
     @SerializedName("referrals")

@@ -15,10 +15,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Created by rosenstoyanov on 6/14/17.
- */
-
 public class NotificationsFilterDialog extends Dialog {
 
     @BindView(R.id.grp_radio_buttons)

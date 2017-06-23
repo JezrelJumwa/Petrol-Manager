@@ -19,10 +19,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by rosenstoyanov on 6/13/17.
- */
-
 public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int VIEW_ITEM = 0;
     private final int VIEW_PROGRESS = 1;

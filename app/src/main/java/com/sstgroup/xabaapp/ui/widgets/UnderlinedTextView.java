@@ -6,10 +6,6 @@ import android.graphics.Paint;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
-/**
- * Created by alexander on 2/6/17.
- */
-
 public class UnderlinedTextView extends AppCompatTextView {
 
     public UnderlinedTextView(Context context) {

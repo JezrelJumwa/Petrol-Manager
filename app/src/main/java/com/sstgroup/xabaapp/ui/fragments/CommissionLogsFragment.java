@@ -14,6 +14,7 @@ import com.sstgroup.xabaapp.models.XabaResponse;
 import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.adapters.CommissionLogAdapter;
+import com.sstgroup.xabaapp.ui.dialogs.CommissionLogFilterDialog;
 import com.sstgroup.xabaapp.ui.widgets.EndlessScrollListener;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
@@ -28,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CommissionLogsFragment extends BaseFragment {
+public class CommissionLogsFragment extends BaseFragment implements CommissionLogAdapter.ClickCallbacks {
 
     @BindView(R.id.rv_commission_logs)
     RecyclerView rvCommissionLogs;
@@ -83,7 +84,8 @@ public class CommissionLogsFragment extends BaseFragment {
         selectedFilter = "";
         fromId = null;
 
-        commissionLogAdapter = new CommissionLogAdapter(xabaDbHelper.getAllCommissionLogs(), xabaDbHelper.getLoggedUser(activity));
+        commissionLogAdapter = new CommissionLogAdapter(xabaDbHelper.getAllCommissionLogs(),
+                xabaDbHelper.getLoggedUser(activity), this);
         rvCommissionLogs.setAdapter(commissionLogAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         endlessScrollListener = new EndlessScrollListener(linearLayoutManager) {
@@ -208,6 +210,13 @@ public class CommissionLogsFragment extends BaseFragment {
         } else if (selectedFilter.equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)) {
             commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogsByType(Constants.NOTIFICATION_REFERRAL_VALIDATION));
         }
+    }
+
+    @Override
+    public void onClick() {
+        CommissionLogFilterDialog commissionLogFilterDialog
+                = new CommissionLogFilterDialog(activity);
+        commissionLogFilterDialog.show();
     }
 
     private void loadDemoData() {

@@ -23,10 +23,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Created by rosenstoyanov on 6/8/17.
- */
-
 public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private County selectedCounty;

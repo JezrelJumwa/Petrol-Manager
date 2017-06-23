@@ -18,10 +18,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by rosenstoyanov on 6/12/17.
- */
-
 public class Utils {
 
     public static void openUrl(String url, Context context) {
