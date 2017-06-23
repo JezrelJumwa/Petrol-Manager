@@ -1,8 +1,14 @@
 package com.sstgroup.xabaapp.ui.activities;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
@@ -104,6 +110,32 @@ public class HomeActivity extends BaseActivity implements
         }
 
         mInForeground = true;
+    }
+
+    private void requestSmsPermission() {
+        String permission = Manifest.permission.READ_SMS;
+        int grant = ContextCompat.checkSelfPermission(this, permission);
+        if (grant != PackageManager.PERMISSION_GRANTED) {
+            String[] permission_list = new String[1];
+            permission_list[0] = permission;
+            ActivityCompat.requestPermissions(this, permission_list, 1);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(HomeActivity.this,"permission granted", Toast.LENGTH_SHORT).show();
+
+
+            } else {
+                Toast.makeText(HomeActivity.this,"permission not granted", Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
     public void loadUserProfile() {
