@@ -148,6 +148,7 @@ public class LoginFragment extends BaseFragment {
                         NavigationUtils.startSingleActivity(activity, HomeActivity.class);
                     }
                 } else {
+                    //TODO: init correct way of parsing errors because server returns different models of errors and could not be correctly parsed
                     ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
                     if (errorLogin.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
