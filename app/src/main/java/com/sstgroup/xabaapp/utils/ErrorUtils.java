@@ -8,10 +8,12 @@ import com.sstgroup.xabaapp.models.errors.ErrorWithDictionary;
 import com.sstgroup.xabaapp.service.RestClient;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Response;
+import timber.log.Timber;
 
 /**
  * Created by rosenstoyanov on 6/6/17.
@@ -28,9 +30,8 @@ public class ErrorUtils {
                         .responseBodyConverter(ErrorCodeAndMessage.class, ErrorCodeAndMessage.class.getAnnotations());
         try {
             return converter.convert(response.errorBody());
-        } catch (IOException e) {
-            return new ErrorCodeAndMessage(Constants.ERROR_STATUS_UNEXPECTED, new ErrorCodeAndMessage.Error(1000, "Error Parse Failure"));
         } catch (Exception e) {
+            Timber.d("parseErrorCodeMessage exception : ", e);
             return new ErrorCodeAndMessage(Constants.ERROR_STATUS_UNEXPECTED, new ErrorCodeAndMessage.Error(1000, "Error Parse Failure"));
         }
     }
@@ -41,9 +42,8 @@ public class ErrorUtils {
                         .responseBodyConverter(ErrorLogin.class, ErrorLogin.class.getAnnotations());
         try {
             return converter.convert(response.errorBody());
-        } catch (IOException e) {
-            return new ErrorLogin(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
         } catch (Exception e) {
+            Timber.d("parseLoginError exception : ", e);
             return new ErrorLogin(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
         }
     }
@@ -54,9 +54,8 @@ public class ErrorUtils {
                         .responseBodyConverter(ErrorStatusAndError.class, ErrorStatusAndError.class.getAnnotations());
         try {
             return converter.convert(response.errorBody());
-        } catch (IOException e) {
-            return new ErrorStatusAndError(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
         } catch (Exception e) {
+            Timber.d("parseStatusAndError exception : ", e);
             return new ErrorStatusAndError(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
         }
     }
@@ -67,9 +66,8 @@ public class ErrorUtils {
                         .responseBodyConverter(ErrorRegisterWorker.class, ErrorRegisterWorker.class.getAnnotations());
         try {
             return converter.convert(response.errorBody());
-        } catch (IOException e) {
-            return new ErrorRegisterWorker(null, null);
         } catch (Exception e) {
+            Timber.d("parseRegisterWorkerError exception : ", e);
             return new ErrorRegisterWorker(null, null);
         }
     }
@@ -80,9 +78,8 @@ public class ErrorUtils {
                         .responseBodyConverter(ErrorWithDictionary.class, ErrorWithDictionary.class.getAnnotations());
         try {
             return converter.convert(response.errorBody());
-        } catch (IOException e) {
-            return new ErrorWithDictionary(Constants.ERROR_STATUS_UNEXPECTED, null);
         } catch (Exception e) {
+            Timber.d("parseErrorWithDictionary exception : ", e);
             return new ErrorWithDictionary(Constants.ERROR_STATUS_UNEXPECTED, null);
         }
     }
