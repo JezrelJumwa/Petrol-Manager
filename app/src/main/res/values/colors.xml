@@ -17,6 +17,7 @@
     <color name="red">#e51f28</color>
     <color name="green">#d9f2ba</color>
     <color name="dark_green">#76bd1d</color>
+    <color name="gray_0">#f2f2f2</color>
 
 
     <color name="text_red">#e51f28</color>
@@ -28,6 +29,8 @@
     <color name="text_gray_4">#505050</color>
     <color name="text_gray_5">#353535</color>
     <color name="text_gray_6">#525252</color>
+    <color name="text_gray_7">#707070</color>
+    <color name="text_gray_8">#313131</color>
     <color name="text_green">#76bd1d</color>
     <color name="text_blue">#1dbda8</color>
     <color name="text_white">#ffffff</color>

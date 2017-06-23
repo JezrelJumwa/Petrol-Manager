@@ -82,7 +82,7 @@
                     android:gravity="end"
                     android:textColor="@color/dark_color"
                     android:textSize="20sp"
-                    tools:text="@string/kes" />
+                    android:text="@string/kes" />
 
             </LinearLayout>
 

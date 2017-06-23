@@ -214,7 +214,17 @@
     <string name="total_registered_workers">Total registered workers:</string>
     <string name="session_has_expired">Your session has expired. Please, login again.</string>
     <string name="account_deactivated_success">Your account was successfully deactivated. Login again for reactivation.</string>
+
+    <!--Commission log-->
     <string name="commissions">Commissions</string>
     <string name="filters">Filters</string>
+
+    <!--Commission log filter-->
+    <string name="date">Date</string>
+    <string name="type">Type</string>
+    <string name="all">All</string>
+    <string name="today">Today</string>
+    <string name="last_week">Last Week</string>
+    <string name="last_30_days">Last 30 Days</string>
 
 </resources>

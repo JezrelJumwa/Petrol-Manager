@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.CommissionLog;
 import com.sstgroup.xabaapp.models.User;
-import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Utils;
 
@@ -32,11 +31,13 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private List<CommissionLog> commissionLogs;
     private User loggedUser;
+    private ClickCallbacks clickCallbacks;
 
 
-    public CommissionLogAdapter(List<CommissionLog> commissionLogs, User loggedUser) {
+    public CommissionLogAdapter(List<CommissionLog> commissionLogs, User loggedUser, ClickCallbacks clickCallbacks) {
         this.commissionLogs = commissionLogs;
         this.loggedUser = loggedUser;
+        this.clickCallbacks = clickCallbacks;
     }
 
     @Override
@@ -169,7 +170,12 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         @OnClick(R.id.txt_filters)
         public void onClick(View view) {
-            ToastInterval.showToast(view.getContext(), "Filters clicked");
+            if (clickCallbacks != null)
+                clickCallbacks.onClick();
         }
+    }
+
+    public interface ClickCallbacks {
+        void onClick();
     }
 }
