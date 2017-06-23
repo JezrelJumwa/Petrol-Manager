@@ -133,7 +133,7 @@ public class LoginFragment extends BaseFragment {
                     User user = response.body().getUser();
                     if (!user.getIsPhoneVerified()) {
                         activity.openFragment(RegisterConfirmFragment.newInstance(user.getId(), true), true);
-                    } else if (!user.getIsDefaultPin()) {
+                    } else if (user.getIsDefaultPin()) {
                         Bundle bundle = new Bundle();
                         bundle.putString(Constants.TOKEN, user.getTokenFromWS().getValue());
                         bundle.putBoolean(Constants.REGISTER_CONFIRM_STARTED_FROM_LOGIN, true);

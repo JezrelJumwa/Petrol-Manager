@@ -48,6 +48,11 @@
             android:name=".ui.activities.EditProfileActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activities.EditPinActivity"/>
+        <receiver android:name=".listener.SMSReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

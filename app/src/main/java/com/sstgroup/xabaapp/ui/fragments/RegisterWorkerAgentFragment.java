@@ -1,6 +1,7 @@
 package com.sstgroup.xabaapp.ui.fragments;
 
 
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -419,6 +420,14 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     private void register() {
 
+        RegisterWorkerRequestModel registerWorkerRequestModel = getRegisterWorkerRequestModel();
+        if (registerWorkerRequestModel == null) return;
+
+        requestRegister(registerWorkerRequestModel);
+    }
+
+    @Nullable
+    private RegisterWorkerRequestModel getRegisterWorkerRequestModel() {
         String nationalId = mEditTextNationalId.getText().toString().trim();
         String confirmNationalId = mEditTextConfirmNationalId.getText().toString().trim();
         String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+","");
@@ -427,91 +436,113 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         String confirmPinCode = mEditTextConfirmPinCode.getText().toString().trim();
         String referralCode = mEditTextReferralCode.getText().toString().trim();
 
+        List<Long> professionIds = xabaDbHelper.getProfessionIds(professions);
+
+        RegistrationInfo info = new RegistrationInfo(nationalId,
+                confirmNationalId,
+                phoneNumber,
+                pinCode,
+                confirmPinCode,
+                referralCode,
+                professionIds);
+
+        if (validateRegisterInfo(info)) return null;
+
+        return getRegisterWorkerRequestModelWithInfo(info);
+    }
+
+    @Nullable
+    public RegisterWorkerRequestModel getRegisterWorkerRequestModelWithInfo(RegistrationInfo registrationInfo) {
+        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(registrationInfo.getNationalId(), registrationInfo.getPinCode(), registrationInfo.getPhoneNumber(), languageCode, countryId, countyId, subCountyId, registrationInfo.professionIds, registrationInfo.getReferralCodeAsLong(), Constants.AGENT_APP_VALUE, null);
+        return registerWorkerRequestModel;
+    }
+
+    private boolean validateRegisterInfo(RegistrationInfo registrationInfo) {
         // validations for National ID
-        if (Validator.isEmpty(nationalId)) {
+        if (Validator.isEmpty(registrationInfo.getNationalId())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.enter_national_id));
-            return;
+            return true;
         }
 
-        if (Validator.isNotNumber(nationalId)) {
+        if (Validator.isNotNumber(registrationInfo.getNationalId())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.national_id_should_be_a_number));
-            return;
+            return true;
         }
 
-        if (Validator.isNotCorrectNationalIdSize(nationalId)) {
+        if (Validator.isNotCorrectNationalIdSize(registrationInfo.getNationalId())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.your_national_id_is_wrong));
-            return;
+            return true;
         }
 
         // validations for Confirm National ID
-        if (Validator.isEmpty(confirmNationalId)) {
+        if (Validator.isEmpty(registrationInfo.getConfirmNationalId())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.enter_confirm_national_id));
-            return;
+            return true;
         }
 
-        if (!nationalId.equals(confirmNationalId)) {
+        if (!registrationInfo.getNationalId().equals(registrationInfo.getConfirmNationalId())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.national_id_and_confirm_national_id_should_be_the_same));
-            return;
+            return true;
         }
 
         // validations for Phone Number
-        if (Validator.isEmpty(phoneNumber)) {
+        if (Validator.isEmpty(registrationInfo.getPhoneNumber())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.enter_phone_number));
-            return;
+            return true;
         }
 
-        if (!Validator.isCorrectPhoneNumber(phoneNumber)) {
+        if (!Validator.isCorrectPhoneNumber(registrationInfo.getPhoneNumber())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.your_phone_number_should_look_like));
-            return;
+            return true;
         }
 
         //  validations for Locations
         if (Validator.isEmpty(selectedCounty)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.choose_county));
-            return;
+            return true;
         }
 
         if (Validator.isEmpty(selectedSubCounty)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.choose_sub_county));
-            return;
+            return true;
         }
 
         //  validations for Professions
         if (Validator.isEmpty(selectedIndustry)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.choose_industry));
-            return;
+            return true;
         }
 
         if (Validator.isEmpty(selectedCategory)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.choose_category));
-            return;
+            return true;
         }
 
         if (Validator.isEmpty(selectedProfession)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.choose_profession));
-            return;
+            return true;
         }
 
         // validations for PIN code
-        if (Validator.isEmpty(pinCode)) {
+        if (Validator.isEmpty(registrationInfo.getPinCode())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.enter_pin_code));
-            return;
+            return true;
         }
 
-        if (Validator.isNotCorrectPinCodeSize(pinCode)) {
+        if (Validator.isNotCorrectPinCodeSize(registrationInfo.getPinCode())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.your_pin_code_is_wrong));
-            return;
+            return true;
         }
 
         // validations for Confirm PIN code
-        if (Validator.isEmpty(confirmPinCode)) {
+        if (Validator.isEmpty(registrationInfo.getConfirmPinCode())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.enter_confirm_pin_code));
-            return;
+            return true;
         }
 
-        if (!Validator.isMatch(pinCode, confirmPinCode)) {
+        if (!Validator.isMatch(registrationInfo.getPinCode(), registrationInfo.getConfirmPinCode())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.pin_code_and_confirm_pin_code_should_be_the_same));
-            return;
+            return true;
         }
 
         // validations for Referral code
@@ -520,9 +551,9 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             return;
         }*/
 
-        if (Validator.isNotNumber(referralCode)) {
+        if (Validator.isNotNumber(registrationInfo.getReferralCode())) {
             ToastInterval.showToast(activity, getResources().getString(R.string.referral_code_should_be_a_number));
-            return;
+            return true;
         }
 
 
@@ -536,11 +567,10 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         if (!Validator.isEmpty(selectedProfessionThree)) {
             professions.add(selectedProfessionThree);
         }
+        return false;
+    }
 
-        List<Long> professionIds = xabaDbHelper.getProfessionIds(professions);
-
-        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, pinCode, phoneNumber, languageCode, countryId, countyId, subCountyId, professionIds, Long.valueOf(referralCode), Constants.AGENT_APP_VALUE, null);
-
+    private void requestRegister(RegisterWorkerRequestModel registerWorkerRequestModel) {
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerAgentRequest());
         Call<UserResponse> call = RestClient.getService().register(XabaApplication.getInstance().getLanguageCode(),body);
         call.enqueue(new Callback<UserResponse>() {
@@ -567,5 +597,65 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                 Timber.d("onFailure" + t.toString());
             }
         });
+    }
+
+    public static class RegistrationInfo {
+        private final String nationalId;
+        private final String confirmNationalId;
+        private final String phoneNumber;
+        private final String pinCode;
+        private final String confirmPinCode;
+        private final String referralCode;
+        private final List<Long> professionIds;
+
+        public RegistrationInfo(String nationalId, String confirmNationalId, String phoneNumber, String pinCode, String confirmPinCode, String referralCode, List<Long> professionIds) {
+            this.nationalId = nationalId;
+            this.confirmNationalId = confirmNationalId;
+            this.phoneNumber = phoneNumber;
+            this.pinCode = pinCode;
+            this.confirmPinCode = confirmPinCode;
+            this.referralCode = referralCode;
+            this.professionIds = professionIds;
+        }
+
+        public String getNationalId() {
+            return nationalId;
+        }
+
+        public String getConfirmNationalId() {
+            return confirmNationalId;
+        }
+
+        public String getPhoneNumber() {
+            return phoneNumber;
+        }
+
+        public String getPinCode() {
+            return pinCode;
+        }
+
+        public String getConfirmPinCode() {
+            return confirmPinCode;
+        }
+
+        public String getReferralCode() {
+            return referralCode;
+        }
+
+        public Long getReferralCodeAsLong() {
+            if (referralCode == null || referralCode.length() == 0) {
+                return 0L;
+            }
+            try {
+                Long result = Long.valueOf(referralCode);
+                return result;
+            } catch (Exception e) {
+                return 0L;
+            }
+        }
+
+        public List<Long> getProfessionIds() {
+            return professionIds;
+        }
     }
 }
