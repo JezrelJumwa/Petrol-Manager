@@ -100,6 +100,8 @@ public class DatabaseHelper {
         daoSession.getUserDao().deleteAll();
         daoSession.getTokenDao().deleteAll();
         daoSession.getNotificationDao().deleteAll();
+        daoSession.getReferredWorkerDao().deleteAll();
+        daoSession.getCommissionLogDao().deleteAll();
     }
 
     public void deleteLocationTables() {
