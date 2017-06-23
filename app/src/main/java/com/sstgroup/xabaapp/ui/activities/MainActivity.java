@@ -22,12 +22,13 @@ public class MainActivity extends BaseActivity {
         WizardStepOneFragment wizardStepOneFragment = new WizardStepOneFragment();
         openFragment(wizardStepOneFragment, false);
 
-        String message = getIntent().getExtras().getString(Constants.LOG_OUT_MESSAGE, "");
+        if (getIntent().getExtras() != null){
+            String message = getIntent().getExtras().getString(Constants.LOG_OUT_MESSAGE, "");
 
-        if (!Validator.isEmpty(message)){
-            ToastInterval.showToast(this, message);
+            if (!Validator.isEmpty(message)){
+                ToastInterval.showToast(this, message);
+            }
         }
-
   /*      Timber.d("MainActivity onCreate called!");
 
         networkService = NetworkAdapterService.getInstance(this);
