@@ -76,6 +76,12 @@ public class EditPinActivity extends BaseActivity {
             return;
         }
 
+        if (oldPin.equals(newPin)){
+            ToastInterval.showToast(this, getString(R.string.same_pins));
+            hideLoader();
+            return;
+        }
+
         if (Validator.isEmpty(token)){
             token = XabaApplication.getInstance().getToken().getValue();
         }
@@ -125,9 +131,5 @@ public class EditPinActivity extends BaseActivity {
                 hideLoader();
             }
         });
-
-
-
-
     }
 }

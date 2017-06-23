@@ -179,6 +179,7 @@
     <string name="retype_pin">Retype PIN</string>
     <string name="fields_not_empty">Fields should not be empty</string>
     <string name="new_pint_retype_should_match">New pin and retype PIN should match</string>
+    <string name="same_pins">Old and new Pin can not be same</string>
     <string name="get_in_touch">Get in Touch</string>
     <string name="email">Email</string>
     <string name="message">Message</string>
@@ -226,5 +227,6 @@
     <string name="today">Today</string>
     <string name="last_week">Last Week</string>
     <string name="last_30_days">Last 30 Days</string>
+    <string name="all_types">All Types</string>
 
 </resources>

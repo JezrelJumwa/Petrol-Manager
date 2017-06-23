@@ -52,12 +52,23 @@ public class Constants {
     public static final String VERIFICATION_CODE = "verification_code";
     public static final String REGISTER_CONFIRM_STARTED_FROM_LOGIN = "register_confirm_started_from_login";
     public static final String NOTIFICATION_FILTER = "filter[description]";
+    public static final String COMMISSION_FILTER_PERIOD = "filter[period]";
     public static final String NOTIFICATION_LAST_ITEM = "next_page_params[from_id]";
     public static final String LOG_OUT_MESSAGE = "log_out_message";
 
     //Notification types
     public static final String NOTIFICATION_PAYOUT = "payout";
     public static final String NOTIFICATION_REFERRAL_VALIDATION = "referral_validation";
+
+    //commission log period
+    public static final Integer COMMISSIONS_PERIOD_ALL = null;
+    public static final Integer COMMISSIONS_PERIOD_TODAY = 1;
+    public static final Integer COMMISSIONS_PERIOD_LAST_WEEK = 7;
+    public static final Integer COMMISSIONS_PERIOD_LAST_30_DAYS = 30;
+    //commission
+    public static final String COMMISSIONS_TYPE_ALL = "";
+    public static final String COMMISSIONS_TYPE_PAYOUT = "payout";
+    public static final String COMMISSIONS_TYPE_REFERRAL_VALIDATION = "referral_validation";
 
     //error status
     public static final String ERROR_UNAUTHORIZED = "Unauthorized";

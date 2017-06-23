@@ -25,6 +25,7 @@ import retrofit2.http.Query;
 
 import static com.sstgroup.xabaapp.utils.Constants.ACTIVATION_CODE;
 import static com.sstgroup.xabaapp.utils.Constants.AGENT_APP_KEY;
+import static com.sstgroup.xabaapp.utils.Constants.COMMISSION_FILTER_PERIOD;
 import static com.sstgroup.xabaapp.utils.Constants.HASH;
 import static com.sstgroup.xabaapp.utils.Constants.LANGUAGE;
 import static com.sstgroup.xabaapp.utils.Constants.NATIONAL_ID;
@@ -140,6 +141,7 @@ public interface XabaService {
             @Field(AGENT_APP_KEY) String agentApp,
             @Field(TOKEN) String token,
             @Field(NOTIFICATION_FILTER) String filter,
+            @Field(COMMISSION_FILTER_PERIOD) Integer filterPeriod,
             @Field(NOTIFICATION_LAST_ITEM) Integer lastItemId);
 
     @FormUrlEncoded

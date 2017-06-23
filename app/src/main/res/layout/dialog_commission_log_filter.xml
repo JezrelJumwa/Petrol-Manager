@@ -39,12 +39,12 @@
             android:text="@string/today" />
 
         <RadioButton
-            android:id="@+id/rb_period_last_30_days"
+            android:id="@+id/rb_period_last_week"
             style="@style/RadioButtonGreen"
             android:text="@string/last_week" />
 
         <RadioButton
-            android:id="@+id/rb_period_last_week"
+            android:id="@+id/rb_period_last_30_days"
             style="@style/RadioButtonGreen"
             android:text="@string/last_30_days" />
 
@@ -71,7 +71,7 @@
             <RadioButton
                 android:id="@+id/rb_types_all"
                 style="@style/RadioButtonGreen"
-                android:text="All Types" />
+                android:text="@string/all_types" />
 
             <RadioButton
                 android:id="@+id/rb_types_payouts"
