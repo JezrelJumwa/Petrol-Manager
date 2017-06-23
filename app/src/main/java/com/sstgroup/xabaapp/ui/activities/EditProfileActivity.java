@@ -205,6 +205,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
+                    //TODO: set profession
                     User user = response.body().getUser();
                     xabaDbHelper.updateLoggedUser(user, XabaApplication.getInstance().getToken());
                     finish();

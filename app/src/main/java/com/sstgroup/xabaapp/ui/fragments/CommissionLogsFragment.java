@@ -83,7 +83,7 @@ public class CommissionLogsFragment extends BaseFragment {
         selectedFilter = "";
         fromId = null;
 
-        commissionLogAdapter = new CommissionLogAdapter(xabaDbHelper.getAllCommissionLogs());
+        commissionLogAdapter = new CommissionLogAdapter(xabaDbHelper.getAllCommissionLogs(), xabaDbHelper.getLoggedUser(activity));
         rvCommissionLogs.setAdapter(commissionLogAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         endlessScrollListener = new EndlessScrollListener(linearLayoutManager) {

@@ -1,6 +1,7 @@
 package com.sstgroup.xabaapp.models;
 
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.DaoException;
@@ -56,6 +57,9 @@ public class User {
     private Integer totalReferrals;
     private Integer perWorker;
     private Long currencyId;
+    @Transient
+    @Expose
+    private Currency currency;
     @ToMany
     @JoinEntity(
             entity = JoinUsersWithProfessions.class,
@@ -112,9 +116,16 @@ public class User {
 
     @Generated(hash = 2059307683)
     private transient Long token__resolvedKey;
-
     public Token getTokenFromWS(){
         return this.token;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    public Currency getCurrency() {
+        return currency;
     }
 
     public Long getId() {

@@ -214,5 +214,7 @@
     <string name="total_registered_workers">Total registered workers:</string>
     <string name="session_has_expired">Your session has expired. Please, login again.</string>
     <string name="account_deactivated_success">Your account was successfully deactivated. Login again for reactivation.</string>
+    <string name="commissions">Commissions</string>
+    <string name="filters">Filters</string>
 
 </resources>
