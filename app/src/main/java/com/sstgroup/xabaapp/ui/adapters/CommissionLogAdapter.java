@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
@@ -16,6 +17,7 @@ import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,9 +37,12 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
     public CommissionLogAdapter(List<CommissionLog> commissionLogs, User loggedUser, ClickCallbacks clickCallbacks) {
-        this.commissionLogs = commissionLogs;
+        this.commissionLogs = new ArrayList<>(commissionLogs);
         this.loggedUser = loggedUser;
         this.clickCallbacks = clickCallbacks;
+        if (this.commissionLogs.isEmpty()){
+            this.commissionLogs.add(new CommissionLog());
+        }
     }
 
     @Override
@@ -64,14 +69,17 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void replaceAllCommissionLogs(List<CommissionLog> commissionLogs) {
-        this.commissionLogs = commissionLogs;
+        this.commissionLogs = new ArrayList<>(commissionLogs);
+        if (this.commissionLogs.isEmpty()){
+            this.commissionLogs.add(new CommissionLog());
+        }
         notifyDataSetChanged();
     }
 
     public void addMoreCommissionLogs(List<CommissionLog> commissionLogs) {
         int size = commissionLogs.size();
         this.commissionLogs.addAll(commissionLogs);
-        notifyItemRangeInserted(size, commissionLogs.size());
+        notifyItemRangeInserted(size + 1, commissionLogs.size() + 1);
     }
 
     @Override
@@ -90,13 +98,13 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public void loadMoreStarted() {
         commissionLogs.add(null);
-        notifyItemChanged(commissionLogs.size() - 1);
+        notifyItemChanged(commissionLogs.size());
     }
 
     public void loadMoreFinished() {
         int position = commissionLogs.size();
         commissionLogs.remove(position - 1);
-        notifyItemChanged(position - 1);
+        notifyItemChanged(position);
     }
 
     private CommissionLog getItemAt(int position) {
@@ -136,6 +144,8 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView txtValue;
         @BindView(R.id.txt_filters)
         TextView txtFilters;
+        @BindView(R.id.grp_container)
+        LinearLayout grpContainer;
 
         CommissionLogHolder(View itemView) {
             super(itemView);
@@ -151,6 +161,13 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             CommissionLog commissionLog = getItemAt(position - 1);
 
+            if (commissionLog.getId() == null) {
+                grpContainer.setVisibility(View.GONE);
+                return;
+            } else {
+                grpContainer.setVisibility(View.VISIBLE);
+            }
+
             if (commissionLog.getDescription().equals(STATUS_PAYMENT)) {
                 imageViewStatus.setBackgroundColor(ContextCompat.getColor(imageViewStatus.getContext(), R.color.referred_worker_blue));
             } else {
@@ -158,7 +175,6 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-
                 txtText.setText(Html.fromHtml(commissionLog.getText(), Html.FROM_HTML_MODE_LEGACY));
             } else {
                 txtText.setText(Html.fromHtml(commissionLog.getText()));
@@ -169,7 +185,7 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
 
         @OnClick(R.id.txt_filters)
-        public void onClick(View view) {
+        public void onClick() {
             if (clickCallbacks != null)
                 clickCallbacks.onClick();
         }
