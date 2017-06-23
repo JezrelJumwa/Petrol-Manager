@@ -62,7 +62,7 @@ public class DashboardFragment extends BaseFragment {
         txtBalance.setText(String.valueOf(Math.abs(user.getCurrentBalance())));
         txtBalanceCurrency.setText(currency.getCode());
 
-        txtWorkersToGo.setText(String.valueOf(user.getPayoutThreshold() - (user.getTotalReferrals() * user.getPerWorker())));
+        txtWorkersToGo.setText(String.valueOf((user.getPayoutThreshold() - (user.getTotalReferrals() * user.getPerWorker())) / user.getPerWorker()));
 
         circlesProgress.setmFirstMax(user.getPayoutThreshold());
         circlesProgress.setmFirstMin(0);
@@ -75,8 +75,8 @@ public class DashboardFragment extends BaseFragment {
     }
 
     @OnClick(R.id.btn_register_another_worker)
-    public void onClick(){
-        if (activity instanceof HomeActivity){
+    public void onClick() {
+        if (activity instanceof HomeActivity) {
             ((HomeActivity) activity).openAddWorker();
         }
     }

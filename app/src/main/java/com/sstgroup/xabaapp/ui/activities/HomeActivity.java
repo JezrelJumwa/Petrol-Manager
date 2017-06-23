@@ -197,7 +197,7 @@ public class HomeActivity extends BaseActivity implements
                 openFragment(ContactFragment.newInstance(), false);
                 break;
             case R.id.nav_logout:
-                XabaApplication.getInstance().logout();
+                XabaApplication.getInstance().logout("");
                 break;
 
         }

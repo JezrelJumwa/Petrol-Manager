@@ -76,6 +76,12 @@ public class EditPinActivity extends BaseActivity {
             return;
         }
 
+        if (oldPin.equals(newPin)){
+            ToastInterval.showToast(this, getString(R.string.same_pins));
+            hideLoader();
+            return;
+        }
+
         if (Validator.isEmpty(token)){
             token = XabaApplication.getInstance().getToken().getValue();
         }
@@ -91,10 +97,17 @@ public class EditPinActivity extends BaseActivity {
                         Token token = XabaApplication.getInstance().getToken();
                         token.setValue(response.body().getWorker().getToken());
                         xabaDbHelper.updateToken(token);
+                        onBackPressed();
                     }
                 } else {
 
                     ErrorWithDictionary error = ErrorUtils.parseErrorWithDictionary(response);
+
+                    if (error.getErrors().getMessage() != null && error.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                        XabaApplication.getInstance().logout();
+                        //from this point we logout user
+                        return;
+                    }
 
                     if (error.getErrors() != null
                             && error.getErrors().getOldPin() != null
@@ -118,9 +131,5 @@ public class EditPinActivity extends BaseActivity {
                 hideLoader();
             }
         });
-
-
-
-
     }
 }

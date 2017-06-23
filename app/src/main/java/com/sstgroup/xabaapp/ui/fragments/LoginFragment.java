@@ -59,7 +59,7 @@ public class LoginFragment extends BaseFragment {
 //        user with notification data
         if (BuildConfig.DEBUG) {
             mEditTextNationalId.setText("235720441");
-            mEditTextPinCode.setText("0000");
+            mEditTextPinCode.setText("1234");
         }
     }
 

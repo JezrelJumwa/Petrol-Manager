@@ -22,14 +22,13 @@ import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CommissionLogsFragment extends BaseFragment implements CommissionLogAdapter.ClickCallbacks {
+public class CommissionLogsFragment extends BaseFragment implements CommissionLogAdapter.ClickCallbacks, CommissionLogFilterDialog.ClickCallbacks {
 
     @BindView(R.id.rv_commission_logs)
     RecyclerView rvCommissionLogs;
@@ -39,9 +38,9 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
     private EndlessScrollListener endlessScrollListener;
     private boolean loadMoreTriggered = false;
     private boolean isLoading = false;
-
-    private String selectedFilter;
     private Integer fromId;
+    private Integer selectedPeriod;
+    private String selectedType;
 
     public static CommissionLogsFragment newInstance() {
 
@@ -81,7 +80,8 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
     protected void initViews(View rootView) {
         showSwipeLoading();
 
-        selectedFilter = "";
+        selectedPeriod = null;
+        selectedType = "";
         fromId = null;
 
         commissionLogAdapter = new CommissionLogAdapter(xabaDbHelper.getAllCommissionLogs(),
@@ -106,7 +106,6 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //TODO: disable bottom loader
                 if (!isLoading) {
                     isLoading = true;
                     loadMoreTriggered = false;
@@ -137,7 +136,7 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
         Call<XabaResponse<CommissionLogsResponse>> call = RestClient.getService().loadCommissionLogs(
                 XabaApplication.getInstance().getLanguageCode(),
                 Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(),
-                selectedFilter, fromId);
+                selectedType, selectedPeriod, fromId);
         call.enqueue(new Callback<XabaResponse<CommissionLogsResponse>>() {
             @Override
             public void onResponse(Call<XabaResponse<CommissionLogsResponse>> call, Response<XabaResponse<CommissionLogsResponse>> response) {
@@ -203,33 +202,26 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
     private void loadCommissionLogsFromDb() {
         fromId = null;
 
-        if (selectedFilter.equals("")) {
-            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogs());
-        } else if (selectedFilter.equals(Constants.NOTIFICATION_PAYOUT)) {
-            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogsByType(Constants.NOTIFICATION_PAYOUT));
-        } else if (selectedFilter.equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)) {
-            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogsByType(Constants.NOTIFICATION_REFERRAL_VALIDATION));
-        }
+//        if (selectedFilter.equals("")) {
+//            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogs());
+//        } else if (selectedFilter.equals(Constants.NOTIFICATION_PAYOUT)) {
+//            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogsByType(Constants.NOTIFICATION_PAYOUT));
+//        } else if (selectedFilter.equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)) {
+//            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogsByType(Constants.NOTIFICATION_REFERRAL_VALIDATION));
+//        }
+    }
+
+    @Override
+    public void onApplyFilter(Integer period, String type) {
+        selectedPeriod = period;
+        selectedType = type;
+        loadCommissionLogs();
     }
 
     @Override
     public void onClick() {
         CommissionLogFilterDialog commissionLogFilterDialog
-                = new CommissionLogFilterDialog(activity);
+                = new CommissionLogFilterDialog(activity, this, selectedPeriod, selectedType);
         commissionLogFilterDialog.show();
-    }
-
-    private void loadDemoData() {
-
-        ArrayList<CommissionLog> commissionLogs = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            if (i % 3 == 0) {
-                commissionLogs.add(new CommissionLog(8l, "15", "2", "payout", "payout", new Date(), "Paid to your account"));
-            } else if (i % 3 == 1) {
-                commissionLogs.add(new CommissionLog(8l, "15", "2", "credit", "asd", new Date(), "Paid to your account"));
-            } else if (i % 3 == 2) {
-                commissionLogs.add(new CommissionLog(8l, "15", "2", "credit", "payout", new Date(), "Paid to your account"));
-            }
-        }
     }
 }
