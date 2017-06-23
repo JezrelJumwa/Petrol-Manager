@@ -76,7 +76,7 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof CommissionLogHolder) {
-            ((CommissionLogHolder) holder).bind(getItemAt(position - 1));
+            ((CommissionLogHolder) holder).bind(position);
         } else if (holder instanceof HeaderHolder) {
             ((HeaderHolder) holder).bind();
         }
@@ -84,7 +84,7 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        return commissionLogs != null ? commissionLogs.size() : 0;
+        return commissionLogs != null ? commissionLogs.size() + 1 : 0;
     }
 
     public void loadMoreStarted() {
@@ -122,11 +122,6 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
             txtCommissionBalance.setText(loggedUser.getCurrentBalance() + " " + loggedUser.getCurrency().getCode());
         }
 
-        @OnClick(R.id.txt_filters)
-        public void onClick(View view) {
-            ToastInterval.showToast(view.getContext(), "Filters clicked");
-        }
-
     }
 
     class CommissionLogHolder extends RecyclerView.ViewHolder {
@@ -138,13 +133,22 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView txtDate;
         @BindView(R.id.txt_value)
         TextView txtValue;
+        @BindView(R.id.txt_filters)
+        TextView txtFilters;
 
         CommissionLogHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(CommissionLog commissionLog) {
+        void bind(int position) {
+            if (position == 1) {
+                txtFilters.setVisibility(View.VISIBLE);
+            } else {
+                txtFilters.setVisibility(View.GONE);
+            }
+
+            CommissionLog commissionLog = getItemAt(position - 1);
 
             if (commissionLog.getDescription().equals(STATUS_PAYMENT)) {
                 imageViewStatus.setBackgroundColor(ContextCompat.getColor(imageViewStatus.getContext(), R.color.referred_worker_blue));
@@ -161,6 +165,11 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             txtDate.setText(Utils.dateFromat(commissionLog.getCreatedAt(), Constants.DATE_FORMAT_REFERRED_WORKERS));
             txtValue.setText(commissionLog.getAmount());
+        }
+
+        @OnClick(R.id.txt_filters)
+        public void onClick(View view) {
+            ToastInterval.showToast(view.getContext(), "Filters clicked");
         }
     }
 }
