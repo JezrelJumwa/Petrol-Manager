@@ -91,10 +91,17 @@ public class EditPinActivity extends BaseActivity {
                         Token token = XabaApplication.getInstance().getToken();
                         token.setValue(response.body().getWorker().getToken());
                         xabaDbHelper.updateToken(token);
+                        onBackPressed();
                     }
                 } else {
 
                     ErrorWithDictionary error = ErrorUtils.parseErrorWithDictionary(response);
+
+                    if (error.getErrors().getMessage() != null && error.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                        XabaApplication.getInstance().logout();
+                        //from this point we logout user
+                        return;
+                    }
 
                     if (error.getErrors() != null
                             && error.getErrors().getOldPin() != null

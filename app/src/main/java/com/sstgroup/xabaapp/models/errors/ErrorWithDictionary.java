@@ -26,9 +26,19 @@ public class ErrorWithDictionary {
     public class Error {
         @SerializedName("old_pin")
         private ArrayList<String> oldPin;
+        private Integer code;
+        private String message;
 
         public ArrayList<String> getOldPin() {
             return oldPin;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public String getMessage() {
+            return message;
         }
     }
 }
