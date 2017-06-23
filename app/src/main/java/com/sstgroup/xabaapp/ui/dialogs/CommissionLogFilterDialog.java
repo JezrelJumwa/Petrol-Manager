@@ -3,19 +3,31 @@ package com.sstgroup.xabaapp.ui.dialogs;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
+import android.widget.RadioGroup;
 
 import com.sstgroup.xabaapp.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CommissionLogFilterDialog extends Dialog {
+    @BindView(R.id.grp_radio_buttons_type)
+    RadioGroup grpRadioTypes;
+    @BindView(R.id.grp_radio_buttons_date)
+    RadioGroup grpRadioDate;
 
-    public CommissionLogFilterDialog(@NonNull Context context) {
+    private ClickCallbacks clickCallbacks;
+    private int selectedBtnTypeId;
+    private int selectedBtnDateId;
+
+    public CommissionLogFilterDialog(@NonNull Context context, ClickCallbacks clickCallbacks, int selectedPeriod, String type) {
         super(context);
+        this.clickCallbacks = clickCallbacks;
     }
 
     @Override
@@ -24,6 +36,20 @@ public class CommissionLogFilterDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_commission_log_filter);
         ButterKnife.bind(this);
+
+        grpRadioTypes.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                selectedBtnTypeId = checkedId;
+            }
+        });
+
+        grpRadioDate.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                selectedBtnDateId = checkedId;
+            }
+        });
     }
 
     @OnClick({R.id.btn_cancel, R.id.btn_apply})
@@ -62,6 +88,6 @@ public class CommissionLogFilterDialog extends Dialog {
 
 
     public interface ClickCallbacks {
-        void onApplyFilter(int period, int type);
+        void onApplyFilter(int period, String type);
     }
 }
