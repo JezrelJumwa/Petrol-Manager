@@ -53,7 +53,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public void addMoreNotifications(List<Notification> notifications) {
-        int size = notifications.size();
+        int size = this.notifications.size();
         this.notifications.addAll(notifications);
         notifyItemRangeInserted(size, notifications.size());
     }

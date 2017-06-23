@@ -41,6 +41,7 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
     private Integer fromId;
     private Integer selectedPeriod;
     private String selectedType;
+    private boolean moreItems;
 
     public static CommissionLogsFragment newInstance() {
 
@@ -83,6 +84,7 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
         selectedPeriod = null;
         selectedType = "";
         fromId = null;
+        moreItems = true;
 
         commissionLogAdapter = new CommissionLogAdapter(xabaDbHelper.getAllCommissionLogs(),
                 xabaDbHelper.getLoggedUser(activity), this);
@@ -156,10 +158,22 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
                             loadMoreTriggered = false;
                             commissionLogAdapter.loadMoreFinished();
                             refreshLayout.setEnabled(true);
-                            commissionLogAdapter.addMoreCommissionLogs(commissionLogs);
+
+                            if (moreItems){
+                                commissionLogAdapter.addMoreCommissionLogs(commissionLogs);
+                            }
+
+                            if (response.body().getBody().getMoreItems() != null) {
+                                moreItems = response.body().getBody().getMoreItems();
+                            }
+
                         } else {
                             hideSwipeLoading();
                             commissionLogAdapter.replaceAllCommissionLogs(commissionLogs);
+
+                            if (response.body().getBody().getMoreItems() != null) {
+                                moreItems = response.body().getBody().getMoreItems();
+                            }
                         }
 
                         xabaDbHelper.insertOrReplaceCommissionLogs(commissionLogs);

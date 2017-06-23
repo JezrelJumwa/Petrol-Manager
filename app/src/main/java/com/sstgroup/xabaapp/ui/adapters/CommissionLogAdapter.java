@@ -77,9 +77,11 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void addMoreCommissionLogs(List<CommissionLog> commissionLogs) {
-        int size = commissionLogs.size();
-        this.commissionLogs.addAll(commissionLogs);
-        notifyItemRangeInserted(size + 1, commissionLogs.size() + 1);
+        if (!commissionLogs.isEmpty()) {
+            int size = this.commissionLogs.size();
+            this.commissionLogs.addAll(commissionLogs);
+            notifyItemRangeInserted(size + 1, commissionLogs.size() + 1);
+        }
     }
 
     @Override
