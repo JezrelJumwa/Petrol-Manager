@@ -29,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CommissionLogsFragment extends BaseFragment implements CommissionLogAdapter.ClickCallbacks {
+public class CommissionLogsFragment extends BaseFragment implements CommissionLogAdapter.ClickCallbacks, CommissionLogFilterDialog.ClickCallbacks {
 
     @BindView(R.id.rv_commission_logs)
     RecyclerView rvCommissionLogs;
@@ -213,9 +213,14 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
     }
 
     @Override
+    public void onApplyFilter(int period, String type) {
+
+    }
+
+    @Override
     public void onClick() {
         CommissionLogFilterDialog commissionLogFilterDialog
-                = new CommissionLogFilterDialog(activity);
+                = new CommissionLogFilterDialog(activity, this, -1, "");
         commissionLogFilterDialog.show();
     }
 
