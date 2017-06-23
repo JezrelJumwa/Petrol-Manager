@@ -144,11 +144,13 @@ public class CirclesProgress extends View {
         //Draw first value Arc
         paint.setColor(ContextCompat.getColor(getContext(), R.color.text_green));
         float sweepAngle = (mValueFirst / (mFirstMax - mFirstMin)) * 160;
-        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 190, sweepAngle, false, paint);
+        if (sweepAngle > 0)
+            canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 190, sweepAngle, false, paint);
 
         //Draw second value Arc
         paint.setColor(ContextCompat.getColor(getContext(), R.color.red));
         sweepAngle = (mValueSecond / (mSecondMax - mSecondMin)) * 160;
-        canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 170, -sweepAngle, false, paint);
+        if (sweepAngle > 0)
+            canvas.drawArc(new RectF(x, y, (float)width - mPadding, (float)width - mPadding), 170, -sweepAngle, false, paint);
     }
 }

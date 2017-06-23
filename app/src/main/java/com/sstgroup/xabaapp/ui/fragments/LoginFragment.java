@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.sstgroup.xabaapp.BuildConfig;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.User;
@@ -59,11 +60,11 @@ public class LoginFragment extends BaseFragment {
 //            mEditTextPinCode.setText("1234");
 //        }
 
-        //user with notification data
-//        if (BuildConfig.DEBUG) {
-//            mEditTextNationalId.setText("235720441");
-//            mEditTextPinCode.setText("0000");
-//        }
+//        user with notification data
+        if (BuildConfig.DEBUG) {
+            mEditTextNationalId.setText("235720441");
+            mEditTextPinCode.setText("0000");
+        }
     }
 
     @Override

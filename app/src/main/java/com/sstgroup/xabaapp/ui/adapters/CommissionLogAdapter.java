@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.models.CommissionLog;
+import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Utils;
 
@@ -19,30 +21,40 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final int VIEW_ITEM = 0;
     private final int VIEW_PROGRESS = 1;
-
-    private List<CommissionLog> commissionLogs;
-
+    private final int VIEW_HEADER = 2;
     private final String STATUS_PAYMENT = "payout";
 
-    public CommissionLogAdapter(List<CommissionLog> commissionLogs) {
+    private List<CommissionLog> commissionLogs;
+    private User loggedUser;
+
+
+    public CommissionLogAdapter(List<CommissionLog> commissionLogs, User loggedUser) {
         this.commissionLogs = commissionLogs;
+        this.loggedUser = loggedUser;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_ITEM) {
             return new CommissionLogHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_commission_log, parent, false));
+        } else if (viewType == VIEW_HEADER) {
+            return new HeaderHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_commission_log_header, parent, false));
         }
         return new BottomProgressHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_bottom_progress, parent, false));
     }
 
     @Override
     public int getItemViewType(int position) {
+        if (position == 0) {
+            return VIEW_HEADER;
+        }
+
         if (getItemAt(position) == null) {
             return VIEW_PROGRESS;
         } else {
@@ -65,6 +77,8 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof CommissionLogHolder) {
             ((CommissionLogHolder) holder).bind(getItemAt(position));
+        } else if (holder instanceof HeaderHolder) {
+            ((HeaderHolder) holder).bind();
         }
     }
 
@@ -93,6 +107,26 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
         BottomProgressHolder(View itemView) {
             super(itemView);
         }
+    }
+
+    class HeaderHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.txt_commissions_balance)
+        TextView txtCommissionBalance;
+
+        HeaderHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        void bind() {
+            txtCommissionBalance.setText(loggedUser.getCurrentBalance() + " " + loggedUser.getCurrency().getCode());
+        }
+
+        @OnClick(R.id.txt_filters)
+        public void onClick(View view) {
+            ToastInterval.showToast(view.getContext(), "Filters clicked");
+        }
+
     }
 
     class CommissionLogHolder extends RecyclerView.ViewHolder {

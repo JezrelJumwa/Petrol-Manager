@@ -305,6 +305,14 @@ public class DatabaseHelper {
             insertJoinUserProfessions(user.getId(), profession.getLoggedUserProfessionId());
         }
 
+        UserCommissions userCommissions = user.getUserCommissions();
+
+        user.setCurrentBalance(userCommissions.getCurrentBalance());
+        user.setPayoutThreshold(userCommissions.getPayoutThreshold());
+        user.setTotalReferrals(userCommissions.getTotalReferrals());
+        user.setPerWorker(userCommissions.getPerWorker());
+        user.setCurrencyId(userCommissions.getCurrencyId());
+
         insertOrReplaceUser(user);
         daoSession.getUserDao().detachAll();
         daoSession.getJoinUsersWithProfessionsDao().detachAll();
@@ -322,8 +330,14 @@ public class DatabaseHelper {
     public User getUser(long id) {
         userDao = daoSession.getUserDao();
         List<User> users = userDao.queryBuilder().where(UserDao.Properties.Id.eq(id)).list();
-        if (!users.isEmpty())
-            return users.get(0);
+        if (!users.isEmpty()){
+            User user = users.get(0);
+
+            Currency currency = getCurrency(user.getCurrencyId());
+            user.setCurrency(currency);
+
+            return user;
+        }
 
         return null;
     }
