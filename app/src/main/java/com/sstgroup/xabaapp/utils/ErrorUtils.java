@@ -30,6 +30,8 @@ public class ErrorUtils {
             return converter.convert(response.errorBody());
         } catch (IOException e) {
             return new ErrorCodeAndMessage(Constants.ERROR_STATUS_UNEXPECTED, new ErrorCodeAndMessage.Error(1000, "Error Parse Failure"));
+        } catch (Exception e) {
+            return new ErrorCodeAndMessage(Constants.ERROR_STATUS_UNEXPECTED, new ErrorCodeAndMessage.Error(1000, "Error Parse Failure"));
         }
     }
 
@@ -40,6 +42,8 @@ public class ErrorUtils {
         try {
             return converter.convert(response.errorBody());
         } catch (IOException e) {
+            return new ErrorLogin(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
+        } catch (Exception e) {
             return new ErrorLogin(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
         }
     }
@@ -52,6 +56,8 @@ public class ErrorUtils {
             return converter.convert(response.errorBody());
         } catch (IOException e) {
             return new ErrorStatusAndError(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
+        } catch (Exception e) {
+            return new ErrorStatusAndError(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
         }
     }
 
@@ -63,6 +69,8 @@ public class ErrorUtils {
             return converter.convert(response.errorBody());
         } catch (IOException e) {
             return new ErrorRegisterWorker(null, null);
+        } catch (Exception e) {
+            return new ErrorRegisterWorker(null, null);
         }
     }
 
@@ -73,6 +81,8 @@ public class ErrorUtils {
         try {
             return converter.convert(response.errorBody());
         } catch (IOException e) {
+            return new ErrorWithDictionary(Constants.ERROR_STATUS_UNEXPECTED, null);
+        } catch (Exception e) {
             return new ErrorWithDictionary(Constants.ERROR_STATUS_UNEXPECTED, null);
         }
     }
