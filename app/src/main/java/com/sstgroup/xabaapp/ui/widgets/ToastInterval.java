@@ -3,10 +3,6 @@ package com.sstgroup.xabaapp.ui.widgets;
 import android.content.Context;
 import android.widget.Toast;
 
-/**
- * Created by rosenstoyanov on 6/6/17.
- */
-
 public class ToastInterval {
     private static final long TOAST_INTERVAL_MILLIS = 1000 * 3; // 3 sec
 

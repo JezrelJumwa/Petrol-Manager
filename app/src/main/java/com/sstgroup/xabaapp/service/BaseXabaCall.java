@@ -12,10 +12,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by rosenstoyanov on 6/9/17.
- */
-
 public abstract class BaseXabaCall<T> implements Callback<T> {
 
     @Override

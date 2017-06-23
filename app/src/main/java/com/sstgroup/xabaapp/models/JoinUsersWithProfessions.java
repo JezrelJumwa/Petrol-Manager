@@ -4,9 +4,6 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
-/**
- * Created by rosenstoyanov on 6/5/17.
- */
 @Entity
 public class JoinUsersWithProfessions {
     @Id

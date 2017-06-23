@@ -30,10 +30,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by rosenstoyanov on 6/12/17.
- */
-
 public class NotificationsFragment extends BaseFragment implements NotificationsFilterDialog.Clicks {
 
     @BindView(R.id.rv_notifications)

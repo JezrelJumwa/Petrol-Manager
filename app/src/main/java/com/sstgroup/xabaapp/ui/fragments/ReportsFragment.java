@@ -8,11 +8,6 @@ import com.sstgroup.xabaapp.R;
 
 import butterknife.BindView;
 
-
-/**
- * Created by rosenstoyanov on 6/15/17.
- */
-
 public class ReportsFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
 
     @BindView(R.id.tab_bar)

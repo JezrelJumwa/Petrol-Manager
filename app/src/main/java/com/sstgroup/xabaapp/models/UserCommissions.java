@@ -2,9 +2,6 @@ package com.sstgroup.xabaapp.models;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by rosenstoyanov on 6/21/17.
- */
 public class UserCommissions {
     @SerializedName("current_balance")
     private Integer currentBalance;

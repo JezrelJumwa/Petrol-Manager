@@ -26,10 +26,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by rosenstoyanov on 6/2/17.
- */
-
 public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.Callbacks {
 
     public static final String TAG = MyProfileFragment.class.getSimpleName();

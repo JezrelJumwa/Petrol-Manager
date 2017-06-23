@@ -1,13 +1,7 @@
 package com.sstgroup.xabaapp.utils;
 
-import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-
-/**
- * Created by rosenstoyanov on 6/12/17.
- */
 
 public class SpanableUtils {
 

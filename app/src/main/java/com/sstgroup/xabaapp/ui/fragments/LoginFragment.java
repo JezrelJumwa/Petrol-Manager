@@ -29,10 +29,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by rosenstoyanov on 6/7/17.
- */
-
 public class LoginFragment extends BaseFragment {
     @BindView(R.id.national_id)
     EditText mEditTextNationalId;

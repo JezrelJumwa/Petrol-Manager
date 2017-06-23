@@ -1,9 +1,5 @@
 package com.sstgroup.xabaapp.models.errors;
 
-/**
- * Created by rosenstoyanov on 6/6/17.
- */
-
 public class XabaError {
     private String status;
     private String errorMessage;
