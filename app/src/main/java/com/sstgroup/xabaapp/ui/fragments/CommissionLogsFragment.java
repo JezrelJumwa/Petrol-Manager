@@ -194,7 +194,6 @@ public class CommissionLogsFragment extends BaseFragment {
 
                 loadCommissionLogsFromDb();
                 Utils.onFailureUtils(activity, t);
-
             }
         });
     }

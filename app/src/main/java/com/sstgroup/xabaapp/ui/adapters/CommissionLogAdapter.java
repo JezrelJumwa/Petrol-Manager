@@ -55,7 +55,7 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
             return VIEW_HEADER;
         }
 
-        if (getItemAt(position) == null) {
+        if (getItemAt(position - 1) == null) {
             return VIEW_PROGRESS;
         } else {
             return VIEW_ITEM;
@@ -76,7 +76,7 @@ public class CommissionLogAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof CommissionLogHolder) {
-            ((CommissionLogHolder) holder).bind(getItemAt(position));
+            ((CommissionLogHolder) holder).bind(getItemAt(position - 1));
         } else if (holder instanceof HeaderHolder) {
             ((HeaderHolder) holder).bind();
         }

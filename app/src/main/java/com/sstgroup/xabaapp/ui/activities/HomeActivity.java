@@ -35,7 +35,7 @@ public class HomeActivity extends BaseActivity implements
 
     private NavigationDrawerFragment mDrawer;
     private boolean mFirstResume = true;
-    private boolean mFirstRun = true;
+    private boolean mFirstRun;
     protected boolean mInForeground = true;
 
     @Override
@@ -46,6 +46,7 @@ public class HomeActivity extends BaseActivity implements
     @Override
     protected void init() {
 //        ViewCompat.setElevation(mToolbar, 32);
+        mFirstRun = true;
         setupToolbar(mToolbar, R.drawable.ic_hamburger);
     }
 
