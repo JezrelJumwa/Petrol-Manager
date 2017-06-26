@@ -42,6 +42,7 @@ import com.sstgroup.xabaapp.utils.Preferences;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -566,13 +567,34 @@ public class DatabaseHelper {
     public List<CommissionLog> getAllCommissionLogs() {
         commissionLogDao = daoSession.getCommissionLogDao();
         return commissionLogDao.queryBuilder()
+                .orderAsc(CommissionLogDao.Properties.CreatedAt)
                 .orderAsc(CommissionLogDao.Properties.CreatedAt).list();
     }
 
-    public List<CommissionLog> getAllCommissionLogsByType(String type) {
+    public List<CommissionLog> getCommissionLogsByType(String type) {
         commissionLogDao = daoSession.getCommissionLogDao();
         return commissionLogDao.queryBuilder()
                 .where(CommissionLogDao.Properties.Description.eq(type))
-                .orderAsc(CommissionLogDao.Properties.Description).list();
+                .orderAsc(CommissionLogDao.Properties.CreatedAt).list();
     }
+
+
+    public List<CommissionLog> getCommissionLogsByRange(Date from, Date to) {
+        commissionLogDao = daoSession.getCommissionLogDao();
+        return commissionLogDao.queryBuilder()
+                .where(CommissionLogDao.Properties.CreatedAt.ge(from),
+                        CommissionLogDao.Properties.CreatedAt.le(to))
+                .orderAsc(CommissionLogDao.Properties.CreatedAt).list();
+    }
+
+    public List<CommissionLog> getCommissionLogsByRangeAndType(String type, Date from, Date to) {
+        commissionLogDao = daoSession.getCommissionLogDao();
+        return commissionLogDao.queryBuilder()
+                .where(CommissionLogDao.Properties.CreatedAt.ge(from),
+                        CommissionLogDao.Properties.CreatedAt.le(to),
+                        CommissionLogDao.Properties.Description.eq(type))
+                .orderAsc(CommissionLogDao.Properties.CreatedAt).list();
+    }
+
+
 }

@@ -10,6 +10,7 @@ import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.CommissionLog;
 import com.sstgroup.xabaapp.models.CommissionLogsResponse;
+import com.sstgroup.xabaapp.models.DatePeriod;
 import com.sstgroup.xabaapp.models.XabaResponse;
 import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.service.RestClient;
@@ -18,6 +19,7 @@ import com.sstgroup.xabaapp.ui.dialogs.CommissionLogFilterDialog;
 import com.sstgroup.xabaapp.ui.widgets.EndlessScrollListener;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.DatePeriodUtils;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Utils;
 
@@ -216,13 +218,23 @@ public class CommissionLogsFragment extends BaseFragment implements CommissionLo
     private void loadCommissionLogsFromDb() {
         fromId = null;
 
-//        if (selectedFilter.equals("")) {
-//            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogs());
-//        } else if (selectedFilter.equals(Constants.NOTIFICATION_PAYOUT)) {
-//            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogsByType(Constants.NOTIFICATION_PAYOUT));
-//        } else if (selectedFilter.equals(Constants.NOTIFICATION_REFERRAL_VALIDATION)) {
-//            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogsByType(Constants.NOTIFICATION_REFERRAL_VALIDATION));
-//        }
+        if (selectedPeriod == null && selectedType.equals("")){
+            commissionLogAdapter.replaceAllCommissionLogs(xabaDbHelper.getAllCommissionLogs());
+        } else if (selectedPeriod == null && !selectedType.equals("")){
+            commissionLogAdapter
+                    .replaceAllCommissionLogs(xabaDbHelper.getCommissionLogsByType(selectedType));
+        } else if (selectedType.equals("") && selectedType != null){
+            DatePeriod period = DatePeriodUtils.getPeriod(selectedPeriod);
+            commissionLogAdapter
+                    .replaceAllCommissionLogs(xabaDbHelper
+                            .getCommissionLogsByRange(period.getFrom(), period.getTo()));
+        } else {
+            DatePeriod period = DatePeriodUtils.getPeriod(selectedPeriod);
+            commissionLogAdapter
+                    .replaceAllCommissionLogs(
+                            xabaDbHelper
+                                    .getCommissionLogsByRangeAndType(selectedType, period.getFrom(), period.getTo()));
+        }
     }
 
     @Override
