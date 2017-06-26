@@ -53,7 +53,7 @@ public class LoginFragment extends BaseFragment {
     @Override
     protected void initFields() {
         if (BuildConfig.DEBUG) {
-            mEditTextNationalId.setText("1234569870");
+            mEditTextNationalId.setText("22330828");
             mEditTextPinCode.setText("1234");
         }
 

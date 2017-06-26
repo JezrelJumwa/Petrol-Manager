@@ -581,7 +581,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     activity.openFragment(RegisterConfirmFragment.newInstance(response.body().getUser().getId(), false), true);
                 } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
-                    if (errorRegisterWorker.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                    if (errorRegisterWorker.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         if (errorRegisterWorker.getError().getNationalIdErrors() != null) {

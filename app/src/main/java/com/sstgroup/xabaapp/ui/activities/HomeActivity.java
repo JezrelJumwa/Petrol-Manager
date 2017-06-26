@@ -2,7 +2,6 @@ package com.sstgroup.xabaapp.ui.activities;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -10,7 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
@@ -26,7 +24,6 @@ import com.sstgroup.xabaapp.ui.fragments.NavigationDrawerFragment;
 import com.sstgroup.xabaapp.ui.fragments.NotificationsFragment;
 import com.sstgroup.xabaapp.ui.fragments.RegisterWorkerByAgentFragment;
 import com.sstgroup.xabaapp.ui.fragments.ReportsFragment;
-import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 
@@ -69,7 +66,7 @@ public class HomeActivity extends BaseActivity implements
 
     @OnClick(R.id.iv_add_profile)
     void addProfile() {
-        ToastInterval.showToast(this, "Add profile");
+        openAddWorker();
     }
 
     @Override
@@ -92,10 +89,10 @@ public class HomeActivity extends BaseActivity implements
             drawer.closeDrawer(GravityCompat.START);
         } else {
             if (mDrawer.getCurrentSelectItem() != null &&
-                    mDrawer.getCurrentSelectItem().getId() == R.id.nav_register_worker) {
+                    mDrawer.getCurrentSelectItem().getId() == R.id.nav_dashboard) {
                 super.onBackPressed();
             } else {
-                mDrawer.menuItemClick(findViewById(R.id.nav_register_worker));
+                mDrawer.menuItemClick(findViewById(R.id.nav_dashboard));
             }
         }
     }
@@ -108,6 +105,7 @@ public class HomeActivity extends BaseActivity implements
                     getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
             mDrawer.setUp(R.id.navigation_drawer,
                     (DrawerLayout) findViewById(R.id.drawer_layout));
+            mFirstResume = false;
         }
 
         if (mFirstRun){

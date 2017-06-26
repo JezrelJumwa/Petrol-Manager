@@ -14,18 +14,18 @@
         android:src="@drawable/menu_logo"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
-        android:id="@+id/nav_register_worker"
-        style="@style/NavMenuStyle"
-        android:drawableLeft="@drawable/nav_register_worker"
-        android:drawablePadding="18dp"
-        android:text="@string/register_worker"/>
-
-    <android.support.v7.widget.AppCompatCheckedTextView
         android:id="@+id/nav_dashboard"
         style="@style/NavMenuStyle"
         android:drawableLeft="@drawable/nav_dashboard"
         android:drawablePadding="18dp"
         android:text="@string/dashboard"/>
+
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/nav_register_worker"
+        style="@style/NavMenuStyle"
+        android:drawableLeft="@drawable/nav_register_worker"
+        android:drawablePadding="16.5dp"
+        android:text="@string/register_worker"/>
 
     <android.support.v7.widget.AppCompatCheckedTextView
         android:id="@+id/nav_reports"

@@ -107,6 +107,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 if (hasBackArrow) {
+                    hideSoftKeyboard();
                     onBackPressed();
                     return true;
                 }
@@ -117,6 +118,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+//        hideSoftKeyboard();
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
         } else {

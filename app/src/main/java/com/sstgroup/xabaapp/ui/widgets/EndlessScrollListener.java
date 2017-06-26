@@ -68,7 +68,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
             previousTotalItemCount = totalItemCount;
         }
 
-//        if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
+//        if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {CustomViewPageAdapter.java
         if ((lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
             if (dy > 0) {//check for scroll down)
                 currentPage++;
