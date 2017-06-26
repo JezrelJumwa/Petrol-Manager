@@ -42,7 +42,7 @@ public class NavigationDrawerFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
-        int currentSelectedId = R.id.nav_register_worker;
+        int currentSelectedId = R.id.nav_dashboard;
         Bundle savedInstanceState = getArguments();
         if (savedInstanceState != null) {
             currentSelectedId = savedInstanceState.getInt(STATE_SELECTED_ID);

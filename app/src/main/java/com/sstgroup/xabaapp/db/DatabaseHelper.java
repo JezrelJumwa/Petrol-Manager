@@ -297,11 +297,14 @@ public class DatabaseHelper {
     public void updateLoggedUser(User user, Token token) {
         joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
 
-        joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
         List<JoinUsersWithProfessions> list = joinUsersProfessionDao
                 .queryBuilder()
                 .where(JoinUsersWithProfessionsDao.Properties.UserId.eq(user.getId())).list();
-        joinUsersProfessionDao.deleteInTx(list);
+
+        for (JoinUsersWithProfessions item: list) {
+            joinUsersProfessionDao.delete(item);
+        }
+//        joinUsersProfessionDao.delete(list);
 
         user.setTokenId(token.getId());
         for (Profession profession : user.getProfessions()) {
