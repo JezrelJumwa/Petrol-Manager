@@ -84,6 +84,10 @@ public class Constants {
     //visit xaba url
     public static final String VISIT_XABA_URL = "http://dev.xaba.org/";
 
+    //Activation code
+    public static final String USER_ID_KEY = "userId";
+    public static final String ACTIVATION_CODE_KEY = "activationCode";
+
     public static final String DATE_FORMAT_DASHES = "- d-MMM-yyyy";
     public static final String DATE_FORMAT_REFERRED_WORKERS = "d-MMM-yyyy - H:m";
 }

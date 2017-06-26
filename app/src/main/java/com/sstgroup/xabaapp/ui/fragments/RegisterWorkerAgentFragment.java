@@ -577,6 +577,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
+                    Preferences.setLoggedUserId(activity, response.body().getUser().getId());
                     activity.openFragment(RegisterConfirmFragment.newInstance(response.body().getUser().getId(), false), true);
                 } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);

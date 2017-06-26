@@ -20,6 +20,7 @@ import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Encryption;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.NavigationUtils;
+import com.sstgroup.xabaapp.utils.Preferences;
 import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
@@ -131,6 +132,9 @@ public class LoginFragment extends BaseFragment {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     User user = response.body().getUser();
+                    if (user.getId() > 0) {
+                        Preferences.setLoggedUserId(activity, user.getId());
+                    }
                     if (!user.getIsPhoneVerified()) {
                         activity.openFragment(RegisterConfirmFragment.newInstance(user.getId(), true), true);
                     } else if (user.getIsDefaultPin()) {

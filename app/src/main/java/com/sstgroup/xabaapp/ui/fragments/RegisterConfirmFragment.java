@@ -26,6 +26,7 @@ import retrofit2.Response;
 public class RegisterConfirmFragment extends BaseFragment {
     private Long userId;
     private Boolean startedFromLogin;
+    private String activationCode;
 
     @BindView(R.id.activation_code)
     EditText mEditTextActivationCode;
@@ -35,6 +36,18 @@ public class RegisterConfirmFragment extends BaseFragment {
         Bundle args = new Bundle();
         args.putLong(Constants.WORKER_ID, userId);
         args.putBoolean(Constants.REGISTER_CONFIRM_STARTED_FROM_LOGIN, startedFromLogin);
+        RegisterConfirmFragment fragment = new RegisterConfirmFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+    public static RegisterConfirmFragment newInstance(long userId, boolean startedFromLogin, String activationCode) {
+
+        Bundle args = new Bundle();
+        args.putLong(Constants.WORKER_ID, userId);
+        args.putBoolean(Constants.REGISTER_CONFIRM_STARTED_FROM_LOGIN, startedFromLogin);
+        if (activationCode != null && activationCode.length() > 0) {
+            args.putString(Constants.ACTIVATION_CODE_KEY, activationCode);
+        }
         RegisterConfirmFragment fragment = new RegisterConfirmFragment();
         fragment.setArguments(args);
         return fragment;
@@ -52,12 +65,15 @@ public class RegisterConfirmFragment extends BaseFragment {
         if (bundle != null) {
             userId = bundle.getLong(Constants.WORKER_ID, -1);
             startedFromLogin = bundle.getBoolean(Constants.REGISTER_CONFIRM_STARTED_FROM_LOGIN);
+            activationCode = bundle.getString(Constants.ACTIVATION_CODE_KEY);
         }
     }
 
     @Override
     protected void initViews(View rootView) {
-
+        if (activationCode != null && activationCode.length() > 0) {
+            mEditTextActivationCode.setText(activationCode);
+        }
     }
 
     @OnClick({R.id.verify, R.id.resend_pin_sms})
