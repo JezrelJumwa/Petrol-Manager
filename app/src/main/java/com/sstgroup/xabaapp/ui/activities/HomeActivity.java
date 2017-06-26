@@ -1,6 +1,8 @@
 package com.sstgroup.xabaapp.ui.activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -44,6 +46,8 @@ public class HomeActivity extends BaseActivity implements
     private boolean mFirstResume = true;
     private boolean mFirstRun;
     protected boolean mInForeground = true;
+
+    private boolean mRequestedPermissionsOnce = false;
 
     @Override
     protected int getLayoutId() {
@@ -112,16 +116,24 @@ public class HomeActivity extends BaseActivity implements
 
         mInForeground = true;
 
-        requestSmsPermission();
+        if (!mRequestedPermissionsOnce) {
+            requestSmsPermission();
+            mRequestedPermissionsOnce = true;
+        }
     }
 
     private void requestSmsPermission() {
-        String permission = Manifest.permission.READ_SMS;
+        String permission = Manifest.permission.RECEIVE_SMS;
         int grant = ContextCompat.checkSelfPermission(this, permission);
         if (grant != PackageManager.PERMISSION_GRANTED) {
-            String[] permission_list = new String[1];
-            permission_list[0] = permission;
-            ActivityCompat.requestPermissions(this, permission_list, 1);
+            if(ActivityCompat.shouldShowRequestPermissionRationale(HomeActivity.this, Manifest.permission.RECEIVE_SMS)) {
+                AlertDialog dialog = new AlertDialog.Builder(this).setTitle("SMS permissions required").setMessage("The Xaba app needs SMS permissions in order to automatically parse verification codes received by SMS. Alternatively, you can also enter SMS verification codes manually.").show();
+                mRequestedPermissionsOnce = false;
+            } else {
+                String[] permission_list = new String[1];
+                permission_list[0] = permission;
+                ActivityCompat.requestPermissions(this, permission_list, 1);
+            }
         }
     }
 
