@@ -33,6 +33,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity implements
         NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -110,6 +111,8 @@ public class HomeActivity extends BaseActivity implements
         }
 
         mInForeground = true;
+
+        requestSmsPermission();
     }
 
     private void requestSmsPermission() {
@@ -128,11 +131,10 @@ public class HomeActivity extends BaseActivity implements
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(HomeActivity.this,"permission granted", Toast.LENGTH_SHORT).show();
-
+                Timber.d("sms permission granted");
 
             } else {
-                Toast.makeText(HomeActivity.this,"permission not granted", Toast.LENGTH_SHORT).show();
+                Timber.d("sms permission not granted");
             }
         }
 
