@@ -31,7 +31,7 @@ public class SMSReceiver extends BroadcastReceiver {
 
         if (bundle != null) {
             try {
-                Object[] smsExtra = (Object[]) bundle.get("pbus");
+                Object[] smsExtra = (Object[]) bundle.get("pdus");
                 msgs = new SmsMessage[smsExtra.length];
 
                 String format = bundle.getString("format");
