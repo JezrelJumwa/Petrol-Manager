@@ -527,13 +527,20 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                     ((HomeActivity) activity).loadUserProfile();
                 } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
+
+                    if (errorRegisterWorker.getError().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                        XabaApplication.getInstance().logout();
+                        //from this point we logout user
+                        return;
+                    }
+
                     if (errorRegisterWorker.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         if (errorRegisterWorker.getError().getNationalIdErrors() != null) {
                             ToastInterval.showToast(activity, errorRegisterWorker.getError().getNationalIdErrors().get(0));
-                        } else if (errorRegisterWorker.getError().getReferralCodeErrors() != null) {
-                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getReferralCodeErrors().get(0));
+                        } else if (errorRegisterWorker.getError().getAgentIdErrors() != null) {
+                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getAgentIdErrors().get(0));
                         }
                     }
                 }

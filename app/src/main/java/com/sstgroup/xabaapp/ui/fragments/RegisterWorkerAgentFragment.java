@@ -590,8 +590,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     } else {
                         if (errorRegisterWorker.getError().getNationalIdErrors() != null) {
                             ToastInterval.showToast(activity, errorRegisterWorker.getError().getNationalIdErrors().get(0));
-                        } else if (errorRegisterWorker.getError().getReferralCodeErrors() != null) {
-                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getReferralCodeErrors().get(0));
+                        } else if (errorRegisterWorker.getError().getAgentIdErrors() != null) {
+                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getAgentIdErrors().get(0));
                         }
                     }
                 }
