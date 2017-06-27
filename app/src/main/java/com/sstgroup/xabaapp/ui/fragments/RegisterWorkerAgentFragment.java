@@ -132,7 +132,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
-        mEditTextPhoneNumber.setText("+254771161480");
+//        mEditTextPhoneNumber.setText("+254771161480");
     }
 
     @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.register})
@@ -316,7 +316,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
                                 selectedCategory = selectedItems.get(0);
                                 txtCategorySelection.setText(selectedCategory);
-                                professions = xabaDbHelper.getProfessions(selectedCategory);
+                                professions = xabaDbHelper.getProfessions(selectedIndustry, selectedCategory);
                                 break;
                             case 2:
 
@@ -327,7 +327,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
                                 selectedCategoryTwo = selectedItems.get(0);
                                 txtCategorySelectionTwo.setText(selectedCategoryTwo);
-                                professionsTwo = xabaDbHelper.getProfessions(selectedCategoryTwo);
+                                professionsTwo = xabaDbHelper.getProfessions(selectedIndustryTwo, selectedCategoryTwo);
                                 break;
                             case 3:
 
@@ -338,7 +338,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
                                 selectedCategoryThree = selectedItems.get(0);
                                 txtCategorySelectionThree.setText(selectedCategoryThree);
-                                professionsThree = xabaDbHelper.getProfessions(selectedCategoryThree);
+                                professionsThree = xabaDbHelper.getProfessions(selectedIndustryThree, selectedCategoryThree);
                                 break;
                         }
 
@@ -430,7 +430,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     private RegisterWorkerRequestModel getRegisterWorkerRequestModel() {
         String nationalId = mEditTextNationalId.getText().toString().trim();
         String confirmNationalId = mEditTextConfirmNationalId.getText().toString().trim();
-        String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+","");
+        String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+", "");
 
         String pinCode = mEditTextPinCode.getText().toString().trim();
         String confirmPinCode = mEditTextConfirmPinCode.getText().toString().trim();
@@ -572,7 +572,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     private void requestRegister(RegisterWorkerRequestModel registerWorkerRequestModel) {
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerAgentRequest());
-        Call<UserResponse> call = RestClient.getService().register(XabaApplication.getInstance().getLanguageCode(),body);
+        Call<UserResponse> call = RestClient.getService().register(XabaApplication.getInstance().getLanguageCode(), body);
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
