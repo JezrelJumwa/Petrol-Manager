@@ -574,6 +574,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     }
 
     private void requestRegister(RegisterWorkerRequestModel registerWorkerRequestModel) {
+        activity.showLoader();
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerAgentRequest());
         Call<UserResponse> call = RestClient.getService().register(XabaApplication.getInstance().getLanguageCode(),body);
         call.enqueue(new Callback<UserResponse>() {
@@ -594,11 +595,13 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                         }
                     }
                 }
+                activity.hideLoader();
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Timber.d("onFailure" + t.toString());
+                activity.hideLoader();
                 Utils.onFailureUtils(activity, t);
             }
         });

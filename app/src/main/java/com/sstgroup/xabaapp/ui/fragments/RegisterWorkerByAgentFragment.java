@@ -499,6 +499,8 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             return;
         }
 
+        activity.showLoader();
+
 
         List<String> professions = new ArrayList<>();
         if (!Validator.isEmpty(selectedProfession)) {
@@ -525,7 +527,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                     ((HomeActivity) activity).loadUserProfile();
                 } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
-                    if (errorRegisterWorker.getError().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                    if (errorRegisterWorker.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         if (errorRegisterWorker.getError().getNationalIdErrors() != null) {
@@ -535,11 +537,13 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                         }
                     }
                 }
+                activity.hideLoader();
             }
 
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
                 Utils.onFailureUtils(activity, t);
+                activity.hideLoader();
                 Timber.d("onFailure" + t.toString());
             }
         });
