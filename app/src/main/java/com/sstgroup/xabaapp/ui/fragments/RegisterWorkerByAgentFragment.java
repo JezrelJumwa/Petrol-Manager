@@ -518,10 +518,10 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
         RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, null, phoneNumber, languageCode, countryId, countyId, subCountyId, professionIds, userId, Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue());
 
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerByAgentRequest());
-        Call<Object> call = RestClient.getService().registerWorkerByAgent(XabaApplication.getInstance().getLanguageCode(), body);
-        call.enqueue(new Callback<Object>() {
+        Call<Void> call = RestClient.getService().registerWorkerByAgent(XabaApplication.getInstance().getLanguageCode(), body);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     ToastInterval.showToast(activity, getString(R.string.worker_is_registered));
                     ((HomeActivity) activity).loadUserProfile();
@@ -541,7 +541,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 Utils.onFailureUtils(activity, t);
                 activity.hideLoader();
                 Timber.d("onFailure" + t.toString());
