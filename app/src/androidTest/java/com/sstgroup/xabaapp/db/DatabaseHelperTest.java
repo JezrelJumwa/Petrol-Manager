@@ -33,6 +33,14 @@ public class DatabaseHelperTest {
 
     }
 
+    @Test
+    public void getCategories_doesNotThrowException() throws Exception {
+        try {
+            xabaDbHelper.getCategories("InvalidIndustryASDF");
+        } catch (Exception e) {
+            Assert.fail("getCategories throws exception on invalid industry name");
+        }
+    }
 
     @Test
     public void getProfessions_doesNotThrowException() throws Exception {
