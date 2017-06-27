@@ -10,11 +10,11 @@ public class ErrorRegisterWorker {
     @SerializedName("status")
     private String status;
     @SerializedName("errors")
-    private Error error;
+    private Error errors;
 
     public ErrorRegisterWorker(String status, Error error) {
         this.status = status;
-        this.error = error;
+        this.errors = error;
     }
 
     public String getStatus() {
@@ -22,7 +22,7 @@ public class ErrorRegisterWorker {
     }
 
     public Error getError() {
-        return error;
+        return errors;
     }
 
     public static class Error {
@@ -44,5 +44,4 @@ public class ErrorRegisterWorker {
             return referralCodeErrors;
         }
     }
-
 }

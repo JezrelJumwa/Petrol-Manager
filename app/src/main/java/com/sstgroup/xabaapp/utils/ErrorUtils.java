@@ -7,9 +7,6 @@ import com.sstgroup.xabaapp.models.errors.ErrorStatusAndError;
 import com.sstgroup.xabaapp.models.errors.ErrorWithDictionary;
 import com.sstgroup.xabaapp.service.RestClient;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Response;
@@ -68,7 +65,7 @@ public class ErrorUtils {
             return converter.convert(response.errorBody());
         } catch (Exception e) {
             Timber.d("parseRegisterWorkerError exception : ", e);
-            return new ErrorRegisterWorker(null, null);
+            return new ErrorRegisterWorker(Constants.ERROR_STATUS_UNEXPECTED, null);
         }
     }
 
