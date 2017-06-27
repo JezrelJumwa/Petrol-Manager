@@ -175,7 +175,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     break;
                 case 2:
                     if (loggedUser.getGender() != null){
-                        txtProfileKey.setText(context.getText(R.string.genre));
+                        txtProfileKey.setText(context.getText(R.string.gender));
                         txtProfileDetail.setText(loggedUser.getGender());
                         if (loggedUser.getGender().equalsIgnoreCase(Constants.MALE)){
                             ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_genre_male));

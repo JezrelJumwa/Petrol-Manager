@@ -325,7 +325,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
                                 selectedCategory = selectedItems.get(0);
                                 txtCategorySelection.setText(selectedCategory);
-                                professions = xabaDbHelper.getProfessions(selectedCategory);
+                                professions = xabaDbHelper.getProfessions(selectedCategory, selectedIndustry);
                                 break;
                             case 2:
 
@@ -336,7 +336,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
                                 selectedCategoryTwo = selectedItems.get(0);
                                 txtCategorySelectionTwo.setText(selectedCategoryTwo);
-                                professionsTwo = xabaDbHelper.getProfessions(selectedCategoryTwo);
+                                professionsTwo = xabaDbHelper.getProfessions(selectedCategoryTwo, selectedIndustryTwo);
                                 break;
                             case 3:
 
@@ -347,7 +347,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
                                 selectedCategoryThree = selectedItems.get(0);
                                 txtCategorySelectionThree.setText(selectedCategoryThree);
-                                professionsThree = xabaDbHelper.getProfessions(selectedCategoryThree);
+                                professionsThree = xabaDbHelper.getProfessions(selectedCategoryThree, selectedIndustryThree);
                                 break;
                         }
 

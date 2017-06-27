@@ -16,6 +16,7 @@ import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
+import com.sstgroup.xabaapp.network.retrofit.objects.IndustriesRetrofitResponse;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.adapters.EditProfileAdapter;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
@@ -286,8 +287,9 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                         profession.setName(null);
                         String selectedCategory = selectedItems.get(0);
                         Category categorySelected = xabaDbHelper.getCategory(selectedCategory);
+                        Industry industry = profession.getIndustry();
                         profession.setCategory(categorySelected);
-                        professions = xabaDbHelper.getProfessions(selectedCategory);
+                        professions = xabaDbHelper.getProfessions(selectedCategory, industry.getName());
                         editProfileAdapter.updateProfession(professionRow, profession);
                     }
                 });
