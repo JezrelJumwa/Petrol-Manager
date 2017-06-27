@@ -19,6 +19,7 @@ import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
+import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import java.util.ArrayList;
@@ -116,6 +117,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     private String selectedIndustryThree = "";
     private String selectedCategoryThree = "";
     private String selectedProfessionThree = "";
+
+    private RegistrationInfo info;
 
     @Override
     protected int getLayoutId() {
@@ -438,7 +441,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
         List<Long> professionIds = xabaDbHelper.getProfessionIds(professions);
 
-        RegistrationInfo info = new RegistrationInfo(nationalId,
+        info = new RegistrationInfo(nationalId,
                 confirmNationalId,
                 phoneNumber,
                 pinCode,
@@ -596,18 +599,19 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Timber.d("onFailure" + t.toString());
+                Utils.onFailureUtils(activity, t);
             }
         });
     }
 
     public static class RegistrationInfo {
-        private final String nationalId;
-        private final String confirmNationalId;
-        private final String phoneNumber;
-        private final String pinCode;
-        private final String confirmPinCode;
-        private final String referralCode;
-        private final List<Long> professionIds;
+        private String nationalId;
+        private String confirmNationalId;
+        private String phoneNumber;
+        private String pinCode;
+        private String confirmPinCode;
+        private String referralCode;
+        private List<Long> professionIds;
 
         public RegistrationInfo(String nationalId, String confirmNationalId, String phoneNumber, String pinCode, String confirmPinCode, String referralCode, List<Long> professionIds) {
             this.nationalId = nationalId;
@@ -616,6 +620,34 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             this.pinCode = pinCode;
             this.confirmPinCode = confirmPinCode;
             this.referralCode = referralCode;
+            this.professionIds = professionIds;
+        }
+
+        public void setNationalId(String nationalId) {
+            this.nationalId = nationalId;
+        }
+
+        public void setConfirmNationalId(String confirmNationalId) {
+            this.confirmNationalId = confirmNationalId;
+        }
+
+        public void setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+        }
+
+        public void setPinCode(String pinCode) {
+            this.pinCode = pinCode;
+        }
+
+        public void setConfirmPinCode(String confirmPinCode) {
+            this.confirmPinCode = confirmPinCode;
+        }
+
+        public void setReferralCode(String referralCode) {
+            this.referralCode = referralCode;
+        }
+
+        public void setProfessionIds(List<Long> professionIds) {
             this.professionIds = professionIds;
         }
 
