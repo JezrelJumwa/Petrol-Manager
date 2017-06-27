@@ -5,6 +5,9 @@ import com.sstgroup.xabaapp.utils.ErrorUtils;
 import org.junit.Test;
 import org.junit.Assert;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.Protocol;
@@ -20,7 +23,7 @@ import retrofit2.Response;
 public class ErrorUtilsUnitTest {
 
     private Response createErrorResponse(ResponseBody body) {
-        return Response.error(body, new okhttp3.Response.Builder().code(401).body(body).protocol(Protocol.HTTP_2).request(new Request.Builder().url(new HttpUrl.Builder().scheme("http").host("test").build()).build()).build());
+        return Response.error(body, new okhttp3.Response.Builder().code(401).body(body).message("").protocol(Protocol.HTTP_2).request(new Request.Builder().url(new HttpUrl.Builder().scheme("http").host("test").build()).build()).build());
     }
 
     private ResponseBody invalidJSONStructureResponse() {
