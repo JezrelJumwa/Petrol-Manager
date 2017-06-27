@@ -13,11 +13,13 @@ import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
 import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
 import com.sstgroup.xabaapp.service.RestClient;
+import com.sstgroup.xabaapp.ui.activities.HomeActivity;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
+import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import java.util.ArrayList;
@@ -429,7 +431,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
         String nationalId = mEditTextNationalId.getText().toString().trim();
         String confirmNationalId = mEditTextConfirmNationalId.getText().toString().trim();
-        String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+","");
+        String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+", "");
 
 
         // validations for National ID
@@ -520,13 +522,16 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             public void onResponse(Call<Object> call, Response<Object> response) {
                 if (response.isSuccessful()) {
                     ToastInterval.showToast(activity, getString(R.string.worker_is_registered));
-                }else {
+                    ((HomeActivity) activity).loadUserProfile();
+                } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
-                    if (errorRegisterWorker.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                    if (errorRegisterWorker.getError().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         if (errorRegisterWorker.getError().getNationalIdErrors() != null) {
                             ToastInterval.showToast(activity, errorRegisterWorker.getError().getNationalIdErrors().get(0));
+                        } else if (errorRegisterWorker.getError().getReferralCodeErrors() != null) {
+                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getReferralCodeErrors().get(0));
                         }
                     }
                 }
@@ -534,6 +539,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
+                Utils.onFailureUtils(activity, t);
                 Timber.d("onFailure" + t.toString());
             }
         });

@@ -105,11 +105,8 @@ public class HomeActivity extends BaseActivity implements
                     getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
             mDrawer.setUp(R.id.navigation_drawer,
                     (DrawerLayout) findViewById(R.id.drawer_layout));
-            mFirstResume = false;
-        }
-
-        if (mFirstRun){
             loadUserProfile();
+            mFirstResume = false;
         }
 
         mInForeground = true;
@@ -182,7 +179,6 @@ public class HomeActivity extends BaseActivity implements
 
             }
         });
-
     }
 
     private void setContentFragment(int menuItemId) {
