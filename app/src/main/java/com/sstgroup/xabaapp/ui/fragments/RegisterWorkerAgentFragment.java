@@ -574,6 +574,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     }
 
     private void requestRegister(RegisterWorkerRequestModel registerWorkerRequestModel) {
+        activity.showLoader();
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerAgentRequest());
         Call<UserResponse> call = RestClient.getService().register(XabaApplication.getInstance().getLanguageCode(),body);
         call.enqueue(new Callback<UserResponse>() {
@@ -589,16 +590,18 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     } else {
                         if (errorRegisterWorker.getError().getNationalIdErrors() != null) {
                             ToastInterval.showToast(activity, errorRegisterWorker.getError().getNationalIdErrors().get(0));
-                        } else if (errorRegisterWorker.getError().getReferralCodeErrors() != null) {
-                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getReferralCodeErrors().get(0));
+                        } else if (errorRegisterWorker.getError().getAgentIdErrors() != null) {
+                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getAgentIdErrors().get(0));
                         }
                     }
                 }
+                activity.hideLoader();
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Timber.d("onFailure" + t.toString());
+                activity.hideLoader();
                 Utils.onFailureUtils(activity, t);
             }
         });

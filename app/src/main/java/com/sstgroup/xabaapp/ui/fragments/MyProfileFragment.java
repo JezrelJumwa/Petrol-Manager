@@ -90,9 +90,9 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
                 dialog.dismiss();
                 activity.showLoader();
                 RestClient.getService().deactivateAccount(XabaApplication.getInstance().getLanguageCode(),
-                        Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue()).enqueue(new Callback<Object>() {
+                        Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue()).enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<Object> call, Response<Object> response) {
+                    public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()){
                             XabaApplication.getInstance().logout(getString(R.string.account_deactivated_success));
                         } else {
@@ -110,7 +110,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileAdapter.
                     }
 
                     @Override
-                    public void onFailure(Call<Object> call, Throwable t) {
+                    public void onFailure(Call<Void> call, Throwable t) {
                         Utils.onFailureUtils(activity, t);
                         activity.hideLoader();
                     }

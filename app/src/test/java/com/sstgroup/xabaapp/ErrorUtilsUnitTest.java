@@ -1,12 +1,10 @@
 package com.sstgroup.xabaapp;
 
+import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 
-import org.junit.Test;
 import org.junit.Assert;
-
-import java.io.IOException;
-import java.nio.charset.Charset;
+import org.junit.Test;
 
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
@@ -32,6 +30,29 @@ public class ErrorUtilsUnitTest {
 
     private ResponseBody invalidJSONResponse() {
         return ResponseBody.create(MediaType.parse("application/json"), "{\"status\":\"ERROR\",\"errors\":{pin\":[\"The input is not valid.\"]}}");
+    }
+
+    private ResponseBody registerWorkerFailJSONResponse() {
+        return ResponseBody.create(MediaType.parse("application/json"), "{\"status\":\"ERROR\",\"errors\":{\"national_idn\":[\"A record matching the input was found\"]}}");
+    }
+
+    @Test
+    public void parseRegisterWorker_doesNotThrowExceptionOnInvalidJSONStructureBody() {
+        try {
+            ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(createErrorResponse(registerWorkerFailJSONResponse()));
+
+            if (errorRegisterWorker.getError() == null){
+                Assert.fail("get error null");
+                return;
+            }
+            if (errorRegisterWorker.getError().getNationalIdErrors() == null){
+                Assert.fail("nationalidn is null");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail("paserLoginError throws exception with different JSON structure, exception: " + e.getMessage() + "\n");
+        }
     }
 
     @Test
