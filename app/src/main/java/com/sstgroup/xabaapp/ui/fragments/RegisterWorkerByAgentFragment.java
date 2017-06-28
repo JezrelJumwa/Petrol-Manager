@@ -141,7 +141,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
-        mEditTextPhoneNumber.setText("+254771161480");
+//        mEditTextPhoneNumber.setText("+254771161480");
     }
 
     @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.register})
@@ -525,6 +525,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                 if (response.isSuccessful()) {
                     ToastInterval.showToast(activity, getString(R.string.worker_is_registered));
                     ((HomeActivity) activity).loadUserProfile();
+                    ((HomeActivity) activity).openDashboard();
                 } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
 

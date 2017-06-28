@@ -22,6 +22,8 @@ public class NavigationDrawerFragment extends BaseFragment {
 
     @BindView(R.id.nav_register_worker)
     AppCompatCheckedTextView addWorker;
+    @BindView(R.id.nav_dashboard)
+    AppCompatCheckedTextView dashBoard;
 
     protected DrawerLayout mDrawerLayout;
     private NavigationDrawerCallbacks mCallbacks;
@@ -115,6 +117,10 @@ public class NavigationDrawerFragment extends BaseFragment {
 
     public void selectAddWorker() {
         selectItemAndClose(addWorker);
+    }
+
+    public void selectDashboard() {
+        selectItemAndClose(dashBoard);
     }
 
     private boolean selectItem(AppCompatCheckedTextView v) {

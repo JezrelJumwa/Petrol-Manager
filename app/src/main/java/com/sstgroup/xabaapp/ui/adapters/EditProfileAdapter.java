@@ -47,6 +47,10 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.selectedCounty = county;
         this.selectedSubCounty = subCounty;
         this.phoneNumber = phoneNumber;
+
+        if (professions.size() >= 3) {
+            removeAddProfessionButton = true;
+        }
     }
 
     public Profession getProfessionAtPosition(int position) {

@@ -310,6 +310,32 @@ public class DatabaseHelper {
         return professions;
     }
 
+//    public List<String> getProfessions(String industryName, String categoryName) {
+//        List<String> professions = new ArrayList<>();
+//        categoryDao = daoSession.getCategoryDao();
+//
+//
+//        long industryId = 0;
+//
+//        Cursor cursor = daoSession.getIndustryDao().getDatabase().rawQuery("SELECT " + IndustryDao.Properties.IndustryId.columnName + " FROM industry WHERE name = '" + industryName+ "'", null);
+//        while (cursor.moveToNext()) {
+//            industryId = Long.parseLong(cursor.getString(0));
+//        }
+//
+//        for (Category category : categoryDao.queryBuilder().where(CategoryDao.Properties.Name.eq(categoryName)).list()) {
+//            if (category.getIndustryId() == industryId) {
+//
+//                for (Profession profession : category.getProfessions()) {
+//                    professions.add(profession.getName());
+//                }
+//                break;
+//            }
+//        }
+//
+//        Collections.sort(professions);
+//        return professions;
+//    }
+
     public void updateLoggedUser(User user, Token token) {
         joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
 
@@ -317,7 +343,7 @@ public class DatabaseHelper {
                 .queryBuilder()
                 .where(JoinUsersWithProfessionsDao.Properties.UserId.eq(user.getId())).list();
 
-        for (JoinUsersWithProfessions item: list) {
+        for (JoinUsersWithProfessions item : list) {
             joinUsersProfessionDao.delete(item);
         }
 //        joinUsersProfessionDao.delete(list);
@@ -352,7 +378,7 @@ public class DatabaseHelper {
     public User getUser(long id) {
         userDao = daoSession.getUserDao();
         List<User> users = userDao.queryBuilder().where(UserDao.Properties.Id.eq(id)).list();
-        if (!users.isEmpty()){
+        if (!users.isEmpty()) {
             User user = users.get(0);
 
             Currency currency = getCurrency(user.getCurrencyId());
