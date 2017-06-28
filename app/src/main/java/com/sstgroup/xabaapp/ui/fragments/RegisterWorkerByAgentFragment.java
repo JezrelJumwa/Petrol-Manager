@@ -13,11 +13,13 @@ import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
 import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
 import com.sstgroup.xabaapp.service.RestClient;
+import com.sstgroup.xabaapp.ui.activities.HomeActivity;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
+import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import java.util.ArrayList;
@@ -323,7 +325,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
                                 selectedCategory = selectedItems.get(0);
                                 txtCategorySelection.setText(selectedCategory);
-                                professions = xabaDbHelper.getProfessions(selectedIndustry, selectedCategory);
+                                professions = xabaDbHelper.getProfessions(selectedCategory, selectedIndustry);
                                 break;
                             case 2:
 
@@ -334,7 +336,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
                                 selectedCategoryTwo = selectedItems.get(0);
                                 txtCategorySelectionTwo.setText(selectedCategoryTwo);
-                                professionsTwo = xabaDbHelper.getProfessions(selectedIndustryTwo, selectedCategoryTwo);
+                                professionsTwo = xabaDbHelper.getProfessions(selectedCategoryTwo, selectedIndustryTwo);
                                 break;
                             case 3:
 
@@ -345,7 +347,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
                                 selectedCategoryThree = selectedItems.get(0);
                                 txtCategorySelectionThree.setText(selectedCategoryThree);
-                                professionsThree = xabaDbHelper.getProfessions(selectedIndustryThree, selectedCategoryThree);
+                                professionsThree = xabaDbHelper.getProfessions(selectedCategoryThree, selectedIndustryThree);
                                 break;
                         }
 
@@ -497,6 +499,8 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             return;
         }
 
+        activity.showLoader();
+
 
         List<String> professions = new ArrayList<>();
         if (!Validator.isEmpty(selectedProfession)) {
@@ -514,26 +518,39 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
         RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, null, phoneNumber, languageCode, countryId, countyId, subCountyId, professionIds, userId, Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue());
 
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerByAgentRequest());
-        Call<Object> call = RestClient.getService().registerWorkerByAgent(XabaApplication.getInstance().getLanguageCode(), body);
-        call.enqueue(new Callback<Object>() {
+        Call<Void> call = RestClient.getService().registerWorkerByAgent(XabaApplication.getInstance().getLanguageCode(), body);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     ToastInterval.showToast(activity, getString(R.string.worker_is_registered));
+                    ((HomeActivity) activity).loadUserProfile();
                 } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
-                    if (errorRegisterWorker.getClass().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+
+                    if (errorRegisterWorker.getError().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                        XabaApplication.getInstance().logout();
+                        //from this point we logout user
+                        return;
+                    }
+
+                    if (errorRegisterWorker.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
                         if (errorRegisterWorker.getError().getNationalIdErrors() != null) {
                             ToastInterval.showToast(activity, errorRegisterWorker.getError().getNationalIdErrors().get(0));
+                        } else if (errorRegisterWorker.getError().getAgentIdErrors() != null) {
+                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getAgentIdErrors().get(0));
                         }
                     }
                 }
+                activity.hideLoader();
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
+                Utils.onFailureUtils(activity, t);
+                activity.hideLoader();
                 Timber.d("onFailure" + t.toString());
             }
         });

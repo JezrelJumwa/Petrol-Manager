@@ -19,6 +19,7 @@ import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Preferences;
+import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import java.util.ArrayList;
@@ -116,6 +117,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     private String selectedIndustryThree = "";
     private String selectedCategoryThree = "";
     private String selectedProfessionThree = "";
+
+    private RegistrationInfo info;
 
     @Override
     protected int getLayoutId() {
@@ -316,7 +319,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
                                 selectedCategory = selectedItems.get(0);
                                 txtCategorySelection.setText(selectedCategory);
-                                professions = xabaDbHelper.getProfessions(selectedIndustry, selectedCategory);
+                                professions = xabaDbHelper.getProfessions(selectedCategory, selectedIndustry);
                                 break;
                             case 2:
 
@@ -327,7 +330,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
                                 selectedCategoryTwo = selectedItems.get(0);
                                 txtCategorySelectionTwo.setText(selectedCategoryTwo);
-                                professionsTwo = xabaDbHelper.getProfessions(selectedIndustryTwo, selectedCategoryTwo);
+                                professionsTwo = xabaDbHelper.getProfessions(selectedCategoryTwo, selectedIndustryTwo);
                                 break;
                             case 3:
 
@@ -338,7 +341,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
                                 selectedCategoryThree = selectedItems.get(0);
                                 txtCategorySelectionThree.setText(selectedCategoryThree);
-                                professionsThree = xabaDbHelper.getProfessions(selectedIndustryThree, selectedCategoryThree);
+                                professionsThree = xabaDbHelper.getProfessions(selectedCategoryThree, selectedIndustryThree);
                                 break;
                         }
 
@@ -430,7 +433,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     private RegisterWorkerRequestModel getRegisterWorkerRequestModel() {
         String nationalId = mEditTextNationalId.getText().toString().trim();
         String confirmNationalId = mEditTextConfirmNationalId.getText().toString().trim();
-        String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+", "");
+        String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+","");
 
         String pinCode = mEditTextPinCode.getText().toString().trim();
         String confirmPinCode = mEditTextConfirmPinCode.getText().toString().trim();
@@ -438,7 +441,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
         List<Long> professionIds = xabaDbHelper.getProfessionIds(professions);
 
-        RegistrationInfo info = new RegistrationInfo(nationalId,
+        info = new RegistrationInfo(nationalId,
                 confirmNationalId,
                 phoneNumber,
                 pinCode,
@@ -571,8 +574,9 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     }
 
     private void requestRegister(RegisterWorkerRequestModel registerWorkerRequestModel) {
+        activity.showLoader();
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerAgentRequest());
-        Call<UserResponse> call = RestClient.getService().register(XabaApplication.getInstance().getLanguageCode(), body);
+        Call<UserResponse> call = RestClient.getService().register(XabaApplication.getInstance().getLanguageCode(),body);
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
@@ -586,28 +590,31 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     } else {
                         if (errorRegisterWorker.getError().getNationalIdErrors() != null) {
                             ToastInterval.showToast(activity, errorRegisterWorker.getError().getNationalIdErrors().get(0));
-                        } else if (errorRegisterWorker.getError().getReferralCodeErrors() != null) {
-                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getReferralCodeErrors().get(0));
+                        } else if (errorRegisterWorker.getError().getAgentIdErrors() != null) {
+                            ToastInterval.showToast(activity, errorRegisterWorker.getError().getAgentIdErrors().get(0));
                         }
                     }
                 }
+                activity.hideLoader();
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Timber.d("onFailure" + t.toString());
+                activity.hideLoader();
+                Utils.onFailureUtils(activity, t);
             }
         });
     }
 
     public static class RegistrationInfo {
-        private final String nationalId;
-        private final String confirmNationalId;
-        private final String phoneNumber;
-        private final String pinCode;
-        private final String confirmPinCode;
-        private final String referralCode;
-        private final List<Long> professionIds;
+        private String nationalId;
+        private String confirmNationalId;
+        private String phoneNumber;
+        private String pinCode;
+        private String confirmPinCode;
+        private String referralCode;
+        private List<Long> professionIds;
 
         public RegistrationInfo(String nationalId, String confirmNationalId, String phoneNumber, String pinCode, String confirmPinCode, String referralCode, List<Long> professionIds) {
             this.nationalId = nationalId;
@@ -616,6 +623,34 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             this.pinCode = pinCode;
             this.confirmPinCode = confirmPinCode;
             this.referralCode = referralCode;
+            this.professionIds = professionIds;
+        }
+
+        public void setNationalId(String nationalId) {
+            this.nationalId = nationalId;
+        }
+
+        public void setConfirmNationalId(String confirmNationalId) {
+            this.confirmNationalId = confirmNationalId;
+        }
+
+        public void setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+        }
+
+        public void setPinCode(String pinCode) {
+            this.pinCode = pinCode;
+        }
+
+        public void setConfirmPinCode(String confirmPinCode) {
+            this.confirmPinCode = confirmPinCode;
+        }
+
+        public void setReferralCode(String referralCode) {
+            this.referralCode = referralCode;
+        }
+
+        public void setProfessionIds(List<Long> professionIds) {
             this.professionIds = professionIds;
         }
 

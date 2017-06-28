@@ -10,11 +10,11 @@ public class ErrorRegisterWorker {
     @SerializedName("status")
     private String status;
     @SerializedName("errors")
-    private Error error;
+    private Error errors;
 
     public ErrorRegisterWorker(String status, Error error) {
         this.status = status;
-        this.error = error;
+        this.errors = error;
     }
 
     public String getStatus() {
@@ -22,27 +22,40 @@ public class ErrorRegisterWorker {
     }
 
     public Error getError() {
-        return error;
+        return errors;
     }
 
     public static class Error {
+        @SerializedName("code")
+        private Integer code;
+        @SerializedName("message")
+        private String message;
         @SerializedName("national_idn")
         private List<String> nationalIdErrors;
         @SerializedName("agent_id")
-        private List<String> referralCodeErrors;
+        private List<String> agentIdErrors;
 
-        public Error(List<String> nationalIdErrors, List<String> referralCodeErrors) {
+        public Error(Integer code, String message, List<String> nationalIdErrors, List<String> agentIdErrors) {
+            this.code = code;
+            this.message = message;
             this.nationalIdErrors = nationalIdErrors;
-            this.referralCodeErrors = referralCodeErrors;
+            this.agentIdErrors = agentIdErrors;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public String getMessage() {
+            return message;
         }
 
         public List<String> getNationalIdErrors() {
             return nationalIdErrors;
         }
 
-        public List<String> getReferralCodeErrors() {
-            return referralCodeErrors;
+        public List<String> getAgentIdErrors() {
+            return agentIdErrors;
         }
     }
-
 }

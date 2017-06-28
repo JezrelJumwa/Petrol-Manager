@@ -1,5 +1,6 @@
 package com.sstgroup.xabaapp.ui.activities;
 
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 
@@ -53,24 +54,36 @@ public class ForgottenPinActivity extends BaseActivity {
     }
 
     private void resetPinAndSendSMS() {
+        showLoader();
 
+        String nationalId = getNationalIdIfValid();
+        if (nationalId == null) return;
+
+        requestResetPinAndSendSMS(nationalId);
+    }
+
+    @Nullable
+    private String getNationalIdIfValid() {
         String nationalId = mEditTextNationalId.getText().toString().trim();
 
         if (Validator.isEmpty(nationalId)) {
             ToastInterval.showToast(this, getResources().getString(R.string.enter_national_id));
-            return;
+            return null;
         }
 
         if (Validator.isNotNumber(nationalId)) {
             ToastInterval.showToast(this, getResources().getString(R.string.national_id_should_be_a_number));
-            return;
+            return null;
         }
 
         if (Validator.isNotCorrectNationalIdSize(nationalId)) {
             ToastInterval.showToast(this, getResources().getString(R.string.your_national_id_is_wrong));
-            return;
+            return null;
         }
+        return nationalId;
+    }
 
+    private void requestResetPinAndSendSMS(String nationalId) {
         nationalId = Encryption.encryptionRSA(nationalId);
 
         Call<PinResponse> call = RestClient.getService().resetPin(XabaApplication.getInstance().getLanguageCode(),
@@ -78,6 +91,7 @@ public class ForgottenPinActivity extends BaseActivity {
         call.enqueue(new Callback<PinResponse>() {
             @Override
             public void onResponse(Call<PinResponse> call, Response<PinResponse> response) {
+                hideLoader();
                 if (response.isSuccessful()) {
                     ToastInterval.showToast(ForgottenPinActivity.this, getResources().getString(R.string.pin_is_reset));
                     finish();
@@ -89,6 +103,7 @@ public class ForgottenPinActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<PinResponse> call, Throwable t) {
+                hideLoader();
                 ToastInterval.showToast(ForgottenPinActivity.this, getResources().getString(R.string.something_is_wrong));
                 Timber.d("onFailure" + t.toString());
             }

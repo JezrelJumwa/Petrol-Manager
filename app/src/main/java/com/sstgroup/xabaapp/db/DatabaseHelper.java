@@ -257,8 +257,14 @@ public class DatabaseHelper {
         List<String> categories = new ArrayList<>();
         industryDao = daoSession.getIndustryDao();
 
-        for (Category category : industryDao.queryBuilder().where(IndustryDao.Properties.Name.eq(industryName)).list().get(0).getCategories()) {
-            categories.add(category.getName());
+        List<Industry> list = industryDao.queryBuilder().where(IndustryDao.Properties.Name.eq(industryName)).list();
+
+        if (list != null && list.size() > 0) {
+            for (Category category : list.get(0).getCategories()) {
+                if (!categories.contains(category.getName())) {
+                    categories.add(category.getName());
+                }
+            }
         }
 
         Collections.sort(categories);
@@ -282,12 +288,22 @@ public class DatabaseHelper {
         return null;
     }
 
-    public List<String> getProfessions(String categoryName) {
+    public List<String> getProfessions(String categoryName, String industryName) {
         List<String> professions = new ArrayList<>();
         categoryDao = daoSession.getCategoryDao();
 
-        for (Profession profession : categoryDao.queryBuilder().where(CategoryDao.Properties.Name.eq(categoryName)).list().get(0).getProfessions()) {
-            professions.add(profession.getName());
+        List<Industry> industryList = daoSession.getIndustryDao().queryBuilder().where(IndustryDao.Properties.Name.eq(industryName)).list();
+        if (industryList != null && industryList.size() > 0) {
+            Industry industry = industryList.get(0);
+
+            List<Category> list = categoryDao.queryBuilder().where(CategoryDao.Properties.Name.eq(categoryName)).where(CategoryDao.Properties.IndustryId.eq(industry.getIndustryId())).list();
+            if (list != null && list.size() > 0) {
+                for (Profession profession : list.get(0).getProfessions()) {
+                    if (!professions.contains(profession.getName())) {
+                        professions.add(profession.getName());
+                    }
+                }
+            }
         }
 
         Collections.sort(professions);

@@ -72,7 +72,7 @@ public interface XabaService {
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(WS_REGISTER_WORKER_BY_AGENT_PATH)
-    Call<Object> registerWorkerByAgent(@Path(LANGUAGE) String language, @Body RequestBody model);
+    Call<Void> registerWorkerByAgent(@Path(LANGUAGE) String language, @Body RequestBody model);
 
     @FormUrlEncoded
     @POST(WS_GET_USER_PATH)
@@ -146,7 +146,7 @@ public interface XabaService {
 
     @FormUrlEncoded
     @POST(WS_DEACTIVATE_ACCOUNT)
-    Call<Object> deactivateAccount(@Path(LANGUAGE) String language,
+    Call<Void> deactivateAccount(@Path(LANGUAGE) String language,
                                    @Field(AGENT_APP_KEY) String agentApp,
                                    @Field(TOKEN) String token);
 
