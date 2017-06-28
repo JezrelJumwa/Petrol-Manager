@@ -221,6 +221,9 @@
     <string name="commissions">Commissions</string>
     <string name="filters">Filters</string>
 
+    <!--Validation by SMS-->
+    <string name="verification_code">Verification code</string>
+
     <!--Commission log filter-->
     <string name="date">Date</string>
     <string name="type">Type</string>

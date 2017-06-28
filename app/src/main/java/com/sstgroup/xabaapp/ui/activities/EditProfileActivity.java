@@ -23,6 +23,7 @@ import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
+import com.sstgroup.xabaapp.utils.Validator;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
             profession.setNew(false);
         }
 
-        editProfileAdapter = new EditProfileAdapter(this, new ArrayList<>(user.getProfessions()), county, xabaDbHelper.getSubCounty(user.getSubcountyId()));
+        editProfileAdapter = new EditProfileAdapter(this, new ArrayList<>(user.getProfessions()), county, xabaDbHelper.getSubCounty(user.getSubcountyId()), user.getPhone());
         mRvEditProfile.setLayoutManager(new LinearLayoutManager(this));
         mRvEditProfile.setAdapter(editProfileAdapter);
 
@@ -169,6 +170,19 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
             return;
         }
 
+        // validations for Phone Number
+        if (Validator.isEmpty(editProfileAdapter.getPhoneNumber())) {
+            hideLoader();
+            ToastInterval.showToast(this, getResources().getString(R.string.enter_phone_number));
+            return;
+        }
+
+        if (!Validator.isCorrectPhoneNumber(editProfileAdapter.getPhoneNumber())) {
+            hideLoader();
+            ToastInterval.showToast(this, getResources().getString(R.string.your_phone_number_should_look_like));
+            return;
+        }
+
         stringBuilder.append(Constants.AGENT_APP_KEY);
         stringBuilder.append("=");
         stringBuilder.append(Constants.AGENT_APP_VALUE);
@@ -184,6 +198,10 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         stringBuilder.append(Constants.TOKEN);
         stringBuilder.append("=");
         stringBuilder.append(XabaApplication.getInstance().getToken().getValue());
+        stringBuilder.append("&");
+        stringBuilder.append(Constants.PHONE);
+        stringBuilder.append("=");
+        stringBuilder.append(editProfileAdapter.getPhoneNumber());
 
 
         for (Profession profession : selectedProfessions) {
@@ -213,13 +231,13 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                 } else {
                     ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
 
-                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                    if (errorLogin != null && errorLogin.getErrors() != null && errorLogin.getErrors().getMessage() != null && errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
                         XabaApplication.getInstance().logout();
                         //from this point we logout user
                         return;
                     }
 
-                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_STATUS_UNEXPECTED)){
+                    if (errorLogin != null && errorLogin.getErrors() != null && errorLogin.getErrors().getMessage() != null && errorLogin.getErrors().getMessage().equals(Constants.ERROR_STATUS_UNEXPECTED)){
                         ToastInterval.showToast(EditProfileActivity.this, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(EditProfileActivity.this, errorLogin.getErrors().getMessage());
