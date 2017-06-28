@@ -1,7 +1,8 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,17 +11,21 @@
         android:paddingEnd="30dp"
         android:paddingStart="30dp">
 
-        <LinearLayout
+        <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:minHeight="20dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:src="@drawable/xaba_red_logo_bigger"/>
 
             <TextView
@@ -29,7 +34,7 @@
                 android:layout_marginTop="30dp"
                 android:text="@string/country"
                 android:textColor="@color/dark_color"
-                android:textSize="16sp"/>
+                android:textSize="15sp"/>
 
             <LinearLayout
                 android:id="@+id/grp_country"
@@ -39,6 +44,7 @@
                 <TextView
                     android:id="@+id/txt_country_selection"
                     style="@style/SpinnerTextViewStyle"
+                    android:textSize="15sp"
                     android:text="@string/select_country"/>
 
                 <ImageView
@@ -52,7 +58,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/language"
                 android:textColor="@color/dark_color"
-                android:textSize="16sp"/>
+                android:textSize="15sp"/>
 
             <LinearLayout
                 android:id="@+id/grp_language"
@@ -62,6 +68,7 @@
                 <TextView
                     android:id="@+id/txt_language_selection"
                     style="@style/SpinnerTextViewStyle"
+                    android:textSize="15sp"
                     android:text="@string/select_preferred_language"/>
 
                 <ImageView
@@ -71,11 +78,15 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="40dp"
-            android:layout_weight="3"
+            android:minHeight="24dp"
+            android:layout_weight="0.8"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -83,49 +94,79 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:text="@string/welcome_to_xaba_shikanisha"
                 android:textColor="@color/dark_color"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:textStyle="bold"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/green_line"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="@string/we_have_made_it_easier_for_you_to_register"
                 android:textColor="@color/dark_color"
-                android:textSize="18sp"/>
+                android:textSize="17sp"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
             <Button
                 android:id="@+id/register"
                 style="@style/ButtonLinkStyle"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
+                android:minHeight="0dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="10dp"
+                android:textSize="15sp"
                 android:text="@string/register_now"/>
 
             <Button
                 android:id="@+id/next"
                 style="@style/ButtonGreenStyle"
                 android:layout_marginTop="10dp"
+                android:textSize="15sp"
                 android:text="@string/next"/>
 
             <Button
                 android:id="@+id/log_in"
                 style="@style/ButtonLinkStyle"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="5dp"
+                android:minHeight="0dp"
+                android:paddingTop="11dp"
+                android:paddingBottom="6dp"
+                android:textSize="15sp"
                 android:text="@string/login_u"/>
 
         </LinearLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:minHeight="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
