@@ -5,14 +5,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PatternMatcher;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
+import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.ui.activities.LoginActivity;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Preferences;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import timber.log.Timber;
 
@@ -21,6 +26,13 @@ import timber.log.Timber;
  */
 
 public class SMSReceiver extends BroadcastReceiver {
+
+    private String localizedVerificationCode = null;
+
+    public void setLocalizedVerificationCode(String localizedVerificationCode) {
+        this.localizedVerificationCode = localizedVerificationCode;
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -46,36 +58,66 @@ public class SMSReceiver extends BroadcastReceiver {
                     SmsMessage sms = SmsMessage.createFromPdu((byte[]) smsExtra[i]);
                     String body = sms.getMessageBody().toString();
                     String sender = sms.getOriginatingAddress().toString();
-                    String msg = "verification code for account in XABA is ";
-                    //Toast.makeText(context, "From :" + sender + "\n" + "body:" + body, Toast.LENGTH_LONG).show();
-                    if (body != null && body.contains(msg)) {
-                        int index = body.indexOf(msg);
-                        if (index > 0 && body.length() > index + msg.length()) {
-                            String code = body.substring(index + msg.length());
-                            int space_index = code.indexOf(" ");
-                            if (space_index > 0 && code.length() > space_index) {
-                                code = code.substring(0, space_index);
-                            }
-                            int dot_index = code.indexOf(".");
-                            if (dot_index > 0 && code.length() > dot_index) {
-                                code = code.substring(0, dot_index);
-                            }
+                    String verificationCode = parseSMSVerificationCode(body);
+                    if (verificationCode != null && verificationCode.length() > 0) {
+                        //Create login activity intent and add the userId and activation code extra
+                        Long userId = Preferences.getLoggedUserId(XabaApplication.getInstance().getApplicationContext());
+                        Intent loginActivityInent = new Intent(XabaApplication.getInstance().getApplicationContext(), LoginActivity.class);
+                        loginActivityInent.putExtra(Constants.USER_ID_KEY, userId);
+                        loginActivityInent.putExtra(Constants.ACTIVATION_CODE_KEY, verificationCode);
+                        loginActivityInent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        XabaApplication.getInstance().getApplicationContext().startActivity(loginActivityInent);
 
-                            //Create login activity intent and add the userId and activation code extra
-                            Long userId = Preferences.getLoggedUserId(XabaApplication.getInstance().getApplicationContext());
-                            Intent loginActivityInent = new Intent(XabaApplication.getInstance().getApplicationContext(), LoginActivity.class);
-                            loginActivityInent.putExtra(Constants.USER_ID_KEY, userId);
-                            loginActivityInent.putExtra(Constants.ACTIVATION_CODE_KEY, code);
-                            loginActivityInent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            XabaApplication.getInstance().getApplicationContext().startActivity(loginActivityInent);
+                        //Toast.makeText(context, "From :" + sender + "\n" + "code:" + verificationCode, Toast.LENGTH_LONG).show();
 
-                            //Toast.makeText(context, "From :" + sender + "\n" + "code:" + code, Toast.LENGTH_LONG).show();
-                        }
                     }
                 }
             } catch (Exception e) {
                 Timber.d("SMSReceiver onReceive throws exception: " + e.getLocalizedMessage(), e);
             }
         }
+    }
+
+    /**
+     * This method parses SMS message string and parses XABA verification code.
+     * To recognize that the SMS is for XABA verification code this method checks two things.
+     * First it checks that the SMS message has XABA as substring.
+     * Secondary it checks for localizaed sub string "verification code".
+     * Then it uses regular expression to find the verification code itself.
+     *
+     * @param smsMessage The SMS message body to be parsed
+     * @return The parsed XABA verification code. Returns null if the code can not be parsed.
+     */
+    public String parseSMSVerificationCode(String smsMessage) {
+
+        if (localizedVerificationCode == null) {
+            localizedVerificationCode = XabaApplication.getInstance().getString(R.string.verification_code);
+        }
+
+        if (smsMessage == null || !smsMessage.contains("XABA")) {
+            return null;
+        }
+
+        if (!smsMessage.contains(localizedVerificationCode)) {
+            return null;
+        }
+
+        try {
+            Pattern pattern = Pattern.compile("( +)([A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]+)([\\. ]+)");
+            Matcher matcher = pattern.matcher(smsMessage);
+            if (matcher.find()) {
+                String verificationCode = matcher.group(2);
+                if (verificationCode != null && verificationCode.length() > 0) {
+                    return verificationCode;
+                }
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            Timber.d("parseSMSVerificationCode failed to match regular expression with exception : " + e.getLocalizedMessage());
+        }
+
+        return null;
     }
 }
