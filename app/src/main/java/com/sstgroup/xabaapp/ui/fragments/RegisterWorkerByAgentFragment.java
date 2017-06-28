@@ -525,6 +525,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                 if (response.isSuccessful()) {
                     ToastInterval.showToast(activity, getString(R.string.worker_is_registered));
                     ((HomeActivity) activity).loadUserProfile();
+                    ((HomeActivity) activity).openDashboard();
                 } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
 
