@@ -210,9 +210,11 @@
     <string name="question_title_12">How do I become an agent?</string>
     <string name="question_title_13">Where can I find the Xaba Terms and Conditions?</string>
 
-    <string name="question_content_1">question_content_1</string>
-    <string name="question_content_2">question_content_2</string>
-    <string name="question_content_3">question_content_3</string>
+    <string name="question_content_1">Xaba is a social movement that is enriching lives by creating job connections in Agri-business, Construction, Hospitality and Manufacturing industries. Searching and hiring workers in the informal sector is now easier on Xaba.</string>
+    <string name="question_content_2">Xaba Shikanisha is an easy, cost effective and faster way to connect employers with employees. Employers are able to cherry pick blue-collar workers best suited for their projects in a matter of minutes and in simplified steps. Employees/Workers who are registered on Xaba Shikanisha through the USSD process *844# increase their opportunity of getting hired for jobs closest to them.</string>
+    <string name="question_content_3">Xaba targets employees/workers and employers in the blue-collar market specializing in Agri-business, Construction, Hospitality and Manufacturing industries.
+        \n\u2022 Employees/Workers can register to increase their chances of getting hired
+        \n\u2022 Employers can find verified workers with the right skillset for their projects</string>
     <string name="question_content_4">question_content_4</string>
     <string name="question_content_5">question_content_5</string>
     <string name="question_content_6">question_content_6</string>
