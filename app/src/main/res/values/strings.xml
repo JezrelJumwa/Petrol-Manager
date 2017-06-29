@@ -234,4 +234,10 @@
     <string name="all_types">All Types</string>
     <string name="pending_validation">Pending Validation</string>
 
+    <!-- Contact screen-->
+    <string name="enter_email">Enter email</string>
+    <string name="enter_message">Enter message</string>
+    <string name="message_is_sent">Message is sent.</string>
+    <string name="enter_correct_email">Enter correct email.</string>
+
 </resources>

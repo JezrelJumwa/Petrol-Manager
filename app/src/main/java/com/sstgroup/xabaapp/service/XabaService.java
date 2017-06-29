@@ -4,6 +4,7 @@ package com.sstgroup.xabaapp.service;
 import com.sstgroup.xabaapp.models.ActivationCodeResponse;
 import com.sstgroup.xabaapp.models.CommissionLogsResponse;
 import com.sstgroup.xabaapp.models.LocationResponse;
+import com.sstgroup.xabaapp.models.MessageResponse;
 import com.sstgroup.xabaapp.models.NotificationResponse;
 import com.sstgroup.xabaapp.models.PinResponse;
 import com.sstgroup.xabaapp.models.ProfessionResponse;
@@ -26,8 +27,10 @@ import retrofit2.http.Query;
 import static com.sstgroup.xabaapp.utils.Constants.ACTIVATION_CODE;
 import static com.sstgroup.xabaapp.utils.Constants.AGENT_APP_KEY;
 import static com.sstgroup.xabaapp.utils.Constants.COMMISSION_FILTER_PERIOD;
+import static com.sstgroup.xabaapp.utils.Constants.EMAIL;
 import static com.sstgroup.xabaapp.utils.Constants.HASH;
 import static com.sstgroup.xabaapp.utils.Constants.LANGUAGE;
+import static com.sstgroup.xabaapp.utils.Constants.MESSAGE;
 import static com.sstgroup.xabaapp.utils.Constants.NATIONAL_ID;
 import static com.sstgroup.xabaapp.utils.Constants.NEW_PIN;
 import static com.sstgroup.xabaapp.utils.Constants.NOTIFICATION_FILTER;
@@ -51,6 +54,7 @@ import static com.sstgroup.xabaapp.utils.Constants.WS_REGISTER_WORKER_BY_AGENT_P
 import static com.sstgroup.xabaapp.utils.Constants.WS_RESEND_SMS_WITH_NEW_ACTIVATION_CODE_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_RESET_PIN_PATH;
 import static com.sstgroup.xabaapp.utils.Constants.WS_RESET_VERIFY_PATH;
+import static com.sstgroup.xabaapp.utils.Constants.WS_SYSTEM_CONTACT;
 import static com.sstgroup.xabaapp.utils.Constants.WS_UPDATE_WORKER_PATH;
 
 public interface XabaService {
@@ -150,4 +154,11 @@ public interface XabaService {
                                    @Field(AGENT_APP_KEY) String agentApp,
                                    @Field(TOKEN) String token);
 
+    @FormUrlEncoded
+    @POST(WS_SYSTEM_CONTACT)
+    Call<MessageResponse> sendMessageToSystem(@Path(LANGUAGE) String language,
+                                              @Field(AGENT_APP_KEY) String agentApp,
+                                              @Field(TOKEN) String token,
+                                              @Field(EMAIL) String email,
+                                              @Field(MESSAGE) String message);
 }

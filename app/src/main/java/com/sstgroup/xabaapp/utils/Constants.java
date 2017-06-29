@@ -26,6 +26,7 @@ public class Constants {
     public static final String WS_REFERRED_WORKERS = "{language}/worker/referred-workers/list/";
     public static final String WS_COMMISSIONS = "{language}/worker/commissions/list/";
     public static final String WS_DEACTIVATE_ACCOUNT = "{language}/worker/deactivate/";
+    public static final String WS_SYSTEM_CONTACT = "{language}/system/contact/";
 
 
     //    Extras
@@ -55,6 +56,8 @@ public class Constants {
     public static final String COMMISSION_FILTER_PERIOD = "filter[period]";
     public static final String NOTIFICATION_LAST_ITEM = "next_page_params[from_id]";
     public static final String LOG_OUT_MESSAGE = "log_out_message";
+    public static final String EMAIL = "email";
+    public static final String MESSAGE = "message";
 
     //Notification types
     public static final String NOTIFICATION_PAYOUT = "payout";
