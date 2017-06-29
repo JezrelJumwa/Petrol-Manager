@@ -59,6 +59,14 @@ public class ReferredWorkersFragment extends BaseFragment {
     protected void initFields() {
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (activity.hasInternetConnection()) {
+            hideSwipeLoading();
+        }
+    }
+
     private void showSwipeLoading() {
         if (refreshLayout != null)
             refreshLayout.post(new Runnable() {
