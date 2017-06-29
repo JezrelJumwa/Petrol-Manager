@@ -31,7 +31,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="content1"/>
+                android:text="@string/question_content_1"/>
 
         </LinearLayout>
 
@@ -55,7 +55,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne2"/>
+                android:text="@string/question_content_2"/>
 
         </LinearLayout>
 
@@ -79,7 +79,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne3"/>
+                android:text="@string/question_content_3"/>
 
         </LinearLayout>
 
@@ -103,7 +103,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne4"/>
+                android:text="@string/question_content_4"/>
 
         </LinearLayout>
 
@@ -127,7 +127,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne5"/>
+                android:text="@string/question_content_5"/>
 
         </LinearLayout>
 
@@ -151,7 +151,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne6"/>
+                android:text="@string/question_content_6"/>
 
         </LinearLayout>
 
@@ -175,7 +175,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne7"/>
+                android:text="@string/question_content_7"/>
 
         </LinearLayout>
 
@@ -199,7 +199,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne8"/>
+                android:text="@string/question_content_8"/>
 
         </LinearLayout>
 
@@ -223,7 +223,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne9"/>
+                android:text="@string/question_content_9"/>
 
         </LinearLayout>
 
@@ -247,7 +247,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne10"/>
+                android:text="@string/question_content_10"/>
 
         </LinearLayout>
 
@@ -271,7 +271,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne11"/>
+                android:text="@string/question_content_11"/>
 
         </LinearLayout>
 
@@ -295,7 +295,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne12"/>
+                android:text="@string/question_content_12"/>
 
         </LinearLayout>
 
@@ -319,7 +319,7 @@
 
             <TextView
                 style="@style/ExpandableContentTextStyle"
-                android:text="contentOne13"/>
+                android:text="@string/question_content_13"/>
 
         </LinearLayout>
 

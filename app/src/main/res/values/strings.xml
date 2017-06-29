@@ -210,6 +210,20 @@
     <string name="question_title_12">How do I become an agent?</string>
     <string name="question_title_13">Where can I find the Xaba Terms and Conditions?</string>
 
+    <string name="question_content_1">question_content_1</string>
+    <string name="question_content_2">question_content_2</string>
+    <string name="question_content_3">question_content_3</string>
+    <string name="question_content_4">question_content_4</string>
+    <string name="question_content_5">question_content_5</string>
+    <string name="question_content_6">question_content_6</string>
+    <string name="question_content_7">question_content_7</string>
+    <string name="question_content_8">question_content_8</string>
+    <string name="question_content_9">question_content_9</string>
+    <string name="question_content_10">question_content_10</string>
+    <string name="question_content_11">question_content_11</string>
+    <string name="question_content_12">question_content_12</string>
+    <string name="question_content_13">question_content_13</string>
+
     <string name="join_our_social_movement">Join our social movement</string>
 
     <!--Referred workers-->
