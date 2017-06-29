@@ -257,7 +257,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne11"/>
+                android:text="@string/question_title_11"/>
 
             <ImageView
                 android:id="@+id/img_11"
@@ -281,7 +281,7 @@
 
             <TextView
                 style="@style/ExpandableTitleTextStyle"
-                android:text="titleOne12"/>
+                android:text="@string/question_title_12"/>
 
             <ImageView
                 android:id="@+id/img_12"
@@ -296,6 +296,30 @@
             <TextView
                 style="@style/ExpandableContentTextStyle"
                 android:text="contentOne12"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/grp_title_13"
+            style="@style/ExpandableTitleLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableTitleTextStyle"
+                android:text="@string/question_title_13"/>
+
+            <ImageView
+                android:id="@+id/img_13"
+                style="@style/ExpandableTitleImageStyle"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/grp_13"
+            style="@style/ExpandableContentLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableContentTextStyle"
+                android:text="contentOne13"/>
 
         </LinearLayout>
 

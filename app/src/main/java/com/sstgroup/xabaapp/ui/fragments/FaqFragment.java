@@ -76,6 +76,11 @@ public class FaqFragment extends BaseFragment {
     @BindView(R.id.grp_12)
     LinearLayout grp12;
 
+    @BindView(R.id.img_13)
+    ImageView img13;
+    @BindView(R.id.grp_13)
+    LinearLayout grp13;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_faq;
@@ -102,7 +107,7 @@ public class FaqFragment extends BaseFragment {
 
     @OnClick({R.id.grp_title_1, R.id.grp_title_2, R.id.grp_title_3, R.id.grp_title_4,
             R.id.grp_title_5, R.id.grp_title_6, R.id.grp_title_7, R.id.grp_title_8,
-            R.id.grp_title_9, R.id.grp_title_10, R.id.grp_title_11, R.id.grp_title_12})
+            R.id.grp_title_9, R.id.grp_title_10, R.id.grp_title_11, R.id.grp_title_12, R.id.grp_title_13})
     public void onClick(View view) {
 
         switch (view.getId()) {
@@ -235,6 +240,17 @@ public class FaqFragment extends BaseFragment {
                 } else {
                     collapse(grp12);
                     img12.setImageResource(R.drawable.open);
+                }
+                break;
+
+            case R.id.grp_title_13:
+
+                if (grp13.getVisibility() == View.GONE) {
+                    expand(grp13);
+                    img13.setImageResource(R.drawable.close);
+                } else {
+                    collapse(grp13);
+                    img13.setImageResource(R.drawable.open);
                 }
                 break;
         }

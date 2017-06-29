@@ -198,14 +198,18 @@
 
     <string name="question_title_1">What is Xaba?</string>
     <string name="question_title_2">What is Xaba Shikanisha?</string>
-    <string name="question_title_3">Who should register on Xaba Shikanisha?</string>
+    <string name="question_title_3">Who can register on Xaba Shikanisha?</string>
     <string name="question_title_4">How does Xaba Shikanisha work?</string>
-    <string name="question_title_5">What is the cost of using the service?</string>
-    <string name="question_title_6">How do I pay for the service?</string>
-    <string name="question_title_7">How do I activate my account?</string>
-    <string name="question_title_8">How do I update my details?</string>
-    <string name="question_title_9">How do I become an agent?</string>
-    <string name="question_title_10">Where can I find the Xaba terms and conditions?</string>
+    <string name="question_title_5">Will I be charged for using the service?</string>
+    <string name="question_title_6">How do I activate my account?</string>
+    <string name="question_title_7">How do I update my details?</string>
+    <string name="question_title_8">How do I view my profile?</string>
+    <string name="question_title_9">How do I change my notification number?</string>
+    <string name="question_title_10">How do I refer a friend?</string>
+    <string name="question_title_11">How do I add a profession?</string>
+    <string name="question_title_12">How do I become an agent?</string>
+    <string name="question_title_13">Where can I find the Xaba Terms and Conditions?</string>
+
     <string name="join_our_social_movement">Join our social movement</string>
 
     <!--Referred workers-->
