@@ -67,6 +67,14 @@ public class User {
             targetProperty = "professionsId"
     )
     private List<Profession> professions;
+    @ToMany
+    @JoinEntity(
+            entity = JoinUsersWithPrograms.class,
+            sourceProperty = "userId",
+            targetProperty = "programId"
+    )
+    private List<Program> programs;
+
     @SerializedName("token")
     @ToOne(joinProperty = "tokenId")
     private Token token;
@@ -383,6 +391,34 @@ public class User {
 
     public UserCommissions getUserCommissions() {
         return userCommissions;
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1243580497)
+    public List<Program> getPrograms() {
+        if (programs == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            ProgramDao targetDao = daoSession.getProgramDao();
+            List<Program> programsNew = targetDao._queryUser_Programs(id);
+            synchronized (this) {
+                if (programs == null) {
+                    programs = programsNew;
+                }
+            }
+        }
+        return programs;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1664380762)
+    public synchronized void resetPrograms() {
+        programs = null;
     }
 
     /** called by internal mechanisms, do not call yourself. */

@@ -9,7 +9,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,4 +53,33 @@ public class DatabaseHelperTest {
         }
     }
 
+    @Test
+    public void getProgramIds_doesNotThrowException() throws Exception {
+        try {
+            ArrayList<String> invalidPrograms = new ArrayList<>();
+            invalidPrograms.add("invalidProgramASDF");
+            xabaDbHelper.getProgramIds(invalidPrograms);
+        } catch (Exception e) {
+            Assert.fail("getProgramIds throws exception on invalid program name");
+        }
+
+        try {
+            xabaDbHelper.getProgramIds(new ArrayList<String>());
+        } catch (Exception e) {
+            Assert.fail("getProgramIds throws exception on empty program name list");
+        }
+    }
+
+    @Test
+    public void getProgramIds_returnsTheSameNumberOfIdsAsNamesProvided() throws Exception {
+        List<String> programs = xabaDbHelper.getPrograms();
+        List<Long> ids =  xabaDbHelper.getProgramIds(programs);
+        if (ids == null) {
+            if (programs != null && programs.size() > 0) {
+                Assert.fail("getProgramIds returns null for non empty program name list.");
+            }
+        } else {
+            Assert.assertEquals("getProgramIds returns different count of ids than expected.", programs.size(), ids.size());
+        }
+    }
 }

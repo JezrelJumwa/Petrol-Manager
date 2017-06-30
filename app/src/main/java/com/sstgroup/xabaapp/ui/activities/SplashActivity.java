@@ -114,6 +114,7 @@ public class SplashActivity extends BaseActivity {
                             Preferences.setProfessionHash(SplashActivity.this, professionStructure.hash);
                             xabaDbHelper.deleteProfessionTables();
                             xabaDbHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
+                            xabaDbHelper.insertOrReplacePrograms(professionStructure.getPrograms());
                         }
                     }
                 }

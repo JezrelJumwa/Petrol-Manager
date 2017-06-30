@@ -29,6 +29,8 @@ import com.sstgroup.xabaapp.models.Notification;
 import com.sstgroup.xabaapp.models.NotificationDao;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.ProfessionDao;
+import com.sstgroup.xabaapp.models.Program;
+import com.sstgroup.xabaapp.models.ProgramDao;
 import com.sstgroup.xabaapp.models.ReferredWorker;
 import com.sstgroup.xabaapp.models.ReferredWorkerDao;
 import com.sstgroup.xabaapp.models.SubCounty;
@@ -63,6 +65,7 @@ public class DatabaseHelper {
     private static CountyDao countyDao;
     private static SubCountyDao subCountyDao;
     private static IndustryDao industryDao;
+    private static ProgramDao programDao;
     private static CategoryDao categoryDao;
     private static ProfessionDao professionDao;
     private static UserDao userDao;
@@ -117,6 +120,7 @@ public class DatabaseHelper {
         daoSession.getIndustryDao().deleteAll();
         daoSession.getCategoryDao().deleteAll();
         daoSession.getProfessionDao().deleteAll();
+        daoSession.getProgramDao().deleteAll();
     }
 
     public void insertOrReplaceLanguages(ArrayList<Language> languages) {
@@ -228,6 +232,22 @@ public class DatabaseHelper {
         for (Industry industry : industries) {
             insertOrReplaceCategory(industry.getCategories(), industry.getIndustryId());
         }
+    }
+
+    public void insertOrReplacePrograms(List<Program> programs) {
+        programDao = daoSession.getProgramDao();
+        programDao.insertInTx(programs);
+    }
+
+    public List<String> getPrograms() {
+        List<String> programs = new ArrayList<>();
+        programDao = daoSession.getProgramDao();
+
+        Cursor cursor = programDao.getDatabase().rawQuery("SELECT name FROM program ORDER BY name", null);
+        while (cursor.moveToNext()) {
+            programs.add(cursor.getString(0));
+        }
+        return programs;
     }
 
     public List<String> getIndustries() {
@@ -518,6 +538,21 @@ public class DatabaseHelper {
 
         for (Profession profession : professions) {
             professionIdsList.add(profession.getProfessionId());
+        }
+
+        if (!professionIdsList.isEmpty()) {
+            return professionIdsList;
+        }
+        return null;
+    }
+
+    public List<Long> getProgramIds(List<String> programNames) {
+        programDao = daoSession.getProgramDao();
+        List<Program> programs = programDao.queryBuilder().where(ProgramDao.Properties.Name.in(programNames)).list();
+        List<Long> professionIdsList = new ArrayList<>();
+
+        for (Program program : programs) {
+            professionIdsList.add(program.getProgramId());
         }
 
         if (!professionIdsList.isEmpty()) {

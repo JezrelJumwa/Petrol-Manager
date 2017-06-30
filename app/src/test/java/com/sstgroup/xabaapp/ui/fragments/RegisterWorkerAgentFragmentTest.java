@@ -35,7 +35,7 @@ public class RegisterWorkerAgentFragmentTest {
     @Test
     public void validateAndGetRegisterWorkerRequestModel_doesNotCrashOnEmptyRefferalId() throws Exception {
         try {
-            fragment.getRegisterWorkerRequestModelWithInfo(new RegisterWorkerAgentFragment.RegistrationInfo("77777777", "77777777", "+254771161777", "0000", "0000", "", new ArrayList<Long>()));
+            fragment.getRegisterWorkerRequestModelWithInfo(new RegisterWorkerAgentFragment.RegistrationInfo("77777777", "77777777", "+254771161777", "0000", "0000", "", new ArrayList<Long>(), null));
         } catch (Exception e) {
             e.printStackTrace();
             fail("validateAndGetRegisterWorkerRequestModel should not throw exception: " + e.getLocalizedMessage());

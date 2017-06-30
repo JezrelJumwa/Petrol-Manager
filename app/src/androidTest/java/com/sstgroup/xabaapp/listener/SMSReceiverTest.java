@@ -1,22 +1,16 @@
 package com.sstgroup.xabaapp.listener;
 
 import android.content.Intent;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.ui.activities.MainActivity;
 import com.sstgroup.xabaapp.utils.Preferences;
+import com.sstgroup.xabaapp.WaitAction;
 
-import junit.framework.TestCase;
-
-import org.hamcrest.Matcher;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,7 +22,6 @@ import static org.hamcrest.Matchers.not;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static org.junit.Assert.*;
 
 /**
  * Created by julianlubenov on 6/28/17.
@@ -73,29 +66,10 @@ public class SMSReceiverTest {
 
         smsReceiver.onReceive(XabaApplication.getInstance().getApplicationContext(), intent);
 
-        onView(isRoot()).perform(waitFor(300));
+        onView(isRoot()).perform(WaitAction.waitFor(300));
 
         onView(withId(R.id.resend_pin_sms))
                 .check(matches(isDisplayed()));
-    }
-
-    public static ViewAction waitFor(final long millis) {
-        return new ViewAction() {
-            @Override
-            public Matcher<View> getConstraints() {
-                return isRoot();
-            }
-
-            @Override
-            public String getDescription() {
-                return "Wait for " + millis + " milliseconds.";
-            }
-
-            @Override
-            public void perform(UiController uiController, final View view) {
-                uiController.loopMainThreadForAtLeast(millis);
-            }
-        };
     }
 
 }

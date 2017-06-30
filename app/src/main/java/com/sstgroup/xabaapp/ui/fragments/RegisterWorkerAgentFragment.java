@@ -22,6 +22,8 @@ import com.sstgroup.xabaapp.utils.Preferences;
 import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,6 +90,9 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     @BindView(R.id.referral_code)
     EditText mEditTextReferralCode;
 
+    @BindView(R.id.txt_program)
+    TextView txtProgram;
+
     private String languageCode;
     private Long countryId;
     private Long countyId;
@@ -99,6 +104,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     private String selectedSubCounty = "";
 
     List<String> industries = new ArrayList<>();
+    List<String> programs = new ArrayList<>();
+    private String selectedProgram = "";
 
     List<String> categories = new ArrayList<>();
     List<String> professions = new ArrayList<>();
@@ -131,6 +138,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         languageCode = xabaDbHelper.getLanguage(Preferences.getSelectedLanguage(activity)).getLanguageCode();
         counties = xabaDbHelper.getCounties();
         industries = xabaDbHelper.getIndustries();
+        programs = xabaDbHelper.getPrograms();
     }
 
     @Override
@@ -138,7 +146,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 //        mEditTextPhoneNumber.setText("+254771161480");
     }
 
-    @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.register})
+    @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.grp_program, R.id.register})
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -186,10 +194,29 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             case R.id.add_another_profession:
                 addAnotherProfession();
                 break;
+            case R.id.grp_program:
+                showProgramsDialog();
+                break;
             case R.id.register:
                 register();
                 break;
         }
+    }
+
+    private void showProgramsDialog() {
+
+
+        CustomChooserDialog dialog = new CustomChooserDialog(activity, programs, true,
+                new CustomChooserDialog.OnCustomChooserDialogClosed() {
+                    @Override
+                    public void onCustomChooserDialogClosed(List<String> selectedItems) {
+                        if (selectedItems.size() > 0) {
+                            selectedProgram = selectedItems.get(0);
+                            txtProgram.setText(selectedProgram);
+                        }
+                    }
+                });
+        dialog.show();
     }
 
     private void showCountiesDialog() {
@@ -440,6 +467,9 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         String referralCode = mEditTextReferralCode.getText().toString().trim();
 
         List<Long> professionIds = xabaDbHelper.getProfessionIds(professions);
+        ArrayList<String> programs = new ArrayList<String>();
+        programs.add(selectedProgram);
+        List<Long> programIds = xabaDbHelper.getProgramIds(programs);
 
         info = new RegistrationInfo(nationalId,
                 confirmNationalId,
@@ -447,7 +477,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                 pinCode,
                 confirmPinCode,
                 referralCode,
-                professionIds);
+                professionIds,
+                programIds);
 
         if (validateRegisterInfo(info)) return null;
 
@@ -456,7 +487,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Nullable
     public RegisterWorkerRequestModel getRegisterWorkerRequestModelWithInfo(RegistrationInfo registrationInfo) {
-        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(registrationInfo.getNationalId(), registrationInfo.getPinCode(), registrationInfo.getPhoneNumber(), languageCode, countryId, countyId, subCountyId, registrationInfo.professionIds, registrationInfo.getReferralCodeAsLong(), Constants.AGENT_APP_VALUE, null);
+        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(registrationInfo.getNationalId(), registrationInfo.getPinCode(), registrationInfo.getPhoneNumber(), languageCode, countryId, countyId, subCountyId, registrationInfo.professionIds, registrationInfo.getReferralCodeAsLong(), Constants.AGENT_APP_VALUE, null, registrationInfo.programIds);
         return registerWorkerRequestModel;
     }
 
@@ -615,8 +646,9 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         private String confirmPinCode;
         private String referralCode;
         private List<Long> professionIds;
+        private List<Long> programIds;
 
-        public RegistrationInfo(String nationalId, String confirmNationalId, String phoneNumber, String pinCode, String confirmPinCode, String referralCode, List<Long> professionIds) {
+        public RegistrationInfo(String nationalId, String confirmNationalId, String phoneNumber, String pinCode, String confirmPinCode, String referralCode, List<Long> professionIds, List<Long> programIds) {
             this.nationalId = nationalId;
             this.confirmNationalId = confirmNationalId;
             this.phoneNumber = phoneNumber;
@@ -624,6 +656,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             this.confirmPinCode = confirmPinCode;
             this.referralCode = referralCode;
             this.professionIds = professionIds;
+            this.programIds = programIds;
         }
 
         public void setNationalId(String nationalId) {
@@ -692,6 +725,10 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
         public List<Long> getProfessionIds() {
             return professionIds;
+        }
+
+        public List<Long> getProgramIds() {
+            return programIds;
         }
     }
 }

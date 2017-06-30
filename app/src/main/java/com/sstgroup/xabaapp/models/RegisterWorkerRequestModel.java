@@ -21,8 +21,9 @@ public class RegisterWorkerRequestModel {
     private Long agent_id;
     private String client;
     private String token;
+    private List<Long> programs;
 
-    public RegisterWorkerRequestModel(String national_idn, String pin, String phone, String preferred_language, Long country_id, Long county_id, Long subcounty_id, List<Long> professions, Long agent_id, String client, String token) {
+    public RegisterWorkerRequestModel(String national_idn, String pin, String phone, String preferred_language, Long country_id, Long county_id, Long subcounty_id, List<Long> professions, Long agent_id, String client, String token, List<Long> programs) {
         this.national_idn = national_idn;
         this.pin = pin;
         this.phone = phone;
@@ -34,6 +35,7 @@ public class RegisterWorkerRequestModel {
         this.agent_id = agent_id;
         this.client = client;
         this.token = token;
+        this.programs = programs;
     }
 
     public String generateRegisterWorkerAgentRequest() {
@@ -57,6 +59,12 @@ public class RegisterWorkerRequestModel {
             requestBody += "&" + Constants.AGENT_ID + "=" + agent_id;
         }
 
+        if (programs != null) {
+            for (Long programId : programs) {
+                requestBody += "&" + Constants.PROGRAMS + "=" + programId;
+            }
+        }
+
         return requestBody;
     }
 
@@ -78,6 +86,12 @@ public class RegisterWorkerRequestModel {
 
         for (Long professionId : professions) {
             requestBody += "&" + Constants.PROFESSIONS + "=" + professionId;
+        }
+
+        if (programs != null) {
+            for (Long programId : programs) {
+                requestBody += "&" + Constants.PROGRAMS + "=" + programId;
+            }
         }
 
         return requestBody;

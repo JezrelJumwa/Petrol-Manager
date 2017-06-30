@@ -48,6 +48,7 @@ public class Constants {
     public static final String COUNTY_ID = "county_id";
     public static final String SUBCOUNTY_ID = "subcounty_id";
     public static final String PROFESSIONS = "professions[]";
+    public static final String PROGRAMS = "programs[]";
     public static final String AGENT_ID = "agent_id";
     public static final String WORKER_ID = "worker_id";
     public static final String VERIFICATION_CODE = "verification_code";

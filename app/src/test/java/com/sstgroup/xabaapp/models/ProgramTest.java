@@ -26,7 +26,7 @@ public class ProgramTest {
     public void testProgramPrasesWithGSON() {
         Program program = gson.fromJson("{\"program_id\": 1,\"name\": \"NCA\",\"status\": \"active\"}", Program.class);
         Assert.assertEquals("Parsed program does not matches the expected name", "NCA", program.name);
-        Assert.assertEquals("Parsed program does not matches the expected status", Program.Status.Active, program.status);
+        Assert.assertEquals("Parsed program does not matches the expected status", Program.STATUS_ACTIVE, program.status);
         Assert.assertEquals("Parsed program does not matches the expected program ID", (long)1L, (long)program.programId);
     }
 
