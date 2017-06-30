@@ -112,18 +112,21 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     private String selectedIndustry = "";
     private String selectedCategory = "";
     private String selectedProfession = "";
+    private Long selectedProfessionId = 0L;
 
     List<String> categoriesTwo = new ArrayList<>();
     List<String> professionsTwo = new ArrayList<>();
     private String selectedIndustryTwo = "";
     private String selectedCategoryTwo = "";
     private String selectedProfessionTwo = "";
+    private Long selectedProfessionTwoId = 0L;
 
     List<String> categoriesThree = new ArrayList<>();
     List<String> professionsThree = new ArrayList<>();
     private String selectedIndustryThree = "";
     private String selectedCategoryThree = "";
     private String selectedProfessionThree = "";
+    private Long selectedProfessionThreeId = 0L;
 
     private RegistrationInfo info;
 
@@ -466,7 +469,31 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         String confirmPinCode = mEditTextConfirmPinCode.getText().toString().trim();
         String referralCode = mEditTextReferralCode.getText().toString().trim();
 
-        List<Long> professionIds = xabaDbHelper.getProfessionIds(professions);
+        ArrayList<String> selectedIndustries= new ArrayList<>();
+        if (selectedIndustry != null && selectedIndustry.length() > 0) {
+            selectedIndustries.add(selectedIndustry);
+        }
+        if (selectedIndustryTwo != null && selectedIndustryTwo.length() > 0) {
+            selectedIndustries.add(selectedIndustryTwo);
+        }
+        if (selectedIndustryThree != null && selectedIndustryThree.length() > 0) {
+            selectedIndustries.add(selectedIndustryThree);
+        }
+        List<Long> industryIds = xabaDbHelper.getIndustryIds(selectedIndustries);
+
+        ArrayList<Long> selectedProfessions = new ArrayList<>();
+        if (selectedProfession != null && selectedProfession.length() > 0) {
+            selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfession, selectedCategory, selectedIndustry));
+        }
+        if (selectedProfessionTwo != null && selectedProfessionTwo.length() > 0) {
+            selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfessionTwo, selectedCategoryTwo, selectedIndustryTwo));
+        }
+        if (selectedProfessionThree != null && selectedProfessionThree.length() > 0) {
+            selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfessionThree, selectedCategoryThree, selectedIndustryThree));
+        }
+
+
+
         ArrayList<String> programs = new ArrayList<String>();
         programs.add(selectedProgram);
         List<Long> programIds = xabaDbHelper.getProgramIds(programs);
@@ -477,7 +504,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                 pinCode,
                 confirmPinCode,
                 referralCode,
-                professionIds,
+                industryIds,
+                selectedProfessions,
                 programIds);
 
         if (validateRegisterInfo(info)) return null;
@@ -646,16 +674,19 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         private String confirmPinCode;
         private String referralCode;
         private List<Long> professionIds;
+        private List<Long> industryIds;
         private List<Long> programIds;
 
-        public RegistrationInfo(String nationalId, String confirmNationalId, String phoneNumber, String pinCode, String confirmPinCode, String referralCode, List<Long> professionIds, List<Long> programIds) {
+        public RegistrationInfo(String nationalId, String confirmNationalId, String phoneNumber, String pinCode, String confirmPinCode, String referralCode, List<Long> industryIds, List<Long> professionIds, List<Long> programIds) {
             this.nationalId = nationalId;
             this.confirmNationalId = confirmNationalId;
             this.phoneNumber = phoneNumber;
             this.pinCode = pinCode;
             this.confirmPinCode = confirmPinCode;
             this.referralCode = referralCode;
+            this.industryIds = industryIds;
             this.professionIds = professionIds;
+
             this.programIds = programIds;
         }
 
@@ -721,6 +752,10 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
             } catch (Exception e) {
                 return 0L;
             }
+        }
+
+        public List<Long> getIndustryIds() {
+            return industryIds;
         }
 
         public List<Long> getProfessionIds() {

@@ -308,6 +308,32 @@ public class DatabaseHelper {
         return null;
     }
 
+    public List<Profession> getProfessionsObjects(String categoryName, String industryName) {
+        categoryDao = daoSession.getCategoryDao();
+
+        List<Industry> industryList = daoSession.getIndustryDao().queryBuilder().where(IndustryDao.Properties.Name.eq(industryName)).list();
+        if (industryList != null && industryList.size() > 0) {
+            Industry industry = industryList.get(0);
+
+            List<Category> list = categoryDao.queryBuilder().where(CategoryDao.Properties.Name.eq(categoryName)).where(CategoryDao.Properties.IndustryId.eq(industry.getIndustryId())).list();
+            if (list != null && list.size() > 0) {
+                return list.get(0).getProfessions();
+            }
+        }
+
+        return null;
+    }
+
+    public Long getProfessionIdFor(String professionString, String categoryName, String industryName) {
+        List<Profession> professions = getProfessionsObjects(categoryName, industryName);
+        for (Profession profession : professions) {
+            if (profession.getName().equals(professionString)) {
+                return profession.getProfessionId();
+            }
+        }
+        return 0L;
+    }
+
     public List<String> getProfessions(String categoryName, String industryName) {
         List<String> professions = new ArrayList<>();
         categoryDao = daoSession.getCategoryDao();
@@ -527,6 +553,21 @@ public class DatabaseHelper {
         List<Language> languages = languageDao.queryBuilder().where(LanguageDao.Properties.Name.eq(languageName)).list();
         if (!languages.isEmpty()) {
             return languages.get(0);
+        }
+        return null;
+    }
+
+    public List<Long> getIndustryIds(List<String> industryNames) {
+        industryDao = daoSession.getIndustryDao();
+        List<Industry> industries = industryDao.queryBuilder().where(IndustryDao.Properties.Name.in(industryNames)).list();
+        List<Long> industryIdsList = new ArrayList<>();
+
+        for (Industry industry : industries) {
+            industryIdsList.add(industry.getIndustryId());
+        }
+
+        if (!industryIdsList.isEmpty()) {
+            return industryIdsList;
         }
         return null;
     }
