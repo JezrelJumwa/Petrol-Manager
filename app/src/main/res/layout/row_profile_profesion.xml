@@ -40,7 +40,7 @@
             <!--android:layout_below="@id/txt_industry"/>-->
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/row_title"
             style="@style/ProfileTxtKey"
             android:text="@string/profession_dot" />
         <!--android:layout_below="@id/textView3"-->

@@ -31,6 +31,7 @@
             android:layout_height="64dp"
             android:background="@color/green_color"
             android:textColor="@color/white"
+            android:text="@string/select"
             android:textSize="17sp"/>
 
         <View

@@ -15,7 +15,9 @@ import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.Profession;
+import com.sstgroup.xabaapp.models.Program;
 import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
@@ -39,9 +41,9 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.callbacks = callbacks;
         this.xabaDbHelper = DatabaseHelper.getInstance(XabaApplication.getInstance());
         if (loggedUser.getGender() != null)
-            this.size = 5;
+            this.size = 6;
         else
-            this.size = 4;
+            this.size = 5;
     }
 
     @Override
@@ -78,7 +80,29 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemViewType(int position) {
-        if (size == 5){
+        if (size == 6){
+            if (position > 5){
+                if (position <= professionsSize + 5) {
+                    return R.layout.row_profile_profesion;
+                }
+
+                return R.layout.row_profile_footer;
+            }
+            switch (position) {
+                case 0:
+                    return R.layout.row_profile_header;
+                case 1:
+                    return R.layout.row_profile_item;
+                case 2:
+                    return R.layout.row_profile_item;
+                case 3:
+                    return R.layout.row_profile_item;
+                case 4:
+                    return R.layout.row_profile_item;
+                case 5:
+                    return R.layout.row_profile_profesion;
+            }
+        } else {
             if (position > 4){
                 if (professionsSize + 4 >= position){
                     return R.layout.row_profile_profesion;
@@ -96,25 +120,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 case 3:
                     return R.layout.row_profile_item;
                 case 4:
-                    return R.layout.row_profile_item;
-            }
-        } else {
-            if (position > 3){
-                if (professionsSize + 3 >= position){
                     return R.layout.row_profile_profesion;
-                }
-
-                return R.layout.row_profile_footer;
-            }
-            switch (position) {
-                case 0:
-                    return R.layout.row_profile_header;
-                case 1:
-                    return R.layout.row_profile_item;
-                case 2:
-                    return R.layout.row_profile_item;
-                case 3:
-                    return R.layout.row_profile_item;
             }
         }
 
@@ -188,7 +194,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     txtProfileKey.setText(context.getText(R.string.county_profile));
                     txtProfileDetail.setText(xabaDbHelper.getCounty(Long.valueOf(loggedUser.getCountyId())).getName());
                     ivProfileLeftIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_round_county));
-                    if ((size == 4 & position == 2) || size == 5){
+                    if ((size == 5 & position == 2) || size == 6){
                         break;
                     }
                 case 4:
@@ -205,10 +211,9 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     class RowProfession extends RecyclerView.ViewHolder {
-//        @BindView(R.id.txt_industry)
-//        TextView txtIndustry;
-//        @BindView(R.id.txt_category)
-//        TextView txtCategory;
+
+        @BindView(R.id.row_title)
+        TextView txtTitle;
         @BindView(R.id.txt_profession)
         TextView txtProfession;
 
@@ -218,6 +223,17 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         void bind(int position) {
+            if (position == size - 1) {
+                txtTitle.setText(context.getResources().getString(R.string.programs_dot));
+
+                if (loggedUser.getPrograms() != null && loggedUser.getPrograms().size() > 0 ) {
+                    txtProfession.setText(CustomChooserDialog.getSelectedProgramsFromObjects(loggedUser.getPrograms()));
+                }
+
+                return;
+            }
+
+            txtTitle.setText(context.getResources().getString(R.string.profession_dot));
             Profession profession = loggedUser.getProfessions().get(position - size);
             
             if(profession != null && !TextUtils.isEmpty(profession.getName())){

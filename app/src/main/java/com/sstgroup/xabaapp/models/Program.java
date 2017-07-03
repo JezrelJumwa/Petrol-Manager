@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Transient;
 
 /**
  * Created by julianlubenov on 6/30/17.
@@ -21,6 +22,10 @@ public class Program {
     @SerializedName("program_id")
     Long programId;
 
+    @Transient
+    @SerializedName("id")
+    private Long loggedUserProgramId;
+
     @SerializedName("name")
     String name;
 
@@ -36,6 +41,14 @@ public class Program {
 
     @Generated(hash = 775603163)
     public Program() {
+    }
+
+    public Long getLoggedUserProgramId() {
+        return loggedUserProgramId;
+    }
+
+    public void setLoggedUserProgramId(Long loggedUserProgramId) {
+        this.loggedUserProgramId = loggedUserProgramId;
     }
 
     public Long getProgramId() {

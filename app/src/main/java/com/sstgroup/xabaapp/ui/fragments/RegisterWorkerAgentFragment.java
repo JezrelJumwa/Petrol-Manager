@@ -1,6 +1,7 @@
 package com.sstgroup.xabaapp.ui.fragments;
 
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
@@ -105,7 +106,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     List<String> industries = new ArrayList<>();
     List<String> programs = new ArrayList<>();
-    private String selectedProgram = "";
+    private List<String> selectedPrograms = new ArrayList<>();
 
     List<String> categories = new ArrayList<>();
     List<String> professions = new ArrayList<>();
@@ -147,6 +148,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     @Override
     protected void initViews(View rootView) {
 //        mEditTextPhoneNumber.setText("+254771161480");
+
     }
 
     @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.grp_program, R.id.register})
@@ -214,8 +216,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         if (selectedItems.size() > 0) {
-                            selectedProgram = selectedItems.get(0);
-                            txtProgram.setText(selectedProgram);
+                            selectedPrograms = new ArrayList<>(selectedItems);
+                            txtProgram.setText(CustomChooserDialog.getSelectedPrograms(selectedPrograms));
                         }
                     }
                 });
@@ -494,8 +496,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
 
 
-        ArrayList<String> programs = new ArrayList<String>();
-        programs.add(selectedProgram);
+        ArrayList<String> programs = new ArrayList<String>(selectedPrograms);
         List<Long> programIds = xabaDbHelper.getProgramIds(programs);
 
         info = new RegistrationInfo(nationalId,

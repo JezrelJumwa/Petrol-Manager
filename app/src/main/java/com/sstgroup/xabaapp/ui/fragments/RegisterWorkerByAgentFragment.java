@@ -80,6 +80,9 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
     @BindView(R.id.add_another_profession)
     Button mButtonAddAnotherProfession;
 
+    @BindView(R.id.txt_program)
+    TextView txtProgram;
+
     private String languageCode;
     private Long countryId;
     private Long countyId;
@@ -92,6 +95,9 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
     private String selectedSubCounty = "";
 
     List<String> industries = new ArrayList<>();
+
+    List<String> programs = new ArrayList<>();
+    private List<String> selectedPrograms = new ArrayList<>();
 
     List<String> categories = new ArrayList<>();
     List<String> professions = new ArrayList<>();
@@ -130,6 +136,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
         languageCode = xabaDbHelper.getLanguage(Preferences.getSelectedLanguage(activity)).getLanguageCode();
         counties = xabaDbHelper.getCounties();
         industries = xabaDbHelper.getIndustries();
+        programs = xabaDbHelper.getActivePrograms();
 
 //        Bundle bundle = getArguments();
 //        if (bundle != null) {
@@ -144,7 +151,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 //        mEditTextPhoneNumber.setText("+254771161480");
     }
 
-    @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.register})
+    @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.grp_program, R.id.register})
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -191,6 +198,9 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                 break;
             case R.id.add_another_profession:
                 addAnotherProfession();
+                break;
+            case R.id.grp_program:
+                showProgramsDialog();
                 break;
             case R.id.register:
                 register();
@@ -427,6 +437,22 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
         }
     }
 
+    private void showProgramsDialog() {
+
+        CustomChooserDialog dialog = new CustomChooserDialog(activity, programs, false,
+                new CustomChooserDialog.OnCustomChooserDialogClosed() {
+                    @Override
+                    public void onCustomChooserDialogClosed(List<String> selectedItems) {
+                        if (selectedItems.size() > 0) {
+                            selectedPrograms = new ArrayList<>(selectedItems);
+                            txtProgram.setText(CustomChooserDialog.getSelectedPrograms(selectedPrograms));
+                        }
+                    }
+                });
+        dialog.show();
+    }
+
+
     private void register() {
 
         String nationalId = mEditTextNationalId.getText().toString().trim();
@@ -536,7 +562,10 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfessionThree, selectedCategoryThree, selectedIndustryThree));
         }
 
-        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, null, phoneNumber, languageCode, countryId, countyId, subCountyId, selectedProfessions, industryIds, userId, Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(), null);
+        ArrayList<String> programs = new ArrayList<String>(selectedPrograms);
+        List<Long> programIds = xabaDbHelper.getProgramIds(programs);
+
+        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, null, phoneNumber, languageCode, countryId, countyId, subCountyId, selectedProfessions, industryIds, userId, Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(), programIds);
 
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerByAgentRequest());
         Call<Void> call = RestClient.getService().registerWorkerByAgent(XabaApplication.getInstance().getLanguageCode(), body);

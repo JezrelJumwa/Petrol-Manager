@@ -23,6 +23,8 @@ import com.sstgroup.xabaapp.models.JoinCategoriesWithProfessions;
 import com.sstgroup.xabaapp.models.JoinCategoriesWithProfessionsDao;
 import com.sstgroup.xabaapp.models.JoinUsersWithProfessions;
 import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsDao;
+import com.sstgroup.xabaapp.models.JoinUsersWithPrograms;
+import com.sstgroup.xabaapp.models.JoinUsersWithProgramsDao;
 import com.sstgroup.xabaapp.models.Language;
 import com.sstgroup.xabaapp.models.LanguageDao;
 import com.sstgroup.xabaapp.models.Notification;
@@ -71,6 +73,7 @@ public class DatabaseHelper {
     private static UserDao userDao;
     private static TokenDao tokenDao;
     private static JoinUsersWithProfessionsDao joinUsersProfessionDao;
+    private static JoinUsersWithProgramsDao joinUsersWithProgramsDao;
     private static JoinCategoriesWithProfessionsDao joinCategoryProfessionDao;
     private static NotificationDao notificationDao;
     private static CommissionLogDao commissionLogDao;
@@ -456,6 +459,15 @@ public class DatabaseHelper {
             }
             insertJoinUserProfessions(user.getId(), professionId);
         }
+
+        for (Program program : user.getPrograms()) {
+            Long programId = program.getLoggedUserProgramId();
+            if (programId == null || programId == 0L) {
+                programId = program.getProgramId();
+            }
+            insertJoinUserPrograms(user.getId(), programId);
+        }
+
 //        Country country = getCountry(user.getCountryId());
 //        County county = getCounty(user.getCountyId());
 //        SubCounty subCounty = getSubCounty(user.getSubcountyId());
@@ -506,6 +518,17 @@ public class DatabaseHelper {
         if (list.isEmpty())
             joinUsersProfessionDao
                     .insertOrReplace(new JoinUsersWithProfessions(null, userId, professionId));
+    }
+
+    public void insertJoinUserPrograms(Long userId, Long programId) {
+        joinUsersWithProgramsDao = daoSession.getJoinUsersWithProgramsDao();
+        List<JoinUsersWithPrograms> list = joinUsersWithProgramsDao
+                .queryBuilder()
+                .where(JoinUsersWithProgramsDao.Properties.UserId.eq(userId))
+                .where(JoinUsersWithProgramsDao.Properties.ProgramId.eq(programId)).list();
+        if (list.isEmpty())
+            joinUsersWithProgramsDao
+                    .insertOrReplace(new JoinUsersWithPrograms(null, userId, programId));
     }
 
     public Category getCategory(long categoryId) {

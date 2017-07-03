@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.models.Program;
 import com.sstgroup.xabaapp.ui.adapters.DialogItemChooserAdapter;
 
 import java.util.ArrayList;
@@ -108,5 +109,26 @@ public class CustomChooserDialog extends Dialog {
 
     public interface OnCustomChooserDialogClosed {
         void onCustomChooserDialogClosed(List<String> selectedItems);
+    }
+
+    public static String getSelectedPrograms(List<String> selectedPrograms) {
+        StringBuilder selectedProgramsString = new StringBuilder();
+        for (String programName : selectedPrograms) {
+            if (selectedPrograms.indexOf(programName) > 0) {
+                selectedProgramsString.append(", ");
+            }
+            selectedProgramsString.append(programName);
+        }
+        return selectedProgramsString.toString();
+    }
+
+    public static String getSelectedProgramsFromObjects(List<Program> selectedPrograms) {
+        ArrayList<String> programNames = new ArrayList<>();
+        for (Program program : selectedPrograms) {
+            if (program.getName() != null) {
+                programNames.add(program.getName());
+            }
+        }
+        return getSelectedPrograms(programNames);
     }
 }
