@@ -513,9 +513,30 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             professions.add(selectedProfessionThree);
         }
 
-        List<Long> professionIds = xabaDbHelper.getProfessionIds(professions);
+        ArrayList<String> selectedIndustries= new ArrayList<>();
+        if (selectedIndustry != null && selectedIndustry.length() > 0) {
+            selectedIndustries.add(selectedIndustry);
+        }
+        if (selectedIndustryTwo != null && selectedIndustryTwo.length() > 0) {
+            selectedIndustries.add(selectedIndustryTwo);
+        }
+        if (selectedIndustryThree != null && selectedIndustryThree.length() > 0) {
+            selectedIndustries.add(selectedIndustryThree);
+        }
+        List<Long> industryIds = xabaDbHelper.getIndustryIds(selectedIndustries);
 
-        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, null, phoneNumber, languageCode, countryId, countyId, subCountyId, professionIds, userId, Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(), null);
+        ArrayList<Long> selectedProfessions = new ArrayList<>();
+        if (selectedProfession != null && selectedProfession.length() > 0) {
+            selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfession, selectedCategory, selectedIndustry));
+        }
+        if (selectedProfessionTwo != null && selectedProfessionTwo.length() > 0) {
+            selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfessionTwo, selectedCategoryTwo, selectedIndustryTwo));
+        }
+        if (selectedProfessionThree != null && selectedProfessionThree.length() > 0) {
+            selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfessionThree, selectedCategoryThree, selectedIndustryThree));
+        }
+
+        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(nationalId, null, phoneNumber, languageCode, countryId, countyId, subCountyId, selectedProfessions, industryIds, userId, Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(), null);
 
         RequestBody body = RequestBody.create(MediaType.parse("text"), registerWorkerRequestModel.generateRegisterWorkerByAgentRequest());
         Call<Void> call = RestClient.getService().registerWorkerByAgent(XabaApplication.getInstance().getLanguageCode(), body);

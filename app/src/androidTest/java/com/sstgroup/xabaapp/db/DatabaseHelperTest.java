@@ -72,7 +72,7 @@ public class DatabaseHelperTest {
 
     @Test
     public void getProgramIds_returnsTheSameNumberOfIdsAsNamesProvided() throws Exception {
-        List<String> programs = xabaDbHelper.getPrograms();
+        List<String> programs = xabaDbHelper.getActivePrograms();
         List<Long> ids =  xabaDbHelper.getProgramIds(programs);
         if (ids == null) {
             if (programs != null && programs.size() > 0) {

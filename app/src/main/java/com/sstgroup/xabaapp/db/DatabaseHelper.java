@@ -250,6 +250,17 @@ public class DatabaseHelper {
         return programs;
     }
 
+    public List<String> getActivePrograms() {
+        List<String> programs = new ArrayList<>();
+        programDao = daoSession.getProgramDao();
+
+        Cursor cursor = programDao.getDatabase().rawQuery("SELECT name FROM program WHERE status LIKE \"" + Program.STATUS_ACTIVE + "\" ORDER BY name", null);
+        while (cursor.moveToNext()) {
+            programs.add(cursor.getString(0));
+        }
+        return programs;
+    }
+
     public List<String> getIndustries() {
         List<String> industries = new ArrayList<>();
         industryDao = daoSession.getIndustryDao();
@@ -439,7 +450,11 @@ public class DatabaseHelper {
     public void insertLoggedUser(Context context, User user) {
         Preferences.setLoggedUserId(context, user.getId());
         for (Profession profession : user.getProfessions()) {
-            insertJoinUserProfessions(user.getId(), profession.getLoggedUserProfessionId());
+            Long professionId = profession.getLoggedUserProfessionId();
+            if (professionId == null || professionId == 0) {
+                professionId = profession.getProfessionId();
+            }
+            insertJoinUserProfessions(user.getId(), professionId);
         }
 //        Country country = getCountry(user.getCountryId());
 //        County county = getCounty(user.getCountyId());

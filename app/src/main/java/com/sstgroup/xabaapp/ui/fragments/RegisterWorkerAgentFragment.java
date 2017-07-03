@@ -141,7 +141,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         languageCode = xabaDbHelper.getLanguage(Preferences.getSelectedLanguage(activity)).getLanguageCode();
         counties = xabaDbHelper.getCounties();
         industries = xabaDbHelper.getIndustries();
-        programs = xabaDbHelper.getPrograms();
+        programs = xabaDbHelper.getActivePrograms();
     }
 
     @Override
@@ -209,7 +209,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     private void showProgramsDialog() {
 
 
-        CustomChooserDialog dialog = new CustomChooserDialog(activity, programs, true,
+        CustomChooserDialog dialog = new CustomChooserDialog(activity, programs, false,
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
@@ -515,7 +515,7 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
 
     @Nullable
     public RegisterWorkerRequestModel getRegisterWorkerRequestModelWithInfo(RegistrationInfo registrationInfo) {
-        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(registrationInfo.getNationalId(), registrationInfo.getPinCode(), registrationInfo.getPhoneNumber(), languageCode, countryId, countyId, subCountyId, registrationInfo.professionIds, registrationInfo.getReferralCodeAsLong(), Constants.AGENT_APP_VALUE, null, registrationInfo.programIds);
+        RegisterWorkerRequestModel registerWorkerRequestModel = new RegisterWorkerRequestModel(registrationInfo.getNationalId(), registrationInfo.getPinCode(), registrationInfo.getPhoneNumber(), languageCode, countryId, countyId, subCountyId, registrationInfo.professionIds, registrationInfo.getIndustryIds(), registrationInfo.getReferralCodeAsLong(), Constants.AGENT_APP_VALUE, null, registrationInfo.programIds);
         return registerWorkerRequestModel;
     }
 

@@ -18,12 +18,13 @@ public class RegisterWorkerRequestModel {
     private Long county_id;
     private Long subcounty_id;
     private List<Long> professions;
+    private List<Long> industries;
     private Long agent_id;
     private String client;
     private String token;
     private List<Long> programs;
 
-    public RegisterWorkerRequestModel(String national_idn, String pin, String phone, String preferred_language, Long country_id, Long county_id, Long subcounty_id, List<Long> professions, Long agent_id, String client, String token, List<Long> programs) {
+    public RegisterWorkerRequestModel(String national_idn, String pin, String phone, String preferred_language, Long country_id, Long county_id, Long subcounty_id, List<Long> professions, List<Long> industries, Long agent_id, String client, String token, List<Long> programs) {
         this.national_idn = national_idn;
         this.pin = pin;
         this.phone = phone;
@@ -32,6 +33,7 @@ public class RegisterWorkerRequestModel {
         this.county_id = county_id;
         this.subcounty_id = subcounty_id;
         this.professions = professions;
+        this.industries = industries;
         this.agent_id = agent_id;
         this.client = client;
         this.token = token;
@@ -52,7 +54,10 @@ public class RegisterWorkerRequestModel {
                 "&" + Constants.SUBCOUNTY_ID + "=" + subcounty_id;
 
         for (Long professionId : professions) {
-            requestBody += "&" + Constants.PROFESSIONS + "=" + professionId;
+            int index = professions.indexOf(professionId);
+            if (industries != null && index >= 0 && index < industries.size()) {
+                requestBody += "&" + Constants.PROFESSIONS_INDEXLESS + "[" + industries.get(index) + "]" + "=" + professionId;
+            }
         }
 
         if (agent_id != null) {
@@ -85,7 +90,10 @@ public class RegisterWorkerRequestModel {
 
 
         for (Long professionId : professions) {
-            requestBody += "&" + Constants.PROFESSIONS + "=" + professionId;
+            int index = professions.indexOf(professionId);
+            if (industries != null && index >= 0 && index < industries.size()) {
+                requestBody += "&" + Constants.PROFESSIONS_INDEXLESS + "[" + industries.get(index) + "]" + "=" + professionId;
+            }
         }
 
         if (programs != null) {
