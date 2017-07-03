@@ -1,28 +1,35 @@
 package com.sstgroup.xabaapp.ui.fragments;
 
 import android.support.test.espresso.FailureHandler;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.sstgroup.xabaapp.FeedbackMatcher;
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.ViewHolderAtPositionMatcher;
 import com.sstgroup.xabaapp.WaitAction;
 import com.sstgroup.xabaapp.ui.activities.SplashActivity;
+
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static com.sstgroup.xabaapp.Helpers.first;
 import static com.sstgroup.xabaapp.Helpers.viewHolderAtPosition;
 
-import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -34,6 +41,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.core.IsNot.not;
 
 /**
@@ -67,18 +75,110 @@ public class RegisterWorkerAgentFragmentTest {
                 onView(isRoot()).perform(WaitAction.waitFor(1000));
             }
         });
-        afterClickingRegister();
+        enterRegister();
+        checkProgramsSelection();
     }
 
-    public void afterClickingRegister() {
+    @Test
+    public void testGenericProfessionsDifferForDifferentCategories() {
+        enterRegister();
 
-        onView(withId(R.id.grp_country)).perform(click());
-        onView(withId(R.id.rv_chooser)).perform(click());
+        onView(withId(R.id.grp_industry)).perform(scrollTo());
+        onView(withId(R.id.grp_industry)).perform(click());
+        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("Agriculture")))).perform(click());
+        onView(withId(R.id.txt_industry_selection)).check(matches(withText("Agriculture")));
 
-        onView(withId(R.id.grp_language)).perform(click());
-        onView(withId(R.id.rv_chooser)).perform(click());
 
-        onView(withId(R.id.register)).perform(click()).check(matches(not(isDisplayed())));
+        onView(withId(R.id.grp_category)).perform(scrollTo());
+        onView(withId(R.id.grp_category)).perform(click());
+        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
+        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
+
+        onView(withId(R.id.grp_profession)).perform(scrollTo());
+        onView(withId(R.id.grp_profession)).perform(click());
+        final ArrayList<String> professions1 = new ArrayList<>();
+        final ArrayList<String> professions2 = new ArrayList<>();
+        onView(withId(R.id.rv_chooser)).check(matches(new BoundedMatcher<View, View>(View.class) {
+            @Override
+            protected boolean matchesSafely(View item) {
+                if (item instanceof RecyclerView) {
+                    RecyclerView recyclerView = (RecyclerView) item;
+
+                    int count = recyclerView.getChildCount();
+                    for (int i = 0; i < count; ++i) {
+                        View child = recyclerView.getChildAt(i);
+                        TextView txtView = (TextView) child.findViewById(R.id.txt_item_name);
+                        professions1.add(txtView.getText().toString());
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void describeTo(Description description) {
+
+            }
+        }));
+        onView(withId(R.id.rv_chooser)).perform(actionOnItemAtPosition(0, click()));
+
+        onView(withId(R.id.grp_industry)).perform(scrollTo());
+        onView(withId(R.id.grp_industry)).perform(click());
+        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("Domestic")))).perform(click());
+        onView(withId(R.id.txt_industry_selection)).check(matches(withText("Domestic")));
+
+
+        onView(withId(R.id.grp_category)).perform(scrollTo());
+        onView(withId(R.id.grp_category)).perform(click());
+        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
+        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
+
+        onView(withId(R.id.grp_profession)).perform(scrollTo());
+        onView(withId(R.id.grp_profession)).perform(click());
+
+        onView(withId(R.id.rv_chooser)).check(matches(new BoundedMatcher<View, View>(View.class) {
+            @Override
+            protected boolean matchesSafely(View item) {
+                if (item instanceof RecyclerView) {
+                    RecyclerView recyclerView = (RecyclerView) item;
+
+                    int count = recyclerView.getChildCount();
+                    for (int i = 0; i < count; ++i) {
+                        View child = recyclerView.getChildAt(i);
+                        TextView txtView = (TextView) child.findViewById(R.id.txt_item_name);
+                        professions2.add(txtView.getText().toString());
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void describeTo(Description description) {
+
+            }
+        }));
+
+        Log.d("prof" , "professions1: " + professions1);
+        Log.d("prof" , "professions2: " + professions2);
+
+        if (professions1.size() == professions2.size()) {
+            boolean allSame = true;
+            for (String prof : professions1) {
+                if (!professions2.contains(prof)) {
+                    allSame = false;
+                    break;
+                }
+            }
+            if (allSame) {
+                Assert.fail("Professions should not be same for different Industries in the Genral Category.");
+            }
+        }
+
+    }
+
+    public void checkProgramsSelection() {
+
         onView(withId(R.id.grp_program)).check(matches(isDisplayed()));
         onView(withId(R.id.grp_program)).perform(scrollTo());
         onView(withId(R.id.grp_program)).perform(click());
@@ -93,6 +193,16 @@ public class RegisterWorkerAgentFragmentTest {
 
         Log.d("Pass" , "feeback: " + feedback.getFeedbackText());
 
+    }
+
+    private void enterRegister() {
+        onView(withId(R.id.grp_country)).perform(click());
+        onView(withId(R.id.rv_chooser)).perform(click());
+
+        onView(withId(R.id.grp_language)).perform(click());
+        onView(withId(R.id.rv_chooser)).perform(click());
+
+        onView(withId(R.id.register)).perform(click()).check(matches(not(isDisplayed())));
     }
 
 }
