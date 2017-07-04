@@ -22,6 +22,8 @@ import com.sstgroup.xabaapp.models.IndustryDao;
 import com.sstgroup.xabaapp.models.JoinCategoriesWithProfessions;
 import com.sstgroup.xabaapp.models.JoinCategoriesWithProfessionsDao;
 import com.sstgroup.xabaapp.models.JoinUsersWithProfessions;
+import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsAndIndustries;
+import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsAndIndustriesDao;
 import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsDao;
 import com.sstgroup.xabaapp.models.JoinUsersWithPrograms;
 import com.sstgroup.xabaapp.models.JoinUsersWithProgramsDao;
@@ -72,9 +74,9 @@ public class DatabaseHelper {
     private static ProfessionDao professionDao;
     private static UserDao userDao;
     private static TokenDao tokenDao;
-    private static JoinUsersWithProfessionsDao joinUsersProfessionDao;
     private static JoinUsersWithProgramsDao joinUsersWithProgramsDao;
     private static JoinCategoriesWithProfessionsDao joinCategoryProfessionDao;
+    private static JoinUsersWithProfessionsAndIndustriesDao joinUsersWithProfessionsAndIndustriesDao;
     private static NotificationDao notificationDao;
     private static CommissionLogDao commissionLogDao;
     private static ReferredWorkerDao referredWorkerDao;
@@ -397,24 +399,22 @@ public class DatabaseHelper {
 //    }
 
     public void updateLoggedUser(User user, Token token) {
-        joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
+        joinUsersWithProfessionsAndIndustriesDao = daoSession.getJoinUsersWithProfessionsAndIndustriesDao();
 
-        List<JoinUsersWithProfessions> list = joinUsersProfessionDao
+        List<JoinUsersWithProfessionsAndIndustries> list = joinUsersWithProfessionsAndIndustriesDao
                 .queryBuilder()
-                .where(JoinUsersWithProfessionsDao.Properties.UserId.eq(user.getId())).list();
+                .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.UserId.eq(user.getId())).list();
 
-        for (JoinUsersWithProfessions item : list) {
-            joinUsersProfessionDao.delete(item);
+        for (JoinUsersWithProfessionsAndIndustries item : list) {
+            joinUsersWithProfessionsAndIndustriesDao.delete(item);
         }
 //        joinUsersProfessionDao.delete(list);
 
         user.setTokenId(token.getId());
-        for (Profession profession : user.getProfessions()) {
-            Long professionId = profession.getLoggedUserProfessionId();
-            if (professionId == null || professionId == 0L) {
-                professionId = profession.getProfessionId();
-            }
-            insertJoinUserProfessions(user.getId(), professionId);
+        for (JoinUsersWithProfessionsAndIndustries profession : user.getProfessions()) {
+            Long professionId = profession.getProfessionsId();
+            Long industryId = profession.getIndustryId();
+            insertJoinUserProfessionsWithIndustries(user.getId(), professionId, industryId);
         }
 
         UserCommissions userCommissions = user.getUserCommissions();
@@ -456,12 +456,10 @@ public class DatabaseHelper {
 
     public void insertLoggedUser(Context context, User user) {
         Preferences.setLoggedUserId(context, user.getId());
-        for (Profession profession : user.getProfessions()) {
-            Long professionId = profession.getLoggedUserProfessionId();
-            if (professionId == null || professionId == 0) {
-                professionId = profession.getProfessionId();
-            }
-            insertJoinUserProfessions(user.getId(), professionId);
+        for (JoinUsersWithProfessionsAndIndustries profession : user.getProfessions()) {
+            Long professionId = profession.getProfessionsId();
+            Long industryId = profession.getIndustryId();
+            insertJoinUserProfessionsWithIndustries(user.getId(), professionId, industryId);
         }
 
         for (Program program : user.getPrograms()) {
@@ -513,15 +511,16 @@ public class DatabaseHelper {
                     .insertOrReplace(new JoinCategoriesWithProfessions(null, categoryId, professionId));
     }
 
-    public void insertJoinUserProfessions(Long userId, Long professionId) {
-        joinUsersProfessionDao = daoSession.getJoinUsersWithProfessionsDao();
-        List<JoinUsersWithProfessions> list = joinUsersProfessionDao
+    public void insertJoinUserProfessionsWithIndustries(Long userId, Long professionId, Long industryId) {
+        joinUsersWithProfessionsAndIndustriesDao = daoSession.getJoinUsersWithProfessionsAndIndustriesDao();
+        List<JoinUsersWithProfessionsAndIndustries> list = joinUsersWithProfessionsAndIndustriesDao
                 .queryBuilder()
-                .where(JoinUsersWithProfessionsDao.Properties.UserId.eq(userId))
-                .where(JoinUsersWithProfessionsDao.Properties.ProfessionsId.eq(professionId)).list();
+                .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.UserId.eq(userId))
+                .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.ProfessionsId.eq(professionId))
+                .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.IndustryId.eq(industryId)).list();
         if (list.isEmpty())
-            joinUsersProfessionDao
-                    .insertOrReplace(new JoinUsersWithProfessions(null, userId, professionId));
+            joinUsersWithProfessionsAndIndustriesDao
+                    .insertOrReplace(new JoinUsersWithProfessionsAndIndustries(null, userId, professionId, industryId));
     }
 
     public void insertJoinUserPrograms(Long userId, Long programId) {

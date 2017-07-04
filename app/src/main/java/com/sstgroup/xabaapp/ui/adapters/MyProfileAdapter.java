@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.db.DatabaseHelper;
+import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsAndIndustries;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.Program;
 import com.sstgroup.xabaapp.models.User;
@@ -21,6 +22,9 @@ import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -234,7 +238,16 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
             txtTitle.setText(context.getResources().getString(R.string.profession_dot));
-            Profession profession = loggedUser.getProfessions().get(position - size);
+
+            ArrayList<Profession> professions = new ArrayList<>();
+            List<JoinUsersWithProfessionsAndIndustries> professionsAndIndustries = loggedUser.getProfessions();
+            for (JoinUsersWithProfessionsAndIndustries professionsAndIndustriesObject : professionsAndIndustries) {
+                Profession p = professionsAndIndustriesObject.getProfession();
+                p.setIndustry(professionsAndIndustriesObject.getIndustry());
+                professions.add(p);
+            }
+
+            Profession profession = professions.get(position - size);
             
             if(profession != null && !TextUtils.isEmpty(profession.getName())){
                 txtProfession.setText(profession.getName());

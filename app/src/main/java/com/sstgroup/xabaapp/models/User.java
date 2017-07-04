@@ -9,6 +9,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.JoinEntity;
+import org.greenrobot.greendao.annotation.JoinProperty;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Transient;
@@ -60,13 +61,10 @@ public class User {
     @Transient
     @Expose
     private Currency currency;
-    @ToMany
-    @JoinEntity(
-            entity = JoinUsersWithProfessions.class,
-            sourceProperty = "userId",
-            targetProperty = "professionsId"
-    )
-    private List<Profession> professions;
+
+    @ToMany(referencedJoinProperty = "userId")
+    private List<JoinUsersWithProfessionsAndIndustries> professions;
+
     @ToMany
     @JoinEntity(
             entity = JoinUsersWithPrograms.class,
@@ -289,15 +287,17 @@ public class User {
      * To-many relationship, resolved on first access (and after reset).
      * Changes to to-many relations are not persisted, make changes to the target entity.
      */
-    @Generated(hash = 542178971)
-    public List<Profession> getProfessions() {
+    @Generated(hash = 596417267)
+    public List<JoinUsersWithProfessionsAndIndustries> getProfessions() {
         if (professions == null) {
             final DaoSession daoSession = this.daoSession;
             if (daoSession == null) {
                 throw new DaoException("Entity is detached from DAO context");
             }
-            ProfessionDao targetDao = daoSession.getProfessionDao();
-            List<Profession> professionsNew = targetDao._queryUser_Professions(id);
+            JoinUsersWithProfessionsAndIndustriesDao targetDao = daoSession
+                    .getJoinUsersWithProfessionsAndIndustriesDao();
+            List<JoinUsersWithProfessionsAndIndustries> professionsNew = targetDao
+                    ._queryUser_Professions(id);
             synchronized (this) {
                 if (professions == null) {
                     professions = professionsNew;

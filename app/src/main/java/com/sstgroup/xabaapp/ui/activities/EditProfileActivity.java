@@ -11,6 +11,7 @@ import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.Category;
 import com.sstgroup.xabaapp.models.County;
 import com.sstgroup.xabaapp.models.Industry;
+import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsAndIndustries;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.models.User;
@@ -69,11 +70,18 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         County county = xabaDbHelper.getCounty(user.getCountyId());
         subCounties = xabaDbHelper.getSubCounties(county.getName());
 
-        for (Profession profession : user.getProfessions()){
-            profession.setNew(false);
+        for (JoinUsersWithProfessionsAndIndustries profession : user.getProfessions()){
+            profession.getProfession().setNew(false);
         }
 
-        editProfileAdapter = new EditProfileAdapter(this, new ArrayList<>(user.getProfessions()), county, xabaDbHelper.getSubCounty(user.getSubcountyId()), user.getPhone());
+        ArrayList<JoinUsersWithProfessionsAndIndustries> professionsAndIndustries = new ArrayList<>(user.getProfessions());
+        ArrayList<Profession> professionsList = new ArrayList<>();
+        for (JoinUsersWithProfessionsAndIndustries professions : professionsAndIndustries) {
+            Profession professionToInsert = professions.getProfession();
+            professionToInsert.setIndustry(professions.getIndustry());
+            professionsList.add(professionToInsert);
+        }
+        editProfileAdapter = new EditProfileAdapter(this, professionsList, county, xabaDbHelper.getSubCounty(user.getSubcountyId()), user.getPhone());
         mRvEditProfile.setLayoutManager(new LinearLayoutManager(this));
         mRvEditProfile.setAdapter(editProfileAdapter);
 

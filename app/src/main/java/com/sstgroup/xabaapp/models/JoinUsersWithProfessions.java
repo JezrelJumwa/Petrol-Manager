@@ -45,4 +45,5 @@ public class JoinUsersWithProfessions {
     public void setProfessionsId(Long professionsId) {
         this.professionsId = professionsId;
     }
+
 }
