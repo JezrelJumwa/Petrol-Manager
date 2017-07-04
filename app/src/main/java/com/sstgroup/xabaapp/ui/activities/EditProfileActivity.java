@@ -51,6 +51,9 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
     private List<String> professions;
     private EditProfileAdapter editProfileAdapter;
 
+    List<String> programs = new ArrayList<>();
+    private List<String> selectedPrograms = new ArrayList<>();
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_edit_profile;
@@ -69,6 +72,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         User user = xabaDbHelper.getLoggedUser(this);
         County county = xabaDbHelper.getCounty(user.getCountyId());
         subCounties = xabaDbHelper.getSubCounties(county.getName());
+        programs = xabaDbHelper.getActivePrograms();
 
         for (JoinUsersWithProfessionsAndIndustries profession : user.getProfessions()){
             profession.getProfession().setNew(false);
@@ -145,6 +149,9 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                 break;
             case R.id.grp_profession:
                 showProfessionsDialog(position, professions);
+                break;
+            case R.id.row_profile_frame:
+                showProgramsDialog(position);
                 break;
             case R.id.btn_save:
                 saveProfile();
@@ -225,9 +232,18 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
             if (profession.getIndustry() != null && profession.getIndustry().getIndustryId() != null) {
                 stringBuilder.append(profession.getIndustry().getIndustryId());
             }
-            stringBuilder.append("]");
+            stringBuilder.append("][]");
             stringBuilder.append("=");
             stringBuilder.append(profession.getProfessionId());
+        }
+
+        ArrayList<String> programs = new ArrayList<String>(selectedPrograms);
+        List<Long> programIds = xabaDbHelper.getProgramIds(programs);
+
+        if (programIds != null) {
+            for (Long programId : programIds) {
+                stringBuilder.append("&" + Constants.PROGRAMS + "=" + programId);
+            }
         }
 
         RequestBody body = RequestBody.create(MediaType.parse("text"), stringBuilder.toString());
@@ -351,4 +367,21 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                 });
         dialog.show();
     }
+
+    private void showProgramsDialog(final int programRow) {
+
+
+        CustomChooserDialog dialog = new CustomChooserDialog(this, programs, false,
+                new CustomChooserDialog.OnCustomChooserDialogClosed() {
+                    @Override
+                    public void onCustomChooserDialogClosed(List<String> selectedItems) {
+                        if (selectedItems.size() > 0) {
+                            selectedPrograms = new ArrayList<>(selectedItems);
+                            editProfileAdapter.updateProgram(programRow, CustomChooserDialog.getSelectedPrograms(selectedPrograms));
+                        }
+                    }
+                });
+        dialog.show();
+    }
+
 }

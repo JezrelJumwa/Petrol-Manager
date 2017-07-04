@@ -70,7 +70,7 @@ public class CustomChooserDialog extends Dialog {
         }
         rvChooser.setHasFixedSize(true);
         rvChooser.setLayoutManager(new LinearLayoutManager(activity));
-        DialogItemChooserAdapter dialogItemChooserAdapter = new DialogItemChooserAdapter(activity, items, selectedItems);
+        DialogItemChooserAdapter dialogItemChooserAdapter = new DialogItemChooserAdapter(activity, items, selectedItems, isSingleChoice);
         dialogItemChooserAdapter.getPositionClicks().subscribe(new Observer<String>() {
             @Override
             public void onCompleted() {

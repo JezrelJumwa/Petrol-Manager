@@ -23,11 +23,13 @@ import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.County;
 import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.SubCounty;
+import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.utils.Validator;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +43,8 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private ArrayList<Profession> professions;
     private ClickCallbacks clickCallbacks;
     private boolean removeAddProfessionButton;
+
+    private String selectedPrograms = "";
 
     private String phoneNumber;
 
@@ -146,6 +150,11 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void updateProfession(int position, Profession profession) {
         profession.setNew(true);
         professions.set(position - 4, profession);
+        notifyItemChanged(position);
+    }
+
+    public void updateProgram(int position, String selectedItems) {
+        selectedPrograms = selectedItems;
         notifyItemChanged(position);
     }
 
@@ -266,7 +275,12 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         void bind() {
             rowProfileFrame.setPadding(0, 0, 0, 20 * (context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
             rowTitle.setText(context.getResources().getString(R.string.programs_dot));
-            txtProfession.setText("");
+            txtProfession.setText(selectedPrograms);
+        }
+
+        @OnClick(R.id.row_profile_frame)
+        public void onClick(View view) {
+            clickCallbacks.onItemClick(view, getAdapterPosition());
         }
     }
 

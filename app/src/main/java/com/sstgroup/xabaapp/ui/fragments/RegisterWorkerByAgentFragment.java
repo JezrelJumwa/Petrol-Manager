@@ -579,7 +579,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                 } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
 
-                    if (errorRegisterWorker.getError().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                    if (errorRegisterWorker.getError() != null && errorRegisterWorker.getError().getMessage() != null && errorRegisterWorker.getError().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
                         XabaApplication.getInstance().logout();
                         //from this point we logout user
                         return;
