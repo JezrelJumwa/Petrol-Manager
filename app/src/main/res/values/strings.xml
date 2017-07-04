@@ -215,16 +215,79 @@
     <string name="question_content_3">Xaba targets employees/workers and employers in the blue-collar market specializing in Agri-business, Construction, Hospitality and Manufacturing industries.
         \n\u2022 Employees/Workers can register to increase their chances of getting hired
         \n\u2022 Employers can find verified workers with the right skillset for their projects</string>
-    <string name="question_content_4">question_content_4</string>
-    <string name="question_content_5">question_content_5</string>
-    <string name="question_content_6">question_content_6</string>
-    <string name="question_content_7">question_content_7</string>
-    <string name="question_content_8">question_content_8</string>
-    <string name="question_content_9">question_content_9</string>
-    <string name="question_content_10">question_content_10</string>
-    <string name="question_content_11">question_content_11</string>
-    <string name="question_content_12">question_content_12</string>
-    <string name="question_content_13">question_content_13</string>
+    <string name="question_content_4">Employees/Workers are able to register for free by dialling *884# and completing the registration process.  By registering, your details can be viewed by different employers increasing your chances for future job opportunities.
+
+        Employee/Worker Registration Steps:
+        a. Dial *884#
+        b. Enter ID
+        c. Confirm ID
+        d. Select language
+        e. Select industry
+        f. Select the first letter of your profession category e.g. A-R or S-Z
+        g. Choose specific profession
+        h. Select county of residence
+        i. Enter an agent ID or number of person who referred you or enter 00 to skip
+        j. Insert your preferred number to receive job alerts.
+        k. Receive registration confirmation SMS with your PIN
+
+        You can also register using our Xaba Agent App. Simply download the app, click ‘register now’ on the main page and follow the steps.
+        Employer Registration Steps
+        a. Register on www.xaba.org
+        b. Create an account by filling in the Company Registration Form
+        c. Activate your account by clicking link sent to your e-mail address
+        d. Log-in to your account
+        e. Access the dashboard and add new projects/review reports
+        f. Start shortlisting workers
+        g. Send notification to shortlisted workers
+        h. Send job details to workers who’ve responded
+        i. Invite them for job interview
+        j. Hire selected workers</string>
+    <string name="question_content_5">a. Registration and receiving notifications on Xaba Shikanisha is free for workers
+        b. Normal network charges apply.</string>
+    <string name="question_content_6">a. On the App:
+        i. Simply put the activation code sent to your notification number and click ‘verify’ to proceed. </string>
+    <string name="question_content_7">a. On USSD:
+        i. Dial *884#
+        ii. Enter ID
+        iii. Confirm ID
+        iv. Enter PIN
+        v. Select (1) Update Profile (for either PIN, Location, Language)
+        b. On the App:
+        i. Login to your account.
+        ii. Click the Menu icon
+        iii. Select My Profile
+        iv. Click Edit Profile</string>
+    <string name="question_content_8">a. On USSD:
+        i. Dial *884#
+        ii. Enter ID
+        iii. Confirm ID
+        iv. Enter PIN
+        v. Choose (2) View Profile on the menu</string>
+    <string name="question_content_9">a. On USSD:
+        i. Dial *884#
+        ii. Enter ID
+        iii. Confirm ID
+        iv. Enter PIN
+        v. Choose (3) Change Notification Number on the menu</string>
+    <string name="question_content_10">a. On USSD:
+        i. Dial *884#
+        ii. Enter ID
+        iii. Confirm ID
+        iv. Enter PIN
+        v. Choose (4) Refer a Friend on the menu</string>
+    <string name="question_content_11">a. On USSD:
+        i. Dial *884#
+        ii. Enter ID
+        iii. Confirm ID
+        iv. Enter PIN
+        v. Choose (5) Add Profession on the menu</string>
+    <string name="question_content_12">a. Download the Xaba Agent App on the Google Play Store or Apple App Store
+        b. Register as an Agent
+        c. Choose Become Agent on menu
+        d. Enter your details and submit
+        e. If successful, receive a notification to become an agent
+        f. Start earning your commission.</string>
+    <string name="question_content_13">You can find the terms and conditions on our website, www.xaba.org.</string>
 
     <string name="join_our_social_movement">Join our social movement</string>
 
