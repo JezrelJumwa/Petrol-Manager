@@ -56,7 +56,7 @@ public class RegisterWorkerRequestModel {
         for (Long professionId : professions) {
             int index = professions.indexOf(professionId);
             if (industries != null && index >= 0 && index < industries.size()) {
-                requestBody += "&" + Constants.PROFESSIONS_INDEXLESS + "[" + industries.get(index) + "]" + "=" + professionId;
+                requestBody += "&" + Constants.PROFESSIONS_INDEXLESS + "[" + industries.get(index) + "][]" + "=" + professionId;
             }
         }
 
@@ -92,7 +92,7 @@ public class RegisterWorkerRequestModel {
         for (Long professionId : professions) {
             int index = professions.indexOf(professionId);
             if (industries != null && index >= 0 && index < industries.size()) {
-                requestBody += "&" + Constants.PROFESSIONS_INDEXLESS + "[" + industries.get(index) + "]" + "=" + professionId;
+                requestBody += "&" + Constants.PROFESSIONS_INDEXLESS + "[" + industries.get(index) + "][]" + "=" + professionId;
             }
         }
 
