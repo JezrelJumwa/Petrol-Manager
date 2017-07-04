@@ -225,7 +225,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
             if (profession.getIndustry() != null && profession.getIndustry().getIndustryId() != null) {
                 stringBuilder.append(profession.getIndustry().getIndustryId());
             }
-            stringBuilder.append("]");
+            stringBuilder.append("][]");
             stringBuilder.append("=");
             stringBuilder.append(profession.getProfessionId());
         }
