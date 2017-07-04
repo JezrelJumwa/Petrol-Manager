@@ -6,12 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -247,6 +249,9 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     class RowPrograms extends RecyclerView.ViewHolder {
+        @BindView(R.id.row_profile_frame)
+        FrameLayout rowProfileFrame;
+
         @BindView(R.id.row_title)
         TextView rowTitle;
 
@@ -259,6 +264,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
         void bind() {
+            rowProfileFrame.setPadding(0, 0, 0, 20 * (context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
             rowTitle.setText(context.getResources().getString(R.string.programs_dot));
             txtProfession.setText("");
         }
