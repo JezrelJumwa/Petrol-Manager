@@ -26,6 +26,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.activities.PartnerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
             android:name=".ui.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
