@@ -410,7 +410,11 @@ public class DatabaseHelper {
 
         user.setTokenId(token.getId());
         for (Profession profession : user.getProfessions()) {
-            insertJoinUserProfessions(user.getId(), profession.getLoggedUserProfessionId());
+            Long professionId = profession.getLoggedUserProfessionId();
+            if (professionId == null || professionId == 0L) {
+                professionId = profession.getProfessionId();
+            }
+            insertJoinUserProfessions(user.getId(), professionId);
         }
 
         UserCommissions userCommissions = user.getUserCommissions();

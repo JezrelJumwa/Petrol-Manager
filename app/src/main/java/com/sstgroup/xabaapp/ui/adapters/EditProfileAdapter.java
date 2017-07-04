@@ -23,6 +23,8 @@ import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.utils.Validator;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -54,7 +56,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public Profession getProfessionAtPosition(int position) {
-        return professions.get(position - 3);
+        return professions.get(position - 4);
     }
 
     public ArrayList<Profession> getProfessions() {
@@ -98,6 +100,8 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 return new RowEditProfession(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_edit_profile_profession, parent, false));
             case R.layout.row_edit_profile_footer:
                 return new RowFooter(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_edit_profile_footer, parent, false));
+            case R.layout.row_profile_profesion:
+                return new RowPrograms(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_profile_profesion, parent, false));
         }
 
         throw new IllegalStateException("Unknown item type: " + viewType);
@@ -113,6 +117,8 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((RowEditProfession) holder).bind(position);
         } else if (holder instanceof RowFooter) {
             ((RowFooter) holder).bind();
+        } else if (holder instanceof RowPrograms) {
+            ((RowPrograms) holder).bind();
         }
     }
 
@@ -122,8 +128,9 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             return R.layout.row_edit_phone;
         } else if (position < 3) {
             return R.layout.row_edit_profile_country_sub;
-        }
-        if (position <= professions.size() + 2) {
+        } else if (position == 3) {
+            return R.layout.row_profile_profesion;
+        } else if (position <= professions.size() + 3) {
             return R.layout.row_edit_profile_profession;
         }
         return R.layout.row_edit_profile_footer;
@@ -131,12 +138,12 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemCount() {
-        return 4 + professions.size();
+        return 5 + professions.size();
     }
 
     public void updateProfession(int position, Profession profession) {
         profession.setNew(true);
-        professions.set(position - 3, profession);
+        professions.set(position - 4, profession);
         notifyItemChanged(position);
     }
 
@@ -219,7 +226,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         Profession profession = new Profession();
         profession.setNew(true);
         professions.add(profession);
-        notifyItemInserted(3 + professionsSize + 1);
+        notifyItemInserted(4 + professionsSize + 1);
 
         if (professions.size() >= 3) {
             removeAddProfessionButton = true;
@@ -230,12 +237,30 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void removeProfessionAt(int position) {
         int size = professions.size();
 
-        professions.remove(position - 3);
+        professions.remove(position - 4);
         notifyItemRemoved(position);
 
         if (size >= 3) {
             removeAddProfessionButton = false;
             notifyItemChanged(getItemCount() - 1);
+        }
+    }
+
+    class RowPrograms extends RecyclerView.ViewHolder {
+        @BindView(R.id.row_title)
+        TextView rowTitle;
+
+        @BindView(R.id.txt_profession)
+        TextView txtProfession;
+
+        public RowPrograms(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        void bind() {
+            rowTitle.setText(context.getResources().getString(R.string.programs_dot));
+            txtProfession.setText("");
         }
     }
 
@@ -259,7 +284,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
         void bind(int position) {
-            Profession profession = professions.get(position - 3);
+            Profession profession = professions.get(position - 4);
 
             if (profession.isNew()) {
                 if (profession.getIndustry() == null) {

@@ -212,7 +212,12 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
             }
 
             stringBuilder.append("&");
-            stringBuilder.append(Constants.PROFESSIONS);
+            stringBuilder.append(Constants.PROFESSIONS_INDEXLESS);
+            stringBuilder.append("[");
+            if (profession.getIndustry() != null && profession.getIndustry().getIndustryId() != null) {
+                stringBuilder.append(profession.getIndustry().getIndustryId());
+            }
+            stringBuilder.append("]");
             stringBuilder.append("=");
             stringBuilder.append(profession.getProfessionId());
         }
