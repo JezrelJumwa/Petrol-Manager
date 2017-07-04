@@ -48,7 +48,6 @@ import static org.hamcrest.core.IsNot.not;
 /**
  * Created by julianlubenov on 6/30/17.
  */
-@RunWith(AndroidJUnit4.class)
 public class RegisterWorkerAgentFragmentTest {
 
     @Rule
@@ -87,14 +86,12 @@ public class RegisterWorkerAgentFragmentTest {
         onView(withId(R.id.grp_industry)).perform(scrollTo());
         onView(withId(R.id.grp_industry)).perform(click());
         onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("Agriculture")))).perform(click());
-        onView(isRoot()).perform(waitFor(100));
         onView(withId(R.id.txt_industry_selection)).check(matches(withText("Agriculture")));
 
 
         onView(withId(R.id.grp_category)).perform(scrollTo());
         onView(withId(R.id.grp_category)).perform(click());
         onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
-        onView(isRoot()).perform(waitFor(100));
         onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
 
         onView(withId(R.id.grp_profession)).perform(scrollTo());
@@ -124,19 +121,16 @@ public class RegisterWorkerAgentFragmentTest {
             }
         }));
         onView(withId(R.id.rv_chooser)).perform(actionOnItemAtPosition(0, click()));
-        onView(isRoot()).perform(waitFor(100));
 
         onView(withId(R.id.grp_industry)).perform(scrollTo());
         onView(withId(R.id.grp_industry)).perform(click());
         onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("Domestic")))).perform(click());
-        onView(isRoot()).perform(waitFor(100));
         onView(withId(R.id.txt_industry_selection)).check(matches(withText("Domestic")));
 
 
         onView(withId(R.id.grp_category)).perform(scrollTo());
         onView(withId(R.id.grp_category)).perform(click());
         onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
-        onView(isRoot()).perform(waitFor(100));
         onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
 
         onView(withId(R.id.grp_profession)).perform(scrollTo());

@@ -28,7 +28,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_weight="0"
-        android:src="@drawable/check"
+        android:src="@null"
         android:visibility="invisible"/>
 
 </LinearLayout>

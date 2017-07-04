@@ -26,6 +26,8 @@ public class DialogItemChooserAdapter extends RecyclerView.Adapter<DialogItemCho
     private List<String> dialogItems;
     private final PublishSubject<String> onClickSubject = PublishSubject.create();
 
+    private final boolean isSingleChoice;
+
 
     public static class DialogItemViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.grp_item_dialog)
@@ -41,10 +43,11 @@ public class DialogItemChooserAdapter extends RecyclerView.Adapter<DialogItemCho
         }
     }
 
-    public DialogItemChooserAdapter(Context context, List<String> dialogItems, List<String> selectedItems) {
+    public DialogItemChooserAdapter(Context context, List<String> dialogItems, List<String> selectedItems, boolean isSingleChoice) {
         this.dialogItems = dialogItems;
         this.context = context;
         this.selectedItems = selectedItems;
+        this.isSingleChoice = isSingleChoice;
     }
 
     public DialogItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -56,6 +59,10 @@ public class DialogItemChooserAdapter extends RecyclerView.Adapter<DialogItemCho
         final String dialogItem = dialogItems.get(position);
 
         holder.txtItemName.setText(dialogItem);
+
+        if (!isSingleChoice) {
+            holder.imgTick.setImageResource(R.drawable.check);
+        }
 
         if (selectedItems.contains(dialogItem)) {
             selectDialogItem(holder);
