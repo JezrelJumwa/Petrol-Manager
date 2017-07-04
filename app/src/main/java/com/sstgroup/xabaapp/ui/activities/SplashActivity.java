@@ -24,6 +24,10 @@ import timber.log.Timber;
 
 public class SplashActivity extends BaseActivity {
 
+    public static final String HOME_PAGE = "homePage";
+    public static final String MAIN_PAGE = "mainScreen";
+    public static final String GO_TO = "goTo";
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_splash;
@@ -47,22 +51,17 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 if (XabaApplication.getInstance().isAuthenticated()) {
-                    goToHome();
+                    startPartnerActivity(HOME_PAGE);
                 } else {
-                    goToMainScreen();
+                    startPartnerActivity(MAIN_PAGE);
                 }
             }
         }, Constants.SPLASH_DURATION);
     }
 
-    private void goToHome() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void goToMainScreen() {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void startPartnerActivity(String screen) {
+        Intent intent = new Intent(this, PartnerActivity.class);
+        intent.putExtra(GO_TO, screen);
         startActivity(intent);
         finish();
     }
