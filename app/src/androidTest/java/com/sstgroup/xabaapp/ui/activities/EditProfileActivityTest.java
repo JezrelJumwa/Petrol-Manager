@@ -87,6 +87,8 @@ public class EditProfileActivityTest {
         onView(withId(R.id.pin_code)).perform(replaceText("1234"));
         onView(withId(R.id.log_in)).perform(click());
 
+        onView(isRoot()).perform(waitFor(400)); //Wait for login to complete
+
         Intent updateProfileIntent = new Intent();
         mEditProfileRule.launchActivity(updateProfileIntent);
     }
