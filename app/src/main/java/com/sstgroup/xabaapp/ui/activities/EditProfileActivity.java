@@ -17,7 +17,6 @@ import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
-import com.sstgroup.xabaapp.network.retrofit.objects.IndustriesRetrofitResponse;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.adapters.EditProfileAdapter;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
@@ -135,9 +134,9 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                 editProfileAdapter.addProfession();
                 break;
             case R.id.grp_county:
-                if (position == 0) {
+                if (position == 1) {
                     showCountiesDialog();
-                } else if (position == 1) {
+                } else if (position == 2) {
                     showSubCountiesDialog();
                 }
                 break;

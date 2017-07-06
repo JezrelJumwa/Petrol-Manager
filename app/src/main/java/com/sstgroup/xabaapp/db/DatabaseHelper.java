@@ -21,10 +21,8 @@ import com.sstgroup.xabaapp.models.Industry;
 import com.sstgroup.xabaapp.models.IndustryDao;
 import com.sstgroup.xabaapp.models.JoinCategoriesWithProfessions;
 import com.sstgroup.xabaapp.models.JoinCategoriesWithProfessionsDao;
-import com.sstgroup.xabaapp.models.JoinUsersWithProfessions;
 import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsAndIndustries;
 import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsAndIndustriesDao;
-import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsDao;
 import com.sstgroup.xabaapp.models.JoinUsersWithPrograms;
 import com.sstgroup.xabaapp.models.JoinUsersWithProgramsDao;
 import com.sstgroup.xabaapp.models.Language;
@@ -517,7 +515,8 @@ public class DatabaseHelper {
                 .queryBuilder()
                 .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.UserId.eq(userId))
                 .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.ProfessionsId.eq(professionId))
-                .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.IndustryId.eq(industryId)).list();
+                .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.IndustryId.eq(industryId))
+                .list();
         if (list.isEmpty())
             joinUsersWithProfessionsAndIndustriesDao
                     .insertOrReplace(new JoinUsersWithProfessionsAndIndustries(null, userId, professionId, industryId));
