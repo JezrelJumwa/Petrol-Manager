@@ -455,6 +455,8 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
     private void register() {
 
+        activity.hideSoftKeyboard();
+
         String nationalId = mEditTextNationalId.getText().toString().trim();
         String confirmNationalId = mEditTextConfirmNationalId.getText().toString().trim();
         String phoneNumber = mEditTextPhoneNumber.getText().toString().replaceAll("\\s+", "");

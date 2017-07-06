@@ -159,7 +159,11 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
     }
 
     private void saveProfile() {
+
+        hideSoftKeyboard();
+
         showLoader();
+
         StringBuilder stringBuilder = new StringBuilder();
 
         County county = editProfileAdapter.getSelectedCounty();

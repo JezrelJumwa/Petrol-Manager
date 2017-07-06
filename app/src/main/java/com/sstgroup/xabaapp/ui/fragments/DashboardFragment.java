@@ -53,8 +53,8 @@ public class DashboardFragment extends BaseFragment {
     @Override
     protected void initViews(View rootView) {
         User user = xabaDbHelper.getLoggedUser(activity);
-        txtReferralId.setText(String.valueOf(user.getId()));
-        txtTotalRegisteredWorkers.setText(String.valueOf(user.getTotalReferrals()));
+        txtReferralId.setText(" " + String.valueOf(user.getId()));
+        txtTotalRegisteredWorkers.setText(" " + String.valueOf(user.getTotalReferrals()));
 
         Currency currency = xabaDbHelper.getCurrency(user.getCurrencyId());
 
