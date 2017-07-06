@@ -256,35 +256,44 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                             case 1:
 
                                 if (!selectedIndustry.equals(selectedItems.get(0))) {
-                                    selectedCategory = "";
-                                    txtCategorySelection.setText(getString(R.string.select_category));
+                     /*               selectedCategory = "";
+                                    txtCategorySelection.setText(getString(R.string.select_category));*/
+                                    selectedProfession = "";
+                                    txtProfessionSelection.setText(getString(R.string.select_profession));
                                 }
 
                                 selectedIndustry = selectedItems.get(0);
                                 txtIndustrySelection.setText(selectedIndustry);
-                                categories = xabaDbHelper.getCategories(selectedIndustry);
+
+                                professions = xabaDbHelper.getProfessions(selectedIndustry);
                                 break;
                             case 2:
 
                                 if (!selectedIndustryTwo.equals(selectedItems.get(0))) {
-                                    selectedCategoryTwo = "";
-                                    txtCategorySelectionTwo.setText(getString(R.string.select_category));
+                              /*      selectedCategoryTwo = "";
+                                    txtCategorySelectionTwo.setText(getString(R.string.select_category));*/
+                                    selectedProfessionTwo = "";
+                                    txtProfessionSelectionTwo.setText(getString(R.string.select_profession));
                                 }
 
                                 selectedIndustryTwo = selectedItems.get(0);
                                 txtIndustrySelectionTwo.setText(selectedIndustryTwo);
-                                categoriesTwo = xabaDbHelper.getCategories(selectedIndustryTwo);
+
+                                professionsTwo = xabaDbHelper.getProfessions(selectedIndustryTwo);
                                 break;
                             case 3:
 
                                 if (!selectedIndustryThree.equals(selectedItems.get(0))) {
-                                    selectedCategoryThree = "";
-                                    txtCategorySelectionThree.setText(getString(R.string.select_category));
+                                 /*   selectedCategoryThree = "";
+                                    txtCategorySelectionThree.setText(getString(R.string.select_category));*/
+                                    selectedProfessionThree = "";
+                                    txtProfessionSelectionThree.setText(getString(R.string.select_profession));
                                 }
 
                                 selectedIndustryThree = selectedItems.get(0);
                                 txtIndustrySelectionThree.setText(selectedIndustryThree);
-                                categoriesThree = xabaDbHelper.getCategories(selectedIndustryThree);
+
+                                professionsThree = xabaDbHelper.getProfessions(selectedIndustryThree);
                                 break;
                         }
                     }
@@ -371,7 +380,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
         boolean isSuccessValidation = true;
 
         switch (professionRow) {
-            case 1:
+         /*  case 1:
                 if (Validator.isEmpty(selectedCategory)) {
                     ToastInterval.showToast(activity, getString(R.string.choose_category_first));
                     isSuccessValidation = false;
@@ -386,6 +395,25 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             case 3:
                 if (Validator.isEmpty(selectedCategoryThree)) {
                     ToastInterval.showToast(activity, getString(R.string.choose_category_first));
+                    isSuccessValidation = false;
+                }
+                break;*/
+
+            case 1:
+                if (Validator.isEmpty(selectedIndustry)) {
+                    ToastInterval.showToast(activity, getString(R.string.choose_industry_first));
+                    isSuccessValidation = false;
+                }
+                break;
+            case 2:
+                if (Validator.isEmpty(selectedIndustryTwo)) {
+                    ToastInterval.showToast(activity, getString(R.string.choose_industry_first));
+                    isSuccessValidation = false;
+                }
+                break;
+            case 3:
+                if (Validator.isEmpty(selectedIndustryThree)) {
+                    ToastInterval.showToast(activity, getString(R.string.choose_industry_first));
                     isSuccessValidation = false;
                 }
                 break;
@@ -517,10 +545,10 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             return;
         }
 
-        if (Validator.isEmpty(selectedCategory)) {
+        /*if (Validator.isEmpty(selectedCategory)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.choose_category));
             return;
-        }
+        }*/
 
         if (Validator.isEmpty(selectedProfession)) {
             ToastInterval.showToast(activity, getResources().getString(R.string.choose_profession));
@@ -541,7 +569,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             professions.add(selectedProfessionThree);
         }
 
-        ArrayList<String> selectedIndustries= new ArrayList<>();
+        ArrayList<String> selectedIndustries = new ArrayList<>();
         if (selectedIndustry != null && selectedIndustry.length() > 0) {
             selectedIndustries.add(selectedIndustry);
         }
@@ -555,13 +583,13 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 
         ArrayList<Long> selectedProfessions = new ArrayList<>();
         if (selectedProfession != null && selectedProfession.length() > 0) {
-            selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfession, selectedCategory, selectedIndustry));
+            selectedProfessions.add(xabaDbHelper.getProfessionId(selectedIndustry, selectedProfession));
         }
         if (selectedProfessionTwo != null && selectedProfessionTwo.length() > 0) {
-            selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfessionTwo, selectedCategoryTwo, selectedIndustryTwo));
+            selectedProfessions.add(xabaDbHelper.getProfessionId(selectedIndustryTwo, selectedProfessionTwo));
         }
         if (selectedProfessionThree != null && selectedProfessionThree.length() > 0) {
-            selectedProfessions.add(xabaDbHelper.getProfessionIdFor(selectedProfessionThree, selectedCategoryThree, selectedIndustryThree));
+            selectedProfessions.add(xabaDbHelper.getProfessionId(selectedIndustryThree, selectedProfessionThree));
         }
 
         ArrayList<String> programs = new ArrayList<String>(selectedPrograms);

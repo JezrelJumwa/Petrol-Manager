@@ -195,12 +195,14 @@
             android:layout_marginTop="20dp"
             android:text="@string/category"
             android:textColor="@color/dark_color"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/grp_category"
             style="@style/SpinnerLayoutStyle"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/txt_category_selection"
@@ -277,12 +279,14 @@
             android:layout_marginTop="20dp"
             android:text="@string/category"
             android:textColor="@color/dark_color"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/grp_category_two"
             style="@style/SpinnerLayoutStyle"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/txt_category_selection_two"
@@ -370,12 +374,14 @@
             android:layout_marginTop="20dp"
             android:text="@string/category"
             android:textColor="@color/dark_color"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/grp_category_three"
             style="@style/SpinnerLayoutStyle"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/txt_category_selection_three"

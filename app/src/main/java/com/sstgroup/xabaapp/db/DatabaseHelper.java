@@ -48,6 +48,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by julianlubenov on 5/10/17.
@@ -336,6 +338,51 @@ public class DatabaseHelper {
         }
 
         return null;
+    }
+
+    public List<String> getProfessions(String industryName) {
+        Set<String> professions = new TreeSet<>();
+
+        categoryDao = daoSession.getCategoryDao();
+
+        List<Industry> industryList = daoSession.getIndustryDao().queryBuilder().where(IndustryDao.Properties.Name.eq(industryName)).list();
+        if (industryList != null && industryList.size() > 0) {
+            Industry industry = industryList.get(0);
+
+            List<Category> list = categoryDao.queryBuilder().where(CategoryDao.Properties.IndustryId.eq(industry.getIndustryId())).list();
+
+            for (Category category : list) {
+                for (Profession profession : category.getProfessions()) {
+                    professions.add(profession.getName());
+                }
+
+            }
+        }
+
+        return new ArrayList<>(professions);
+    }
+
+    public Long getProfessionId(String industryName, String professionName) {
+        categoryDao = daoSession.getCategoryDao();
+
+        List<Industry> industryList = daoSession.getIndustryDao().queryBuilder().where(IndustryDao.Properties.Name.eq(industryName)).list();
+        if (industryList != null && industryList.size() > 0) {
+            Industry industry = industryList.get(0);
+
+            List<Category> list = categoryDao.queryBuilder().where(CategoryDao.Properties.IndustryId.eq(industry.getIndustryId())).list();
+
+            for (Category category : list) {
+                for (Profession profession : category.getProfessions()) {
+                    if (profession.getName().equals(professionName)){
+                        return profession.getProfessionId();
+                    }
+
+                }
+
+            }
+        }
+
+        return 0l;
     }
 
     public Long getProfessionIdFor(String professionString, String categoryName, String industryName) {
