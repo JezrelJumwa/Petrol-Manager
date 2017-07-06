@@ -36,7 +36,7 @@ public class WizardStepTwoFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
-        String path = "android.resource://" + activity.getPackageName() + "/" + R.raw.wildlife;
+        String path = "android.resource://" + activity.getPackageName() + "/" + R.raw.xaba;
         mVideoView.setVideoURI(Uri.parse(path));
     }
 
