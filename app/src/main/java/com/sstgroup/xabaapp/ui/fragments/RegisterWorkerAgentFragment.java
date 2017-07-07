@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
-import com.sstgroup.xabaapp.models.Profession;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
 import com.sstgroup.xabaapp.models.UserResponse;
 import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
@@ -126,10 +125,6 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     private String selectedCategoryThree = "";
     private String selectedProfessionThree = "";
     private Long selectedProfessionThreeId = 0L;
-
-    List<Profession> allProfessionsOne = new ArrayList<>();
-    List<Profession> allProfessionsTwo = new ArrayList<>();
-    List<Profession> allProfessionsThree = new ArrayList<>();
 
     private RegistrationInfo info;
 

@@ -309,7 +309,8 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                         String selectedIndustry = selectedItems.get(0);
                         Industry industrySelected = xabaDbHelper.getIndustry(selectedIndustry);
                         profession.setIndustry(industrySelected);
-                        categories = xabaDbHelper.getCategories(selectedIndustry);
+//                        categories = xabaDbHelper.getCategories(selectedIndustry);
+                        professions = xabaDbHelper.getProfessions(selectedIndustry);
                         editProfileAdapter.updateProfession(professionRow, profession);
                     }
                 });
@@ -348,10 +349,15 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
 
     private void showProfessionsDialog(final int professionRow, List<String> options) {
         final Profession profession = editProfileAdapter.getProfessionAtPosition(professionRow);
-        Category category = profession.getCategory();
+    /*    Category category = profession.getCategory();
 
         if (category == null) {
             ToastInterval.showToast(this, getString(R.string.choose_category_first));
+            return;
+        }*/
+
+        if (editProfileAdapter.getProfessionAtPosition(professionRow).getIndustry() == null) {
+            ToastInterval.showToast(this, getString(R.string.choose_industry_first));
             return;
         }
 

@@ -2,6 +2,7 @@ package com.sstgroup.xabaapp.ui.fragments;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -86,6 +87,7 @@ public class ContactFragment extends BaseFragment {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if (response.isSuccessful()) {
+            Log.d("TETE", response.body().getStatus());
 
                     if (response.body().getStatus().equals("ОК")){
                         ToastInterval.showToast(activity, activity.getString(R.string.message_is_sent));
