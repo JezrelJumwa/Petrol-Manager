@@ -16,7 +16,6 @@ import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.db.DatabaseHelper;
 import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsAndIndustries;
 import com.sstgroup.xabaapp.models.Profession;
-import com.sstgroup.xabaapp.models.Program;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.utils.Constants;
@@ -274,7 +273,7 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             else
                 topGreenView.setVisibility(View.VISIBLE);
 
-            txtReferralId.setText(String.valueOf(loggedUser.getId()));
+            txtReferralId.setText(" " + String.valueOf(loggedUser.getId()));
         }
 
         @OnClick({R.id.txt_change_pin, R.id.btn_edit_profile, R.id.txt_delete_account})

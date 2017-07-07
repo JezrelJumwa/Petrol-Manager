@@ -2,16 +2,17 @@ package com.sstgroup.xabaapp.ui.fragments;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.MessageResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
+import com.sstgroup.xabaapp.utils.ErrorUtils;
 import com.sstgroup.xabaapp.utils.Utils;
 import com.sstgroup.xabaapp.utils.Validator;
 
@@ -81,25 +82,29 @@ public class ContactFragment extends BaseFragment {
             return;
         }
 
+        activity.showLoader();
+
         Call<MessageResponse> call = RestClient.getService().sendMessageToSystem(XabaApplication.getInstance().getLanguageCode(),
                 Constants.AGENT_APP_VALUE, XabaApplication.getInstance().getToken().getValue(), email, message);
         call.enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if (response.isSuccessful()) {
-            Log.d("TETE", response.body().getStatus());
-
-                    if (response.body().getStatus().equals("ОК")){
+                    if (response.body().getStatus().equals("OK")) {
                         ToastInterval.showToast(activity, activity.getString(R.string.message_is_sent));
-                    } else {
-                        ToastInterval.showToast(activity, activity.getString(R.string.something_is_wrong));
                     }
+                }  else {
+                    ErrorCodeAndMessage error = ErrorUtils.parseErrorCodeMessage(response);
+                    ToastInterval.showToast(activity, error.getErrors().getMessage());
                 }
+
+                activity.hideLoader();
             }
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Utils.onFailureUtils(activity, t);
+                activity.hideLoader();
             }
         });
     }
