@@ -35,20 +35,6 @@ public class CustomChooserDialog extends Dialog {
 
     public CustomChooserDialog(Activity activity,
                                List<String> items,
-                               List<String> selectedItems,
-                               boolean isSingleChoice,
-                               OnCustomChooserDialogClosed onCustomChooserDialogClosed) {
-        super(activity);
-        this.activity = activity;
-        this.isSingleChoice = isSingleChoice;
-        this.onCustomChooserDialogClosed = onCustomChooserDialogClosed;
-        this.items = items;
-        this.selectedItems = selectedItems;
-
-    }
-
-    public CustomChooserDialog(Activity activity,
-                               List<String> items,
                                boolean isSingleChoice,
                                OnCustomChooserDialogClosed onCustomChooserDialogClosed) {
         super(activity);
@@ -57,6 +43,19 @@ public class CustomChooserDialog extends Dialog {
         this.onCustomChooserDialogClosed = onCustomChooserDialogClosed;
         this.items = items;
         this.selectedItems = new ArrayList<>();
+    }
+
+    public CustomChooserDialog(Activity activity,
+                               List<String> items,
+                               boolean isSingleChoice,
+                               ArrayList<String> selectedItems,
+                               OnCustomChooserDialogClosed onCustomChooserDialogClosed) {
+        super(activity);
+        this.activity = activity;
+        this.isSingleChoice = isSingleChoice;
+        this.onCustomChooserDialogClosed = onCustomChooserDialogClosed;
+        this.items = items;
+        this.selectedItems = selectedItems;
     }
 
     @Override

@@ -321,5 +321,6 @@
     <string name="program">Program</string>
     <string name="programs_dot">Programs:</string>
     <string name="select">Select</string>
+    <string name="registered">Registered</string>
 
 </resources>

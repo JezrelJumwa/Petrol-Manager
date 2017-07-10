@@ -208,13 +208,15 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
     private void showProgramsDialog() {
 
 
-        CustomChooserDialog dialog = new CustomChooserDialog(activity, programs, false,
+        CustomChooserDialog dialog = new CustomChooserDialog(activity, programs, false, new ArrayList<>(selectedPrograms),
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
                         if (selectedItems.size() > 0) {
                             selectedPrograms = new ArrayList<>(selectedItems);
                             txtProgram.setText(CustomChooserDialog.getSelectedPrograms(selectedPrograms));
+                        } else {
+                            txtProgram.setText(getString(R.string.select_program));
                         }
                     }
                 });
