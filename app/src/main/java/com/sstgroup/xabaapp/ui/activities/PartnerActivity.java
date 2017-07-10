@@ -32,12 +32,14 @@ public class PartnerActivity extends BaseActivity {
         FrameLayout frameLayoutOne = (FrameLayout) findViewById(R.id.frame_layout_one);
         FrameLayout frameLayoutTwo = (FrameLayout) findViewById(R.id.frame_layout_two);
         FrameLayout frameLayoutThree = (FrameLayout) findViewById(R.id.frame_layout_three);
+        FrameLayout frameLayoutFour = (FrameLayout) findViewById(R.id.frame_layout_four);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadeinout);
 
         frameLayoutOne.startAnimation(animation);
         frameLayoutTwo.startAnimation(animation);
         frameLayoutThree.startAnimation(animation);
+        frameLayoutFour.startAnimation(animation);
     }
 
     private void startTimerForSplash() {
