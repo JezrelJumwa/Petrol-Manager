@@ -32,6 +32,7 @@ public class CustomChooserDialog extends Dialog {
     RecyclerView rvChooser;
     @BindView(R.id.btn_close)
     Button btnClose;
+    private ArrayList<String> userSelectedItems;
 
     public CustomChooserDialog(Activity activity,
                                List<String> items,
@@ -43,6 +44,7 @@ public class CustomChooserDialog extends Dialog {
         this.onCustomChooserDialogClosed = onCustomChooserDialogClosed;
         this.items = items;
         this.selectedItems = new ArrayList<>();
+        this.userSelectedItems = new ArrayList<>();
     }
 
     public CustomChooserDialog(Activity activity,
@@ -56,6 +58,22 @@ public class CustomChooserDialog extends Dialog {
         this.onCustomChooserDialogClosed = onCustomChooserDialogClosed;
         this.items = items;
         this.selectedItems = selectedItems;
+        this.userSelectedItems = new ArrayList<>();
+    }
+
+    public CustomChooserDialog(Activity activity,
+                               List<String> items,
+                               boolean isSingleChoice,
+                               ArrayList<String> selectedItems,
+                               ArrayList<String> userSelectedItems,
+                               OnCustomChooserDialogClosed onCustomChooserDialogClosed) {
+        super(activity);
+        this.activity = activity;
+        this.isSingleChoice = isSingleChoice;
+        this.onCustomChooserDialogClosed = onCustomChooserDialogClosed;
+        this.items = items;
+        this.selectedItems = selectedItems;
+        this.userSelectedItems = userSelectedItems;
     }
 
     @Override
@@ -69,7 +87,8 @@ public class CustomChooserDialog extends Dialog {
         }
         rvChooser.setHasFixedSize(true);
         rvChooser.setLayoutManager(new LinearLayoutManager(activity));
-        DialogItemChooserAdapter dialogItemChooserAdapter = new DialogItemChooserAdapter(activity, items, selectedItems, isSingleChoice);
+        DialogItemChooserAdapter dialogItemChooserAdapter =
+                new DialogItemChooserAdapter(activity, items, selectedItems, isSingleChoice, userSelectedItems);
         dialogItemChooserAdapter.getPositionClicks().subscribe(new Observer<String>() {
             @Override
             public void onCompleted() {

@@ -13,6 +13,7 @@ import com.sstgroup.xabaapp.models.County;
 import com.sstgroup.xabaapp.models.Industry;
 import com.sstgroup.xabaapp.models.JoinUsersWithProfessionsAndIndustries;
 import com.sstgroup.xabaapp.models.Profession;
+import com.sstgroup.xabaapp.models.Program;
 import com.sstgroup.xabaapp.models.SubCounty;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
@@ -51,7 +52,8 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
     private EditProfileAdapter editProfileAdapter;
 
     List<String> programs = new ArrayList<>();
-    private List<String> selectedPrograms = new ArrayList<>();
+    private List<String> selectedPrograms;
+    private User loggedUser;
 
     @Override
     protected int getLayoutId() {
@@ -68,23 +70,25 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         industries = xabaDbHelper.getIndustries();
         categories = new ArrayList<>();
         professions = new ArrayList<>();
-        User user = xabaDbHelper.getLoggedUser(this);
-        County county = xabaDbHelper.getCounty(user.getCountyId());
+        loggedUser = xabaDbHelper.getLoggedUser(this);
+        selectedPrograms = parseProgramsToListOfStrings(loggedUser.getPrograms());
+        County county = xabaDbHelper.getCounty(loggedUser.getCountyId());
         subCounties = xabaDbHelper.getSubCounties(county.getName());
         programs = xabaDbHelper.getActivePrograms();
 
-        for (JoinUsersWithProfessionsAndIndustries profession : user.getProfessions()){
+        for (JoinUsersWithProfessionsAndIndustries profession : loggedUser.getProfessions()) {
             profession.getProfession().setNew(false);
         }
 
-        ArrayList<JoinUsersWithProfessionsAndIndustries> professionsAndIndustries = new ArrayList<>(user.getProfessions());
+        ArrayList<JoinUsersWithProfessionsAndIndustries> professionsAndIndustries = new ArrayList<>(loggedUser.getProfessions());
         ArrayList<Profession> professionsList = new ArrayList<>();
         for (JoinUsersWithProfessionsAndIndustries professions : professionsAndIndustries) {
             Profession professionToInsert = professions.getProfession();
             professionToInsert.setIndustry(professions.getIndustry());
             professionsList.add(professionToInsert);
         }
-        editProfileAdapter = new EditProfileAdapter(this, professionsList, county, xabaDbHelper.getSubCounty(user.getSubcountyId()), user.getPhone());
+        editProfileAdapter = new EditProfileAdapter(this, professionsList, county,
+                xabaDbHelper.getSubCounty(loggedUser.getSubcountyId()), loggedUser.getPhone(), CustomChooserDialog.getSelectedPrograms(selectedPrograms));
         mRvEditProfile.setLayoutManager(new LinearLayoutManager(this));
         mRvEditProfile.setAdapter(editProfileAdapter);
 
@@ -170,19 +174,19 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         SubCounty subCounty = editProfileAdapter.getSelectedSubCounty();
         ArrayList<Profession> selectedProfessions = editProfileAdapter.getProfessions();
 
-        if (county == null){
+        if (county == null) {
             hideLoader();
             ToastInterval.showToast(this, getString(R.string.select_county));
             return;
         }
 
-        if (subCounty == null){
+        if (subCounty == null) {
             hideLoader();
             ToastInterval.showToast(this, getString(R.string.select_sub_county));
             return;
         }
 
-        if(selectedProfessions.isEmpty()){
+        if (selectedProfessions.isEmpty()) {
             hideLoader();
             ToastInterval.showToast(this, getString(R.string.add_at_least_one_profession));
             return;
@@ -210,7 +214,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
         stringBuilder.append(editProfileAdapter.getSelectedCounty().getCountyId());
         stringBuilder.append("&");
         stringBuilder.append(Constants.SUBCOUNTY_ID);
-        stringBuilder.append("=" );
+        stringBuilder.append("=");
         stringBuilder.append(editProfileAdapter.getSelectedSubCounty().getSubCountyId());
         stringBuilder.append("&");
         stringBuilder.append(Constants.TOKEN);
@@ -223,7 +227,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
 
 
         for (Profession profession : selectedProfessions) {
-            if(profession == null || profession.getProfessionId() == null){
+            if (profession == null || profession.getProfessionId() == null) {
                 hideLoader();
                 ToastInterval.showToast(this, getString(R.string.complete_or_remove_professions));
                 return;
@@ -256,7 +260,6 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
-                    //TODO: set profession
                     User user = response.body().getUser();
                     xabaDbHelper.updateLoggedUser(user, XabaApplication.getInstance().getToken());
                     finish();
@@ -269,7 +272,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                         return;
                     }
 
-                    if (errorLogin != null && errorLogin.getErrors() != null && errorLogin.getErrors().getMessage() != null && errorLogin.getErrors().getMessage().equals(Constants.ERROR_STATUS_UNEXPECTED)){
+                    if (errorLogin != null && errorLogin.getErrors() != null && errorLogin.getErrors().getMessage() != null && errorLogin.getErrors().getMessage().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(EditProfileActivity.this, getString(R.string.something_is_wrong));
                     } else {
                         ToastInterval.showToast(EditProfileActivity.this, errorLogin.getErrors().getMessage());
@@ -380,7 +383,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
     private void showProgramsDialog(final int programRow) {
 
 
-        CustomChooserDialog dialog = new CustomChooserDialog(this, programs, false,
+        CustomChooserDialog dialog = new CustomChooserDialog(this, programs, false, new ArrayList<>(selectedPrograms), parseProgramsToListOfStrings(loggedUser.getPrograms()),
                 new CustomChooserDialog.OnCustomChooserDialogClosed() {
                     @Override
                     public void onCustomChooserDialogClosed(List<String> selectedItems) {
@@ -391,6 +394,15 @@ public class EditProfileActivity extends BaseActivity implements EditProfileAdap
                     }
                 });
         dialog.show();
+    }
+
+    private ArrayList<String> parseProgramsToListOfStrings(List<Program> programsList) {
+        ArrayList<String> resultList = new ArrayList<>();
+        for (Program program : programsList) {
+            resultList.add(program.getName());
+        }
+
+        return resultList;
     }
 
 }

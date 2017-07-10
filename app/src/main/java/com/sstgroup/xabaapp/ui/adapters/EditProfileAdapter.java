@@ -40,13 +40,15 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private String phoneNumber;
 
-    public EditProfileAdapter(ClickCallbacks clickCallbacks, ArrayList<Profession> professions, County county, SubCounty subCounty, String phoneNumber) {
+    public EditProfileAdapter(ClickCallbacks clickCallbacks, ArrayList<Profession> professions,
+                              County county, SubCounty subCounty, String phoneNumber, String selectedPrograms) {
         this.context = XabaApplication.getInstance().getApplicationContext();
         this.clickCallbacks = clickCallbacks;
         this.professions = professions;
         this.selectedCounty = county;
         this.selectedSubCounty = subCounty;
         this.phoneNumber = phoneNumber;
+        this.selectedPrograms = selectedPrograms;
 
         if (professions.size() >= 3) {
             removeAddProfessionButton = true;
@@ -98,8 +100,8 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 return new RowEditProfession(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_edit_profile_profession, parent, false));
             case R.layout.row_edit_profile_footer:
                 return new RowFooter(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_edit_profile_footer, parent, false));
-            case R.layout.row_profile_profesion:
-                return new RowPrograms(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_profile_profesion, parent, false));
+            case R.layout.row_edit_program:
+                return new RowPrograms(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_edit_program, parent, false));
         }
 
         throw new IllegalStateException("Unknown item type: " + viewType);
@@ -127,7 +129,7 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         } else if (position < 3) {
             return R.layout.row_edit_profile_country_sub;
         } else if (position == 3) {
-            return R.layout.row_profile_profesion;
+            return R.layout.row_edit_program;
         } else if (position <= professions.size() + 3) {
             return R.layout.row_edit_profile_profession;
         }
@@ -253,11 +255,8 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         @BindView(R.id.row_profile_frame)
         FrameLayout rowProfileFrame;
 
-        @BindView(R.id.row_title)
-        TextView rowTitle;
-
-        @BindView(R.id.txt_profession)
-        TextView txtProfession;
+        @BindView(R.id.txt_program)
+        TextView txtProgram;
 
         public RowPrograms(View itemView) {
             super(itemView);
@@ -266,8 +265,12 @@ public class EditProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         void bind() {
             rowProfileFrame.setPadding(0, 0, 0, 20 * (context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-            rowTitle.setText(context.getResources().getString(R.string.programs_dot));
-            txtProfession.setText(selectedPrograms);
+//            rowTitle.setText(context.getResources().getString(R.string.programs_dot));
+            if (selectedPrograms.isEmpty()){
+                txtProgram.setText(context.getString(R.string.select_program));
+            } else {
+                txtProgram.setText(selectedPrograms);
+            }
         }
 
         @OnClick(R.id.row_profile_frame)

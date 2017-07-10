@@ -1,10 +1,8 @@
 package com.sstgroup.xabaapp.ui.fragments;
 
 import android.support.test.espresso.FailureHandler;
-import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -12,12 +10,7 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.FeedbackMatcher;
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.WaitAction;
 import com.sstgroup.xabaapp.ui.activities.SplashActivity;
-
-import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static com.sstgroup.xabaapp.Helpers.first;
-import static com.sstgroup.xabaapp.Helpers.viewHolderAtPosition;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -26,8 +19,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -35,11 +26,14 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.sstgroup.xabaapp.Helpers.first;
+import static com.sstgroup.xabaapp.Helpers.viewHolderAtPosition;
 import static com.sstgroup.xabaapp.WaitAction.waitFor;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
@@ -80,24 +74,27 @@ public class RegisterWorkerAgentFragmentTest {
     }
 
     @Test
-    public void testGenericProfessionsDifferForDifferentCategories() {
+    public void testGenericProfessionsDifferForDifferentCategories() throws Exception {
         enterRegister();
 
         onView(withId(R.id.grp_industry)).perform(scrollTo());
         onView(withId(R.id.grp_industry)).perform(click());
         onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("Agriculture")))).perform(click());
+
+        onView(withId(R.id.txt_industry_selection)).perform(scrollTo());
         onView(withId(R.id.txt_industry_selection)).check(matches(withText("Agriculture")));
 
 
-        onView(withId(R.id.grp_category)).perform(scrollTo());
-        onView(withId(R.id.grp_category)).perform(click());
-        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
-        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
+//        onView(withId(R.id.grp_category)).perform(scrollTo());
+//        onView(withId(R.id.grp_category)).perform(click());
+//        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
+//        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
 
         onView(withId(R.id.grp_profession)).perform(scrollTo());
         onView(withId(R.id.grp_profession)).perform(click());
         final ArrayList<String> professions1 = new ArrayList<>();
         final ArrayList<String> professions2 = new ArrayList<>();
+        onView(isRoot()).perform(waitFor(400));
         onView(withId(R.id.rv_chooser)).check(matches(new BoundedMatcher<View, View>(View.class) {
             @Override
             protected boolean matchesSafely(View item) {
@@ -121,17 +118,19 @@ public class RegisterWorkerAgentFragmentTest {
             }
         }));
         onView(withId(R.id.rv_chooser)).perform(actionOnItemAtPosition(0, click()));
+        onView(isRoot()).perform(waitFor(400));
 
         onView(withId(R.id.grp_industry)).perform(scrollTo());
         onView(withId(R.id.grp_industry)).perform(click());
         onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("Domestic")))).perform(click());
+        onView(isRoot()).perform(waitFor(400));
         onView(withId(R.id.txt_industry_selection)).check(matches(withText("Domestic")));
 
 
-        onView(withId(R.id.grp_category)).perform(scrollTo());
-        onView(withId(R.id.grp_category)).perform(click());
-        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
-        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
+//        onView(withId(R.id.grp_category)).perform(scrollTo());
+//        onView(withId(R.id.grp_category)).perform(click());
+//        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
+//        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
 
         onView(withId(R.id.grp_profession)).perform(scrollTo());
         onView(withId(R.id.grp_profession)).perform(click());
@@ -199,7 +198,7 @@ public class RegisterWorkerAgentFragmentTest {
         onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), isDescendantOfA(viewHolderAtPosition(3)), first(feedback))).perform(click());
         onView(withId(R.id.btn_close)).perform(click());
 
-        onView(withId(R.id.txt_program)).check(matches(withText(feedback.getFeedbackText())));
+        onView(withId(R.id.txt_program)).check(matches(withText(containsString(feedback.getFeedbackText()))));
 
         Log.d("Pass" , "feeback: " + feedback.getFeedbackText());
 

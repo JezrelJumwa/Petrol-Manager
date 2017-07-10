@@ -21,6 +21,7 @@ import rx.subjects.PublishSubject;
 
 
 public class DialogItemChooserAdapter extends RecyclerView.Adapter<DialogItemChooserAdapter.DialogItemViewHolder> {
+    private final List<String> userSelectedItems;
     private Context context;
     private List<String> selectedItems;
     private List<String> dialogItems;
@@ -36,6 +37,8 @@ public class DialogItemChooserAdapter extends RecyclerView.Adapter<DialogItemCho
         ImageView imgTick;
         @BindView(R.id.txt_item_name)
         TextView txtItemName;
+        @BindView(R.id.tv_registered)
+        TextView txtRegistered;
 
         public DialogItemViewHolder(View itemView) {
             super(itemView);
@@ -43,11 +46,12 @@ public class DialogItemChooserAdapter extends RecyclerView.Adapter<DialogItemCho
         }
     }
 
-    public DialogItemChooserAdapter(Context context, List<String> dialogItems, List<String> selectedItems, boolean isSingleChoice) {
+    public DialogItemChooserAdapter(Context context, List<String> dialogItems, List<String> selectedItems, boolean isSingleChoice, List<String> userSelectedItems) {
         this.dialogItems = dialogItems;
         this.context = context;
         this.selectedItems = selectedItems;
         this.isSingleChoice = isSingleChoice;
+        this.userSelectedItems = userSelectedItems;
     }
 
     public DialogItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,16 +72,31 @@ public class DialogItemChooserAdapter extends RecyclerView.Adapter<DialogItemCho
             selectDialogItem(holder);
         }
 
+        if (userSelectedItems.contains(dialogItem)){
+            bindUserSelectedItems(holder);
+        }
+
         holder.grpItemDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectDialogItem(holder);
-                onClickSubject.onNext(dialogItem);
+                if (holder.txtRegistered.getVisibility() == View.GONE){
+                    selectDialogItem(holder);
+                    onClickSubject.onNext(dialogItem);
+                }
             }
         });
     }
 
+    private void bindUserSelectedItems(DialogItemViewHolder holder) {
+        holder.imgTick.setVisibility(View.INVISIBLE);
+        holder.txtRegistered.setVisibility(View.VISIBLE);
+        int bgGraySelected = ContextCompat.getColor(context, R.color.white);
+        holder.grpItemDialog.setBackgroundColor(bgGraySelected);
+    }
+
     private void selectDialogItem(DialogItemViewHolder holder) {
+        holder.txtRegistered.setVisibility(View.GONE);
+
         if (holder.imgTick.getVisibility() == View.INVISIBLE) {
             holder.imgTick.setVisibility(View.VISIBLE);
             int bgGraySelected = ContextCompat.getColor(context, R.color.white);

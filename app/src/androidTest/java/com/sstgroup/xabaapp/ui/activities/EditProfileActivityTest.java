@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.sstgroup.xabaapp.FeedbackMatcher;
 import com.sstgroup.xabaapp.R;
-import com.sstgroup.xabaapp.WaitAction;
 import com.sstgroup.xabaapp.XabaApplication;
 
 import org.hamcrest.Description;
@@ -41,7 +40,6 @@ import static com.sstgroup.xabaapp.Helpers.viewHolderAtPosition;
 import static com.sstgroup.xabaapp.WaitAction.waitFor;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.*;
 
 /**
  * Created by julianlubenov on 7/4/17.
@@ -96,7 +94,7 @@ public class EditProfileActivityTest {
     public static void checkProgramsSelection() {
 
         onView(withId(R.id.rv_edit_profile)).perform(RecyclerViewActions.actionOnItemAtPosition(5,scrollTo()));
-        onView(withId(R.id.row_profile_frame)).perform(click());
+        onView(withId(R.id.grp_program)).perform(click());
         //Check that the chooser dialog is displayed
         onView(withId(R.id.rv_chooser)).check(matches(isDisplayed()));
         FeedbackMatcher feedback = new FeedbackMatcher(TextView.class);
@@ -104,7 +102,7 @@ public class EditProfileActivityTest {
         onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), isDescendantOfA(viewHolderAtPosition(3)), first(feedback))).perform(click());
         onView(withId(R.id.btn_close)).perform(click());
 
-        onView(withId(R.id.txt_profession)).check(matches(withText(feedback.getFeedbackText())));
+        onView(withId(R.id.txt_program)).check(matches(withText(containsString(feedback.getFeedbackText()))));
 
         Log.d("Pass" , "feeback: " + feedback.getFeedbackText());
 
@@ -126,9 +124,9 @@ public class EditProfileActivityTest {
         onView(withId(R.id.txt_industry_selection)).check(matches(withText("Agriculture")));
 
 
-        onView(withId(R.id.grp_category)).perform(click());
-        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
-        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
+//        onView(withId(R.id.grp_category)).perform(click());
+//        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
+//        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
 
         onView(withId(R.id.grp_profession)).perform(click());
         final ArrayList<String> professions1 = new ArrayList<>();
@@ -162,9 +160,9 @@ public class EditProfileActivityTest {
         onView(withId(R.id.txt_industry_selection)).check(matches(withText("Domestic")));
 
 
-        onView(withId(R.id.grp_category)).perform(click());
-        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
-        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
+//        onView(withId(R.id.grp_category)).perform(click());
+//        onView(allOf(isDescendantOfA(withId(R.id.rv_chooser)), withText(containsString("General")))).perform(click());
+//        onView(withId(R.id.txt_category_selection)).check(matches(withText("General")));
 
         onView(withId(R.id.grp_profession)).perform(click());
 
