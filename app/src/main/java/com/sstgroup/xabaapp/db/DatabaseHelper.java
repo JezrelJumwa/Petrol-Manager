@@ -106,11 +106,15 @@ public class DatabaseHelper {
 //        daoSession.getIndustryDao().deleteAll();
 //        daoSession.getCategoryDao().deleteAll();
 //        daoSession.getProfessionDao().deleteAll();
+
         daoSession.getUserDao().deleteAll();
         daoSession.getTokenDao().deleteAll();
         daoSession.getNotificationDao().deleteAll();
         daoSession.getReferredWorkerDao().deleteAll();
         daoSession.getCommissionLogDao().deleteAll();
+        daoSession.getJoinUsersWithProgramsDao().deleteAll();
+        daoSession.getJoinUsersWithProfessionsDao().deleteAll();
+        daoSession.getJoinUsersWithProfessionsAndIndustriesDao().deleteAll();
     }
 
     public void deleteLocationTables() {
@@ -445,6 +449,7 @@ public class DatabaseHelper {
 
     public void updateLoggedUser(User user, Token token) {
         joinUsersWithProfessionsAndIndustriesDao = daoSession.getJoinUsersWithProfessionsAndIndustriesDao();
+        joinUsersWithProgramsDao = daoSession.getJoinUsersWithProgramsDao();
 
         List<JoinUsersWithProfessionsAndIndustries> list = joinUsersWithProfessionsAndIndustriesDao
                 .queryBuilder()
@@ -454,12 +459,29 @@ public class DatabaseHelper {
             joinUsersWithProfessionsAndIndustriesDao.delete(item);
         }
 //        joinUsersProfessionDao.delete(list);
+        List<JoinUsersWithPrograms> programsList = joinUsersWithProgramsDao
+                .queryBuilder()
+                .where(JoinUsersWithProgramsDao.Properties.UserId.eq(user.getId()))
+                .list();
+
+        for (JoinUsersWithPrograms item :
+                programsList) {
+            joinUsersWithProgramsDao.delete(item);
+        }
 
         user.setTokenId(token.getId());
         for (JoinUsersWithProfessionsAndIndustries profession : user.getProfessions()) {
             Long professionId = profession.getProfessionsId();
             Long industryId = profession.getIndustryId();
             insertJoinUserProfessionsWithIndustries(user.getId(), professionId, industryId);
+        }
+
+        for (Program program : user.getPrograms()) {
+            Long programId = program.getLoggedUserProgramId();
+            if (programId == null || programId == 0L) {
+                programId = program.getProgramId();
+            }
+            insertJoinUserPrograms(user.getId(), programId);
         }
 
         UserCommissions userCommissions = user.getUserCommissions();
@@ -473,6 +495,7 @@ public class DatabaseHelper {
         insertOrReplaceUser(user);
         daoSession.getUserDao().detachAll();
         daoSession.getJoinUsersWithProfessionsDao().detachAll();
+        daoSession.getJoinUsersWithProgramsDao().detachAll();
     }
 
     public void insertOrReplaceUser(User user) {
