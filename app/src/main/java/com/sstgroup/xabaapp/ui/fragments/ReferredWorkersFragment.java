@@ -41,6 +41,7 @@ public class ReferredWorkersFragment extends BaseFragment {
     private boolean isLoading = false;
 
     private Integer fromId;
+    private boolean moreItems;
 
     public static ReferredWorkersFragment newInstance() {
         Bundle args = new Bundle();
@@ -87,6 +88,7 @@ public class ReferredWorkersFragment extends BaseFragment {
         showSwipeLoading();
 
         fromId = null;
+        moreItems = true;
 
         referredWorkerAdapter = new ReferredWorkerAdapter(xabaDbHelper.getAllReferredWorkers(), getContext());
         rvReferredWorkers.setAdapter(referredWorkerAdapter);
@@ -152,13 +154,25 @@ public class ReferredWorkersFragment extends BaseFragment {
                     ArrayList<ReferredWorker> referredWorkers = response.body().getBody().getItems();
 
                     if (loadMoreTriggered) {
-                        referredWorkerAdapter.addMoreReferredWorkers(referredWorkers);
                         loadMoreTriggered = false;
-                        refreshLayout.setEnabled(true);
                         referredWorkerAdapter.loadMoreFinished();
+                        refreshLayout.setEnabled(true);
+
+                        if (moreItems){
+                            referredWorkerAdapter.addMoreReferredWorkers(referredWorkers);
+                        }
+
+                        if (response.body().getBody().getMoreItems() != null) {
+                            moreItems = response.body().getBody().getMoreItems();
+                        }
+
                     } else {
                         hideSwipeLoading();
                         referredWorkerAdapter.replaceAllReferredWorkers(referredWorkers);
+
+                        if (response.body().getBody().getMoreItems() != null) {
+                            moreItems = response.body().getBody().getMoreItems();
+                        }
                     }
 
                     xabaDbHelper.insertOrReplaceReferredWorkers(referredWorkers);

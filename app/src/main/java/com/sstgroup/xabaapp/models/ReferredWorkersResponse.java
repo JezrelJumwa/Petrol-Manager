@@ -9,13 +9,13 @@ public class ReferredWorkersResponse {
     @SerializedName("referrals")
     private ArrayList<ReferredWorker> items;
     @SerializedName("more_items")
-    private String moreItems;
+    private Boolean moreItems;
     @SerializedName("next_page_params")
     private String nextPageParams;
     @SerializedName("per_page")
     private Integer perPage;
 
-    public ReferredWorkersResponse(ArrayList<ReferredWorker> items, String moreItems, String nextPageParams, Integer perPage) {
+    public ReferredWorkersResponse(ArrayList<ReferredWorker> items, Boolean moreItems, String nextPageParams, Integer perPage) {
         this.items = items;
         this.moreItems = moreItems;
         this.nextPageParams = nextPageParams;
@@ -30,11 +30,11 @@ public class ReferredWorkersResponse {
         this.items = items;
     }
 
-    public String getMoreItems() {
+    public Boolean getMoreItems() {
         return moreItems;
     }
 
-    public void setMoreItems(String moreItems) {
+    public void setMoreItems(Boolean moreItems) {
         this.moreItems = moreItems;
     }
 
