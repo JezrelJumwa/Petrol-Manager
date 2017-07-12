@@ -147,6 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
             android:gravity="center"
             android:text="@string/lorem_ipsum_nullam_arcu"
             android:textColor="@color/dashboard_text_gray"

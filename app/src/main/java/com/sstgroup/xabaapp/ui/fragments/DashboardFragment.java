@@ -17,7 +17,7 @@ import butterknife.OnClick;
  * Created by julianlubenov on 6/8/17.
  */
 
-public class DashboardFragment extends BaseFragment {
+public class  DashboardFragment extends BaseFragment {
     @BindView(R.id.txt_referral_id)
     TextView txtReferralId;
     @BindView(R.id.txt_total_registered_workers)
