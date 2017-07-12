@@ -220,6 +220,10 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.txt_profession)
         TextView txtProfession;
 
+        // only for programs row
+        @BindView(R.id.row_programs)
+        TextView mTextViewProgramsTitle;
+
         RowProfession(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -227,7 +231,8 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         void bind(int position) {
             if (position == size - 1) {
-                txtTitle.setText(context.getResources().getString(R.string.programs_dot));
+                mTextViewProgramsTitle.setVisibility(View.VISIBLE);
+                txtTitle.setText("");
 
                 if (loggedUser.getPrograms() != null && loggedUser.getPrograms().size() > 0 ) {
                     txtProfession.setText(CustomChooserDialog.getSelectedProgramsFromObjects(loggedUser.getPrograms()));
