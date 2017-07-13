@@ -8,10 +8,16 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.Language;
+import com.sstgroup.xabaapp.models.LocationResponse;
+import com.sstgroup.xabaapp.models.LocationStructure;
+import com.sstgroup.xabaapp.models.ProfessionResponse;
+import com.sstgroup.xabaapp.models.ProfessionStructure;
+import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.activities.LoginActivity;
 import com.sstgroup.xabaapp.ui.activities.RegisterActivity;
 import com.sstgroup.xabaapp.ui.dialogs.CustomChooserDialog;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
+import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.Preferences;
 import com.sstgroup.xabaapp.utils.Validator;
 
@@ -20,6 +26,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
 
 
 public class WizardStepOneFragment extends BaseFragment {
@@ -116,7 +126,17 @@ public class WizardStepOneFragment extends BaseFragment {
                         Preferences.setSelectedCountry(activity, selectedCountry);
                     }
                 });
-        dialog.show();
+
+        if (countries.size() > 0) {
+            dialog.show();
+        } else {
+            if (activity.checkInternetConnection()){
+                getLocations(dialog);
+            } else {
+                ToastInterval.showToast(activity, getString(R.string.check_your_internet_connection));
+            }
+        }
+
     }
 
     private void showLanguagesDialog() {
@@ -133,6 +153,93 @@ public class WizardStepOneFragment extends BaseFragment {
                         Preferences.setSelectedLanguage(activity, selectedLanguage);
                     }
                 });
-        dialog.show();
+
+        if (languages.size() > 0) {
+            dialog.show();
+        } else {
+            if (activity.checkInternetConnection()){
+                getLocations(dialog);
+            } else {
+                ToastInterval.showToast(activity, getString(R.string.check_your_internet_connection));
+            }
+        }
+
+    }
+
+    private void getLocations(final CustomChooserDialog dialog) {
+        if (activity != null) {
+            activity.showLoader();
+        }
+
+        final String savedLocationHash = Preferences.getLocationHash(XabaApplication.getInstance().getApplicationContext());
+
+        Call<LocationResponse> call = RestClient.getService().getLocations(XabaApplication.getInstance().getLanguageCode(), Constants.AGENT_APP_VALUE, savedLocationHash);
+        call.enqueue(new Callback<LocationResponse>() {
+            @Override
+            public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
+                if (response.isSuccessful()) {
+                    LocationStructure locationStructure = response.body().getLocationStructure();
+
+                    if (!locationStructure.isNotModified) {
+                        if (!savedLocationHash.equals(locationStructure.getHash())) {
+                            Preferences.setLocationHash(XabaApplication.getInstance().getApplicationContext(), locationStructure.hash);
+                            xabaDbHelper.deleteLocationTables();
+                            xabaDbHelper.insertOrReplaceLanguages(locationStructure.getLanguages());
+                            xabaDbHelper.insertOrReplaceCurrencies(locationStructure.getCurrencies());
+                            xabaDbHelper.insertOrReplaceCountries(locationStructure.getCountries()); // insert all countries, counties and subCounties
+
+                            countries = xabaDbHelper.getCountries();
+                            languages = xabaDbHelper.getLanguages();
+
+                            if (dialog != null)
+                                dialog.show();
+                        }
+                    }
+                    getProfessions();
+                }
+
+                if (activity != null) {
+                    activity.hideLoader();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LocationResponse> call, Throwable t) {
+                if (activity != null){
+                    ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
+                    activity.hideLoader();
+                }
+            }
+        });
+    }
+
+    private void getProfessions() {
+
+        final String savedProfessionHash = Preferences.getProfessionHash(XabaApplication.getInstance().getApplicationContext());
+
+        Call<ProfessionResponse> call = RestClient.getService().getProfessions(XabaApplication.getInstance().getLanguageCode(),
+                Constants.AGENT_APP_VALUE, savedProfessionHash);
+        call.enqueue(new Callback<ProfessionResponse>() {
+            @Override
+            public void onResponse(Call<ProfessionResponse> call, Response<ProfessionResponse> response) {
+                if (response.isSuccessful()) {
+                    ProfessionStructure professionStructure = response.body().getProfessionStructure();
+
+                    if (!professionStructure.isNotModified) {
+                        if (!savedProfessionHash.equals(professionStructure.getHash())) {
+                            Preferences.setProfessionHash(XabaApplication.getInstance().getApplicationContext(), professionStructure.hash);
+                            xabaDbHelper.deleteProfessionTables();
+                            xabaDbHelper.insertOrReplaceIndustries(professionStructure.getIndustries()); // insert all industries, categories and professions
+                            xabaDbHelper.insertOrReplacePrograms(professionStructure.getPrograms());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfessionResponse> call, Throwable t) {
+                Timber.d("onFailure" + t.toString());
+            }
+        });
     }
 }

@@ -43,6 +43,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         init();
     }
 
+    public boolean checkInternetConnection() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+    }
+
     public void showLoader(){
         if (progressBar != null)
             progressBar.setVisibility(View.VISIBLE);
