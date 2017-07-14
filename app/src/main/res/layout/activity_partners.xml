@@ -18,7 +18,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:src="@drawable/partner_nca"/>
 
     </FrameLayout>
@@ -33,7 +33,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
+            android:layout_gravity="center"
             android:src="@drawable/partner_konza"/>
 
     </FrameLayout>
@@ -43,12 +43,12 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="0.8">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start|center_vertical"
+            android:layout_gravity="center"
             android:src="@drawable/partner_nita"/>
 
     </FrameLayout>
@@ -57,12 +57,12 @@
         android:id="@+id/frame_layout_four"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4">
+        android:layout_weight="0.6">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
+            android:layout_gravity="center"
             android:src="@drawable/partner_giz_logo"/>
 
     </FrameLayout>

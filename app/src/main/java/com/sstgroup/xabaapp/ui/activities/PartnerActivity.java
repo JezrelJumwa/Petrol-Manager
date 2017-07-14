@@ -4,9 +4,6 @@ package com.sstgroup.xabaapp.ui.activities;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.utils.Constants;
@@ -29,17 +26,17 @@ public class PartnerActivity extends BaseActivity {
         screen = getIntent().getExtras().getString(SplashActivity.GO_TO);
         startTimerForSplash();
 
-        FrameLayout frameLayoutOne = (FrameLayout) findViewById(R.id.frame_layout_one);
-        FrameLayout frameLayoutTwo = (FrameLayout) findViewById(R.id.frame_layout_two);
-        FrameLayout frameLayoutThree = (FrameLayout) findViewById(R.id.frame_layout_three);
-        FrameLayout frameLayoutFour = (FrameLayout) findViewById(R.id.frame_layout_four);
-
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadeinout);
-
-        frameLayoutOne.startAnimation(animation);
-        frameLayoutTwo.startAnimation(animation);
-        frameLayoutThree.startAnimation(animation);
-        frameLayoutFour.startAnimation(animation);
+//        FrameLayout frameLayoutOne = (FrameLayout) findViewById(R.id.frame_layout_one);
+//        FrameLayout frameLayoutTwo = (FrameLayout) findViewById(R.id.frame_layout_two);
+//        FrameLayout frameLayoutThree = (FrameLayout) findViewById(R.id.frame_layout_three);
+//        FrameLayout frameLayoutFour = (FrameLayout) findViewById(R.id.frame_layout_four);
+//
+//        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadeinout);
+//
+//        frameLayoutOne.startAnimation(animation);
+//        frameLayoutTwo.startAnimation(animation);
+//        frameLayoutThree.startAnimation(animation);
+//        frameLayoutFour.startAnimation(animation);
     }
 
     private void startTimerForSplash() {
