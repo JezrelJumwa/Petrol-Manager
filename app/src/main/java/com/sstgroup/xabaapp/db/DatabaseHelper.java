@@ -43,6 +43,7 @@ import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserCommissions;
 import com.sstgroup.xabaapp.models.UserDao;
 import com.sstgroup.xabaapp.utils.Preferences;
+import com.sstgroup.xabaapp.utils.Validator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -357,7 +358,8 @@ public class DatabaseHelper {
 
             for (Category category : list) {
                 for (Profession profession : category.getProfessions()) {
-                    professions.add(profession.getName());
+                    if (!Validator.isEmpty(profession.getName()))
+                        professions.add(profession.getName());
                 }
 
             }

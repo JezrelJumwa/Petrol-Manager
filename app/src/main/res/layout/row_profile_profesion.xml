@@ -59,6 +59,8 @@
 
         <TextView
             android:id="@+id/txt_profession"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             style="@style/ProfileTxtValue"
             tools:text="Antenna repair" />
         <!--android:layout_below="@id/txt_category"-->
