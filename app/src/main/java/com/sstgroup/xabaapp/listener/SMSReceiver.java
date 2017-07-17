@@ -1,14 +1,10 @@
 package com.sstgroup.xabaapp.listener;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PatternMatcher;
-import android.provider.Telephony;
 import android.telephony.SmsMessage;
-import android.widget.Toast;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
@@ -103,7 +99,7 @@ public class SMSReceiver extends BroadcastReceiver {
         }
 
         try {
-            Pattern pattern = Pattern.compile("( +)([A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]+)([\\. ]+)");
+            Pattern pattern = Pattern.compile("( +)([A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]+)([\\. ]+)");
             Matcher matcher = pattern.matcher(smsMessage);
             if (matcher.find()) {
                 String verificationCode = matcher.group(2);
