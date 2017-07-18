@@ -81,7 +81,7 @@
             <RadioButton
                 android:id="@+id/rb_validated_registration"
                 style="@style/RadioButtonGreen"
-                android:text="@string/validated_registration" />
+                android:text="@string/verified_registration" />
 
         </RadioGroup>
 

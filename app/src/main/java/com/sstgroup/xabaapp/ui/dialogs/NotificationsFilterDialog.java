@@ -49,7 +49,7 @@ public class NotificationsFilterDialog extends Dialog {
             rbAllSelected.setChecked(true);
         } else if (selectedText.equals(getContext().getString(R.string.payout_done))){
             rbPayoutDone.setChecked(true);
-        } else if (selectedText.equals(getContext().getString(R.string.validated_registration))) {
+        } else if (selectedText.equals(getContext().getString(R.string.verified_registration))) {
             rbValidatedRegistration.setChecked(true);
         }
 
@@ -83,7 +83,7 @@ public class NotificationsFilterDialog extends Dialog {
                         break;
                     case R.id.rb_validated_registration:
                         if (clicks != null)
-                            clicks.showValidated(getContext().getString(R.string.validated_registration));
+                            clicks.showValidated(getContext().getString(R.string.verified_registration));
                         dismiss();
                         break;
                     default:

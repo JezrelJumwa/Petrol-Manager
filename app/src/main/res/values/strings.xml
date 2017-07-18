@@ -189,7 +189,7 @@
     <!--Notifications Screen-->
     <string name="all_notifications">All Notifications</string>
     <string name="payout_done">Payout Done</string>
-    <string name="validated_registration">Validated Registration</string>
+    <string name="verified_registration">Verified Registration</string>
     <string name="apply">Apply</string>
 
     <!--Reports Screen-->
@@ -287,7 +287,6 @@
     <string name="join_our_social_movement">Join our social movement</string>
 
     <!--Referred workers-->
-    <string name="validated">Validated</string>
     <string name="pending">Pending</string>
     <string name="rejected">Rejected</string>
     <string name="invalid_data">Invalid data</string>

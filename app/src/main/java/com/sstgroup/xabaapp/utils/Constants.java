@@ -9,6 +9,7 @@ public class Constants {
 //    public static final String BASE_URL = "http://ec2-52-59-94-240.eu-central-1.compute.amazonaws.com/api/v1/en-US/";
 //    public static final String BASE_URL = "http://dev.xaba.org/api/v1/en-US/";
     public static final String BASE_URL = "http://shikanishadev.xaba.org/api/v1/";
+//    public static final String BASE_URL = "http://shikanishastg.xaba.org/api/v1/";
 
     public static final String WS_REGISTER_PATH = "{language}/worker/create/";
     public static final String WS_REGISTER_WORKER_BY_AGENT_PATH = "{language}/worker/create-by-agent/";

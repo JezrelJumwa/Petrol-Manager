@@ -6,7 +6,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical"
         android:paddingEnd="30dp"
         android:paddingStart="30dp">
@@ -86,7 +85,7 @@
 
             <Button
                 style="@style/ButtonLinkStyle"
-                android:layout_marginTop="25dp"/>
+                android:layout_marginTop="5dp"/>
 
             <Button
                 android:id="@+id/register"

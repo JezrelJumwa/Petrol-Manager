@@ -123,7 +123,7 @@ public class ReferredWorkerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
             if (referredWorker.getStatus().equals(STATUS_ACTIVE)) {
                 imageViewStatus.setBackgroundColor(ContextCompat.getColor(imageViewStatus.getContext(), R.color.referred_worker_green));
-                text = context.getString(R.string.validated) + " - " + referredWorker.getFirstName() + " " + referredWorker.getLastName();
+                text = context.getString(R.string.verified) + " - " + referredWorker.getFirstName() + " " + referredWorker.getLastName();
             } else if (referredWorker.getStatus().equals(STATUS_PENDING)) {
                 imageViewStatus.setBackgroundColor(ContextCompat.getColor(imageViewStatus.getContext(), R.color.referred_worker_blue));
                 text = context.getString(R.string.pending) + " - " + referredWorker.getFirstName() + " " + referredWorker.getLastName();
