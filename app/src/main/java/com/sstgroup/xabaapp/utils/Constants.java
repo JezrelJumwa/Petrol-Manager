@@ -99,4 +99,8 @@ public class Constants {
 
     //Default program selection
     public static final String DEFAULT_PROGRAM = "XABA Projects";
+
+    //dialog types
+    public static final int COUNTRY_DIALOG = 0;
+    public static final int LANGUAGES_DIALOG = 1;
 }

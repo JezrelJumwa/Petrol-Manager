@@ -131,7 +131,7 @@ public class WizardStepOneFragment extends BaseFragment {
             dialog.show();
         } else {
             if (activity.checkInternetConnection()){
-                getLocations(dialog);
+                getLocations(Constants.COUNTRY_DIALOG);
             } else {
                 ToastInterval.showToast(activity, getString(R.string.check_your_internet_connection));
             }
@@ -158,7 +158,7 @@ public class WizardStepOneFragment extends BaseFragment {
             dialog.show();
         } else {
             if (activity.checkInternetConnection()){
-                getLocations(dialog);
+                getLocations(Constants.LANGUAGES_DIALOG);
             } else {
                 ToastInterval.showToast(activity, getString(R.string.check_your_internet_connection));
             }
@@ -166,7 +166,7 @@ public class WizardStepOneFragment extends BaseFragment {
 
     }
 
-    private void getLocations(final CustomChooserDialog dialog) {
+    private void getLocations(final int tyoe) {
         if (activity != null) {
             activity.showLoader();
         }
@@ -191,8 +191,11 @@ public class WizardStepOneFragment extends BaseFragment {
                             countries = xabaDbHelper.getCountries();
                             languages = xabaDbHelper.getLanguages();
 
-                            if (dialog != null)
-                                dialog.show();
+                            if (tyoe == Constants.COUNTRY_DIALOG){
+                                showCountriesDialog();
+                            } else if (tyoe == Constants.LANGUAGES_DIALOG){
+                                showLanguagesDialog();
+                            }
                         }
                     }
                     getProfessions();
