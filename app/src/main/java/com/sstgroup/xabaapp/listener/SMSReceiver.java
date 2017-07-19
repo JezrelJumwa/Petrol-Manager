@@ -24,9 +24,14 @@ import timber.log.Timber;
 public class SMSReceiver extends BroadcastReceiver {
 
     private String localizedVerificationCode = null;
+    private String localizedActivationCode = null;
 
     public void setLocalizedVerificationCode(String localizedVerificationCode) {
         this.localizedVerificationCode = localizedVerificationCode;
+    }
+
+    public void setLocalizedActivationCode(String localizedActivationCode) {
+        this.localizedActivationCode = localizedActivationCode;
     }
 
     @Override
@@ -89,17 +94,27 @@ public class SMSReceiver extends BroadcastReceiver {
         if (localizedVerificationCode == null) {
             localizedVerificationCode = XabaApplication.getInstance().getString(R.string.verification_code);
         }
+        if (localizedVerificationCode == null) {
+            localizedVerificationCode = "";
+        }
 
-        if (smsMessage == null || !smsMessage.contains("XABA")) {
+        if (localizedActivationCode == null) {
+            localizedActivationCode = XabaApplication.getInstance().getString(R.string.sms_activation_code);
+        }
+        if (localizedActivationCode == null) {
+            localizedActivationCode = "";
+        }
+
+        if (smsMessage == null || !smsMessage.toLowerCase().contains("xaba")) {
             return null;
         }
 
-        if (!smsMessage.contains(localizedVerificationCode)) {
+        if (!(smsMessage.toLowerCase().contains(localizedVerificationCode.toLowerCase()) || smsMessage.toLowerCase().contains(localizedActivationCode.toLowerCase()))) {
             return null;
         }
 
         try {
-            Pattern pattern = Pattern.compile("( +)([A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]+)([\\. ]+)");
+            Pattern pattern = Pattern.compile("( +)is ([A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]+)([\\. ]+)");
             Matcher matcher = pattern.matcher(smsMessage);
             if (matcher.find()) {
                 String verificationCode = matcher.group(2);

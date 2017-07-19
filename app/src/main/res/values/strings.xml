@@ -309,6 +309,7 @@
 
     <!--Validation by SMS-->
     <string name="verification_code">Verification code</string>
+    <string name="sms_activation_code">Activation code</string>
 
     <!--Commission log filter-->
     <string name="date">Date</string>
