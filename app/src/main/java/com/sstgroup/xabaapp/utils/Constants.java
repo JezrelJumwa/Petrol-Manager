@@ -96,4 +96,7 @@ public class Constants {
 
     public static final String DATE_FORMAT_DASHES = "- d-MMM-yyyy";
     public static final String DATE_FORMAT_REFERRED_WORKERS = "d-MMM-yyyy - H:m";
+
+    //Default program selection
+    public static final String DEFAULT_PROGRAM = "XABA Projects";
 }

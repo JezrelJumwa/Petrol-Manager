@@ -143,6 +143,10 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
 //            userId = Long.valueOf(bundle.getString(Constants.WORKER_ID));
 //        }
 
+        if (programs.contains(Constants.DEFAULT_PROGRAM)){
+            selectedPrograms.add(Constants.DEFAULT_PROGRAM);
+            txtProgram.setText(Constants.DEFAULT_PROGRAM);
+        }
         userId = xabaDbHelper.getLoggedUser(activity).getId();
     }
 

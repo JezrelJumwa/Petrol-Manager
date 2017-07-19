@@ -140,6 +140,11 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         counties = xabaDbHelper.getCounties();
         industries = xabaDbHelper.getIndustries();
         programs = xabaDbHelper.getActivePrograms();
+
+        if (programs.contains(Constants.DEFAULT_PROGRAM)){
+            selectedPrograms.add(Constants.DEFAULT_PROGRAM);
+            txtProgram.setText(Constants.DEFAULT_PROGRAM);
+        }
     }
 
     @Override
