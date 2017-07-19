@@ -215,8 +215,8 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     class RowProfession extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.row_title)
-        TextView txtTitle;
+//        @BindView(R.id.row_title)
+//        TextView txtTitle;
         @BindView(R.id.txt_profession)
         TextView txtProfession;
 
@@ -231,32 +231,36 @@ public class MyProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         void bind(int position) {
             if (position == size - 1) {
-                mTextViewProgramsTitle.setVisibility(View.VISIBLE);
-                txtTitle.setText("");
+//                mTextViewProgramsTitle.setVisibility(View.VISIBLE);
+                mTextViewProgramsTitle.setText(context.getString(R.string.programs_dot));
+//                txtTitle.setText("");
 
                 if (loggedUser.getPrograms() != null && loggedUser.getPrograms().size() > 0 ) {
                     txtProfession.setText(CustomChooserDialog.getSelectedProgramsFromObjects(loggedUser.getPrograms()));
                 }
 
-                return;
-            }
-
-            txtTitle.setText(context.getResources().getString(R.string.profession_dot));
-
-            ArrayList<Profession> professions = new ArrayList<>();
-            List<JoinUsersWithProfessionsAndIndustries> professionsAndIndustries = loggedUser.getProfessions();
-            for (JoinUsersWithProfessionsAndIndustries professionsAndIndustriesObject : professionsAndIndustries) {
-                Profession p = professionsAndIndustriesObject.getProfession();
-                p.setIndustry(professionsAndIndustriesObject.getIndustry());
-                professions.add(p);
-            }
-
-            Profession profession = professions.get(position - size);
-            
-            if(profession != null && !TextUtils.isEmpty(profession.getName())){
-                txtProfession.setText(profession.getName());
             } else {
-                txtProfession.setText("");
+//                mTextViewProgramsTitle.setVisibility(View.VISIBLE);
+                mTextViewProgramsTitle.setText(context.getResources().getString(R.string.profession_dot));
+//                txtTitle.setText(context.getResources().getString(R.string.profession_dot));
+//                txtTitle.setText("");
+//                txtTitle.setText(context.getResources().getString(R.string.profession_dot));
+
+                ArrayList<Profession> professions = new ArrayList<>();
+                List<JoinUsersWithProfessionsAndIndustries> professionsAndIndustries = loggedUser.getProfessions();
+                for (JoinUsersWithProfessionsAndIndustries professionsAndIndustriesObject : professionsAndIndustries) {
+                    Profession p = professionsAndIndustriesObject.getProfession();
+                    p.setIndustry(professionsAndIndustriesObject.getIndustry());
+                    professions.add(p);
+                }
+
+                Profession profession = professions.get(position - size);
+
+                if(profession != null && !TextUtils.isEmpty(profession.getName())){
+                    txtProfession.setText(profession.getName());
+                } else {
+                    txtProfession.setText("");
+                }
             }
         }
     }

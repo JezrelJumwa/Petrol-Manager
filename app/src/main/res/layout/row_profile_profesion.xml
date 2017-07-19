@@ -16,10 +16,10 @@
         android:layout_marginLeft="16dp"
         android:text="@string/programs_dot"
         android:textColor="@color/dark_color"
-        android:textSize="16sp"
-        android:visibility="invisible"/>
+        android:textSize="16sp"/>
+    <!--android:visibility="invisible"-->
 
-    <RelativeLayout
+    <FrameLayout
         android:paddingTop="5dp"
         android:paddingBottom="10dp"
         android:layout_marginRight="16dp"
@@ -51,10 +51,10 @@
             <!--tools:text="Telecom:"-->
             <!--android:layout_below="@id/txt_industry"/>-->
 
-        <TextView
-            android:id="@+id/row_title"
-            style="@style/ProfileTxtKey"
-            android:text="@string/profession_dot" />
+        <!--<TextView-->
+            <!--android:id="@+id/row_title"-->
+            <!--style="@style/ProfileTxtKey"-->
+            <!--android:text="@string/profession_dot" />-->
         <!--android:layout_below="@id/textView3"-->
 
         <TextView
@@ -66,6 +66,6 @@
         <!--android:layout_below="@id/txt_category"-->
 
 
-    </RelativeLayout>
+    </FrameLayout>
 
 </LinearLayout>
