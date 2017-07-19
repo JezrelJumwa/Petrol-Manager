@@ -323,6 +323,126 @@
 
         </LinearLayout>
 
+        <FrameLayout
+            android:id="@+id/grp_title_14"
+            style="@style/ExpandableTitleLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableTitleTextStyle"
+                android:text="@string/question_title_14"/>
+
+            <ImageView
+                android:id="@+id/img_14"
+                style="@style/ExpandableTitleImageStyle"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/grp_14"
+            style="@style/ExpandableContentLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableContentTextStyle"
+                android:text="@string/question_content_14"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/grp_title_15"
+            style="@style/ExpandableTitleLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableTitleTextStyle"
+                android:text="@string/question_title_15"/>
+
+            <ImageView
+                android:id="@+id/img_15"
+                style="@style/ExpandableTitleImageStyle"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/grp_15"
+            style="@style/ExpandableContentLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableContentTextStyle"
+                android:text="@string/question_content_15"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/grp_title_16"
+            style="@style/ExpandableTitleLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableTitleTextStyle"
+                android:text="@string/question_title_16"/>
+
+            <ImageView
+                android:id="@+id/img_16"
+                style="@style/ExpandableTitleImageStyle"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/grp_16"
+            style="@style/ExpandableContentLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableContentTextStyle"
+                android:text="@string/question_content_16"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/grp_title_17"
+            style="@style/ExpandableTitleLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableTitleTextStyle"
+                android:text="@string/question_title_17"/>
+
+            <ImageView
+                android:id="@+id/img_17"
+                style="@style/ExpandableTitleImageStyle"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/grp_17"
+            style="@style/ExpandableContentLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableContentTextStyle"
+                android:text="@string/question_content_17"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/grp_title_18"
+            style="@style/ExpandableTitleLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableTitleTextStyle"
+                android:text="@string/question_title_18"/>
+
+            <ImageView
+                android:id="@+id/img_18"
+                style="@style/ExpandableTitleImageStyle"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/grp_18"
+            style="@style/ExpandableContentLayoutStyle">
+
+            <TextView
+                style="@style/ExpandableContentTextStyle"
+                android:text="@string/question_content_18"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

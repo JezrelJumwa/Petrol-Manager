@@ -81,6 +81,31 @@ public class FaqFragment extends BaseFragment {
     @BindView(R.id.grp_13)
     LinearLayout grp13;
 
+    @BindView(R.id.img_14)
+    ImageView img14;
+    @BindView(R.id.grp_14)
+    LinearLayout grp14;
+
+    @BindView(R.id.img_15)
+    ImageView img15;
+    @BindView(R.id.grp_15)
+    LinearLayout grp15;
+
+    @BindView(R.id.img_16)
+    ImageView img16;
+    @BindView(R.id.grp_16)
+    LinearLayout grp16;
+
+    @BindView(R.id.img_17)
+    ImageView img17;
+    @BindView(R.id.grp_17)
+    LinearLayout grp17;
+
+    @BindView(R.id.img_18)
+    ImageView img18;
+    @BindView(R.id.grp_18)
+    LinearLayout grp18;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_faq;
@@ -107,7 +132,8 @@ public class FaqFragment extends BaseFragment {
 
     @OnClick({R.id.grp_title_1, R.id.grp_title_2, R.id.grp_title_3, R.id.grp_title_4,
             R.id.grp_title_5, R.id.grp_title_6, R.id.grp_title_7, R.id.grp_title_8,
-            R.id.grp_title_9, R.id.grp_title_10, R.id.grp_title_11, R.id.grp_title_12, R.id.grp_title_13})
+            R.id.grp_title_9, R.id.grp_title_10, R.id.grp_title_11, R.id.grp_title_12, R.id.grp_title_13,
+            R.id.grp_title_14, R.id.grp_title_15, R.id.grp_title_16, R.id.grp_title_17, R.id.grp_title_18})
     public void onClick(View view) {
 
         switch (view.getId()) {
@@ -251,6 +277,61 @@ public class FaqFragment extends BaseFragment {
                 } else {
                     collapse(grp13);
                     img13.setImageResource(R.drawable.open);
+                }
+                break;
+
+            case R.id.grp_title_14:
+
+                if (grp14.getVisibility() == View.GONE) {
+                    expand(grp14);
+                    img14.setImageResource(R.drawable.close);
+                } else {
+                    collapse(grp14);
+                    img14.setImageResource(R.drawable.open);
+                }
+                break;
+
+            case R.id.grp_title_15:
+
+                if (grp15.getVisibility() == View.GONE) {
+                    expand(grp15);
+                    img15.setImageResource(R.drawable.close);
+                } else {
+                    collapse(grp15);
+                    img15.setImageResource(R.drawable.open);
+                }
+                break;
+
+            case R.id.grp_title_16:
+
+                if (grp16.getVisibility() == View.GONE) {
+                    expand(grp16);
+                    img16.setImageResource(R.drawable.close);
+                } else {
+                    collapse(grp16);
+                    img16.setImageResource(R.drawable.open);
+                }
+                break;
+
+            case R.id.grp_title_17:
+
+                if (grp17.getVisibility() == View.GONE) {
+                    expand(grp17);
+                    img17.setImageResource(R.drawable.close);
+                } else {
+                    collapse(grp17);
+                    img17.setImageResource(R.drawable.open);
+                }
+                break;
+
+            case R.id.grp_title_18:
+
+                if (grp18.getVisibility() == View.GONE) {
+                    expand(grp18);
+                    img18.setImageResource(R.drawable.close);
+                } else {
+                    collapse(grp18);
+                    img18.setImageResource(R.drawable.open);
                 }
                 break;
         }

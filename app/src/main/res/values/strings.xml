@@ -209,12 +209,17 @@
     <string name="question_title_11">How do I add a profession?</string>
     <string name="question_title_12">How do I become an agent?</string>
     <string name="question_title_13">Where can I find the Xaba Terms and Conditions?</string>
+    <string name="question_title_14">What are Xaba Points?</string>
+    <string name="question_title_15">How do I start earning points?</string>
+    <string name="question_title_16">How does the points system work?</string>
+    <string name="question_title_17">How do I redeem my Xaba Points?</string>
+    <string name="question_title_18">How do I check my balance?</string>
 
     <string name="question_content_1">Xaba is a social movement that is enriching lives by creating job connections in Agri-business, Construction, Hospitality and Manufacturing industries. Searching and hiring workers in the informal sector is now easier on Xaba.</string>
     <string name="question_content_2">Xaba Shikanisha is an easy, cost effective and faster way to connect employers with employees. Employers are able to cherry pick blue-collar workers best suited for their projects in a matter of minutes and in simplified steps. Employees/Workers who are registered on Xaba Shikanisha through the USSD process *844# increase their opportunity of getting hired for jobs closest to them.</string>
     <string name="question_content_3">Xaba targets employees/workers and employers in the blue-collar market specializing in Agri-business, Construction, Hospitality and Manufacturing industries.
-        \n\u2022 Employees/Workers can register to increase their chances of getting hired
-        \n\u2022 Employers can find verified workers with the right skillset for their projects</string>
+        \n \u2022 Employees/Workers can register to increase their chances of getting hired
+        \n \u2022 Employers can find verified workers with the right skillset for their projects</string>
     <string name="question_content_4"><b>Employees/Workers</b> are able to register for free by dialling <b>*884#</b> and completing the registration process.  By registering, your details can be viewed by different employers increasing your chances for future job opportunities.\n\n
         <b><u>Employee/Worker Registration Steps:</u></b>\n
         a. Dial *884#\n
@@ -240,7 +245,7 @@
         h. Send job details to workers who’ve responded\n
         i. Invite them for job interview\n
         j. Hire selected workers</string>
-    <string name="question_content_5">a. Registration and receiving notifications on Xaba Shikanisha is free for workers\n b. Normal network charges apply.</string>
+    <string name="question_content_5">a. Registration and receiving notifications on Xaba Shikanisha is free for workers\nb. Normal network charges apply.</string>
     <string name="question_content_6"><b>a. On the App:</b>\n i. Simply put the activation code sent to your notification number and click ‘verify’ to proceed.</string>
     <string name="question_content_7"><b>a. On USSD:</b>\n i. Dial *884#\n
         ii. Enter ID\n
@@ -282,7 +287,12 @@
         d. Enter your details and submit\n
         e. If successful, receive a notification to become an agent\n
         f. Start earning your commission.</string>
-    <string name="question_content_13">i. You can find the terms and conditions on our website, www.xaba.org.</string>
+    <string name="question_content_13">You can find the terms and conditions on our website, www.xaba.org.</string>
+    <string name="question_content_14">Xaba Points is a loyalty programme for all Xaba Agents. Each Xaba point is equivalent to KSH 5 upon reaching your target number of registrations.</string>
+    <string name="question_content_15">Once you are registered as an agent, you are automatically included into the loyalty programme and can start earning points. The more workers you register, the more you earn.</string>
+    <string name="question_content_16">For every worker registered, you will earn five Xaba Points. Once you have registered 5000 workers, you will be able to redeem your points.</string>
+    <string name="question_content_17">Xaba loyalty points are redeemable after every 5000 workers registered. As soon as the target is reached, your points will be converted into cash and sent to you via mpesa.</string>
+    <string name="question_content_18">The green bar on your dashboard illustrated your total balance. You will also be able to view your cumulative balance in your commission logs and statements.</string>
 
     <string name="join_our_social_movement">Join our social movement</string>
 
