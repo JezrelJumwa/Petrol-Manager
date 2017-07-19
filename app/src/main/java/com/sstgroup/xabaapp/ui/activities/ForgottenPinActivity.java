@@ -7,7 +7,7 @@ import android.widget.EditText;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.PinResponse;
-import com.sstgroup.xabaapp.models.errors.ErrorStatusAndError;
+import com.sstgroup.xabaapp.models.errors.ErrorMapListString;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
@@ -54,8 +54,6 @@ public class ForgottenPinActivity extends BaseActivity {
     }
 
     private void resetPinAndSendSMS() {
-        showLoader();
-
         String nationalId = getNationalIdIfValid();
         if (nationalId == null) return;
 
@@ -84,6 +82,7 @@ public class ForgottenPinActivity extends BaseActivity {
     }
 
     private void requestResetPinAndSendSMS(String nationalId) {
+        showLoader();
         nationalId = Encryption.encryptionRSA(nationalId);
 
         Call<PinResponse> call = RestClient.getService().resetPin(XabaApplication.getInstance().getLanguageCode(),
@@ -96,8 +95,14 @@ public class ForgottenPinActivity extends BaseActivity {
                     ToastInterval.showToast(ForgottenPinActivity.this, getResources().getString(R.string.pin_is_reset));
                     finish();
                 } else {
-                    ErrorStatusAndError errorStatusAndError = ErrorUtils.parseStatusAndError(response);
-                    ToastInterval.showToast(ForgottenPinActivity.this, errorStatusAndError.getError());
+                    ErrorMapListString errorMapListString = ErrorUtils.parseLoginError(response);
+                    if (errorMapListString.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                        ToastInterval.showToast(ForgottenPinActivity.this, getString(R.string.something_is_wrong));
+                    } else {
+                        if (errorMapListString.getError().containsKey("national_idn")){
+                            ToastInterval.showToast(ForgottenPinActivity.this, getString(R.string.invalid_user));
+                        }
+                    }
                 }
             }
 

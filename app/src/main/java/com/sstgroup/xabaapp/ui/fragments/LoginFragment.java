@@ -10,7 +10,7 @@ import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.User;
 import com.sstgroup.xabaapp.models.UserResponse;
-import com.sstgroup.xabaapp.models.errors.ErrorLogin;
+import com.sstgroup.xabaapp.models.errors.ErrorMapListString;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.activities.EditPinActivity;
 import com.sstgroup.xabaapp.ui.activities.ForgottenPinActivity;
@@ -149,11 +149,15 @@ public class LoginFragment extends BaseFragment {
                     }
                 } else {
                     //TODO: init correct way of parsing errors because server returns different models of errors and could not be correctly parsed
-                    ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
-                    if (errorLogin.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                    ErrorMapListString errorMapListString = ErrorUtils.parseLoginError(response);
+                    if (errorMapListString.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
-                        ToastInterval.showToast(activity, errorLogin.getError());
+                        if (errorMapListString.getError().containsKey("national_idn")){
+                            ToastInterval.showToast(activity, getString(R.string.invalid_user));
+                        } else if (errorMapListString.getError().containsKey("pin")) {
+                            ToastInterval.showToast(activity, getString(R.string.incorrect_pin));
+                        }
                     }
                 }
             }

@@ -2,12 +2,15 @@ package com.sstgroup.xabaapp.models.errors;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ErrorLogin {
+import java.util.ArrayList;
+import java.util.Map;
+
+public class ErrorMapListString {
     private String status;
     @SerializedName("errors")
-    private String error;
+    private Map<String, ArrayList<String>> error;
 
-    public ErrorLogin(String status, String error) {
+    public ErrorMapListString(String status, Map<String, ArrayList<String>> error) {
         this.status = status;
         this.error = error;
     }
@@ -16,7 +19,7 @@ public class ErrorLogin {
         return status;
     }
 
-    public String getError() {
+    public Map<String, ArrayList<String>> getError() {
         return error;
     }
 }

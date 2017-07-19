@@ -2,7 +2,7 @@ package com.sstgroup.xabaapp.service;
 
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
-import com.sstgroup.xabaapp.models.errors.ErrorLogin;
+import com.sstgroup.xabaapp.models.errors.ErrorMapListString;
 import com.sstgroup.xabaapp.utils.Constants;
 import com.sstgroup.xabaapp.utils.ErrorUtils;
 
@@ -19,18 +19,18 @@ public abstract class BaseXabaCall<T> implements Callback<T> {
         if (response.isSuccessful()) {
             onSuccess(call, response);
         } else {
-            ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
+            ErrorMapListString errorMapListString = ErrorUtils.parseLoginError(response);
 
-            if (errorLogin.getError().equals(Constants.ERROR_UNAUTHORIZED)) {
+            if (errorMapListString.getError().equals(Constants.ERROR_UNAUTHORIZED)) {
                 XabaApplication.getInstance().logout();
                 //from this point we logout user
                 return;
             }
 
-            if (errorLogin.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+            if (errorMapListString.getStatus().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                 onFailure(XabaApplication.getInstance().getString(R.string.something_is_wrong));
             } else {
-                onFailure(errorLogin.getError());
+//                onFailure(errorMapListString.getError());
             }
 
         }
