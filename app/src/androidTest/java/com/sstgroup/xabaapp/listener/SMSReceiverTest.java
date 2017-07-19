@@ -5,10 +5,10 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.sstgroup.xabaapp.R;
+import com.sstgroup.xabaapp.WaitAction;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.ui.activities.MainActivity;
 import com.sstgroup.xabaapp.utils.Preferences;
-import com.sstgroup.xabaapp.WaitAction;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,11 +17,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
-import static org.hamcrest.Matchers.not;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
  * Created by julianlubenov on 6/28/17.
@@ -45,6 +44,31 @@ public class SMSReceiverTest {
     @After
     public void tearDown() throws Exception {
 
+    }
+
+    @Test
+    public void onReceive_receivesNewFormatAndParsesSMSScorrectly() throws Exception {
+        Intent intent = new Intent();
+        byte [][] pdus = {{0, 32, 7, -127, 33, 67, 101, -9, 0, 0, 113, 112, -111, 97, -126, 18, 33, 115, -94, 57, 61, 44, -89, -125, -50, 101,
+                58, 61, -19, 62, -125, -62, -20, -78, -100, 62, 7, -103, -33, 114, -112, -6, 45, -98, -125, -36, -27, -80, 28, -108, 127, -41, 93,
+                32, -22, 112, 14, 10, -61, -31, -20, 60, -24, -19, 6, 97, -61, -30, -80, -21, 45, 63, -125, -78, -17, -70, 28, 20, 30, -45, -45, -10,
+                48, 61, -3, 118, -125, -58, 111, 114, 25, 100, 126, -53, 65, -7, 119, 93, 14, -62, -122, -59, 97, 80, 120, 60, 126, -41, -35, 116, 80, 122,
+                14, 26, -38, 100, 66, -105, 8, }};
+
+        if (Preferences.getLoggedUserId(XabaApplication.getInstance().getApplicationContext()) == null ||
+                Preferences.getLoggedUserId(XabaApplication.getInstance().getApplicationContext()) < 0) {
+            Preferences.setLoggedUserId(XabaApplication.getInstance().getApplicationContext(), 1L);
+        }
+
+        intent.putExtra("pdus", (Object[])pdus);
+        intent.putExtra("format", "3gpp");
+
+        smsReceiver.onReceive(XabaApplication.getInstance().getApplicationContext(), intent);
+
+        onView(isRoot()).perform(WaitAction.waitFor(300));
+
+        onView(withId(R.id.resend_pin_sms))
+                .check(matches(isDisplayed()));
     }
 
     @Test

@@ -5,9 +5,6 @@ import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.cglib.core.ReflectUtils;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by julianlubenov on 6/28/17.
@@ -20,11 +17,20 @@ public class SMSReceiverTest {
     public void setUp() throws Exception {
         smsReceiver = new SMSReceiver();
         smsReceiver.setLocalizedVerificationCode("verification code");
+        smsReceiver.setLocalizedActivationCode("Activation code");
     }
 
     @After
     public void tearDown() throws Exception {
 
+    }
+
+    @Test
+    public void parseSMSNewFormatVerficationCode_persesSMSCorrectly() {
+        String smsMessage = "Congratulations Hamisi! Your registration on Xaba Shikanisha is successful. Login and start getting alerts for jobs near you. TCs apply on Xaba.org Your activation code for your Xaba account is C62B.";
+        String sms = smsReceiver.parseSMSVerificationCode(smsMessage);
+        Assert.assertNotNull("The parsed SMS message is null", sms);
+        Assert.assertEquals("The parsed SMS mesage \"" + sms + "\" is NOT equal to the expected message C62B.", "C62B", sms);
     }
 
     @Test
@@ -88,18 +94,6 @@ public class SMSReceiverTest {
             Assert.assertNull("The parsed SMS message is not null, even the number is not valid xaba verification code", sms);
         } catch (Exception e) {
             Assert.fail("If the verification code is not in valid format, parseSMSVerificationCode throws exception : " + e);
-        }
-    }
-
-    @Test
-    public void parseSMSVerificationCode_returnsNULLIfXABASubstringHasLowerCaseCharacters() {
-        String smsMessage = "Dear Sir, your verification code for account in XaBA is BC995EA8. Dial *884# to login and manage your account.";
-        try {
-            String sms = smsReceiver.parseSMSVerificationCode(smsMessage);
-
-            Assert.assertNull("The parsed SMS message is not null, even the XaBA substring contains lowercase characters", sms);
-        } catch (Exception e) {
-            Assert.fail("If XaBA substring has lower case characters, parseSMSVerificationCode throws exception : " + e);
         }
     }
 
