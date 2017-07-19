@@ -9,7 +9,6 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.JoinEntity;
-import org.greenrobot.greendao.annotation.JoinProperty;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Transient;
@@ -53,10 +52,10 @@ public class User {
     @Transient
     @SerializedName("commissions")
     private UserCommissions userCommissions;
-    private Integer currentBalance;
-    private Integer payoutThreshold;
-    private Integer totalReferrals;
-    private Integer perWorker;
+    private Float currentBalance;
+    private Float payoutThreshold;
+    private Float totalReferrals;
+    private Float perWorker;
     private Long currencyId;
     @Transient
     @Expose
@@ -88,11 +87,15 @@ public class User {
     @Generated(hash = 1507654846)
     private transient UserDao myDao;
 
-    @Generated(hash = 978501528)
+    @Generated(hash = 586692638)
+    public User() {
+    }
+
+    @Generated(hash = 93884893)
     public User(Long id, String status, String agentId, String firstName, String lastName,
             String otherName, String phone, String gender, String birthdate, Long countryId,
-            Long countyId, Long subcountyId, Integer currentBalance, Integer payoutThreshold,
-            Integer totalReferrals, Integer perWorker, Long currencyId, Long tokenId,
+            Long countyId, Long subcountyId, Float currentBalance, Float payoutThreshold,
+            Float totalReferrals, Float perWorker, Long currencyId, Long tokenId,
             Boolean isPhoneVerified, Boolean isDefaultPin) {
         this.id = id;
         this.status = status;
@@ -114,10 +117,6 @@ public class User {
         this.tokenId = tokenId;
         this.isPhoneVerified = isPhoneVerified;
         this.isDefaultPin = isDefaultPin;
-    }
-
-    @Generated(hash = 586692638)
-    public User() {
     }
 
     @Generated(hash = 2059307683)
@@ -349,35 +348,35 @@ public class User {
         myDao.update(this);
     }
 
-    public Integer getCurrentBalance() {
+    public Float getCurrentBalance() {
         return this.currentBalance;
     }
 
-    public void setCurrentBalance(Integer currentBalance) {
+    public void setCurrentBalance(Float currentBalance) {
         this.currentBalance = currentBalance;
     }
 
-    public Integer getPayoutThreshold() {
+    public Float getPayoutThreshold() {
         return this.payoutThreshold;
     }
 
-    public void setPayoutThreshold(Integer payoutThreshold) {
+    public void setPayoutThreshold(Float payoutThreshold) {
         this.payoutThreshold = payoutThreshold;
     }
 
-    public Integer getTotalReferrals() {
+    public Float getTotalReferrals() {
         return this.totalReferrals;
     }
 
-    public void setTotalReferrals(Integer totalReferrals) {
+    public void setTotalReferrals(Float totalReferrals) {
         this.totalReferrals = totalReferrals;
     }
 
-    public Integer getPerWorker() {
+    public Float getPerWorker() {
         return this.perWorker;
     }
 
-    public void setPerWorker(Integer perWorker) {
+    public void setPerWorker(Float perWorker) {
         this.perWorker = perWorker;
     }
 
