@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textAlignment="center"
             android:layout_marginTop="30dp"
             android:text="@string/we_have_sent_an_activation_code_to_your_contact_number_please_enter_the_provided_code_to_verify_your_account"
             android:textColor="@color/dark_color"

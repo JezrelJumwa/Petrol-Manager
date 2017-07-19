@@ -79,7 +79,7 @@
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/get_connected_and_join_the_movement_simply_click"
+                android:text="@string/get_connected_and_join_the_movement"
                 android:textColor="@color/dark_color"
                 android:textSize="18sp"/>
 
