@@ -1,11 +1,14 @@
 package com.sstgroup.xabaapp.utils;
 
 import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
-import com.sstgroup.xabaapp.models.errors.ErrorLogin;
+import com.sstgroup.xabaapp.models.errors.ErrorMapListString;
 import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
 import com.sstgroup.xabaapp.models.errors.ErrorStatusAndError;
 import com.sstgroup.xabaapp.models.errors.ErrorWithDictionary;
 import com.sstgroup.xabaapp.service.RestClient;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
@@ -33,15 +36,17 @@ public class ErrorUtils {
         }
     }
 
-    public static ErrorLogin parseLoginError(Response<?> response) {
-        Converter<ResponseBody, ErrorLogin> converter =
+    public static ErrorMapListString parseLoginError(Response<?> response) {
+        Converter<ResponseBody, ErrorMapListString> converter =
                 RestClient.getRetrofit()
-                        .responseBodyConverter(ErrorLogin.class, ErrorLogin.class.getAnnotations());
+                        .responseBodyConverter(ErrorMapListString.class, ErrorMapListString.class.getAnnotations());
         try {
             return converter.convert(response.errorBody());
         } catch (Exception e) {
             Timber.d("parseLoginError exception : ", e);
-            return new ErrorLogin(Constants.ERROR_STATUS_UNEXPECTED, "Error Parse Failure");
+//            Map<String, ArrayList<String>> map = new HashMap<>();
+//            map.put("unexpected", new ArrayList<String>());
+            return new ErrorMapListString(Constants.ERROR_STATUS_UNEXPECTED, new HashMap<String, ArrayList<String>>());
         }
     }
 

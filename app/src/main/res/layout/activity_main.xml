@@ -11,6 +11,7 @@
         android:layout_height="match_parent"/>
 
     <com.sstgroup.xabaapp.ui.widgets.DimmedProgressBar
+        android:id="@+id/progress"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

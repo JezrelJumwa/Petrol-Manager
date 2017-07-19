@@ -101,4 +101,12 @@ public class Constants {
 
     public static final String DATE_FORMAT_DASHES = "- d-MMM-yyyy";
     public static final String DATE_FORMAT_REFERRED_WORKERS = "d-MMM-yyyy - H:m";
+
+    //Default program selection default program id wil be same on all languages
+    public static final String DEFAULT_PROGRAM = "XABA Projects";
+    public static final int DEFAULT_PROGRAM_ID = 1;
+
+    //dialog types
+    public static final int COUNTRY_DIALOG = 0;
+    public static final int LANGUAGES_DIALOG = 1;
 }

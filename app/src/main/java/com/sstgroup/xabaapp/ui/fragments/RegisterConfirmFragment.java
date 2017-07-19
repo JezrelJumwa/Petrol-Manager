@@ -9,7 +9,7 @@ import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.ActivationCodeResponse;
 import com.sstgroup.xabaapp.models.SendNewActivationCodeResponse;
-import com.sstgroup.xabaapp.models.errors.ErrorLogin;
+import com.sstgroup.xabaapp.models.errors.ErrorMapListString;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.widgets.ToastInterval;
 import com.sstgroup.xabaapp.utils.Constants;
@@ -114,11 +114,11 @@ public class RegisterConfirmFragment extends BaseFragment {
                         activity.openFragment(RegisterCompleteFragment.newInstance(userId), true);
                     }
                 } else {
-                    ErrorLogin errorLogin = ErrorUtils.parseLoginError(response);
-                    if (errorLogin.getError().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
+                    ErrorMapListString errorMapListString = ErrorUtils.parseLoginError(response);
+                    if (errorMapListString.getError().equals(Constants.ERROR_STATUS_UNEXPECTED)) {
                         ToastInterval.showToast(activity, getString(R.string.something_is_wrong));
                     } else {
-                        ToastInterval.showToast(activity, errorLogin.getError());
+//                        ToastInterval.showToast(activity, errorMapListString.getError());
                     }
                 }
             }

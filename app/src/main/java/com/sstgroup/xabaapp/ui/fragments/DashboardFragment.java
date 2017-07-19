@@ -53,25 +53,29 @@ public class  DashboardFragment extends BaseFragment {
     @Override
     protected void initViews(View rootView) {
         User user = xabaDbHelper.getLoggedUser(activity);
-        txtReferralId.setText(" " + String.valueOf(user.getId()));
-        txtTotalRegisteredWorkers.setText(" " + String.valueOf(user.getTotalReferrals()));
+        txtReferralId.setText(" " + user.getId());
+        txtTotalRegisteredWorkers.setText(" " + user.getTotalReferrals());
 
         Currency currency = xabaDbHelper.getCurrency(user.getCurrencyId());
 
-        //!!!!!Math abs because server sends negative values some times
-        txtBalance.setText(String.valueOf(Math.abs(user.getCurrentBalance())));
+        txtBalance.setText(String.valueOf(Math.max(user.getCurrentBalance(), 0)));
         txtBalanceCurrency.setText(currency.getCode());
+//        int workersToGo = (user.getCurrentBalance() - (user.getTotalReferrals() * user.getPerWorker())) / user.getPerWorker();
+        int workersToGo = (int) Math.max(Math.ceil((user.getPayoutThreshold() - (user.getPerWorker() * user.getTotalReferrals()))/ user.getPerWorker()), 0);
+        txtWorkersToGo.setText(String.valueOf(workersToGo));
 
-        txtWorkersToGo.setText(String.valueOf((user.getPayoutThreshold() - (user.getTotalReferrals() * user.getPerWorker())) / user.getPerWorker()));
-
+        //payoutThreshold is balance where user will get payed in this case 95
         circlesProgress.setmFirstMax(user.getPayoutThreshold());
         circlesProgress.setmFirstMin(0);
-        //!!!!!Math abs because server sends negative values some times
-        circlesProgress.setmValueFirst(Math.abs(user.getCurrentBalance()));
+        circlesProgress.setmValueFirst(
+                Math.max(Math.min(user.getCurrentBalance(), user.getPayoutThreshold()),
+                        0));
 
         circlesProgress.setmSecondMax(user.getPayoutThreshold());
         circlesProgress.setmSecondMin(0);
-        circlesProgress.setmValueSecond((user.getTotalReferrals() * user.getPerWorker()));
+        circlesProgress.setmValueSecond(
+                Math.max(Math.min(user.getTotalReferrals() * user.getPerWorker(), user.getPayoutThreshold()),
+                        0));
     }
 
     @OnClick(R.id.btn_register_another_worker)

@@ -322,4 +322,8 @@
     <string name="select">Select</string>
     <string name="registered">Registered</string>
 
+    <!--errors-->
+    <string name="incorrect_pin">Invalid PIN, Please enter the correct PIN</string>
+    <string name="invalid_user">Invalid User</string>
+
 </resources>

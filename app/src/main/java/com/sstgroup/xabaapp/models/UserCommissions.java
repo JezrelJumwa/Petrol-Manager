@@ -4,29 +4,29 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserCommissions {
     @SerializedName("current_balance")
-    private Integer currentBalance;
+    private Float currentBalance;
     @SerializedName("payout_threshold")
-    private Integer payoutThreshold;
+    private Float payoutThreshold;
     @SerializedName("total_referrals")
-    private Integer totalReferrals;
+    private Float totalReferrals;
     @SerializedName("per_worker")
-    private Integer perWorker;
+    private Float perWorker;
     @SerializedName("currency_id")
     private Long currencyId;
 
-    public Integer getCurrentBalance() {
+    public Float getCurrentBalance() {
         return currentBalance;
     }
 
-    public Integer getPayoutThreshold() {
+    public Float getPayoutThreshold() {
         return payoutThreshold;
     }
 
-    public Integer getTotalReferrals() {
+    public Float getTotalReferrals() {
         return totalReferrals;
     }
 
-    public Integer getPerWorker() {
+    public Float getPerWorker() {
         return perWorker;
     }
 
