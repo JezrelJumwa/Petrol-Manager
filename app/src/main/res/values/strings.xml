@@ -9,7 +9,7 @@
     <string name="with_our_easy_process_it_only_takes_a_couple_of_minutes_to_get_onboard">With our
         easy process it only takes a couple of minutes to get onboard.
     </string>
-    <string name="get_connected_and_join_the_movement_simply_click">Get connected and join the movement. Simply click</string>
+    <string name="get_connected_and_join_the_movement">Get connected and join the movement.</string>
     <string name="refer_friends_to_xaba_and_get_rewarded_or_become_a_xaba_agent_and_register_workers_for_extra_cash">Refer friends to Xaba and get rewarded or become a Xaba Agent, and register workers for extra cash</string>
     <string name="next">Next</string>
     <string name="refer_someone_to_get_rewards">Refer someone to get rewards</string>
@@ -29,10 +29,10 @@
     <string name="confirm_national_id">Confirm National ID</string>
     <string name="confirm_pin_code">Confirm PIN Code</string>
     <string name="referral_code">Referral Code</string>
-    <string name="activation_code">Activation Code</string>
+    <string name="activation_code">Enter Activation Code</string>
     <string name="verify">Verify</string>
     <string name="resend_pin_sms">
-        <u>Re-send PIN SMS</u>
+        <u>Re-send Activation Code</u>
     </string>
     <string name="verified">Verified</string>
     <string name="continuE">Continue</string>
@@ -137,8 +137,7 @@
         extra cash? Become an agent and register workers onto Xaba.
     </string>
     <string name="we_have_sent_an_activation_code_to_your_contact_number_please_enter_the_provided_code_to_verify_your_account">
-        We have sent an activation code to your contact number. Please enter the provided code to
-        verify your account.
+        Please enter the activation code that we sent to you via SMS
     </string>
     <string name="national_id_and_confirm_national_id_should_be_the_same">National ID and Confirm
         National ID should be the same.
@@ -290,7 +289,7 @@
     <string name="pending">Pending</string>
     <string name="rejected">Rejected</string>
     <string name="invalid_data">Invalid data</string>
-    <string name="total_registered_workers">Total registered workers:</string>
+    <string name="total_registered_workers">Total Workers Registered:</string>
     <string name="session_has_expired">Your session has expired. Please, login again.</string>
     <string name="account_deactivated_success">Your account was successfully deactivated. Login again for reactivation.</string>
 
