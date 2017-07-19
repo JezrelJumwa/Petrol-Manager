@@ -830,4 +830,13 @@ public class DatabaseHelper {
     }
 
 
+    public String getProgramById(int defaultProgramId) {
+        programDao = daoSession.getProgramDao();
+        List<Program> programs = programDao.queryBuilder().where(ProgramDao.Properties.ProgramId.eq(defaultProgramId)).list();
+        if (programs.isEmpty() && programs.size() > 0) {
+            return "";
+        } else {
+            return programs.get(0).getName();
+        }
+    }
 }

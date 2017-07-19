@@ -52,6 +52,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.activities.EditProfileActivity"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activities.EditPinActivity"/>
         <receiver android:name=".listener.SMSReceiver">
