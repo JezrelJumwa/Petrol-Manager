@@ -11,13 +11,13 @@ public class Constants {
 //    public static final String BASE_URL = "http://shikanishadev.xaba.org/api/v1/";
 
     // Staging
-    public static final String BASE_URL = "http://shikanishastg.xaba.org/api/v1/";
-    public static final String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg5MB9aB4OzwqrsW8TdeVfNwdqVf+XUwJPDL3qO2kYUFSu95QeZlOlslyulHsqoyTTn03MnnSi03ixwpZ9Uxv1lszXQj4ozZCBHEJsutQyYZxU0vWoIaZn13G1ro0BxQRD5fQ5/wUVNjt9H8bUv5KY3ahVlwSEKMM9+JqgcWwJ+ZICwfUrpqKklR+7W3cdDGuK3Jl69NViUO+VgJYEHAyu8q9mBhKKGN28Txdu2MuCO30LJsUdBwF+P18Fqr7banMfXjnRpkpOPFKQ0iPWfceyUvDXyaxA5pytaijzkfYF1Lak22RRyR0jFWJqfd3ccVXsId/6iu/3ayKcuc4yasnlwIDAQAB";
+//    public static final String BASE_URL = "http://shikanishastg.xaba.org/api/v1/";
+//    public static final String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg5MB9aB4OzwqrsW8TdeVfNwdqVf+XUwJPDL3qO2kYUFSu95QeZlOlslyulHsqoyTTn03MnnSi03ixwpZ9Uxv1lszXQj4ozZCBHEJsutQyYZxU0vWoIaZn13G1ro0BxQRD5fQ5/wUVNjt9H8bUv5KY3ahVlwSEKMM9+JqgcWwJ+ZICwfUrpqKklR+7W3cdDGuK3Jl69NViUO+VgJYEHAyu8q9mBhKKGN28Txdu2MuCO30LJsUdBwF+P18Fqr7banMfXjnRpkpOPFKQ0iPWfceyUvDXyaxA5pytaijzkfYF1Lak22RRyR0jFWJqfd3ccVXsId/6iu/3ayKcuc4yasnlwIDAQAB";
 
 
     // Production
-//    public static final String BASE_URL = "https://shikanisha.xaba.org/api/v1/";
-//    public static final String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtAOaObKmPtf3T7vSGuLHww35hiJyT1MXjwOfocCY1AHui66UTzoxaJ7hD+oBTVJJhaW8inBPibAtFYJJcgiMi9ZM2JnP12CJ5D4p63yg3n2KIel8zQulD2m2eidZKKhMOoxLC5Ykp3cb7z2BoaowrGVuX1XSVU7SQhiIl+oLXGcgCo6mkUFDlOQOKsZUap19oUPmiIs6Gcsq89f9GSS7TOSF3shpZnO7K/jZDJHO0D2UyXXz+YTacg6thqOJpONOVJfmWA0p69HFtYDLZNjcBSp2e6GNJXpn1V2JjrZW9NsAnQ1eP/bMnSTKbqzH/vVSAwMBlPQpwgA/Ujm5KHEiZQIDAQAB";
+    public static final String BASE_URL = "https://shikanisha.xaba.org/api/v1/";
+    public static final String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtAOaObKmPtf3T7vSGuLHww35hiJyT1MXjwOfocCY1AHui66UTzoxaJ7hD+oBTVJJhaW8inBPibAtFYJJcgiMi9ZM2JnP12CJ5D4p63yg3n2KIel8zQulD2m2eidZKKhMOoxLC5Ykp3cb7z2BoaowrGVuX1XSVU7SQhiIl+oLXGcgCo6mkUFDlOQOKsZUap19oUPmiIs6Gcsq89f9GSS7TOSF3shpZnO7K/jZDJHO0D2UyXXz+YTacg6thqOJpONOVJfmWA0p69HFtYDLZNjcBSp2e6GNJXpn1V2JjrZW9NsAnQ1eP/bMnSTKbqzH/vVSAwMBlPQpwgA/Ujm5KHEiZQIDAQAB";
 
 
 
