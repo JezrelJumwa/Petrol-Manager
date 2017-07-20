@@ -24,7 +24,7 @@ public class Validator {
     }
 
     public static boolean isCorrectPhoneNumber(String field) {
-        return !isEmpty(field) && field.length() >= 12 && field.length() <= 13 && (field.startsWith("2547") || field.startsWith("+2547"));
+        return !isEmpty(field) && field.length() >= 12 && field.length() <= 13 && (field.startsWith("254") || field.startsWith("+254"));
     }
 
     public static boolean isEmailAddress(String email) {

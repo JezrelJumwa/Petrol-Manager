@@ -164,7 +164,7 @@
     <string name="choose_language">Choose Language</string>
     <string name="referral_code_should_be_a_number">Referral Code should be a number.</string>
     <string name="worker_is_registered">Worker is registered.</string>
-    <string name="your_phone_number_should_look_like">Your phone number should look like: +2547XXXXXXXX</string>
+    <string name="your_phone_number_should_look_like">Your phone number should look like: +254XXXXXXXXX</string>
     <string name="register_another_worker_button">Register another worker</string>
     <string name="lorem_ipsum_nullam_arcu">Nullam arcu ante, malesuada placerat purus eu, gravida cursus dolor.</string>
     <string name="kes">KES</string>
