@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.sstgroup.xabaapp.R;
 import com.sstgroup.xabaapp.XabaApplication;
 import com.sstgroup.xabaapp.models.RegisterWorkerRequestModel;
+import com.sstgroup.xabaapp.models.User;
+import com.sstgroup.xabaapp.models.UserResponse;
+import com.sstgroup.xabaapp.models.errors.ErrorCodeAndMessage;
 import com.sstgroup.xabaapp.models.errors.ErrorRegisterWorker;
 import com.sstgroup.xabaapp.service.RestClient;
 import com.sstgroup.xabaapp.ui.activities.HomeActivity;
@@ -612,9 +615,7 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    ToastInterval.showToast(activity, getString(R.string.worker_is_registered));
-                    ((HomeActivity) activity).loadUserProfile();
-                    ((HomeActivity) activity).openDashboard();
+                    loadUserProfile();
                 } else {
                     ErrorRegisterWorker errorRegisterWorker = ErrorUtils.parseRegisterWorkerError(response);
 
@@ -633,8 +634,8 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                             ToastInterval.showToast(activity, errorRegisterWorker.getError().getAgentIdErrors().get(0));
                         }
                     }
+                    activity.hideLoader();
                 }
-                activity.hideLoader();
             }
 
             @Override
@@ -642,6 +643,42 @@ public class RegisterWorkerByAgentFragment extends BaseFragment {
                 Utils.onFailureUtils(activity, t);
                 activity.hideLoader();
                 Timber.d("onFailure" + t.toString());
+            }
+        });
+    }
+    public void loadUserProfile() {
+        Call<UserResponse> call = RestClient.getService().getWorkerData(XabaApplication.getInstance().getLanguageCode(), Constants.AGENT_APP_VALUE,
+                XabaApplication.getInstance().getToken().getValue());
+
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    User user = response.body().getUser();
+                    if (response.body().getUser() != null) {
+
+                        if (user.getTokenFromWS() == null) {
+                            user.setToken(XabaApplication.getInstance().getToken());
+                        }
+
+                        xabaDbHelper.insertLoggedUser(activity, response.body().getUser());
+                        ToastInterval.showToast(activity, getString(R.string.worker_is_registered));
+                        ((HomeActivity) activity).openDashboard();
+                    }
+                } else {
+                    ErrorCodeAndMessage errorLogin = ErrorUtils.parseErrorCodeMessage(response);
+
+                    if (errorLogin.getErrors().getMessage().equals(Constants.ERROR_UNAUTHORIZED)) {
+                        XabaApplication.getInstance().logout();
+                        //from this point we logout user
+                    }
+                }
+                activity.hideLoader();
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+
             }
         });
     }
