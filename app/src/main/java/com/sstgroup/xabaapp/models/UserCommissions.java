@@ -8,7 +8,7 @@ public class UserCommissions {
     @SerializedName("payout_threshold")
     private Float payoutThreshold;
     @SerializedName("total_referrals")
-    private Float totalReferrals;
+    private Integer totalReferrals;
     @SerializedName("per_worker")
     private Float perWorker;
     @SerializedName("currency_id")
@@ -22,7 +22,7 @@ public class UserCommissions {
         return payoutThreshold;
     }
 
-    public Float getTotalReferrals() {
+    public Integer getTotalReferrals() {
         return totalReferrals;
     }
 

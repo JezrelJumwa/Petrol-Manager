@@ -54,7 +54,7 @@ public class User {
     private UserCommissions userCommissions;
     private Float currentBalance;
     private Float payoutThreshold;
-    private Float totalReferrals;
+    private Integer totalReferrals;
     private Float perWorker;
     private Long currencyId;
     @Transient
@@ -91,11 +91,11 @@ public class User {
     public User() {
     }
 
-    @Generated(hash = 93884893)
+    @Generated(hash = 2044412495)
     public User(Long id, String status, String agentId, String firstName, String lastName,
             String otherName, String phone, String gender, String birthdate, Long countryId,
             Long countyId, Long subcountyId, Float currentBalance, Float payoutThreshold,
-            Float totalReferrals, Float perWorker, Long currencyId, Long tokenId,
+            Integer totalReferrals, Float perWorker, Long currencyId, Long tokenId,
             Boolean isPhoneVerified, Boolean isDefaultPin) {
         this.id = id;
         this.status = status;
@@ -364,11 +364,11 @@ public class User {
         this.payoutThreshold = payoutThreshold;
     }
 
-    public Float getTotalReferrals() {
+    public Integer getTotalReferrals() {
         return this.totalReferrals;
     }
 
-    public void setTotalReferrals(Float totalReferrals) {
+    public void setTotalReferrals(Integer totalReferrals) {
         this.totalReferrals = totalReferrals;
     }
 
