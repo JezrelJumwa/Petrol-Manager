@@ -49,7 +49,7 @@ public class PartnerActivity extends BaseActivity {
                     goToMainScreen();
                 }
             }
-        }, 3000);
+        }, Constants.PARTNER_DURATION);
     }
 
     private void goToHome() {

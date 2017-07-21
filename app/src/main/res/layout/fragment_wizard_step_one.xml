@@ -14,7 +14,7 @@
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:minHeight="20dp"
+            android:minHeight="12dp"
             android:layout_weight="1"/>
 
         <LinearLayout
@@ -164,7 +164,7 @@
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
-            android:minHeight="10dp"
+            android:minHeight="5dp"
             android:layout_height="0dp"
             android:layout_weight="1"/>
 

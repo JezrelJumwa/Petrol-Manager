@@ -48,7 +48,7 @@
     <string name="select_country">Select Country</string>
     <string name="language">Language</string>
     <string name="select_preferred_language">Select Preferred Language</string>
-    <string name="county">County</string>
+    <string name="county">County of residence</string>
     <string name="sub_county">Sub-County</string>
     <string name="select_county">Select County</string>
     <string name="select_sub_county">Select Sub-County</string>
@@ -101,7 +101,7 @@
     <string name="phone">Phone:</string>
     <string name="genre">Genre:</string>
     <string name="gender">Gender:</string>
-    <string name="county_profile">County:</string>
+    <string name="county_profile">County of residence:</string>
     <string name="sub_county_profile">Sub-County:</string>
 
     <!--Nav Menu-->

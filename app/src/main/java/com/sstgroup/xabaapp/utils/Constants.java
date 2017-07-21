@@ -3,7 +3,8 @@ package com.sstgroup.xabaapp.utils;
 
 public class Constants {
 
-    public static final int SPLASH_DURATION = 3000;
+    public static final int SPLASH_DURATION = 2000;
+    public static final int PARTNER_DURATION = 2000;
 
     // web service
 //    public static final String BASE_URL = "http://ec2-52-59-94-240.eu-central-1.compute.amazonaws.com/api/v1/en-US/";
