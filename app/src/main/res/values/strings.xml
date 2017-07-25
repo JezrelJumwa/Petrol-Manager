@@ -48,8 +48,8 @@
     <string name="select_country">Select Country</string>
     <string name="language">Language</string>
     <string name="select_preferred_language">Select Preferred Language</string>
-    <string name="county">County of residence</string>
-    <string name="sub_county">Sub-County</string>
+    <string name="county">County of Residence</string>
+    <string name="sub_county">Sub-County of Residence</string>
     <string name="select_county">Select County</string>
     <string name="select_sub_county">Select Sub-County</string>
     <string name="industry">Industry</string>
@@ -168,7 +168,7 @@
     <string name="register_another_worker_button">Register another worker</string>
     <string name="lorem_ipsum_nullam_arcu">Nullam arcu ante, malesuada placerat purus eu, gravida cursus dolor.</string>
     <string name="kes">KES</string>
-    <string name="registered_workers">Workers to go</string>
+    <string name="registered_workers">Workers to go to redeem Kshs 25,000</string>
     <string name="e_wallet_balance">Current Balance</string>
 
     <!--Change Pin Screen-->
