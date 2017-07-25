@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp">
 
-                <VideoView
+             <!--   <VideoView
                     android:id="@+id/video"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
@@ -42,7 +42,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@null"
-                    android:src="@drawable/play_button"/>
+                    android:src="@drawable/play_button"/>-->
+
+                <ImageView
+                    android:src="@drawable/xaba_green_logo_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal"/>
 
             </FrameLayout>
 

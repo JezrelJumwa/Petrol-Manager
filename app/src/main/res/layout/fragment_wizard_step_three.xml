@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp">
 
-                <VideoView
+            <!--    <VideoView
                     android:id="@+id/video"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
@@ -42,7 +42,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@null"
-                    android:src="@drawable/play_button"/>
+                    android:src="@drawable/play_button"/>-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/kshs_5_for_every_person_you_refer"
+                    android:textColor="@color/dark_color"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
 
             </FrameLayout>
 

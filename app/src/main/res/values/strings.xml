@@ -278,5 +278,6 @@
     <!--errors-->
     <string name="incorrect_pin">Invalid PIN, Please enter the correct PIN</string>
     <string name="invalid_user">Invalid User</string>
+    <string name="kshs_5_for_every_person_you_refer">Kshs 5 for every person you refer.</string>
 
 </resources>
