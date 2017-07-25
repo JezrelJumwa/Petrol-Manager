@@ -45,7 +45,7 @@
                     android:src="@drawable/play_button"/>-->
 
                 <ImageView
-                    android:src="@drawable/xaba_green_logo_big"
+                    android:src="@drawable/xaba_red_logo_big"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_gravity="center_horizontal"/>
