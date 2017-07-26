@@ -582,16 +582,18 @@ public class DatabaseHelper {
     }
 
     public void insertJoinUserProfessionsWithIndustries(Long userId, Long professionId, Long industryId) {
-        joinUsersWithProfessionsAndIndustriesDao = daoSession.getJoinUsersWithProfessionsAndIndustriesDao();
-        List<JoinUsersWithProfessionsAndIndustries> list = joinUsersWithProfessionsAndIndustriesDao
-                .queryBuilder()
-                .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.UserId.eq(userId))
-                .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.ProfessionsId.eq(professionId))
-                .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.IndustryId.eq(industryId))
-                .list();
-        if (list.isEmpty())
-            joinUsersWithProfessionsAndIndustriesDao
-                    .insertOrReplace(new JoinUsersWithProfessionsAndIndustries(null, userId, professionId, industryId));
+        if(userId != null && professionId != null && industryId != null){
+            joinUsersWithProfessionsAndIndustriesDao = daoSession.getJoinUsersWithProfessionsAndIndustriesDao();
+            List<JoinUsersWithProfessionsAndIndustries> list = joinUsersWithProfessionsAndIndustriesDao
+                    .queryBuilder()
+                    .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.UserId.eq(userId))
+                    .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.ProfessionsId.eq(professionId))
+                    .where(JoinUsersWithProfessionsAndIndustriesDao.Properties.IndustryId.eq(industryId))
+                    .list();
+            if (list.isEmpty())
+                joinUsersWithProfessionsAndIndustriesDao
+                        .insertOrReplace(new JoinUsersWithProfessionsAndIndustries(null, userId, professionId, industryId));
+        }
     }
 
     public void insertJoinUserPrograms(Long userId, Long programId) {
