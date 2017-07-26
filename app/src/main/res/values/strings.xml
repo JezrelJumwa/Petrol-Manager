@@ -19,7 +19,7 @@
     <string name="title">Title</string>
     <string name="national_id">National ID</string>
     <string name="national_id_colon">National ID:&#160;</string>
-    <string name="pin_code">PIN Code</string>
+    <string name="pin_code">Choose a PIN Code</string>
     <string name="pin_code_colon">PIN Code:</string>
     <string name="forgot_pin">
         <u>Forgot PIN?</u>
