@@ -99,7 +99,7 @@ public class Constants {
     public static final String FEMALE = "female";
 
     //visit xaba url
-    public static final String VISIT_XABA_URL = "http://dev.xaba.org/";
+    public static final String VISIT_XABA_URL = "https://www.xaba.org/";
 
     //Activation code
     public static final String USER_ID_KEY = "userId";
