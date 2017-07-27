@@ -153,6 +153,8 @@ public class RegisterWorkerAgentFragment extends BaseFragment {
         if(Preferences.getSelectedCountry(activity).equals("Kenya")){
             mEditTextPhoneNumber.setText("+254");
         }
+
+        mEditTextReferralCode.setText("15");
     }
 
     @OnClick({R.id.back, R.id.grp_county, R.id.grp_sub_county, R.id.grp_industry, R.id.grp_category, R.id.grp_profession, R.id.grp_industry_two, R.id.grp_category_two, R.id.grp_profession_two, R.id.grp_industry_three, R.id.grp_category_three, R.id.grp_profession_three, R.id.remove_two, R.id.remove_three, R.id.add_another_profession, R.id.grp_program, R.id.register})

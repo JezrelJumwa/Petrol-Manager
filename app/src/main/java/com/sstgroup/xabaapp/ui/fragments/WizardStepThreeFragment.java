@@ -26,7 +26,7 @@ public class WizardStepThreeFragment extends BaseFragment {
 
     @Override
     protected void initFields() {
-        String path = "android.resource://" + activity.getPackageName() + "/" + R.raw.xaba;
+//        String path = "android.resource://" + activity.getPackageName() + "/" + R.raw.xaba;
 //        mVideoView.setVideoURI(Uri.parse(path));
     }
 
