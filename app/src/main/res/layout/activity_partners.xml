@@ -6,13 +6,13 @@
     android:orientation="vertical"
     android:paddingEnd="30dp"
     android:paddingStart="30dp"
-    android:weightSum="4">
+    android:weightSum="5">
 
     <FrameLayout
         android:id="@+id/frame_layout_one"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.2">
+        android:layout_weight="1.1">
 
         <ImageView
             android:layout_marginTop="10dp"
@@ -28,7 +28,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.2">
+        android:layout_weight="1.1">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -64,6 +64,32 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/partner_giz_logo"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/partner_finance_foundation"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/partner_china"/>
 
     </FrameLayout>
 
