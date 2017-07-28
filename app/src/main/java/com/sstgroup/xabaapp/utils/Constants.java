@@ -101,6 +101,11 @@ public class Constants {
     //visit xaba url
     public static final String VISIT_XABA_URL = "https://www.xaba.org/";
 
+    public static final String VISIT_XABA_FACEBOOK_URL = "https://www.facebook.com/sstxaba";
+    public static final String VISIT_XABA_TWITTER_URL = "https://twitter.com/xabasst";
+    public static final String VISIT_XABA_LINKED_IN_URL = "https://www.linkedin.com/showcase/18109820/";
+    public static final String VISIT_XABA_YOUTUBE_URL = "https://www.youtube.com/channel/UCy86qyRqxPdQfKrMF57qWmg";
+
     //Activation code
     public static final String USER_ID_KEY = "userId";
     public static final String ACTIVATION_CODE_KEY = "activationCode";

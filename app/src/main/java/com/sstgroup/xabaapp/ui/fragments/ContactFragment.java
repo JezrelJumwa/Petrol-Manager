@@ -53,11 +53,23 @@ public class ContactFragment extends BaseFragment {
         return fragment;
     }
 
-    @OnClick({R.id.send})
+    @OnClick({R.id.send, R.id.facebook, R.id.twitter, R.id.linked_in, R.id.youtube})
     public void onButtonClick(View view) {
         switch (view.getId()) {
             case R.id.send:
                 sendMessageToSystem();
+                break;
+            case R.id.facebook:
+                Utils.openUrl(Constants.VISIT_XABA_FACEBOOK_URL, activity);
+                break;
+            case R.id.twitter:
+                Utils.openUrl(Constants.VISIT_XABA_TWITTER_URL, activity);
+                break;
+            case R.id.linked_in:
+                Utils.openUrl(Constants.VISIT_XABA_LINKED_IN_URL, activity);
+                break;
+            case R.id.youtube:
+                Utils.openUrl(Constants.VISIT_XABA_YOUTUBE_URL, activity); sendMessageToSystem();
                 break;
         }
     }
