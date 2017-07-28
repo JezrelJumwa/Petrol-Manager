@@ -69,7 +69,7 @@ public class ContactFragment extends BaseFragment {
                 Utils.openUrl(Constants.VISIT_XABA_LINKED_IN_URL, activity);
                 break;
             case R.id.youtube:
-                Utils.openUrl(Constants.VISIT_XABA_YOUTUBE_URL, activity); sendMessageToSystem();
+                Utils.openUrl(Constants.VISIT_XABA_YOUTUBE_URL, activity);
                 break;
         }
     }
