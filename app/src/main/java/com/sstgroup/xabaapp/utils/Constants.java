@@ -9,10 +9,10 @@ public class Constants {
     // web service
 //    public static final String BASE_URL = "http://ec2-52-59-94-240.eu-central-1.compute.amazonaws.com/api/v1/en-US/";
 //    public static final String BASE_URL = "http://dev.xaba.org/api/v1/en-US/";
-//    public static final String BASE_URL = "http://shikanishadev.xaba.org/api/v1/";
+//    public static final String BASE_URL = "https://shikanishadev.xaba.org/api/v1/";
 
     // Staging
-//    public static final String BASE_URL = "http://shikanishastg.xaba.org/api/v1/";
+//    public static final String BASE_URL = "https://shikanishastg.xaba.org/api/v1/";
 //    public static final String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg5MB9aB4OzwqrsW8TdeVfNwdqVf+XUwJPDL3qO2kYUFSu95QeZlOlslyulHsqoyTTn03MnnSi03ixwpZ9Uxv1lszXQj4ozZCBHEJsutQyYZxU0vWoIaZn13G1ro0BxQRD5fQ5/wUVNjt9H8bUv5KY3ahVlwSEKMM9+JqgcWwJ+ZICwfUrpqKklR+7W3cdDGuK3Jl69NViUO+VgJYEHAyu8q9mBhKKGN28Txdu2MuCO30LJsUdBwF+P18Fqr7banMfXjnRpkpOPFKQ0iPWfceyUvDXyaxA5pytaijzkfYF1Lak22RRyR0jFWJqfd3ccVXsId/6iu/3ayKcuc4yasnlwIDAQAB";
 
 
