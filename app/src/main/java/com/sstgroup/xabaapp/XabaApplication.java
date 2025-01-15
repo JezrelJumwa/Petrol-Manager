@@ -16,7 +16,7 @@ import timber.log.Timber;
 
 
 /**
- * Created by julianlubenov on 5/10/17.
+ * Created by JezrelJumwa on 15/01/25.
  */
 
 public class XabaApplication extends Application {

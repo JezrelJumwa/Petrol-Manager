@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by julianlubenov on 5/10/17.
+ * Created by JezrelJumwa on 15/01/25.
  */
 
 public class ProfileModel implements NetworkModelObject {
