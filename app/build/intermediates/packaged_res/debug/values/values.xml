@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_parts">Add Parts</string>
+    <string name="add_schedule">Add Schedule</string>
+    <string name="add_service">Add Service</string>
+    <string name="add_vehicle">Add Vehicle</string>
+    <string name="app_name">Car Service Tracker</string>
+    <string name="cancel">Cancel</string>
+    <string name="current_mileage">Current Mileage</string>
+    <string name="delete">Delete</string>
+    <string name="delete_vehicle">Delete Vehicle</string>
+    <string name="edit">Edit</string>
+    <string name="edit_vehicle">Edit Vehicle</string>
+    <string name="interval_miles">Interval (Miles)</string>
+    <string name="interval_months">Interval (Months)</string>
+    <string name="loading">Loading...</string>
+    <string name="maintenance_type">Maintenance Type</string>
+    <string name="nav_expenses">Expenses</string>
+    <string name="nav_maintenance">Maintenance</string>
+    <string name="nav_services">Services</string>
+    <string name="nav_vehicles">Vehicles</string>
+    <string name="no_services">No service records</string>
+    <string name="no_vehicles">No vehicles added yet</string>
+    <string name="notes">Notes</string>
+    <string name="save">Save</string>
+    <string name="service_cost">Cost</string>
+    <string name="service_date">Service Date</string>
+    <string name="service_type">Service Type</string>
+    <string name="serviced_by">Serviced By</string>
+    <string name="upcoming_maintenance">Upcoming Maintenance</string>
+    <string name="vehicle_license_plate">License Plate</string>
+    <string name="vehicle_make">Make</string>
+    <string name="vehicle_model">Model</string>
+    <string name="vehicle_vin">VIN</string>
+    <string name="vehicle_year">Year</string>
+    <style name="Theme.CarServiceTracker" parent="android:Theme.Material.Light.NoActionBar"/>
+</resources>
