@@ -1,0 +1,666 @@
+-- Merging decision tree log ---
+provider#androidx.startup.InitializationProvider
+INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:31:9-40:20
+MERGED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:29:9-37:20
+MERGED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:29:9-37:20
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\83b2e8c645cfdeef3dfb83ee10b4c842\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\83b2e8c645cfdeef3dfb83ee10b4c842\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:35:13-31
+	android:authorities
+		INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:33:13-68
+	android:exported
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:34:13-37
+	android:name
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:32:13-67
+manifest
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:2:1-42:12
+INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:2:1-42:12
+INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:2:1-42:12
+INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:2:1-42:12
+MERGED from [androidx.work:work-runtime-ktx:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\fe2b6d0e817cf44a1cef08da13323975\transformed\work-runtime-ktx-2.9.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.hilt:hilt-work:1.1.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d5094bb387577ceb692cb15665485a0f\transformed\hilt-work-1.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:17:1-145:12
+MERGED from [androidx.hilt:hilt-navigation-compose:1.1.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\2acf2d6c80b3cc456df9f64690b9134b\transformed\hilt-navigation-compose-1.1.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.hilt:hilt-navigation:1.1.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\1d5269a17bc2a5e8f8f6090cf0b8f6ed\transformed\hilt-navigation-1.1.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\c0295d4ba47648b23758906259c6b32d\transformed\navigation-common-2.7.7\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\1fd199813abe058a35a71d600945f996\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\2e37d0e256aa88336f5678782efec63e\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\eed2173cdcf052a4b8b2ab3d4aba8bd9\transformed\navigation-runtime-ktx-2.7.7\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-compose:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\1199df7f12519fe11c163b8cb0183288\transformed\navigation-compose-2.7.7\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.accompanist:accompanist-permissions:0.34.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\cfea294015878142f1733313650c9468\transformed\accompanist-permissions-0.34.0\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.compose.material3:material3-android:1.2.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\58288e176bdb142c3261bd38d5db6d2c\transformed\material3-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\5ca4f3f6f5aa6966f745bbc6b2b7ee69\transformed\material-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\245eac0a8f1774cfeca70dc70ed486fe\transformed\material-icons-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\487139d286be3a6395956d5ac8dd4928\transformed\material-icons-extended-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\6a42389db3a371df8faca9f6289050fb\transformed\material-ripple-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\1246a9f0f35c82692098ebbe8008ef85\transformed\animation-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\61b0cd67dd21d9a6702588b03d723bdf\transformed\animation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\611166f1bfc1b7ecdbef56407e70f99d\transformed\foundation-layout-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\02bd2938dc5a77ef7cb686662a6ef03a\transformed\foundation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\b043f60567909b399c71309084a2b1f7\transformed\ui-tooling-data-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\fb3fbd370efb453df62cd51ed3506c0d\transformed\ui-unit-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a221aea27ce4dde704969c9fec033bd5\transformed\ui-geometry-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ed3a3ca9e6ae585f370a41508746802b\transformed\ui-util-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ef82af383cc551dcc31d7c726c53300b\transformed\ui-text-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\bf9ea791127242ce2f284d9a8dec144e\transformed\ui-tooling-preview-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a629818adeecf5275d1658ae6fb2188d\transformed\ui-tooling-release\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\cc2b1ad851c74e11a56e7bc32a6e29ed\transformed\ui-graphics-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\e39ba82546015f05a6cadcc506142f7d\transformed\ui-test-manifest-1.6.1\AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.dagger:hilt-android:2.50] C:\Users\jumwa\.gradle\caches\8.9\transforms\f43fa0a10f79e11bec5da87c038eb809\transformed\hilt-android-2.50\AndroidManifest.xml:16:1-19:12
+MERGED from [androidx.fragment:fragment:1.5.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\1112309c8cde1c61d089681f99c3063c\transformed\fragment-1.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.8.2] C:\Users\jumwa\.gradle\caches\8.9\transforms\9d8317bad1a51006f8fa310ffa693799\transformed\activity-1.8.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\jumwa\.gradle\caches\8.9\transforms\e28c37fa0d540daf76a4bb8bb3409ae2\transformed\activity-ktx-1.8.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\jumwa\.gradle\caches\8.9\transforms\453129a273fe270c165a66b104d8a89b\transformed\activity-compose-1.8.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ba12c2cb19402d2526469abdd3c1b66f\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ee4111a7bc6e9ed10858c1cfb892ac29\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\ef54fab78244d5e1e96727c9e296b9a3\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d2ae26816f1b333bc0982a38f0ccc9f4\transformed\lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\774e8912c4a5f141e94ce20807d4718c\transformed\lifecycle-service-2.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\8bdb6ddc639048f8abe7a3bae02392cf\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f7f1e424a89b84e9110a39338d5c7fe9\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\1f0e984f43d76dc87a742b5bddbf623e\transformed\lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d58933fdd5bca4848060a4bcf1c09116\transformed\lifecycle-viewmodel-ktx-2.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\e614cfb57e565e9a3940c4db93e510f4\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\7c8c1688760074b63c1bcedc5f93f839\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4e768bfa52de50dbf30293c90bdbbd7f\transformed\lifecycle-viewmodel-compose-2.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\7049702d6bdfef654bb0aa5f511cf350\transformed\lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\e7ea5f26fbb5bd8b4c3a087eddc01872\transformed\lifecycle-runtime-compose-2.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\3c501237d52afdbc42c1dba75263996b\transformed\ui-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\2dde870927515e157b7ad6e8d1dedfc3\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\7ca7fe091668e1a9b86af890df2f7c6f\transformed\autofill-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\be5681ef9969346d118989a3b323f26f\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d13a9170dbc007abcd52cc5b68ec4aaa\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\415c1bd9b87dc918d3c21ded5406c9b1\transformed\core-ktx-1.12.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\5ad3f41d24ed955da03317bd23fe5c99\transformed\room-ktx-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\ff8f7df3fea59bacd7a2165e5b438bee\transformed\datastore-preferences-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\05891ac8a62fc6e5bff943bc80fdbbe9\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\78631c82868070bf795116e599e1486d\transformed\sqlite-2.4.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\62d8a19d10d8596ee69e73cbf02b8c94\transformed\datastore-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a8b9e5913b243abfc42130bb74a43d07\transformed\runtime-saveable-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\9db0b90867392c5ab892dbd7e0886109\transformed\runtime-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4e2e1d81620a979c74fddba9bcdfd9cf\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a3d7b45d7bfb0388081b2811f0a89836\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\01cdc048e0185751284c75a2907450bd\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\0af13a1ba10ec8462f6adcfa30d043d3\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\83b2e8c645cfdeef3dfb83ee10b4c842\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a26da5c0a4acf8231f34e3586da87a96\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.dagger:dagger-lint-aar:2.50] C:\Users\jumwa\.gradle\caches\8.9\transforms\2f2ca8fa6d816c26830afcf63d6f563c\transformed\dagger-lint-aar-2.50\AndroidManifest.xml:16:1-19:12
+	package
+		INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:5:5-77
+	android:name
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:5:22-74
+uses-permission#android.permission.SCHEDULE_EXACT_ALARM
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:6:5-79
+	android:name
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:6:22-76
+uses-permission#android.permission.VIBRATE
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:7:5-66
+	android:name
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:7:22-63
+application
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:9:5-41:19
+INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:9:5-41:19
+MERGED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:28:5-143:19
+MERGED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:28:5-143:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a629818adeecf5275d1658ae6fb2188d\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a629818adeecf5275d1658ae6fb2188d\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\e39ba82546015f05a6cadcc506142f7d\transformed\ui-test-manifest-1.6.1\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\e39ba82546015f05a6cadcc506142f7d\transformed\ui-test-manifest-1.6.1\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a3d7b45d7bfb0388081b2811f0a89836\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a3d7b45d7bfb0388081b2811f0a89836\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\83b2e8c645cfdeef3dfb83ee10b4c842\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\83b2e8c645cfdeef3dfb83ee10b4c842\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:17:9-35
+	android:label
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:15:9-41
+	android:fullBackupContent
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:13:9-54
+	android:roundIcon
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:16:9-54
+	tools:targetApi
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:19:9-29
+	android:icon
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:14:9-43
+	android:allowBackup
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:11:9-35
+	android:theme
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:18:9-55
+	android:dataExtractionRules
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:12:9-65
+	android:name
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:10:9-46
+activity#com.cartracker.app.MainActivity
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:20:9-29:20
+	android:windowSoftInputMode
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:24:13-55
+	android:exported
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:22:13-36
+	android:theme
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:23:13-59
+	android:name
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:21:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:25:13-28:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:26:17-69
+	android:name
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:26:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:27:17-77
+	android:name
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:27:27-74
+meta-data#androidx.work.WorkManagerInitializer
+ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:36:13-39:39
+REJECTED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:34:13-36:52
+	tools:node
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:39:17-36
+	android:value
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:38:17-49
+	android:name
+		ADDED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml:37:17-68
+uses-sdk
+INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml
+MERGED from [androidx.work:work-runtime-ktx:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\fe2b6d0e817cf44a1cef08da13323975\transformed\work-runtime-ktx-2.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.work:work-runtime-ktx:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\fe2b6d0e817cf44a1cef08da13323975\transformed\work-runtime-ktx-2.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.hilt:hilt-work:1.1.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d5094bb387577ceb692cb15665485a0f\transformed\hilt-work-1.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.hilt:hilt-work:1.1.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d5094bb387577ceb692cb15665485a0f\transformed\hilt-work-1.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.hilt:hilt-navigation-compose:1.1.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\2acf2d6c80b3cc456df9f64690b9134b\transformed\hilt-navigation-compose-1.1.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.hilt:hilt-navigation-compose:1.1.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\2acf2d6c80b3cc456df9f64690b9134b\transformed\hilt-navigation-compose-1.1.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.hilt:hilt-navigation:1.1.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\1d5269a17bc2a5e8f8f6090cf0b8f6ed\transformed\hilt-navigation-1.1.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.hilt:hilt-navigation:1.1.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\1d5269a17bc2a5e8f8f6090cf0b8f6ed\transformed\hilt-navigation-1.1.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\c0295d4ba47648b23758906259c6b32d\transformed\navigation-common-2.7.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\c0295d4ba47648b23758906259c6b32d\transformed\navigation-common-2.7.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\1fd199813abe058a35a71d600945f996\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\1fd199813abe058a35a71d600945f996\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\2e37d0e256aa88336f5678782efec63e\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\2e37d0e256aa88336f5678782efec63e\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\eed2173cdcf052a4b8b2ab3d4aba8bd9\transformed\navigation-runtime-ktx-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\eed2173cdcf052a4b8b2ab3d4aba8bd9\transformed\navigation-runtime-ktx-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\1199df7f12519fe11c163b8cb0183288\transformed\navigation-compose-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] C:\Users\jumwa\.gradle\caches\8.9\transforms\1199df7f12519fe11c163b8cb0183288\transformed\navigation-compose-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [com.google.accompanist:accompanist-permissions:0.34.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\cfea294015878142f1733313650c9468\transformed\accompanist-permissions-0.34.0\AndroidManifest.xml:21:5-44
+MERGED from [com.google.accompanist:accompanist-permissions:0.34.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\cfea294015878142f1733313650c9468\transformed\accompanist-permissions-0.34.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.compose.material3:material3-android:1.2.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\58288e176bdb142c3261bd38d5db6d2c\transformed\material3-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.2.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\58288e176bdb142c3261bd38d5db6d2c\transformed\material3-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\5ca4f3f6f5aa6966f745bbc6b2b7ee69\transformed\material-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\5ca4f3f6f5aa6966f745bbc6b2b7ee69\transformed\material-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\245eac0a8f1774cfeca70dc70ed486fe\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\245eac0a8f1774cfeca70dc70ed486fe\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\487139d286be3a6395956d5ac8dd4928\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\487139d286be3a6395956d5ac8dd4928\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\6a42389db3a371df8faca9f6289050fb\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\6a42389db3a371df8faca9f6289050fb\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\1246a9f0f35c82692098ebbe8008ef85\transformed\animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\1246a9f0f35c82692098ebbe8008ef85\transformed\animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\61b0cd67dd21d9a6702588b03d723bdf\transformed\animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\61b0cd67dd21d9a6702588b03d723bdf\transformed\animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\611166f1bfc1b7ecdbef56407e70f99d\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\611166f1bfc1b7ecdbef56407e70f99d\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\02bd2938dc5a77ef7cb686662a6ef03a\transformed\foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\02bd2938dc5a77ef7cb686662a6ef03a\transformed\foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\b043f60567909b399c71309084a2b1f7\transformed\ui-tooling-data-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\b043f60567909b399c71309084a2b1f7\transformed\ui-tooling-data-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\fb3fbd370efb453df62cd51ed3506c0d\transformed\ui-unit-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\fb3fbd370efb453df62cd51ed3506c0d\transformed\ui-unit-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a221aea27ce4dde704969c9fec033bd5\transformed\ui-geometry-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a221aea27ce4dde704969c9fec033bd5\transformed\ui-geometry-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ed3a3ca9e6ae585f370a41508746802b\transformed\ui-util-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ed3a3ca9e6ae585f370a41508746802b\transformed\ui-util-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ef82af383cc551dcc31d7c726c53300b\transformed\ui-text-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ef82af383cc551dcc31d7c726c53300b\transformed\ui-text-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\bf9ea791127242ce2f284d9a8dec144e\transformed\ui-tooling-preview-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\bf9ea791127242ce2f284d9a8dec144e\transformed\ui-tooling-preview-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a629818adeecf5275d1658ae6fb2188d\transformed\ui-tooling-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a629818adeecf5275d1658ae6fb2188d\transformed\ui-tooling-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\cc2b1ad851c74e11a56e7bc32a6e29ed\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\cc2b1ad851c74e11a56e7bc32a6e29ed\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\e39ba82546015f05a6cadcc506142f7d\transformed\ui-test-manifest-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\e39ba82546015f05a6cadcc506142f7d\transformed\ui-test-manifest-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.dagger:hilt-android:2.50] C:\Users\jumwa\.gradle\caches\8.9\transforms\f43fa0a10f79e11bec5da87c038eb809\transformed\hilt-android-2.50\AndroidManifest.xml:18:3-42
+MERGED from [com.google.dagger:hilt-android:2.50] C:\Users\jumwa\.gradle\caches\8.9\transforms\f43fa0a10f79e11bec5da87c038eb809\transformed\hilt-android-2.50\AndroidManifest.xml:18:3-42
+MERGED from [androidx.fragment:fragment:1.5.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\1112309c8cde1c61d089681f99c3063c\transformed\fragment-1.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\1112309c8cde1c61d089681f99c3063c\transformed\fragment-1.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.8.2] C:\Users\jumwa\.gradle\caches\8.9\transforms\9d8317bad1a51006f8fa310ffa693799\transformed\activity-1.8.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.2] C:\Users\jumwa\.gradle\caches\8.9\transforms\9d8317bad1a51006f8fa310ffa693799\transformed\activity-1.8.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\jumwa\.gradle\caches\8.9\transforms\e28c37fa0d540daf76a4bb8bb3409ae2\transformed\activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\jumwa\.gradle\caches\8.9\transforms\e28c37fa0d540daf76a4bb8bb3409ae2\transformed\activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\jumwa\.gradle\caches\8.9\transforms\453129a273fe270c165a66b104d8a89b\transformed\activity-compose-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\jumwa\.gradle\caches\8.9\transforms\453129a273fe270c165a66b104d8a89b\transformed\activity-compose-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ba12c2cb19402d2526469abdd3c1b66f\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ba12c2cb19402d2526469abdd3c1b66f\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ee4111a7bc6e9ed10858c1cfb892ac29\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\ee4111a7bc6e9ed10858c1cfb892ac29\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\ef54fab78244d5e1e96727c9e296b9a3\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\ef54fab78244d5e1e96727c9e296b9a3\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d2ae26816f1b333bc0982a38f0ccc9f4\transformed\lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d2ae26816f1b333bc0982a38f0ccc9f4\transformed\lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\774e8912c4a5f141e94ce20807d4718c\transformed\lifecycle-service-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\774e8912c4a5f141e94ce20807d4718c\transformed\lifecycle-service-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\8bdb6ddc639048f8abe7a3bae02392cf\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\8bdb6ddc639048f8abe7a3bae02392cf\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f7f1e424a89b84e9110a39338d5c7fe9\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f7f1e424a89b84e9110a39338d5c7fe9\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\1f0e984f43d76dc87a742b5bddbf623e\transformed\lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\1f0e984f43d76dc87a742b5bddbf623e\transformed\lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d58933fdd5bca4848060a4bcf1c09116\transformed\lifecycle-viewmodel-ktx-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d58933fdd5bca4848060a4bcf1c09116\transformed\lifecycle-viewmodel-ktx-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\e614cfb57e565e9a3940c4db93e510f4\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\e614cfb57e565e9a3940c4db93e510f4\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\7c8c1688760074b63c1bcedc5f93f839\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\7c8c1688760074b63c1bcedc5f93f839\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4e768bfa52de50dbf30293c90bdbbd7f\transformed\lifecycle-viewmodel-compose-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4e768bfa52de50dbf30293c90bdbbd7f\transformed\lifecycle-viewmodel-compose-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\7049702d6bdfef654bb0aa5f511cf350\transformed\lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\7049702d6bdfef654bb0aa5f511cf350\transformed\lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\e7ea5f26fbb5bd8b4c3a087eddc01872\transformed\lifecycle-runtime-compose-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\e7ea5f26fbb5bd8b4c3a087eddc01872\transformed\lifecycle-runtime-compose-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\3c501237d52afdbc42c1dba75263996b\transformed\ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\3c501237d52afdbc42c1dba75263996b\transformed\ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\2dde870927515e157b7ad6e8d1dedfc3\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\2dde870927515e157b7ad6e8d1dedfc3\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\7ca7fe091668e1a9b86af890df2f7c6f\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\7ca7fe091668e1a9b86af890df2f7c6f\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\be5681ef9969346d118989a3b323f26f\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\be5681ef9969346d118989a3b323f26f\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d13a9170dbc007abcd52cc5b68ec4aaa\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d13a9170dbc007abcd52cc5b68ec4aaa\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\415c1bd9b87dc918d3c21ded5406c9b1\transformed\core-ktx-1.12.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\415c1bd9b87dc918d3c21ded5406c9b1\transformed\core-ktx-1.12.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\5ad3f41d24ed955da03317bd23fe5c99\transformed\room-ktx-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\5ad3f41d24ed955da03317bd23fe5c99\transformed\room-ktx-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\ff8f7df3fea59bacd7a2165e5b438bee\transformed\datastore-preferences-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\ff8f7df3fea59bacd7a2165e5b438bee\transformed\datastore-preferences-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\05891ac8a62fc6e5bff943bc80fdbbe9\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\05891ac8a62fc6e5bff943bc80fdbbe9\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\78631c82868070bf795116e599e1486d\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\78631c82868070bf795116e599e1486d\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\62d8a19d10d8596ee69e73cbf02b8c94\transformed\datastore-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\62d8a19d10d8596ee69e73cbf02b8c94\transformed\datastore-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a8b9e5913b243abfc42130bb74a43d07\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a8b9e5913b243abfc42130bb74a43d07\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\9db0b90867392c5ab892dbd7e0886109\transformed\runtime-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\9db0b90867392c5ab892dbd7e0886109\transformed\runtime-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4e2e1d81620a979c74fddba9bcdfd9cf\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4e2e1d81620a979c74fddba9bcdfd9cf\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a3d7b45d7bfb0388081b2811f0a89836\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a3d7b45d7bfb0388081b2811f0a89836\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\01cdc048e0185751284c75a2907450bd\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\01cdc048e0185751284c75a2907450bd\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\0af13a1ba10ec8462f6adcfa30d043d3\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\0af13a1ba10ec8462f6adcfa30d043d3\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\83b2e8c645cfdeef3dfb83ee10b4c842\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\83b2e8c645cfdeef3dfb83ee10b4c842\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a26da5c0a4acf8231f34e3586da87a96\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a26da5c0a4acf8231f34e3586da87a96\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.dagger:dagger-lint-aar:2.50] C:\Users\jumwa\.gradle\caches\8.9\transforms\2f2ca8fa6d816c26830afcf63d6f563c\transformed\dagger-lint-aar-2.50\AndroidManifest.xml:18:3-42
+MERGED from [com.google.dagger:dagger-lint-aar:2.50] C:\Users\jumwa\.gradle\caches\8.9\transforms\2f2ca8fa6d816c26830afcf63d6f563c\transformed\dagger-lint-aar-2.50\AndroidManifest.xml:18:3-42
+	android:targetSdkVersion
+		INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\jumwa\StudioProjects\Petrol-Manager\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:23:5-68
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:23:22-65
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:24:22-76
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:5-81
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:22-78
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:26:5-77
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:26:22-74
+service#androidx.work.impl.background.systemalarm.SystemAlarmService
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:39:9-45:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:42:13-72
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:43:13-37
+	tools:ignore
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:44:13-60
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:45:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:41:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:40:13-88
+service#androidx.work.impl.background.systemjob.SystemJobService
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:46:9-52:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:49:13-70
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:50:13-36
+	android:permission
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:51:13-69
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:52:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:48:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:47:13-84
+service#androidx.work.impl.foreground.SystemForegroundService
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:53:9-59:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:56:13-77
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:57:13-37
+	tools:ignore
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:58:13-60
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:59:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:55:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:54:13-81
+receiver#androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:61:9-66:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:64:13-35
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:65:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:66:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:63:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:62:13-88
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:67:9-77:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:70:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:71:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:72:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:69:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:68:13-106
+intent-filter#action:name:android.intent.action.ACTION_POWER_CONNECTED+action:name:android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:73:13-76:29
+action#android.intent.action.ACTION_POWER_CONNECTED
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:17-87
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:25-84
+action#android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:17-90
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:25-87
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:78:9-88:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:81:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:82:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:83:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:80:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:79:13-104
+intent-filter#action:name:android.intent.action.BATTERY_LOW+action:name:android.intent.action.BATTERY_OKAY
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:84:13-87:29
+action#android.intent.action.BATTERY_OKAY
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:17-77
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:25-74
+action#android.intent.action.BATTERY_LOW
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:17-76
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:25-73
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:89:9-99:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:92:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:93:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:94:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:91:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:90:13-104
+intent-filter#action:name:android.intent.action.DEVICE_STORAGE_LOW+action:name:android.intent.action.DEVICE_STORAGE_OK
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:95:13-98:29
+action#android.intent.action.DEVICE_STORAGE_LOW
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:17-83
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:25-80
+action#android.intent.action.DEVICE_STORAGE_OK
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:17-82
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:25-79
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:100:9-109:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:103:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:104:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:105:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:102:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:101:13-103
+intent-filter#action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:106:13-108:29
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:17-79
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:25-76
+receiver#androidx.work.impl.background.systemalarm.RescheduleReceiver
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:110:9-121:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:113:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:114:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:115:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:112:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:111:13-88
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.TIMEZONE_CHANGED+action:name:android.intent.action.TIME_SET
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:116:13-120:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:117:17-79
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:117:25-76
+action#android.intent.action.TIME_SET
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:17-73
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:25-70
+action#android.intent.action.TIMEZONE_CHANGED
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:17-81
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:25-78
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:122:9-131:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:125:13-72
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:126:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:127:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:124:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:123:13-99
+intent-filter#action:name:androidx.work.impl.background.systemalarm.UpdateProxies
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:128:13-130:29
+action#androidx.work.impl.background.systemalarm.UpdateProxies
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:17-98
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:25-95
+receiver#androidx.work.impl.diagnostics.DiagnosticsReceiver
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:132:9-142:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:135:13-35
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:136:13-36
+	android:permission
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:137:13-57
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:138:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:134:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:133:13-78
+intent-filter#action:name:androidx.work.diagnostics.REQUEST_DIAGNOSTICS
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:139:13-141:29
+action#androidx.work.diagnostics.REQUEST_DIAGNOSTICS
+ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:17-88
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\d3a586c196be063b3f55b0922fdd32f7\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:25-85
+activity#androidx.compose.ui.tooling.PreviewActivity
+ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a629818adeecf5275d1658ae6fb2188d\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a629818adeecf5275d1658ae6fb2188d\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\a629818adeecf5275d1658ae6fb2188d\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+activity#androidx.activity.ComponentActivity
+ADDED from [androidx.compose.ui:ui-test-manifest:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\e39ba82546015f05a6cadcc506142f7d\transformed\ui-test-manifest-1.6.1\AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\e39ba82546015f05a6cadcc506142f7d\transformed\ui-test-manifest-1.6.1\AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\e39ba82546015f05a6cadcc506142f7d\transformed\ui-test-manifest-1.6.1\AndroidManifest.xml:24:13-63
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4be7d7c65540a68db11f7d134df7250e\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\4b5551002bd56d0ba10ebc5176512b75\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+permission#com.cartracker.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+uses-permission#com.cartracker.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\f30c0f46fb44dc2b76b548e8d5690217\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:28:13-60
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime:2.6.1] C:\Users\jumwa\.gradle\caches\8.9\transforms\64634f42879599e9bbec4f077beeeff0\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\jumwa\.gradle\caches\8.9\transforms\a7cd3d28867a4269de5780908d3060b0\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
