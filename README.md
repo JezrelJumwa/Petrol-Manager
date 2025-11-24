@@ -152,22 +152,41 @@ app/src/main/java/com/cartracker/app/
 
 1. **Clone the repository** (or open existing directory):
    ```bash
-   cd /Users/jezreljumwa/IdeaProjects/Personal/PetrolManager
+   cd /Users/jezreljumwa/StudioProjects/Petrol-Manager
    ```
 
 2. **Open in Android Studio**:
-   - File → Open → Select the PetrolManager directory
+   - File → Open → Select the Petrol-Manager directory
    - Wait for Gradle sync to complete
 
-3. **Build the project**:
+3. **Using the Build Script** (Recommended for M4 Macs):
+   The project includes a convenient build script to avoid jmod/jlink issues:
+   
    ```bash
-   ./gradlew build
+   # Clean build artifacts
+   ./build.sh clean
+   
+   # Build debug APK (default)
+   ./build.sh debug
+   # or simply
+   ./build.sh
+   
+   # Build release APK
+   ./build.sh release
+   
+   # Build and install to connected device
+   ./build.sh install
+   
+   # Run unit tests
+   ./build.sh test
    ```
 
-4. **Run on device/emulator**:
-   - Connect an Android device or start an emulator
-   - Click Run button or:
+4. **Manual Gradle Commands**:
    ```bash
+   # Build the project
+   ./gradlew build
+   
+   # Install on device/emulator
    ./gradlew installDebug
    ```
 
@@ -311,9 +330,13 @@ For issues or questions:
 - ✅ Modern Compose UI with Material 3
 - ✅ MVVM architecture with Hilt DI
 - ✅ Navigation setup
-- 🚧 Service history screens (structure ready)
-- 🚧 Maintenance schedules (structure ready)
-- 🚧 Expense tracking (structure ready)
+- ✅ Service history tracking (List + Add screens)
+- ✅ Expense tracking (List + Add screens)
+- ✅ Build script for M4 Mac compatibility
+- 🚧 Maintenance schedules (List screen only - Add screen needed)
+- 🚧 Mileage logging UI
+- 🚧 Parts tracking UI
+- 🚧 Edit/Delete functionality for all entities
 - 🚧 Reminder notifications (planned)
 
 ## Notes

@@ -10,8 +10,10 @@ import com.cartracker.app.presentation.screens.vehicle.AddVehicleScreen
 import com.cartracker.app.presentation.screens.vehicle.VehicleDetailScreen
 import com.cartracker.app.presentation.screens.vehicle.VehicleListScreen
 import com.cartracker.app.presentation.screens.service.ServiceListScreen
+import com.cartracker.app.presentation.screens.service.AddServiceScreen
 import com.cartracker.app.presentation.screens.maintenance.MaintenanceListScreen
 import com.cartracker.app.presentation.screens.expense.ExpenseListScreen
+import com.cartracker.app.presentation.screens.expense.AddExpenseScreen
 
 @Composable
 fun CarTrackerNavHost() {
@@ -79,6 +81,19 @@ fun CarTrackerNavHost() {
         }
 
         composable(
+            route = Screen.AddService.route,
+            arguments = listOf(navArgument("vehicleId") { type = NavType.LongType })
+        ) { backStackEntry ->
+            val vehicleId = backStackEntry.arguments?.getLong("vehicleId") ?: return@composable
+            AddServiceScreen(
+                vehicleId = vehicleId,
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(
             route = Screen.MaintenanceList.route,
             arguments = listOf(navArgument("vehicleId") { type = NavType.LongType })
         ) { backStackEntry ->
@@ -97,6 +112,22 @@ fun CarTrackerNavHost() {
         ) { backStackEntry ->
             val vehicleId = backStackEntry.arguments?.getLong("vehicleId") ?: return@composable
             ExpenseListScreen(
+                vehicleId = vehicleId,
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToAddExpense = { vId ->
+                    navController.navigate(Screen.AddExpense.createRoute(vId))
+                }
+            )
+        }
+
+        composable(
+            route = Screen.AddExpense.route,
+            arguments = listOf(navArgument("vehicleId") { type = NavType.LongType })
+        ) { backStackEntry ->
+            val vehicleId = backStackEntry.arguments?.getLong("vehicleId") ?: return@composable
+            AddExpenseScreen(
                 vehicleId = vehicleId,
                 onNavigateBack = {
                     navController.popBackStack()

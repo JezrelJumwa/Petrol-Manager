@@ -22,6 +22,7 @@ import java.util.*
 fun ExpenseListScreen(
     vehicleId: Long,
     onNavigateBack: () -> Unit,
+    onNavigateToAddExpense: (Long) -> Unit = {},
     viewModel: ExpenseListViewModel = hiltViewModel()
 ) {
     val expenses by viewModel.expenses.collectAsState()
@@ -49,7 +50,7 @@ fun ExpenseListScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* TODO: Add expense */ }) {
+            FloatingActionButton(onClick = { onNavigateToAddExpense(vehicleId) }) {
                 Icon(Icons.Default.Add, contentDescription = "Add Expense")
             }
         }
