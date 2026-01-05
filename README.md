@@ -158,6 +158,7 @@ app/src/main/java/com/cartracker/app/
 2. **Open in Android Studio**:
    - File → Open → Select the Petrol-Manager directory
    - Wait for Gradle sync to complete
+   - **Note for M4 Macs**: If builds fail, see [ANDROID_STUDIO_SETUP.md](ANDROID_STUDIO_SETUP.md)
 
 3. **Using the Build Script** (Recommended for M4 Macs):
    The project includes a convenient build script to avoid jmod/jlink issues:
@@ -195,7 +196,27 @@ app/src/main/java/com/cartracker/app/
 #### Minimum SDK Requirements
 - **minSdk**: 26 (Android 8.0 Oreo)
 - **targetSdk**: 34 (Android 14)
-- **compileSdk**: 34
+- **compileSdk**: 36
+
+#### Android Studio Build Issues on M4 Macs
+If you experience build failures in Android Studio but terminal builds work:
+
+1. **Ensure Correct JDK**: Go to `File → Project Structure → SDK Location`
+   - Set Gradle JDK to: `JBR (JetBrains Runtime) 21` or
+   - Use embedded JDK: `/Users/[username]/Library/Java/JavaVirtualMachines/jbrsdk_jcef-21.0.9`
+
+2. **Invalidate Caches**: `File → Invalidate Caches → Invalidate and Restart`
+
+3. **Gradle Settings**: The project is pre-configured with M4 compatibility settings:
+   - `android.enableJdkWorkers=false` - Disables problematic jmod/jlink operations
+   - `org.gradle.java.home` - Points to JBR 21
+   - Increased memory allocation for builds
+
+4. **If Still Failing**: Use the terminal build script:
+   ```bash
+   ./build.sh debug
+   ```
+   Then in Android Studio: `File → Sync Project with Gradle Files`
 
 #### Permissions
 The app requires the following permissions (automatically handled):
