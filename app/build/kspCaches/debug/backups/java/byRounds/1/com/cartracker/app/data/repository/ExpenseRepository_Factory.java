@@ -19,7 +19,8 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast"
 })
 public final class ExpenseRepository_Factory implements Factory<ExpenseRepository> {
   private final Provider<ExpenseDao> expenseDaoProvider;

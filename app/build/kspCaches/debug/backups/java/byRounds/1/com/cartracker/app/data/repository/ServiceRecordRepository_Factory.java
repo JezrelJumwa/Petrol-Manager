@@ -19,7 +19,8 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast"
 })
 public final class ServiceRecordRepository_Factory implements Factory<ServiceRecordRepository> {
   private final Provider<ServiceRecordDao> serviceRecordDaoProvider;
