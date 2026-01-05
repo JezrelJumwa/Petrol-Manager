@@ -198,25 +198,34 @@ app/src/main/java/com/cartracker/app/
 - **targetSdk**: 34 (Android 14)
 - **compileSdk**: 36
 
-#### Android Studio Build Issues on M4 Macs
-If you experience build failures in Android Studio but terminal builds work:
+#### ⚠️ Android Studio Build Issues on M4 Macs (KNOWN LIMITATION)
 
-1. **Ensure Correct JDK**: Go to `File → Project Structure → SDK Location`
-   - Set Gradle JDK to: `JBR (JetBrains Runtime) 21` or
-   - Use embedded JDK: `/Users/[username]/Library/Java/JavaVirtualMachines/jbrsdk_jcef-21.0.9`
+**IMPORTANT**: Android Studio **CANNOT** build this project on M4 Macs due to fundamental
+jmod/jlink incompatibility with ARM architecture. This is a known Android Gradle Plugin
+issue affecting all M4 Mac developers.
 
-2. **Invalidate Caches**: `File → Invalidate Caches → Invalidate and Restart`
+**Workaround - Use Terminal Builds:**
+```bash
+./build.sh debug      # Build debug APK
+./build.sh release    # Build release APK  
+./build.sh install    # Install to device
+./build.sh test       # Run tests
+```
 
-3. **Gradle Settings**: The project is pre-configured with M4 compatibility settings:
-   - `android.enableJdkWorkers=false` - Disables problematic jmod/jlink operations
-   - `org.gradle.java.home` - Points to JBR 21
-   - Increased memory allocation for builds
+**Android Studio is still useful for:**
+- ✅ Code editing, refactoring, navigation
+- ✅ UI preview and design
+- ✅ Git operations and version control
+- ✅ Debugging (attach after installing via `./build.sh install`)
 
-4. **If Still Failing**: Use the terminal build script:
-   ```bash
-   ./build.sh debug
-   ```
-   Then in Android Studio: `File → Sync Project with Gradle Files`
+**Why this happens:**
+- Android Gradle Plugin requires jmod/jlink transforms when building through Android Studio
+- The jmod tool doesn't work on M4 (ARM) architecture
+- `android.enableJdkWorkers=false` only helps terminal builds, not Android Studio
+- Tested with AGP 8.13, 8.2 - all fail with same jmod error
+
+**When will this be fixed?**
+When Google updates AGP or Oracle/Apple fix jmod on ARM. No ETA available.
 
 #### Permissions
 The app requires the following permissions (automatically handled):
