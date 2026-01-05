@@ -19,7 +19,8 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast"
 })
 public final class MaintenanceListViewModel_Factory implements Factory<MaintenanceListViewModel> {
   private final Provider<MaintenanceScheduleRepository> maintenanceScheduleRepositoryProvider;

@@ -51,7 +51,7 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `service_records` (`id`,`vehicleId`,`serviceType`,`serviceDate`,`mileageAtService`,`cost`,`servicedBy`,`notes`,`nextServiceDue`,`nextServiceMileage`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `service_records` (`id`,`vehicleId`,`serviceType`,`serviceDate`,`mileageAtService`,`cost`,`servicedBy`,`notes`,`nextServiceDue`,`nextServiceMileage`,`nextDueDate`,`nextDueMileage`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -83,7 +83,17 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
         } else {
           statement.bindLong(10, entity.getNextServiceMileage());
         }
-        statement.bindLong(11, entity.getCreatedAt());
+        if (entity.getNextDueDate() == null) {
+          statement.bindNull(11);
+        } else {
+          statement.bindLong(11, entity.getNextDueDate());
+        }
+        if (entity.getNextDueMileage() == null) {
+          statement.bindNull(12);
+        } else {
+          statement.bindLong(12, entity.getNextDueMileage());
+        }
+        statement.bindLong(13, entity.getCreatedAt());
       }
     };
     this.__deletionAdapterOfServiceRecordEntity = new EntityDeletionOrUpdateAdapter<ServiceRecordEntity>(__db) {
@@ -103,7 +113,7 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `service_records` SET `id` = ?,`vehicleId` = ?,`serviceType` = ?,`serviceDate` = ?,`mileageAtService` = ?,`cost` = ?,`servicedBy` = ?,`notes` = ?,`nextServiceDue` = ?,`nextServiceMileage` = ?,`createdAt` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `service_records` SET `id` = ?,`vehicleId` = ?,`serviceType` = ?,`serviceDate` = ?,`mileageAtService` = ?,`cost` = ?,`servicedBy` = ?,`notes` = ?,`nextServiceDue` = ?,`nextServiceMileage` = ?,`nextDueDate` = ?,`nextDueMileage` = ?,`createdAt` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -135,8 +145,18 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
         } else {
           statement.bindLong(10, entity.getNextServiceMileage());
         }
-        statement.bindLong(11, entity.getCreatedAt());
-        statement.bindLong(12, entity.getId());
+        if (entity.getNextDueDate() == null) {
+          statement.bindNull(11);
+        } else {
+          statement.bindLong(11, entity.getNextDueDate());
+        }
+        if (entity.getNextDueMileage() == null) {
+          statement.bindNull(12);
+        } else {
+          statement.bindLong(12, entity.getNextDueMileage());
+        }
+        statement.bindLong(13, entity.getCreatedAt());
+        statement.bindLong(14, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteAllServiceRecordsForVehicle = new SharedSQLiteStatement(__db) {
@@ -254,6 +274,8 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfNextServiceDue = CursorUtil.getColumnIndexOrThrow(_cursor, "nextServiceDue");
           final int _cursorIndexOfNextServiceMileage = CursorUtil.getColumnIndexOrThrow(_cursor, "nextServiceMileage");
+          final int _cursorIndexOfNextDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "nextDueDate");
+          final int _cursorIndexOfNextDueMileage = CursorUtil.getColumnIndexOrThrow(_cursor, "nextDueMileage");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final List<ServiceRecordEntity> _result = new ArrayList<ServiceRecordEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
@@ -294,9 +316,21 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
             } else {
               _tmpNextServiceMileage = _cursor.getInt(_cursorIndexOfNextServiceMileage);
             }
+            final Long _tmpNextDueDate;
+            if (_cursor.isNull(_cursorIndexOfNextDueDate)) {
+              _tmpNextDueDate = null;
+            } else {
+              _tmpNextDueDate = _cursor.getLong(_cursorIndexOfNextDueDate);
+            }
+            final Long _tmpNextDueMileage;
+            if (_cursor.isNull(_cursorIndexOfNextDueMileage)) {
+              _tmpNextDueMileage = null;
+            } else {
+              _tmpNextDueMileage = _cursor.getLong(_cursorIndexOfNextDueMileage);
+            }
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _item = new ServiceRecordEntity(_tmpId,_tmpVehicleId,_tmpServiceType,_tmpServiceDate,_tmpMileageAtService,_tmpCost,_tmpServicedBy,_tmpNotes,_tmpNextServiceDue,_tmpNextServiceMileage,_tmpCreatedAt);
+            _item = new ServiceRecordEntity(_tmpId,_tmpVehicleId,_tmpServiceType,_tmpServiceDate,_tmpMileageAtService,_tmpCost,_tmpServicedBy,_tmpNotes,_tmpNextServiceDue,_tmpNextServiceMileage,_tmpNextDueDate,_tmpNextDueMileage,_tmpCreatedAt);
             _result.add(_item);
           }
           return _result;
@@ -334,6 +368,8 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfNextServiceDue = CursorUtil.getColumnIndexOrThrow(_cursor, "nextServiceDue");
           final int _cursorIndexOfNextServiceMileage = CursorUtil.getColumnIndexOrThrow(_cursor, "nextServiceMileage");
+          final int _cursorIndexOfNextDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "nextDueDate");
+          final int _cursorIndexOfNextDueMileage = CursorUtil.getColumnIndexOrThrow(_cursor, "nextDueMileage");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final ServiceRecordEntity _result;
           if (_cursor.moveToFirst()) {
@@ -373,9 +409,21 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
             } else {
               _tmpNextServiceMileage = _cursor.getInt(_cursorIndexOfNextServiceMileage);
             }
+            final Long _tmpNextDueDate;
+            if (_cursor.isNull(_cursorIndexOfNextDueDate)) {
+              _tmpNextDueDate = null;
+            } else {
+              _tmpNextDueDate = _cursor.getLong(_cursorIndexOfNextDueDate);
+            }
+            final Long _tmpNextDueMileage;
+            if (_cursor.isNull(_cursorIndexOfNextDueMileage)) {
+              _tmpNextDueMileage = null;
+            } else {
+              _tmpNextDueMileage = _cursor.getLong(_cursorIndexOfNextDueMileage);
+            }
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _result = new ServiceRecordEntity(_tmpId,_tmpVehicleId,_tmpServiceType,_tmpServiceDate,_tmpMileageAtService,_tmpCost,_tmpServicedBy,_tmpNotes,_tmpNextServiceDue,_tmpNextServiceMileage,_tmpCreatedAt);
+            _result = new ServiceRecordEntity(_tmpId,_tmpVehicleId,_tmpServiceType,_tmpServiceDate,_tmpMileageAtService,_tmpCost,_tmpServicedBy,_tmpNotes,_tmpNextServiceDue,_tmpNextServiceMileage,_tmpNextDueDate,_tmpNextDueMileage,_tmpCreatedAt);
           } else {
             _result = null;
           }
@@ -416,6 +464,8 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfNextServiceDue = CursorUtil.getColumnIndexOrThrow(_cursor, "nextServiceDue");
           final int _cursorIndexOfNextServiceMileage = CursorUtil.getColumnIndexOrThrow(_cursor, "nextServiceMileage");
+          final int _cursorIndexOfNextDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "nextDueDate");
+          final int _cursorIndexOfNextDueMileage = CursorUtil.getColumnIndexOrThrow(_cursor, "nextDueMileage");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final ServiceRecordEntity _result;
           if (_cursor.moveToFirst()) {
@@ -455,9 +505,21 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
             } else {
               _tmpNextServiceMileage = _cursor.getInt(_cursorIndexOfNextServiceMileage);
             }
+            final Long _tmpNextDueDate;
+            if (_cursor.isNull(_cursorIndexOfNextDueDate)) {
+              _tmpNextDueDate = null;
+            } else {
+              _tmpNextDueDate = _cursor.getLong(_cursorIndexOfNextDueDate);
+            }
+            final Long _tmpNextDueMileage;
+            if (_cursor.isNull(_cursorIndexOfNextDueMileage)) {
+              _tmpNextDueMileage = null;
+            } else {
+              _tmpNextDueMileage = _cursor.getLong(_cursorIndexOfNextDueMileage);
+            }
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _result = new ServiceRecordEntity(_tmpId,_tmpVehicleId,_tmpServiceType,_tmpServiceDate,_tmpMileageAtService,_tmpCost,_tmpServicedBy,_tmpNotes,_tmpNextServiceDue,_tmpNextServiceMileage,_tmpCreatedAt);
+            _result = new ServiceRecordEntity(_tmpId,_tmpVehicleId,_tmpServiceType,_tmpServiceDate,_tmpMileageAtService,_tmpCost,_tmpServicedBy,_tmpNotes,_tmpNextServiceDue,_tmpNextServiceMileage,_tmpNextDueDate,_tmpNextDueMileage,_tmpCreatedAt);
           } else {
             _result = null;
           }
@@ -502,6 +564,8 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfNextServiceDue = CursorUtil.getColumnIndexOrThrow(_cursor, "nextServiceDue");
           final int _cursorIndexOfNextServiceMileage = CursorUtil.getColumnIndexOrThrow(_cursor, "nextServiceMileage");
+          final int _cursorIndexOfNextDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "nextDueDate");
+          final int _cursorIndexOfNextDueMileage = CursorUtil.getColumnIndexOrThrow(_cursor, "nextDueMileage");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final ServiceRecordEntity _result;
           if (_cursor.moveToFirst()) {
@@ -541,9 +605,21 @@ public final class ServiceRecordDao_Impl implements ServiceRecordDao {
             } else {
               _tmpNextServiceMileage = _cursor.getInt(_cursorIndexOfNextServiceMileage);
             }
+            final Long _tmpNextDueDate;
+            if (_cursor.isNull(_cursorIndexOfNextDueDate)) {
+              _tmpNextDueDate = null;
+            } else {
+              _tmpNextDueDate = _cursor.getLong(_cursorIndexOfNextDueDate);
+            }
+            final Long _tmpNextDueMileage;
+            if (_cursor.isNull(_cursorIndexOfNextDueMileage)) {
+              _tmpNextDueMileage = null;
+            } else {
+              _tmpNextDueMileage = _cursor.getLong(_cursorIndexOfNextDueMileage);
+            }
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _result = new ServiceRecordEntity(_tmpId,_tmpVehicleId,_tmpServiceType,_tmpServiceDate,_tmpMileageAtService,_tmpCost,_tmpServicedBy,_tmpNotes,_tmpNextServiceDue,_tmpNextServiceMileage,_tmpCreatedAt);
+            _result = new ServiceRecordEntity(_tmpId,_tmpVehicleId,_tmpServiceType,_tmpServiceDate,_tmpMileageAtService,_tmpCost,_tmpServicedBy,_tmpNotes,_tmpNextServiceDue,_tmpNextServiceMileage,_tmpNextDueDate,_tmpNextDueMileage,_tmpCreatedAt);
           } else {
             _result = null;
           }

@@ -29,5 +29,7 @@ data class ServiceRecordEntity(
     val notes: String? = null,
     val nextServiceDue: Long? = null,
     val nextServiceMileage: Int? = null,
+    val nextDueDate: Long?,
+    val nextDueMileage: Long?,
     val createdAt: Long = System.currentTimeMillis()
 )

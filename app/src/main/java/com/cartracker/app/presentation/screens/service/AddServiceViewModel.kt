@@ -106,7 +106,7 @@ class AddServiceViewModel @Inject constructor(
                     servicedBy = state.servicedBy.trim().takeIf { it.isNotBlank() },
                     notes = state.notes.trim().takeIf { it.isNotBlank() },
                     nextDueDate = state.nextDueDateMillis,
-                    nextDueMileage = nextDueMileageInt
+                    nextDueMileage = nextDueMileageInt?.toLong()
                 )
                 serviceRecordRepository.insertServiceRecord(serviceRecord)
                 onSuccess()
