@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.cartracker.app"
-    compileSdk = 36
+    compileSdk = 34  // compileSdk 36 requires jmod which doesn't work on M4 Macs
     
     // M4 Mac build compatibility
     androidResources {
