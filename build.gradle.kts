@@ -1,4 +1,5 @@
 // Top-level build file
+// Using AGP 8.2 for M4 Mac compatibility (8.13+ requires jmod)
 plugins {
     id("com.android.application") version "8.2.2" apply false
     id("com.android.library") version "8.2.2" apply false
