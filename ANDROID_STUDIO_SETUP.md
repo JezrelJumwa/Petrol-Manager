@@ -6,17 +6,23 @@ This project is configured to work with Android Studio on M4 Macs, which have kn
 
 If Android Studio fails to build but `./build.sh` works:
 
-### 1. Configure Gradle JDK
+### 1. Fix Gradle User Home (CRITICAL)
 
-1. Open **Android Studio**
-2. Go to: `File → Project Structure` (or press `⌘;`)
-3. Select **SDK Location** in the left sidebar
-4. Under **Gradle Settings**, set **Gradle JDK** to:
-   - Option A: `JBR (JetBrains Runtime) version 21.x` (Recommended)
-   - Option B: Browse and select: `/Users/[your-username]/Library/Java/JavaVirtualMachines/jbrsdk_jcef-21.0.9/Contents/Home`
-5. Click **Apply** and **OK**
+1. In Android Studio, go to: **Settings → Build, Execution, Deployment → Build Tools → Gradle** (or press `⌘,`)
+2. Find the **Gradle user home** field
+3. **⚠️ If it shows the project path** (e.g., `/Users/.../Petrol-Manager/.gradle`), **CLEAR IT**
+4. Leave it **blank** (to use default `~/.gradle`) OR set to: `/Users/[your-username]/.gradle`
+5. Click **Apply**
 
-### 2. Invalidate Caches and Restart
+### 2. Configure Gradle JDK
+
+1. In the same settings screen (**Build Tools → Gradle**)
+2. Under **Gradle JDK**, select:
+   - **jbr-21** (JetBrains Runtime 21.0.8 - aarch64)
+   - Full path: `/Users/[your-username]/Library/Java/JavaVirtualMachines/jbrsdk_jcef-21.0.9/Contents/Home`
+3. Click **Apply** and **OK**
+
+### 3. Invalidate Caches and Restart
 
 1. Go to: `File → Invalidate Caches...`
 2. Check all options:
@@ -25,7 +31,7 @@ If Android Studio fails to build but `./build.sh` works:
    - ✅ Clear downloaded shared indexes
 3. Click **Invalidate and Restart**
 
-### 3. Sync Project
+### 4. Sync Project
 
 After Android Studio restarts:
 1. Go to: `File → Sync Project with Gradle Files`
