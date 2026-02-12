@@ -19,8 +19,7 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast"
+    "KotlinInternalInJava"
 })
 public final class AddServiceViewModel_Factory implements Factory<AddServiceViewModel> {
   private final Provider<ServiceRecordRepository> serviceRecordRepositoryProvider;

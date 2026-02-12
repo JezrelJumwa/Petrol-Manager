@@ -19,8 +19,7 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast"
+    "KotlinInternalInJava"
 })
 public final class AddExpenseViewModel_Factory implements Factory<AddExpenseViewModel> {
   private final Provider<ExpenseRepository> expenseRepositoryProvider;

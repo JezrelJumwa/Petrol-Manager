@@ -21,8 +21,7 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast"
+    "KotlinInternalInJava"
 })
 public final class DatabaseModule_ProvideServiceRecordDaoFactory implements Factory<ServiceRecordDao> {
   private final Provider<CarTrackerDatabase> databaseProvider;
