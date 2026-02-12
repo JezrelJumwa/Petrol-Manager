@@ -19,8 +19,7 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast"
+    "KotlinInternalInJava"
 })
 public final class MaintenanceScheduleRepository_Factory implements Factory<MaintenanceScheduleRepository> {
   private final Provider<MaintenanceScheduleDao> maintenanceScheduleDaoProvider;

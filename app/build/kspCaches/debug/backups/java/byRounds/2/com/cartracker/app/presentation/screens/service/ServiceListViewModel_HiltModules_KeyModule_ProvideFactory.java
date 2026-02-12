@@ -2,6 +2,7 @@ package com.cartracker.app.presentation.screens.service;
 
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Preconditions;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
@@ -17,12 +18,11 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast"
+    "KotlinInternalInJava"
 })
-public final class ServiceListViewModel_HiltModules_KeyModule_ProvideFactory implements Factory<Boolean> {
+public final class ServiceListViewModel_HiltModules_KeyModule_ProvideFactory implements Factory<String> {
   @Override
-  public Boolean get() {
+  public String get() {
     return provide();
   }
 
@@ -30,8 +30,8 @@ public final class ServiceListViewModel_HiltModules_KeyModule_ProvideFactory imp
     return InstanceHolder.INSTANCE;
   }
 
-  public static boolean provide() {
-    return ServiceListViewModel_HiltModules.KeyModule.provide();
+  public static String provide() {
+    return Preconditions.checkNotNullFromProvides(ServiceListViewModel_HiltModules.KeyModule.provide());
   }
 
   private static final class InstanceHolder {

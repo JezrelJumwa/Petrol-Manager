@@ -19,8 +19,7 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast"
+    "KotlinInternalInJava"
 })
 public final class VehicleListViewModel_Factory implements Factory<VehicleListViewModel> {
   private final Provider<VehicleRepository> vehicleRepositoryProvider;

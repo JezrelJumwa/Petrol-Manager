@@ -10,7 +10,9 @@ import dagger.hilt.android.components.ViewModelComponent;
 import dagger.hilt.android.internal.lifecycle.HiltViewModelMap;
 import dagger.hilt.codegen.OriginatingElement;
 import dagger.multibindings.IntoMap;
-import dagger.multibindings.LazyClassKey;
+import dagger.multibindings.IntoSet;
+import dagger.multibindings.StringKey;
+import java.lang.String;
 import javax.annotation.processing.Generated;
 
 @Generated("dagger.hilt.android.processor.internal.viewmodel.ViewModelProcessor")
@@ -29,7 +31,7 @@ public final class AddServiceViewModel_HiltModules {
 
     @Binds
     @IntoMap
-    @LazyClassKey(AddServiceViewModel.class)
+    @StringKey("com.cartracker.app.presentation.screens.service.AddServiceViewModel")
     @HiltViewModelMap
     public abstract ViewModel binds(AddServiceViewModel vm);
   }
@@ -41,11 +43,10 @@ public final class AddServiceViewModel_HiltModules {
     }
 
     @Provides
-    @IntoMap
-    @LazyClassKey(AddServiceViewModel.class)
+    @IntoSet
     @HiltViewModelMap.KeySet
-    public static boolean provide() {
-      return true;
+    public static String provide() {
+      return "com.cartracker.app.presentation.screens.service.AddServiceViewModel";
     }
   }
 }
