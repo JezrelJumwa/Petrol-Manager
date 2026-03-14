@@ -213,10 +213,10 @@ issue affecting all M4 Mac developers.
 ```
 
 **Android Studio is still useful for:**
-- ✅ Code editing, refactoring, navigation
-- ✅ UI preview and design
-- ✅ Git operations and version control
-- ✅ Debugging (attach after installing via `./build.sh install`)
+- Code editing, refactoring, navigation
+- UI preview and design
+- Git operations and version control
+- Debugging (attach after installing via `./build.sh install`)
 
 **Why this happens:**
 - Android Gradle Plugin requires jmod/jlink transforms when building through Android Studio
@@ -354,20 +354,20 @@ For issues or questions:
 ## Changelog
 
 ### Version 1.0.0 (Current)
-- ✅ Initial release
-- ✅ Vehicle management (Add, List, Detail)
-- ✅ Database schema with all entities
-- ✅ Modern Compose UI with Material 3
-- ✅ MVVM architecture with Hilt DI
-- ✅ Navigation setup
-- ✅ Service history tracking (List + Add screens)
-- ✅ Expense tracking (List + Add screens)
-- ✅ Build script for M4 Mac compatibility
-- 🚧 Maintenance schedules (List screen only - Add screen needed)
-- 🚧 Mileage logging UI
-- 🚧 Parts tracking UI
-- 🚧 Edit/Delete functionality for all entities
-- 🚧 Reminder notifications (planned)
+- Initial release
+- Vehicle management (Add, List, Detail)
+- Database schema with all entities
+- Modern Compose UI with Material 3
+- MVVM architecture with Hilt DI
+- Navigation setup
+- Service history tracking (List + Add screens)
+- Expense tracking (List + Add screens)
+- Build script for M4 Mac compatibility
+- Maintenance schedules (List + Add)
+- Mileage logging UI
+- Parts tracking UI
+- Edit/Delete functionality for all entities
+- Reminder notifications (planned)
 
 ## Notes
 

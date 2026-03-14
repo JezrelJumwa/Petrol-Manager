@@ -63,6 +63,11 @@ class AddServiceViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(nextDueMileage = mileage)
     }
 
+    fun onCurrencyChange(currency: String) {
+        _uiState.value = _uiState.value.copy(currency = currency)
+    }
+
+
     fun saveService(vehicleId: Long, onSuccess: () -> Unit) {
         val state = _uiState.value
         var hasError = false
@@ -106,7 +111,8 @@ class AddServiceViewModel @Inject constructor(
                     servicedBy = state.servicedBy.trim().takeIf { it.isNotBlank() },
                     notes = state.notes.trim().takeIf { it.isNotBlank() },
                     nextDueDate = state.nextDueDateMillis,
-                    nextDueMileage = nextDueMileageInt?.toLong()
+                    nextDueMileage = nextDueMileageInt?.toLong(),
+                    currency = state.currency
                 )
                 serviceRecordRepository.insertServiceRecord(serviceRecord)
                 onSuccess()
@@ -133,6 +139,7 @@ data class AddServiceUiState(
     val notes: String = "",
     val nextDueDateMillis: Long? = null,
     val nextDueMileage: String = "",
+    val currency: String = "KSH",
     val isSaving: Boolean = false,
     val error: String? = null,
     val serviceTypeError: String? = null,

@@ -44,7 +44,7 @@ public final class PartDao_Impl implements PartDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `parts` (`id`,`serviceRecordId`,`partName`,`partNumber`,`brand`,`quantity`,`cost`,`warranty`,`notes`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `parts` (`id`,`serviceRecordId`,`partName`,`partNumber`,`brand`,`quantity`,`cost`,`warranty`,`notes`,`currency`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -75,7 +75,8 @@ public final class PartDao_Impl implements PartDao {
         } else {
           statement.bindString(9, entity.getNotes());
         }
-        statement.bindLong(10, entity.getCreatedAt());
+        statement.bindString(10, entity.getCurrency());
+        statement.bindLong(11, entity.getCreatedAt());
       }
     };
     this.__deletionAdapterOfPartEntity = new EntityDeletionOrUpdateAdapter<PartEntity>(__db) {
@@ -95,7 +96,7 @@ public final class PartDao_Impl implements PartDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `parts` SET `id` = ?,`serviceRecordId` = ?,`partName` = ?,`partNumber` = ?,`brand` = ?,`quantity` = ?,`cost` = ?,`warranty` = ?,`notes` = ?,`createdAt` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `parts` SET `id` = ?,`serviceRecordId` = ?,`partName` = ?,`partNumber` = ?,`brand` = ?,`quantity` = ?,`cost` = ?,`warranty` = ?,`notes` = ?,`currency` = ?,`createdAt` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -126,8 +127,9 @@ public final class PartDao_Impl implements PartDao {
         } else {
           statement.bindString(9, entity.getNotes());
         }
-        statement.bindLong(10, entity.getCreatedAt());
-        statement.bindLong(11, entity.getId());
+        statement.bindString(10, entity.getCurrency());
+        statement.bindLong(11, entity.getCreatedAt());
+        statement.bindLong(12, entity.getId());
       }
     };
   }
@@ -226,6 +228,7 @@ public final class PartDao_Impl implements PartDao {
           final int _cursorIndexOfCost = CursorUtil.getColumnIndexOrThrow(_cursor, "cost");
           final int _cursorIndexOfWarranty = CursorUtil.getColumnIndexOrThrow(_cursor, "warranty");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
+          final int _cursorIndexOfCurrency = CursorUtil.getColumnIndexOrThrow(_cursor, "currency");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final List<PartEntity> _result = new ArrayList<PartEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
@@ -264,9 +267,11 @@ public final class PartDao_Impl implements PartDao {
             } else {
               _tmpNotes = _cursor.getString(_cursorIndexOfNotes);
             }
+            final String _tmpCurrency;
+            _tmpCurrency = _cursor.getString(_cursorIndexOfCurrency);
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _item = new PartEntity(_tmpId,_tmpServiceRecordId,_tmpPartName,_tmpPartNumber,_tmpBrand,_tmpQuantity,_tmpCost,_tmpWarranty,_tmpNotes,_tmpCreatedAt);
+            _item = new PartEntity(_tmpId,_tmpServiceRecordId,_tmpPartName,_tmpPartNumber,_tmpBrand,_tmpQuantity,_tmpCost,_tmpWarranty,_tmpNotes,_tmpCurrency,_tmpCreatedAt);
             _result.add(_item);
           }
           return _result;
@@ -309,6 +314,7 @@ public final class PartDao_Impl implements PartDao {
           final int _cursorIndexOfCost = CursorUtil.getColumnIndexOrThrow(_cursor, "cost");
           final int _cursorIndexOfWarranty = CursorUtil.getColumnIndexOrThrow(_cursor, "warranty");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
+          final int _cursorIndexOfCurrency = CursorUtil.getColumnIndexOrThrow(_cursor, "currency");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final List<PartEntity> _result = new ArrayList<PartEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
@@ -347,9 +353,11 @@ public final class PartDao_Impl implements PartDao {
             } else {
               _tmpNotes = _cursor.getString(_cursorIndexOfNotes);
             }
+            final String _tmpCurrency;
+            _tmpCurrency = _cursor.getString(_cursorIndexOfCurrency);
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _item = new PartEntity(_tmpId,_tmpServiceRecordId,_tmpPartName,_tmpPartNumber,_tmpBrand,_tmpQuantity,_tmpCost,_tmpWarranty,_tmpNotes,_tmpCreatedAt);
+            _item = new PartEntity(_tmpId,_tmpServiceRecordId,_tmpPartName,_tmpPartNumber,_tmpBrand,_tmpQuantity,_tmpCost,_tmpWarranty,_tmpNotes,_tmpCurrency,_tmpCreatedAt);
             _result.add(_item);
           }
           return _result;
@@ -394,6 +402,7 @@ public final class PartDao_Impl implements PartDao {
           final int _cursorIndexOfCost = CursorUtil.getColumnIndexOrThrow(_cursor, "cost");
           final int _cursorIndexOfWarranty = CursorUtil.getColumnIndexOrThrow(_cursor, "warranty");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
+          final int _cursorIndexOfCurrency = CursorUtil.getColumnIndexOrThrow(_cursor, "currency");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final List<PartEntity> _result = new ArrayList<PartEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
@@ -432,9 +441,11 @@ public final class PartDao_Impl implements PartDao {
             } else {
               _tmpNotes = _cursor.getString(_cursorIndexOfNotes);
             }
+            final String _tmpCurrency;
+            _tmpCurrency = _cursor.getString(_cursorIndexOfCurrency);
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _item = new PartEntity(_tmpId,_tmpServiceRecordId,_tmpPartName,_tmpPartNumber,_tmpBrand,_tmpQuantity,_tmpCost,_tmpWarranty,_tmpNotes,_tmpCreatedAt);
+            _item = new PartEntity(_tmpId,_tmpServiceRecordId,_tmpPartName,_tmpPartNumber,_tmpBrand,_tmpQuantity,_tmpCost,_tmpWarranty,_tmpNotes,_tmpCurrency,_tmpCreatedAt);
             _result.add(_item);
           }
           return _result;

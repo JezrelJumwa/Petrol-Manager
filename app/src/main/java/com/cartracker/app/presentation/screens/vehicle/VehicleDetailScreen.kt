@@ -16,6 +16,8 @@ fun VehicleDetailScreen(
     onNavigateBack: () -> Unit,
     onNavigateToServices: (Long) -> Unit,
     onNavigateToMaintenance: (Long) -> Unit,
+    onNavigateToMileageLogs: (Long) -> Unit,
+    onNavigateToParts: (Long) -> Unit,
     onNavigateToExpenses: (Long) -> Unit
 ) {
     Scaffold(
@@ -59,6 +61,20 @@ fun VehicleDetailScreen(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Maintenance Schedule")
+            }
+
+            Button(
+                onClick = { onNavigateToMileageLogs(vehicleId) },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Mileage Logs")
+            }
+
+            Button(
+                onClick = { onNavigateToParts(vehicleId) },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Parts Tracking")
             }
             
             Button(

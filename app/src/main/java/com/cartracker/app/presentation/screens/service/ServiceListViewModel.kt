@@ -48,4 +48,10 @@ class ServiceListViewModel @Inject constructor(
             serviceRecordRepository.deleteServiceRecord(record)
         }
     }
+
+    fun updateServiceRecord(record: ServiceRecordEntity) {
+        viewModelScope.launch {
+            serviceRecordRepository.updateServiceRecord(record)
+        }
+    }
 }

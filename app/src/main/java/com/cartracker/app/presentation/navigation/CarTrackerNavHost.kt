@@ -12,8 +12,11 @@ import com.cartracker.app.presentation.screens.vehicle.VehicleListScreen
 import com.cartracker.app.presentation.screens.service.ServiceListScreen
 import com.cartracker.app.presentation.screens.service.AddServiceScreen
 import com.cartracker.app.presentation.screens.maintenance.MaintenanceListScreen
+import com.cartracker.app.presentation.screens.maintenance.AddMaintenanceScreen
 import com.cartracker.app.presentation.screens.expense.ExpenseListScreen
 import com.cartracker.app.presentation.screens.expense.AddExpenseScreen
+import com.cartracker.app.presentation.screens.mileage.MileageLogScreen
+import com.cartracker.app.presentation.screens.parts.PartsListScreen
 
 @Composable
 fun CarTrackerNavHost() {
@@ -58,6 +61,12 @@ fun CarTrackerNavHost() {
                 onNavigateToMaintenance = { vId ->
                     navController.navigate(Screen.MaintenanceList.createRoute(vId))
                 },
+                onNavigateToMileageLogs = { vId ->
+                    navController.navigate(Screen.MileageLogs.createRoute(vId))
+                },
+                onNavigateToParts = { vId ->
+                    navController.navigate(Screen.PartsList.createRoute(vId))
+                },
                 onNavigateToExpenses = { vId ->
                     navController.navigate(Screen.ExpenseList.createRoute(vId))
                 }
@@ -99,6 +108,48 @@ fun CarTrackerNavHost() {
         ) { backStackEntry ->
             val vehicleId = backStackEntry.arguments?.getLong("vehicleId") ?: return@composable
             MaintenanceListScreen(
+                vehicleId = vehicleId,
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToAddSchedule = { vId ->
+                    navController.navigate(Screen.AddMaintenance.createRoute(vId))
+                }
+            )
+        }
+
+        composable(
+            route = Screen.AddMaintenance.route,
+            arguments = listOf(navArgument("vehicleId") { type = NavType.LongType })
+        ) { backStackEntry ->
+            val vehicleId = backStackEntry.arguments?.getLong("vehicleId") ?: return@composable
+            AddMaintenanceScreen(
+                vehicleId = vehicleId,
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(
+            route = Screen.MileageLogs.route,
+            arguments = listOf(navArgument("vehicleId") { type = NavType.LongType })
+        ) { backStackEntry ->
+            val vehicleId = backStackEntry.arguments?.getLong("vehicleId") ?: return@composable
+            MileageLogScreen(
+                vehicleId = vehicleId,
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(
+            route = Screen.PartsList.route,
+            arguments = listOf(navArgument("vehicleId") { type = NavType.LongType })
+        ) { backStackEntry ->
+            val vehicleId = backStackEntry.arguments?.getLong("vehicleId") ?: return@composable
+            PartsListScreen(
                 vehicleId = vehicleId,
                 onNavigateBack = {
                     navController.popBackStack()

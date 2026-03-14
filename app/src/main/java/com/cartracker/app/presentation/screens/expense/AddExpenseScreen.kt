@@ -14,6 +14,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.cartracker.app.presentation.components.CurrencySelector
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -111,9 +112,14 @@ fun AddExpenseScreen(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                prefix = { Text("$") },
+                prefix = { Text(if (uiState.currency == "USD") "$" else "Ksh.") },
                 isError = uiState.amountError != null,
                 supportingText = uiState.amountError?.let { { Text(it) } }
+            )
+
+            CurrencySelector(
+                selected = uiState.currency,
+                onSelect = viewModel::onCurrencyChange
             )
 
             // Vendor

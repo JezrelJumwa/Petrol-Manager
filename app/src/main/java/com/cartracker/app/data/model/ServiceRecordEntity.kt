@@ -31,5 +31,6 @@ data class ServiceRecordEntity(
     val nextServiceMileage: Int? = null,
     val nextDueDate: Long?,
     val nextDueMileage: Long?,
+    val currency: String = "KSH",
     val createdAt: Long = System.currentTimeMillis()
 )

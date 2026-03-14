@@ -54,14 +54,14 @@ public final class CarTrackerDatabase_Impl extends CarTrackerDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `vehicles` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `make` TEXT NOT NULL, `model` TEXT NOT NULL, `year` INTEGER NOT NULL, `licensePlate` TEXT NOT NULL, `vin` TEXT, `currentMileage` INTEGER NOT NULL, `purchaseDate` INTEGER, `notes` TEXT, `isActive` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `service_records` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vehicleId` INTEGER NOT NULL, `serviceType` TEXT NOT NULL, `serviceDate` INTEGER NOT NULL, `mileageAtService` INTEGER NOT NULL, `cost` REAL NOT NULL, `servicedBy` TEXT, `notes` TEXT, `nextServiceDue` INTEGER, `nextServiceMileage` INTEGER, `nextDueDate` INTEGER, `nextDueMileage` INTEGER, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`vehicleId`) REFERENCES `vehicles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `service_records` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vehicleId` INTEGER NOT NULL, `serviceType` TEXT NOT NULL, `serviceDate` INTEGER NOT NULL, `mileageAtService` INTEGER NOT NULL, `cost` REAL NOT NULL, `servicedBy` TEXT, `notes` TEXT, `nextServiceDue` INTEGER, `nextServiceMileage` INTEGER, `nextDueDate` INTEGER, `nextDueMileage` INTEGER, `currency` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`vehicleId`) REFERENCES `vehicles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_service_records_vehicleId` ON `service_records` (`vehicleId`)");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_service_records_serviceDate` ON `service_records` (`serviceDate`)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `parts` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `serviceRecordId` INTEGER NOT NULL, `partName` TEXT NOT NULL, `partNumber` TEXT, `brand` TEXT, `quantity` INTEGER NOT NULL, `cost` REAL NOT NULL, `warranty` TEXT, `notes` TEXT, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`serviceRecordId`) REFERENCES `service_records`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `parts` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `serviceRecordId` INTEGER NOT NULL, `partName` TEXT NOT NULL, `partNumber` TEXT, `brand` TEXT, `quantity` INTEGER NOT NULL, `cost` REAL NOT NULL, `warranty` TEXT, `notes` TEXT, `currency` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`serviceRecordId`) REFERENCES `service_records`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_parts_serviceRecordId` ON `parts` (`serviceRecordId`)");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_parts_partName` ON `parts` (`partName`)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `maintenance_schedules` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vehicleId` INTEGER NOT NULL, `maintenanceType` TEXT NOT NULL, `intervalMiles` INTEGER, `intervalMonths` INTEGER, `lastServiceDate` INTEGER, `lastServiceMileage` INTEGER, `nextDueDate` INTEGER, `nextDueMileage` INTEGER, `isActive` INTEGER NOT NULL, `reminderEnabled` INTEGER NOT NULL, `reminderAdvanceMiles` INTEGER NOT NULL, `reminderAdvanceDays` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`vehicleId`) REFERENCES `vehicles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
@@ -70,12 +70,12 @@ public final class CarTrackerDatabase_Impl extends CarTrackerDatabase {
         db.execSQL("CREATE TABLE IF NOT EXISTS `mileage_logs` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vehicleId` INTEGER NOT NULL, `mileage` INTEGER NOT NULL, `logDate` INTEGER NOT NULL, `notes` TEXT, FOREIGN KEY(`vehicleId`) REFERENCES `vehicles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_mileage_logs_vehicleId` ON `mileage_logs` (`vehicleId`)");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_mileage_logs_logDate` ON `mileage_logs` (`logDate`)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `expenses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vehicleId` INTEGER NOT NULL, `category` TEXT NOT NULL, `amount` REAL NOT NULL, `expenseDate` INTEGER NOT NULL, `vendor` TEXT, `notes` TEXT, `mileageAtExpense` INTEGER, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`vehicleId`) REFERENCES `vehicles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `expenses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vehicleId` INTEGER NOT NULL, `category` TEXT NOT NULL, `amount` REAL NOT NULL, `expenseDate` INTEGER NOT NULL, `vendor` TEXT, `notes` TEXT, `mileageAtExpense` INTEGER, `currency` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`vehicleId`) REFERENCES `vehicles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_expenses_vehicleId` ON `expenses` (`vehicleId`)");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_expenses_expenseDate` ON `expenses` (`expenseDate`)");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_expenses_category` ON `expenses` (`category`)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4b15a7abb745d4587c695f8eeb877130')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0d26d8cd32a5c6ec1589657ccc41bad3')");
       }
 
       @Override
@@ -152,7 +152,7 @@ public final class CarTrackerDatabase_Impl extends CarTrackerDatabase {
                   + " Expected:\n" + _infoVehicles + "\n"
                   + " Found:\n" + _existingVehicles);
         }
-        final HashMap<String, TableInfo.Column> _columnsServiceRecords = new HashMap<String, TableInfo.Column>(13);
+        final HashMap<String, TableInfo.Column> _columnsServiceRecords = new HashMap<String, TableInfo.Column>(14);
         _columnsServiceRecords.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsServiceRecords.put("vehicleId", new TableInfo.Column("vehicleId", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsServiceRecords.put("serviceType", new TableInfo.Column("serviceType", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -165,6 +165,7 @@ public final class CarTrackerDatabase_Impl extends CarTrackerDatabase {
         _columnsServiceRecords.put("nextServiceMileage", new TableInfo.Column("nextServiceMileage", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsServiceRecords.put("nextDueDate", new TableInfo.Column("nextDueDate", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsServiceRecords.put("nextDueMileage", new TableInfo.Column("nextDueMileage", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsServiceRecords.put("currency", new TableInfo.Column("currency", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsServiceRecords.put("createdAt", new TableInfo.Column("createdAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysServiceRecords = new HashSet<TableInfo.ForeignKey>(1);
         _foreignKeysServiceRecords.add(new TableInfo.ForeignKey("vehicles", "CASCADE", "NO ACTION", Arrays.asList("vehicleId"), Arrays.asList("id")));
@@ -178,7 +179,7 @@ public final class CarTrackerDatabase_Impl extends CarTrackerDatabase {
                   + " Expected:\n" + _infoServiceRecords + "\n"
                   + " Found:\n" + _existingServiceRecords);
         }
-        final HashMap<String, TableInfo.Column> _columnsParts = new HashMap<String, TableInfo.Column>(10);
+        final HashMap<String, TableInfo.Column> _columnsParts = new HashMap<String, TableInfo.Column>(11);
         _columnsParts.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsParts.put("serviceRecordId", new TableInfo.Column("serviceRecordId", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsParts.put("partName", new TableInfo.Column("partName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -188,6 +189,7 @@ public final class CarTrackerDatabase_Impl extends CarTrackerDatabase {
         _columnsParts.put("cost", new TableInfo.Column("cost", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsParts.put("warranty", new TableInfo.Column("warranty", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsParts.put("notes", new TableInfo.Column("notes", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsParts.put("currency", new TableInfo.Column("currency", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsParts.put("createdAt", new TableInfo.Column("createdAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysParts = new HashSet<TableInfo.ForeignKey>(1);
         _foreignKeysParts.add(new TableInfo.ForeignKey("service_records", "CASCADE", "NO ACTION", Arrays.asList("serviceRecordId"), Arrays.asList("id")));
@@ -246,7 +248,7 @@ public final class CarTrackerDatabase_Impl extends CarTrackerDatabase {
                   + " Expected:\n" + _infoMileageLogs + "\n"
                   + " Found:\n" + _existingMileageLogs);
         }
-        final HashMap<String, TableInfo.Column> _columnsExpenses = new HashMap<String, TableInfo.Column>(9);
+        final HashMap<String, TableInfo.Column> _columnsExpenses = new HashMap<String, TableInfo.Column>(10);
         _columnsExpenses.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsExpenses.put("vehicleId", new TableInfo.Column("vehicleId", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsExpenses.put("category", new TableInfo.Column("category", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -255,6 +257,7 @@ public final class CarTrackerDatabase_Impl extends CarTrackerDatabase {
         _columnsExpenses.put("vendor", new TableInfo.Column("vendor", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsExpenses.put("notes", new TableInfo.Column("notes", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsExpenses.put("mileageAtExpense", new TableInfo.Column("mileageAtExpense", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsExpenses.put("currency", new TableInfo.Column("currency", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsExpenses.put("createdAt", new TableInfo.Column("createdAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysExpenses = new HashSet<TableInfo.ForeignKey>(1);
         _foreignKeysExpenses.add(new TableInfo.ForeignKey("vehicles", "CASCADE", "NO ACTION", Arrays.asList("vehicleId"), Arrays.asList("id")));
@@ -271,7 +274,7 @@ public final class CarTrackerDatabase_Impl extends CarTrackerDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "4b15a7abb745d4587c695f8eeb877130", "30248820380d0068e22e3f4a230a4d63");
+    }, "0d26d8cd32a5c6ec1589657ccc41bad3", "1596680c89632207bdab5c2a12fe4a01");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
