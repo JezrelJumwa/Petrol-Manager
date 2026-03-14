@@ -1,6 +1,11 @@
 package com.cartracker.app.data.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Update
 import com.cartracker.app.data.model.MaintenanceScheduleEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -15,7 +20,8 @@ interface MaintenanceScheduleDao {
     @Query("SELECT * FROM maintenance_schedules WHERE id = :scheduleId")
     fun getScheduleById(scheduleId: Long): Flow<MaintenanceScheduleEntity?>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM maintenance_schedules 
         WHERE vehicleId = :vehicleId 
         AND isActive = 1 
@@ -25,8 +31,13 @@ interface MaintenanceScheduleDao {
             OR (nextDueDate IS NOT NULL AND nextDueDate <= :currentDate + (reminderAdvanceDays * 86400000))
         )
         ORDER BY COALESCE(nextDueDate, 9999999999999), COALESCE(nextDueMileage, 999999999)
-    """)
-    fun getUpcomingMaintenance(vehicleId: Long, currentMileage: Int, currentDate: Long): Flow<List<MaintenanceScheduleEntity>>
+    """
+    )
+    fun getUpcomingMaintenance(
+        vehicleId: Long,
+        currentMileage: Int,
+        currentDate: Long
+    ): Flow<List<MaintenanceScheduleEntity>>
 
     @Query("SELECT * FROM maintenance_schedules WHERE isActive = 1 AND reminderEnabled = 1")
     suspend fun getAllActiveSchedulesWithReminders(): List<MaintenanceScheduleEntity>

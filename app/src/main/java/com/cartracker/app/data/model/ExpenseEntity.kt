@@ -27,5 +27,6 @@ data class ExpenseEntity(
     val vendor: String? = null,
     val notes: String? = null,
     val mileageAtExpense: Int? = null,
+    val currency: String = "KSH",
     val createdAt: Long = System.currentTimeMillis()
 )

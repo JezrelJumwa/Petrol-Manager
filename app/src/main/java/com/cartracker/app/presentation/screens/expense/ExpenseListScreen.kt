@@ -6,6 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,7 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cartracker.app.data.model.ExpenseEntity
-import java.text.NumberFormat
+import com.cartracker.app.presentation.components.CurrencySelector
+import com.cartracker.app.presentation.components.formatAmount
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,11 +25,13 @@ import java.util.*
 fun ExpenseListScreen(
     vehicleId: Long,
     onNavigateBack: () -> Unit,
+    onNavigateToAddExpense: (Long) -> Unit = {},
     viewModel: ExpenseListViewModel = hiltViewModel()
 ) {
     val expenses by viewModel.expenses.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val totalExpenses by viewModel.totalExpenses.collectAsState()
+    var editingExpense by remember { mutableStateOf<ExpenseEntity?>(null) }
 
     LaunchedEffect(vehicleId) {
         viewModel.loadExpenses(vehicleId)
@@ -49,7 +54,7 @@ fun ExpenseListScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* TODO: Add expense */ }) {
+            FloatingActionButton(onClick = { onNavigateToAddExpense(vehicleId) }) {
                 Icon(Icons.Default.Add, contentDescription = "Add Expense")
             }
         }
@@ -86,7 +91,7 @@ fun ExpenseListScreen(
                             style = MaterialTheme.typography.titleMedium
                         )
                         Text(
-                            text = NumberFormat.getCurrencyInstance().format(totalExpenses),
+                            text = "%,.2f".format(totalExpenses),
                             style = MaterialTheme.typography.headlineMedium,
                             color = MaterialTheme.colorScheme.primary
                         )
@@ -107,17 +112,36 @@ fun ExpenseListScreen(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         items(expenses) { expense ->
-                            ExpenseItem(expense = expense)
+                            ExpenseItem(
+                                expense = expense,
+                                onEdit = { editingExpense = expense },
+                                onDelete = { viewModel.deleteExpense(expense) }
+                            )
                         }
                     }
                 }
             }
         }
     }
+
+    editingExpense?.let { expense ->
+        EditExpenseDialog(
+            expense = expense,
+            onDismiss = { editingExpense = null },
+            onSave = { updated ->
+                viewModel.updateExpense(updated)
+                editingExpense = null
+            }
+        )
+    }
 }
 
 @Composable
-fun ExpenseItem(expense: ExpenseEntity) {
+fun ExpenseItem(
+    expense: ExpenseEntity,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit
+) {
     val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
     
     Card(
@@ -133,15 +157,25 @@ fun ExpenseItem(expense: ExpenseEntity) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(
-                    text = expense.category,
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                    text = NumberFormat.getCurrencyInstance().format(expense.amount),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary
-                )
+                Column {
+                    Text(
+                        text = expense.category,
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                        text = formatAmount(expense.amount, expense.currency),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                Row {
+                    IconButton(onClick = onEdit) {
+                        Icon(Icons.Default.Edit, contentDescription = "Edit expense")
+                    }
+                    IconButton(onClick = onDelete) {
+                        Icon(Icons.Default.Delete, contentDescription = "Delete expense")
+                    }
+                }
             }
             
             Spacer(modifier = Modifier.height(8.dp))
@@ -180,4 +214,54 @@ fun ExpenseItem(expense: ExpenseEntity) {
             }
         }
     }
+}
+
+@Composable
+private fun EditExpenseDialog(
+    expense: ExpenseEntity,
+    onDismiss: () -> Unit,
+    onSave: (ExpenseEntity) -> Unit
+) {
+    var category by remember(expense.id) { mutableStateOf(expense.category) }
+    var amount by remember(expense.id) { mutableStateOf(expense.amount.toString()) }
+    var vendor by remember(expense.id) { mutableStateOf(expense.vendor.orEmpty()) }
+    var mileage by remember(expense.id) { mutableStateOf(expense.mileageAtExpense?.toString().orEmpty()) }
+    var notes by remember(expense.id) { mutableStateOf(expense.notes.orEmpty()) }
+    var currency by remember(expense.id) { mutableStateOf(expense.currency) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Edit Expense") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(value = category, onValueChange = { category = it }, label = { Text("Category") }, singleLine = true)
+                OutlinedTextField(value = amount, onValueChange = { amount = it }, label = { Text("Amount") }, singleLine = true)
+                CurrencySelector(selected = currency, onSelect = { currency = it })
+                OutlinedTextField(value = vendor, onValueChange = { vendor = it }, label = { Text("Vendor") }, singleLine = true)
+                OutlinedTextField(value = mileage, onValueChange = { mileage = it }, label = { Text("Mileage") }, singleLine = true)
+                OutlinedTextField(value = notes, onValueChange = { notes = it }, label = { Text("Notes") }, minLines = 2)
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = {
+                onSave(
+                    expense.copy(
+                        category = category.trim().ifBlank { expense.category },
+                        amount = amount.toDoubleOrNull() ?: expense.amount,
+                        currency = currency,
+                        vendor = vendor.trim().takeIf { it.isNotBlank() },
+                        mileageAtExpense = mileage.toIntOrNull(),
+                        notes = notes.trim().takeIf { it.isNotBlank() }
+                    )
+                )
+            }) {
+                Text("Save")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel")
+            }
+        }
+    )
 }

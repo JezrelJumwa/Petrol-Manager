@@ -28,5 +28,6 @@ data class PartEntity(
     val cost: Double,
     val warranty: String? = null, // e.g., "1 year or 12,000 miles"
     val notes: String? = null,
+    val currency: String = "KSH",
     val createdAt: Long = System.currentTimeMillis()
 )

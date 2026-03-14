@@ -1,0 +1,4 @@
+models:
+  - name: llama3
+    provider: ollama
+    model: llama3:latest

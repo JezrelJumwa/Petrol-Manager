@@ -48,7 +48,7 @@ public final class ExpenseDao_Impl implements ExpenseDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `expenses` (`id`,`vehicleId`,`category`,`amount`,`expenseDate`,`vendor`,`notes`,`mileageAtExpense`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `expenses` (`id`,`vehicleId`,`category`,`amount`,`expenseDate`,`vendor`,`notes`,`mileageAtExpense`,`currency`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -74,7 +74,8 @@ public final class ExpenseDao_Impl implements ExpenseDao {
         } else {
           statement.bindLong(8, entity.getMileageAtExpense());
         }
-        statement.bindLong(9, entity.getCreatedAt());
+        statement.bindString(9, entity.getCurrency());
+        statement.bindLong(10, entity.getCreatedAt());
       }
     };
     this.__deletionAdapterOfExpenseEntity = new EntityDeletionOrUpdateAdapter<ExpenseEntity>(__db) {
@@ -94,7 +95,7 @@ public final class ExpenseDao_Impl implements ExpenseDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `expenses` SET `id` = ?,`vehicleId` = ?,`category` = ?,`amount` = ?,`expenseDate` = ?,`vendor` = ?,`notes` = ?,`mileageAtExpense` = ?,`createdAt` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `expenses` SET `id` = ?,`vehicleId` = ?,`category` = ?,`amount` = ?,`expenseDate` = ?,`vendor` = ?,`notes` = ?,`mileageAtExpense` = ?,`currency` = ?,`createdAt` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -120,8 +121,9 @@ public final class ExpenseDao_Impl implements ExpenseDao {
         } else {
           statement.bindLong(8, entity.getMileageAtExpense());
         }
-        statement.bindLong(9, entity.getCreatedAt());
-        statement.bindLong(10, entity.getId());
+        statement.bindString(9, entity.getCurrency());
+        statement.bindLong(10, entity.getCreatedAt());
+        statement.bindLong(11, entity.getId());
       }
     };
   }
@@ -203,6 +205,7 @@ public final class ExpenseDao_Impl implements ExpenseDao {
           final int _cursorIndexOfVendor = CursorUtil.getColumnIndexOrThrow(_cursor, "vendor");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfMileageAtExpense = CursorUtil.getColumnIndexOrThrow(_cursor, "mileageAtExpense");
+          final int _cursorIndexOfCurrency = CursorUtil.getColumnIndexOrThrow(_cursor, "currency");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final List<ExpenseEntity> _result = new ArrayList<ExpenseEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
@@ -235,9 +238,11 @@ public final class ExpenseDao_Impl implements ExpenseDao {
             } else {
               _tmpMileageAtExpense = _cursor.getInt(_cursorIndexOfMileageAtExpense);
             }
+            final String _tmpCurrency;
+            _tmpCurrency = _cursor.getString(_cursorIndexOfCurrency);
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _item = new ExpenseEntity(_tmpId,_tmpVehicleId,_tmpCategory,_tmpAmount,_tmpExpenseDate,_tmpVendor,_tmpNotes,_tmpMileageAtExpense,_tmpCreatedAt);
+            _item = new ExpenseEntity(_tmpId,_tmpVehicleId,_tmpCategory,_tmpAmount,_tmpExpenseDate,_tmpVendor,_tmpNotes,_tmpMileageAtExpense,_tmpCurrency,_tmpCreatedAt);
             _result.add(_item);
           }
           return _result;
@@ -276,6 +281,7 @@ public final class ExpenseDao_Impl implements ExpenseDao {
           final int _cursorIndexOfVendor = CursorUtil.getColumnIndexOrThrow(_cursor, "vendor");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfMileageAtExpense = CursorUtil.getColumnIndexOrThrow(_cursor, "mileageAtExpense");
+          final int _cursorIndexOfCurrency = CursorUtil.getColumnIndexOrThrow(_cursor, "currency");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final List<ExpenseEntity> _result = new ArrayList<ExpenseEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
@@ -308,9 +314,11 @@ public final class ExpenseDao_Impl implements ExpenseDao {
             } else {
               _tmpMileageAtExpense = _cursor.getInt(_cursorIndexOfMileageAtExpense);
             }
+            final String _tmpCurrency;
+            _tmpCurrency = _cursor.getString(_cursorIndexOfCurrency);
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _item = new ExpenseEntity(_tmpId,_tmpVehicleId,_tmpCategory,_tmpAmount,_tmpExpenseDate,_tmpVendor,_tmpNotes,_tmpMileageAtExpense,_tmpCreatedAt);
+            _item = new ExpenseEntity(_tmpId,_tmpVehicleId,_tmpCategory,_tmpAmount,_tmpExpenseDate,_tmpVendor,_tmpNotes,_tmpMileageAtExpense,_tmpCurrency,_tmpCreatedAt);
             _result.add(_item);
           }
           return _result;
@@ -356,6 +364,7 @@ public final class ExpenseDao_Impl implements ExpenseDao {
           final int _cursorIndexOfVendor = CursorUtil.getColumnIndexOrThrow(_cursor, "vendor");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfMileageAtExpense = CursorUtil.getColumnIndexOrThrow(_cursor, "mileageAtExpense");
+          final int _cursorIndexOfCurrency = CursorUtil.getColumnIndexOrThrow(_cursor, "currency");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final List<ExpenseEntity> _result = new ArrayList<ExpenseEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
@@ -388,9 +397,11 @@ public final class ExpenseDao_Impl implements ExpenseDao {
             } else {
               _tmpMileageAtExpense = _cursor.getInt(_cursorIndexOfMileageAtExpense);
             }
+            final String _tmpCurrency;
+            _tmpCurrency = _cursor.getString(_cursorIndexOfCurrency);
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _item = new ExpenseEntity(_tmpId,_tmpVehicleId,_tmpCategory,_tmpAmount,_tmpExpenseDate,_tmpVendor,_tmpNotes,_tmpMileageAtExpense,_tmpCreatedAt);
+            _item = new ExpenseEntity(_tmpId,_tmpVehicleId,_tmpCategory,_tmpAmount,_tmpExpenseDate,_tmpVendor,_tmpNotes,_tmpMileageAtExpense,_tmpCurrency,_tmpCreatedAt);
             _result.add(_item);
           }
           return _result;

@@ -7,7 +7,12 @@ plugins {
 
 android {
     namespace = "com.cartracker.app"
-    compileSdk = 34
+    compileSdk = 34  // compileSdk 36 requires jmod which doesn't work on M4 Macs
+    
+    // M4 Mac build compatibility
+    androidResources {
+        noCompress += listOf("")  // Prevent compression issues
+    }
 
     defaultConfig {
         applicationId = "com.cartracker.app"
@@ -23,6 +28,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            enableUnitTestCoverage = false
+            enableAndroidTestCoverage = false
+        }
         release {
             isMinifyEnabled = true
             proguardFiles(
@@ -46,7 +56,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.10"  // Compatible with Kotlin 1.9.22
     }
 
     packaging {
@@ -63,7 +73,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.8.2")
 
     // Compose
-    val composeBom = platform("androidx.compose:compose-bom:2024.02.00")
+    val composeBom = platform("androidx.compose:compose-bom:2024.05.00")
     implementation(composeBom)
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")

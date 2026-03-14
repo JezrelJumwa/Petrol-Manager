@@ -14,8 +14,8 @@ import com.cartracker.app.data.model.*
         MileageLogEntity::class,
         ExpenseEntity::class
     ],
-    version = 1,
-    exportSchema = true
+    version = 2,
+    exportSchema = false
 )
 abstract class CarTrackerDatabase : RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao
