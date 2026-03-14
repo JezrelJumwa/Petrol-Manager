@@ -37,4 +37,10 @@ class MaintenanceListViewModel @Inject constructor(
             maintenanceScheduleRepository.deleteSchedule(schedule)
         }
     }
+
+    fun updateSchedule(schedule: MaintenanceScheduleEntity) {
+        viewModelScope.launch {
+            maintenanceScheduleRepository.updateSchedule(schedule)
+        }
+    }
 }

@@ -1,17 +1,17 @@
-#Fri Nov 07 00:58:17 EAT 2025
-base.0=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.10=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
-base.11=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
-base.12=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.2=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
-base.3=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.4=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
-base.5=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
-base.6=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
-base.7=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
-base.8=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
-base.9=C\:\\Users\\jumwa\\StudioProjects\\Petrol-Manager\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
+#Sun Mar 15 00:35:04 EAT 2026
+base.0=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.10=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
+base.11=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/9/classes.dex
+base.12=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+base.2=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/10/classes.dex
+base.3=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex
+base.4=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/12/classes.dex
+base.5=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/13/classes.dex
+base.6=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
+base.7=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex
+base.8=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/5/classes.dex
+base.9=/Users/jezreljumwa/StudioProjects/Petrol-Manager/app/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.10=7/classes.dex
