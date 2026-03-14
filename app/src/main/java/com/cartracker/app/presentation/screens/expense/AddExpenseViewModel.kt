@@ -55,6 +55,11 @@ class AddExpenseViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(notes = notes)
     }
 
+    fun onCurrencyChange(currency: String) {
+        _uiState.value = _uiState.value.copy(currency = currency)
+    }
+
+
     fun saveExpense(vehicleId: Long, onSuccess: () -> Unit) {
         val state = _uiState.value
         var hasError = false
@@ -90,7 +95,8 @@ class AddExpenseViewModel @Inject constructor(
                     amount = amountDouble!!,
                     vendor = state.vendor.trim().takeIf { it.isNotBlank() },
                     mileageAtExpense = mileageInt,
-                    notes = state.notes.trim().takeIf { it.isNotBlank() }
+                    notes = state.notes.trim().takeIf { it.isNotBlank() },
+                    currency = state.currency
                 )
                 expenseRepository.insertExpense(expense)
                 onSuccess()
@@ -115,6 +121,7 @@ data class AddExpenseUiState(
     val vendor: String = "",
     val mileage: String = "",
     val notes: String = "",
+    val currency: String = "KSH",
     val isSaving: Boolean = false,
     val error: String? = null,
     val categoryError: String? = null,

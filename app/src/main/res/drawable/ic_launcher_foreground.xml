@@ -4,13 +4,58 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <group
-        android:scaleX="2.5"
-        android:scaleY="2.5"
-        android:translateX="32.4"
-        android:translateY="32.4">
-        <path
-            android:fillColor="#FFFFFF"
-            android:pathData="M18.92,6.01C18.72,5.42 18.16,5 17.5,5h-11C5.84,5 5.29,5.42 5.08,6.01L3,12v8c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1h12v1c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-8L18.92,6.01zM6.5,16C5.67,16 5,15.33 5,14.5S5.67,13 6.5,13S8,13.67 8,14.5S7.33,16 6.5,16zM17.5,16c-0.83,0 -1.5,-0.67 -1.5,-1.5S16.67,13 17.5,13S19,13.67 19,14.5S18.33,16 17.5,16zM5,11l1.5,-4.5h11L19,11H5z"/>
-    </group>
+
+    <!--
+        Speedometer gauge icon (safe zone: 18–90 on each axis, center 54,54)
+        Arc geometry: center (54,57), radius 28
+          8 o'clock (SVG 150°): (30, 71)
+          4 o'clock (SVG  30°): (78, 71)
+          12 o'clock (SVG 270°): (54, 29)
+    -->
+
+    <!-- Full gauge track: 8 o'clock → 4 o'clock, 240° CW (large-arc=1, sweep=1) -->
+    <path
+        android:strokeColor="#40FFFFFF"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M30,71 A28,28 0 1,1 78,71" />
+
+    <!-- Active arc (amber): 8 o'clock → 12 o'clock, 120° CW (large-arc=0, sweep=1) -->
+    <path
+        android:strokeColor="#FFB300"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M30,71 A28,28 0 0,1 54,29" />
+
+    <!-- Needle: center → 12 o'clock (inner, r=22) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M54,57 L54,35" />
+
+    <!-- Hub outer ring (white), two right-semicircles through top and bottom -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,52 A5,5 0 0,1 54,62 A5,5 0 0,1 54,52 Z" />
+
+    <!-- Hub inner fill (dark navy) -->
+    <path
+        android:fillColor="#0D1B35"
+        android:pathData="M54,54.5 A2.5,2.5 0 0,1 54,59.5 A2.5,2.5 0 0,1 54,54.5 Z" />
+
+    <!-- Fuel-drop shape (amber): round top + pointed bottom -->
+    <!-- Top half-arc CCW left→right, then line to point, close -->
+    <path
+        android:fillColor="#FFB300"
+        android:pathData="M48,80 A6,6 0 0,0 60,80 L54,88 Z" />
+
+    <!-- Fuel-drop highlight (translucent white) -->
+    <path
+        android:fillColor="#60FFFFFF"
+        android:pathData="M51.5,76.5 A2,1.5 0 0,0 54.5,75 A2,1.5 0 0,0 51.5,76.5 Z" />
+
 </vector>

@@ -48,4 +48,10 @@ class ExpenseListViewModel @Inject constructor(
             expenseRepository.deleteExpense(expense)
         }
     }
+
+    fun updateExpense(expense: ExpenseEntity) {
+        viewModelScope.launch {
+            expenseRepository.updateExpense(expense)
+        }
+    }
 }

@@ -6,10 +6,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.DirectionsCar
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -25,6 +30,7 @@ fun VehicleListScreen(
     onNavigateToVehicleDetail: (Long) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    var editingVehicle by remember { mutableStateOf<VehicleEntity?>(null) }
 
     Scaffold(
         topBar = {
@@ -92,19 +98,34 @@ fun VehicleListScreen(
                     items(state.vehicles) { vehicle ->
                         VehicleCard(
                             vehicle = vehicle,
-                            onClick = { onNavigateToVehicleDetail(vehicle.id) }
+                            onClick = { onNavigateToVehicleDetail(vehicle.id) },
+                            onEdit = { editingVehicle = vehicle },
+                            onDelete = { viewModel.deleteVehicle(vehicle) }
                         )
                     }
                 }
             }
         }
     }
+
+    editingVehicle?.let { vehicle ->
+        EditVehicleDialog(
+            vehicle = vehicle,
+            onDismiss = { editingVehicle = null },
+            onSave = { updated ->
+                viewModel.updateVehicle(updated)
+                editingVehicle = null
+            }
+        )
+    }
 }
 
 @Composable
 fun VehicleCard(
     vehicle: VehicleEntity,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -143,6 +164,65 @@ fun VehicleCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
+            IconButton(onClick = onEdit) {
+                Icon(Icons.Default.Edit, contentDescription = "Edit vehicle")
+            }
+            IconButton(onClick = onDelete) {
+                Icon(Icons.Default.Delete, contentDescription = "Delete vehicle")
+            }
         }
     }
+}
+
+@Composable
+private fun EditVehicleDialog(
+    vehicle: VehicleEntity,
+    onDismiss: () -> Unit,
+    onSave: (VehicleEntity) -> Unit
+) {
+    var make by remember(vehicle.id) { mutableStateOf(vehicle.make) }
+    var model by remember(vehicle.id) { mutableStateOf(vehicle.model) }
+    var year by remember(vehicle.id) { mutableStateOf(vehicle.year.toString()) }
+    var licensePlate by remember(vehicle.id) { mutableStateOf(vehicle.licensePlate) }
+    var mileage by remember(vehicle.id) { mutableStateOf(vehicle.currentMileage.toString()) }
+    var notes by remember(vehicle.id) { mutableStateOf(vehicle.notes.orEmpty()) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Edit Vehicle") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(value = make, onValueChange = { make = it }, label = { Text("Make") }, singleLine = true)
+                OutlinedTextField(value = model, onValueChange = { model = it }, label = { Text("Model") }, singleLine = true)
+                OutlinedTextField(value = year, onValueChange = { year = it }, label = { Text("Year") }, singleLine = true)
+                OutlinedTextField(value = licensePlate, onValueChange = { licensePlate = it }, label = { Text("License") }, singleLine = true)
+                OutlinedTextField(value = mileage, onValueChange = { mileage = it }, label = { Text("Mileage") }, singleLine = true)
+                OutlinedTextField(value = notes, onValueChange = { notes = it }, label = { Text("Notes") }, minLines = 2)
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = {
+                val yearInt = year.toIntOrNull() ?: vehicle.year
+                val mileageInt = mileage.toIntOrNull() ?: vehicle.currentMileage
+                onSave(
+                    vehicle.copy(
+                        make = make.trim().ifBlank { vehicle.make },
+                        model = model.trim().ifBlank { vehicle.model },
+                        year = yearInt,
+                        licensePlate = licensePlate.trim().ifBlank { vehicle.licensePlate },
+                        currentMileage = mileageInt,
+                        notes = notes.trim().takeIf { it.isNotBlank() },
+                        updatedAt = System.currentTimeMillis()
+                    )
+                )
+            }) {
+                Text("Save")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel")
+            }
+        }
+    )
 }

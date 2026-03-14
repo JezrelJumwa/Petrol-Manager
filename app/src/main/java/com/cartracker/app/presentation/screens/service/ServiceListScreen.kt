@@ -6,6 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,7 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cartracker.app.data.model.ServiceRecordEntity
-import java.text.NumberFormat
+import com.cartracker.app.presentation.components.CurrencySelector
+import com.cartracker.app.presentation.components.formatAmount
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,6 +31,7 @@ fun ServiceListScreen(
     val serviceRecords by viewModel.serviceRecords.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val totalCost by viewModel.totalCost.collectAsState()
+    var editingRecord by remember { mutableStateOf<ServiceRecordEntity?>(null) }
 
     LaunchedEffect(vehicleId) {
         viewModel.loadServiceRecords(vehicleId)
@@ -87,7 +91,7 @@ fun ServiceListScreen(
                             style = MaterialTheme.typography.titleMedium
                         )
                         Text(
-                            text = NumberFormat.getCurrencyInstance().format(totalCost),
+                            text = "%,.2f".format(totalCost),
                             style = MaterialTheme.typography.headlineMedium,
                             color = MaterialTheme.colorScheme.primary
                         )
@@ -108,17 +112,36 @@ fun ServiceListScreen(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         items(serviceRecords) { record ->
-                            ServiceRecordItem(record = record)
+                            ServiceRecordItem(
+                                record = record,
+                                onEdit = { editingRecord = record },
+                                onDelete = { viewModel.deleteServiceRecord(record) }
+                            )
                         }
                     }
                 }
             }
         }
     }
+
+    editingRecord?.let { record ->
+        EditServiceDialog(
+            record = record,
+            onDismiss = { editingRecord = null },
+            onSave = { updated ->
+                viewModel.updateServiceRecord(updated)
+                editingRecord = null
+            }
+        )
+    }
 }
 
 @Composable
-fun ServiceRecordItem(record: ServiceRecordEntity) {
+fun ServiceRecordItem(
+    record: ServiceRecordEntity,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit
+) {
     val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
     
     Card(
@@ -134,15 +157,25 @@ fun ServiceRecordItem(record: ServiceRecordEntity) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(
-                    text = record.serviceType,
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                    text = NumberFormat.getCurrencyInstance().format(record.cost),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary
-                )
+                Column {
+                    Text(
+                        text = record.serviceType,
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                        text = formatAmount(record.cost, record.currency),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                Row {
+                    IconButton(onClick = onEdit) {
+                        Icon(Icons.Default.Edit, contentDescription = "Edit service")
+                    }
+                    IconButton(onClick = onDelete) {
+                        Icon(Icons.Default.Delete, contentDescription = "Delete service")
+                    }
+                }
             }
             
             Spacer(modifier = Modifier.height(8.dp))
@@ -179,4 +212,54 @@ fun ServiceRecordItem(record: ServiceRecordEntity) {
             }
         }
     }
+}
+
+@Composable
+private fun EditServiceDialog(
+    record: ServiceRecordEntity,
+    onDismiss: () -> Unit,
+    onSave: (ServiceRecordEntity) -> Unit
+) {
+    var serviceType by remember(record.id) { mutableStateOf(record.serviceType) }
+    var mileage by remember(record.id) { mutableStateOf(record.mileageAtService.toString()) }
+    var cost by remember(record.id) { mutableStateOf(record.cost.toString()) }
+    var servicedBy by remember(record.id) { mutableStateOf(record.servicedBy.orEmpty()) }
+    var notes by remember(record.id) { mutableStateOf(record.notes.orEmpty()) }
+    var currency by remember(record.id) { mutableStateOf(record.currency) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Edit Service") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(value = serviceType, onValueChange = { serviceType = it }, label = { Text("Service Type") }, singleLine = true)
+                OutlinedTextField(value = mileage, onValueChange = { mileage = it }, label = { Text("Mileage") }, singleLine = true)
+                OutlinedTextField(value = cost, onValueChange = { cost = it }, label = { Text("Cost") }, singleLine = true)
+                CurrencySelector(selected = currency, onSelect = { currency = it })
+                OutlinedTextField(value = servicedBy, onValueChange = { servicedBy = it }, label = { Text("Serviced By") }, singleLine = true)
+                OutlinedTextField(value = notes, onValueChange = { notes = it }, label = { Text("Notes") }, minLines = 2)
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = {
+                onSave(
+                    record.copy(
+                        serviceType = serviceType.trim().ifBlank { record.serviceType },
+                        mileageAtService = mileage.toIntOrNull() ?: record.mileageAtService,
+                        cost = cost.toDoubleOrNull() ?: record.cost,
+                        currency = currency,
+                        servicedBy = servicedBy.trim().takeIf { it.isNotBlank() },
+                        notes = notes.trim().takeIf { it.isNotBlank() }
+                    )
+                )
+            }) {
+                Text("Save")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel")
+            }
+        }
+    )
 }

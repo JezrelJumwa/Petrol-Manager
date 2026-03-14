@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,6 +30,18 @@ class VehicleListViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = VehicleListUiState.Loading
         )
+
+    fun updateVehicle(vehicle: VehicleEntity) {
+        viewModelScope.launch {
+            vehicleRepository.updateVehicle(vehicle)
+        }
+    }
+
+    fun deleteVehicle(vehicle: VehicleEntity) {
+        viewModelScope.launch {
+            vehicleRepository.deleteVehicle(vehicle)
+        }
+    }
 }
 
 sealed interface VehicleListUiState {
