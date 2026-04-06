@@ -13,6 +13,9 @@ class PartRepository @Inject constructor(
     fun getPartsByVehicle(vehicleId: Long): Flow<List<PartEntity>> =
         partDao.getPartsByVehicle(vehicleId)
 
+    suspend fun insertPart(part: PartEntity): Long =
+        partDao.insertPart(part)
+
     suspend fun updatePart(part: PartEntity) =
         partDao.updatePart(part)
 

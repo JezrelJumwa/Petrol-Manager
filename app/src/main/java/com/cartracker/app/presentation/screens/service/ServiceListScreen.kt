@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cartracker.app.data.model.ServiceRecordEntity
 import com.cartracker.app.presentation.components.CurrencySelector
 import com.cartracker.app.presentation.components.formatAmount
@@ -28,10 +29,11 @@ fun ServiceListScreen(
     onNavigateToAddService: (Long) -> Unit,
     viewModel: ServiceListViewModel = hiltViewModel()
 ) {
-    val serviceRecords by viewModel.serviceRecords.collectAsState()
-    val isLoading by viewModel.isLoading.collectAsState()
-    val totalCost by viewModel.totalCost.collectAsState()
+    val serviceRecords by viewModel.serviceRecords.collectAsStateWithLifecycle()
+    val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
+    val totalCost by viewModel.totalCost.collectAsStateWithLifecycle()
     var editingRecord by remember { mutableStateOf<ServiceRecordEntity?>(null) }
+    var deletingRecord by remember { mutableStateOf<ServiceRecordEntity?>(null) }
 
     LaunchedEffect(vehicleId) {
         viewModel.loadServiceRecords(vehicleId)
@@ -91,7 +93,7 @@ fun ServiceListScreen(
                             style = MaterialTheme.typography.titleMedium
                         )
                         Text(
-                            text = "%,.2f".format(totalCost),
+                            text = formatAmount(totalCost, "KSH"),
                             style = MaterialTheme.typography.headlineMedium,
                             color = MaterialTheme.colorScheme.primary
                         )
@@ -115,7 +117,7 @@ fun ServiceListScreen(
                             ServiceRecordItem(
                                 record = record,
                                 onEdit = { editingRecord = record },
-                                onDelete = { viewModel.deleteServiceRecord(record) }
+                                onDelete = { deletingRecord = record }
                             )
                         }
                     }
@@ -131,6 +133,25 @@ fun ServiceListScreen(
             onSave = { updated ->
                 viewModel.updateServiceRecord(updated)
                 editingRecord = null
+            }
+        )
+    }
+
+    deletingRecord?.let { record ->
+        AlertDialog(
+            onDismissRequest = { deletingRecord = null },
+            title = { Text("Delete Service Record") },
+            text = { Text("Delete \"${record.serviceType}\" service record? This will also remove any linked parts.") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        viewModel.deleteServiceRecord(record)
+                        deletingRecord = null
+                    }
+                ) { Text("Delete", color = MaterialTheme.colorScheme.error) }
+            },
+            dismissButton = {
+                TextButton(onClick = { deletingRecord = null }) { Text("Cancel") }
             }
         )
     }

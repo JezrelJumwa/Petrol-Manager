@@ -30,16 +30,9 @@ class ExpenseListViewModel @Inject constructor(
             _isLoading.value = true
             expenseRepository.getExpensesByVehicle(vehicleId).collect { expenses ->
                 _expenses.value = expenses
+                _totalExpenses.value = expenses.sumOf { it.amount }
                 _isLoading.value = false
             }
-            loadTotalExpenses(vehicleId)
-        }
-    }
-
-    private fun loadTotalExpenses(vehicleId: Long) {
-        viewModelScope.launch {
-            val total = expenseRepository.getTotalExpenses(vehicleId)
-            _totalExpenses.value = total
         }
     }
 

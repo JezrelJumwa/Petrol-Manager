@@ -61,6 +61,7 @@ fun MileageLogScreen(
     val inputError by viewModel.inputError.collectAsStateWithLifecycle()
     val isSaving by viewModel.isSaving.collectAsStateWithLifecycle()
     var editingLog by remember { mutableStateOf<MileageLogEntity?>(null) }
+    var deletingLog by remember { mutableStateOf<MileageLogEntity?>(null) }
 
     LaunchedEffect(vehicleId) {
         viewModel.loadLogs(vehicleId)
@@ -144,7 +145,7 @@ fun MileageLogScreen(
                             MileageLogItem(
                                 log = log,
                                 onEdit = { editingLog = log },
-                                onDelete = { viewModel.deleteLog(log) }
+                                onDelete = { deletingLog = log }
                             )
                         }
                     }
@@ -160,6 +161,25 @@ fun MileageLogScreen(
             onSave = { mileage, notes ->
                 viewModel.updateLog(log, mileage, notes)
                 editingLog = null
+            }
+        )
+    }
+
+    deletingLog?.let { log ->
+        AlertDialog(
+            onDismissRequest = { deletingLog = null },
+            title = { Text("Delete Entry") },
+            text = { Text("Delete mileage entry of ${String.format("%,d", log.mileage)} miles?") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        viewModel.deleteLog(log)
+                        deletingLog = null
+                    }
+                ) { Text("Delete", color = MaterialTheme.colorScheme.error) }
+            },
+            dismissButton = {
+                TextButton(onClick = { deletingLog = null }) { Text("Cancel") }
             }
         )
     }

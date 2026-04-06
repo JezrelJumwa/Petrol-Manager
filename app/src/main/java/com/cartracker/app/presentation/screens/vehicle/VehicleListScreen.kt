@@ -31,6 +31,7 @@ fun VehicleListScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var editingVehicle by remember { mutableStateOf<VehicleEntity?>(null) }
+    var deletingVehicle by remember { mutableStateOf<VehicleEntity?>(null) }
 
     Scaffold(
         topBar = {
@@ -100,7 +101,7 @@ fun VehicleListScreen(
                             vehicle = vehicle,
                             onClick = { onNavigateToVehicleDetail(vehicle.id) },
                             onEdit = { editingVehicle = vehicle },
-                            onDelete = { viewModel.deleteVehicle(vehicle) }
+                            onDelete = { deletingVehicle = vehicle }
                         )
                     }
                 }
@@ -115,6 +116,25 @@ fun VehicleListScreen(
             onSave = { updated ->
                 viewModel.updateVehicle(updated)
                 editingVehicle = null
+            }
+        )
+    }
+
+    deletingVehicle?.let { vehicle ->
+        AlertDialog(
+            onDismissRequest = { deletingVehicle = null },
+            title = { Text("Delete Vehicle") },
+            text = { Text("Delete ${vehicle.year} ${vehicle.make} ${vehicle.model}? All associated records will also be deleted.") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        viewModel.deleteVehicle(vehicle)
+                        deletingVehicle = null
+                    }
+                ) { Text("Delete", color = MaterialTheme.colorScheme.error) }
+            },
+            dismissButton = {
+                TextButton(onClick = { deletingVehicle = null }) { Text("Cancel") }
             }
         )
     }

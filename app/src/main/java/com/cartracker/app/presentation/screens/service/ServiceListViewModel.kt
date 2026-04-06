@@ -30,16 +30,9 @@ class ServiceListViewModel @Inject constructor(
             _isLoading.value = true
             serviceRecordRepository.getServiceRecordsByVehicle(vehicleId).collect { records ->
                 _serviceRecords.value = records
+                _totalCost.value = records.sumOf { it.cost }
                 _isLoading.value = false
             }
-            loadTotalCost(vehicleId)
-        }
-    }
-
-    private fun loadTotalCost(vehicleId: Long) {
-        viewModelScope.launch {
-            val cost = serviceRecordRepository.getTotalServiceCost(vehicleId)
-            _totalCost.value = cost
         }
     }
 
