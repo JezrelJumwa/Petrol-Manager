@@ -30,6 +30,7 @@ fun MaintenanceListScreen(
     val schedules by viewModel.schedules.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
     var editingSchedule by remember { mutableStateOf<MaintenanceScheduleEntity?>(null) }
+    var deletingSchedule by remember { mutableStateOf<MaintenanceScheduleEntity?>(null) }
 
     LaunchedEffect(vehicleId) {
         viewModel.loadSchedules(vehicleId)
@@ -88,7 +89,7 @@ fun MaintenanceListScreen(
                         MaintenanceScheduleItem(
                             schedule = schedule,
                             onEdit = { editingSchedule = schedule },
-                            onDelete = { viewModel.deleteSchedule(schedule) }
+                            onDelete = { deletingSchedule = schedule }
                         )
                     }
                 }
@@ -103,6 +104,25 @@ fun MaintenanceListScreen(
             onSave = { updated ->
                 viewModel.updateSchedule(updated)
                 editingSchedule = null
+            }
+        )
+    }
+
+    deletingSchedule?.let { schedule ->
+        AlertDialog(
+            onDismissRequest = { deletingSchedule = null },
+            title = { Text("Delete Schedule") },
+            text = { Text("Delete \"${schedule.maintenanceType}\" maintenance schedule?") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        viewModel.deleteSchedule(schedule)
+                        deletingSchedule = null
+                    }
+                ) { Text("Delete", color = MaterialTheme.colorScheme.error) }
+            },
+            dismissButton = {
+                TextButton(onClick = { deletingSchedule = null }) { Text("Cancel") }
             }
         )
     }

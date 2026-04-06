@@ -17,6 +17,7 @@ import com.cartracker.app.presentation.screens.expense.ExpenseListScreen
 import com.cartracker.app.presentation.screens.expense.AddExpenseScreen
 import com.cartracker.app.presentation.screens.mileage.MileageLogScreen
 import com.cartracker.app.presentation.screens.parts.PartsListScreen
+import com.cartracker.app.presentation.screens.parts.AddPartScreen
 
 @Composable
 fun CarTrackerNavHost() {
@@ -150,6 +151,22 @@ fun CarTrackerNavHost() {
         ) { backStackEntry ->
             val vehicleId = backStackEntry.arguments?.getLong("vehicleId") ?: return@composable
             PartsListScreen(
+                vehicleId = vehicleId,
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToAddPart = { vId ->
+                    navController.navigate(Screen.AddPart.createRoute(vId))
+                }
+            )
+        }
+
+        composable(
+            route = Screen.AddPart.route,
+            arguments = listOf(navArgument("vehicleId") { type = NavType.LongType })
+        ) { backStackEntry ->
+            val vehicleId = backStackEntry.arguments?.getLong("vehicleId") ?: return@composable
+            AddPartScreen(
                 vehicleId = vehicleId,
                 onNavigateBack = {
                     navController.popBackStack()
