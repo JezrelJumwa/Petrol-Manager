@@ -99,17 +99,46 @@ app/src/main/java/com/cartracker/app/
 │   │   ├── MileageLogEntity.kt
 │   │   └── ExpenseEntity.kt
 │   └── repository/             # Repository layer
-│       └── VehicleRepository.kt
+│       ├── VehicleRepository.kt
+│       ├── ServiceRecordRepository.kt
+│       ├── PartRepository.kt
+│       ├── MaintenanceScheduleRepository.kt
+│       ├── MileageLogRepository.kt
+│       └── ExpenseRepository.kt
 ├── di/                         # Dependency injection modules
 │   └── DatabaseModule.kt
 ├── presentation/
 │   ├── screens/                # UI screens
-│   │   └── vehicle/
-│   │       ├── VehicleListScreen.kt
-│   │       ├── VehicleListViewModel.kt
-│   │       ├── AddVehicleScreen.kt
-│   │       ├── AddVehicleViewModel.kt
-│   │       └── VehicleDetailScreen.kt
+│   │   ├── vehicle/
+│   │   │   ├── VehicleListScreen.kt
+│   │   │   ├── VehicleListViewModel.kt
+│   │   │   ├── AddVehicleScreen.kt
+│   │   │   ├── AddVehicleViewModel.kt
+│   │   │   ├── VehicleDetailScreen.kt
+│   │   │   └── VehicleDetailViewModel.kt
+│   │   ├── service/
+│   │   │   ├── ServiceListScreen.kt
+│   │   │   ├── ServiceListViewModel.kt
+│   │   │   ├── AddServiceScreen.kt
+│   │   │   └── AddServiceViewModel.kt
+│   │   ├── parts/
+│   │   │   ├── PartsListScreen.kt
+│   │   │   ├── PartsListViewModel.kt
+│   │   │   ├── AddPartScreen.kt
+│   │   │   └── AddPartViewModel.kt
+│   │   ├── maintenance/
+│   │   │   ├── MaintenanceListScreen.kt
+│   │   │   ├── MaintenanceListViewModel.kt
+│   │   │   ├── AddMaintenanceScreen.kt
+│   │   │   └── AddMaintenanceViewModel.kt
+│   │   ├── mileage/
+│   │   │   ├── MileageLogScreen.kt
+│   │   │   └── MileageLogViewModel.kt
+│   │   └── expense/
+│   │       ├── ExpenseListScreen.kt
+│   │       ├── ExpenseListViewModel.kt
+│   │       ├── AddExpenseScreen.kt
+│   │       └── AddExpenseViewModel.kt
 │   ├── navigation/             # Navigation setup
 │   │   ├── Screen.kt
 │   │   └── CarTrackerNavHost.kt
@@ -353,7 +382,19 @@ For issues or questions:
 
 ## Changelog
 
-### Version 1.0.0 (Current)
+### Version 1.1.0 (Current)
+- **Bug fix**: `loadTotalCost` / `loadTotalExpenses` dead-code bug — totals always displayed 0.00 (fixed by computing totals inside the `collect` lambda)
+- **Bug fix**: Currency symbol on service and expense summary cards now uses `formatAmount()` instead of raw `String.format`
+- **Bug fix**: `AddMaintenanceScreen` dropdown no longer detaches from its text field (`DropdownMenu` → `ExposedDropdownMenu`)
+- **Bug fix**: Removed no-op `LaunchedEffect` block in `AddVehicleScreen`
+- **Bug fix**: `collectAsState()` → `collectAsStateWithLifecycle()` in `ServiceListScreen` and `ExpenseListScreen`
+- **Feature**: `VehicleDetailScreen` fully implemented — was a stub; now shows vehicle profile card (make/model/year/mileage/VIN/notes) with dynamic top bar title via `VehicleDetailViewModel`
+- **Feature**: Delete confirmation dialogs added to all 6 list screens (Vehicle, Service, Expense, Maintenance, Mileage, Parts)
+- **Feature**: `AddPartScreen` + `AddPartViewModel` — full Add Part UI with service record picker, part fields, currency selector, and warranty input
+- **Feature**: `PartRepository.insertPart()` method added
+- **Feature**: `AddPart` navigation route added; `PartsListScreen` now has a FAB to navigate to `AddPartScreen`
+
+### Version 1.0.0
 - Initial release
 - Vehicle management (Add, List, Detail)
 - Database schema with all entities
