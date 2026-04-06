@@ -11,12 +11,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -47,11 +49,13 @@ import com.cartracker.app.data.model.PartEntity
 fun PartsListScreen(
     vehicleId: Long,
     onNavigateBack: () -> Unit,
+    onNavigateToAddPart: (Long) -> Unit = {},
     viewModel: PartsListViewModel = hiltViewModel()
 ) {
     val parts by viewModel.parts.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
     var editingPart by remember { mutableStateOf<PartEntity?>(null) }
+    var deletingPart by remember { mutableStateOf<PartEntity?>(null) }
 
     LaunchedEffect(vehicleId) {
         viewModel.loadParts(vehicleId)
@@ -72,6 +76,11 @@ fun PartsListScreen(
                     navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = { onNavigateToAddPart(vehicleId) }) {
+                Icon(Icons.Default.Add, contentDescription = "Add Part")
+            }
         }
     ) { padding ->
         if (isLoading) {
@@ -104,7 +113,7 @@ fun PartsListScreen(
                     PartItem(
                         part = part,
                         onEdit = { editingPart = part },
-                        onDelete = { viewModel.deletePart(part) }
+                        onDelete = { deletingPart = part }
                     )
                 }
             }
@@ -118,6 +127,25 @@ fun PartsListScreen(
             onSave = { updated ->
                 viewModel.updatePart(updated)
                 editingPart = null
+            }
+        )
+    }
+
+    deletingPart?.let { part ->
+        AlertDialog(
+            onDismissRequest = { deletingPart = null },
+            title = { Text("Delete Part") },
+            text = { Text("Delete \"${part.partName}\" from parts records?") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        viewModel.deletePart(part)
+                        deletingPart = null
+                    }
+                ) { Text("Delete", color = MaterialTheme.colorScheme.error) }
+            },
+            dismissButton = {
+                TextButton(onClick = { deletingPart = null }) { Text("Cancel") }
             }
         )
     }

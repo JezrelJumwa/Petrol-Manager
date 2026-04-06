@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cartracker.app.data.model.ExpenseEntity
 import com.cartracker.app.presentation.components.CurrencySelector
 import com.cartracker.app.presentation.components.formatAmount
@@ -28,10 +29,11 @@ fun ExpenseListScreen(
     onNavigateToAddExpense: (Long) -> Unit = {},
     viewModel: ExpenseListViewModel = hiltViewModel()
 ) {
-    val expenses by viewModel.expenses.collectAsState()
-    val isLoading by viewModel.isLoading.collectAsState()
-    val totalExpenses by viewModel.totalExpenses.collectAsState()
+    val expenses by viewModel.expenses.collectAsStateWithLifecycle()
+    val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
+    val totalExpenses by viewModel.totalExpenses.collectAsStateWithLifecycle()
     var editingExpense by remember { mutableStateOf<ExpenseEntity?>(null) }
+    var deletingExpense by remember { mutableStateOf<ExpenseEntity?>(null) }
 
     LaunchedEffect(vehicleId) {
         viewModel.loadExpenses(vehicleId)
@@ -91,7 +93,7 @@ fun ExpenseListScreen(
                             style = MaterialTheme.typography.titleMedium
                         )
                         Text(
-                            text = "%,.2f".format(totalExpenses),
+                            text = formatAmount(totalExpenses, "KSH"),
                             style = MaterialTheme.typography.headlineMedium,
                             color = MaterialTheme.colorScheme.primary
                         )
@@ -115,7 +117,7 @@ fun ExpenseListScreen(
                             ExpenseItem(
                                 expense = expense,
                                 onEdit = { editingExpense = expense },
-                                onDelete = { viewModel.deleteExpense(expense) }
+                                onDelete = { deletingExpense = expense }
                             )
                         }
                     }
@@ -131,6 +133,25 @@ fun ExpenseListScreen(
             onSave = { updated ->
                 viewModel.updateExpense(updated)
                 editingExpense = null
+            }
+        )
+    }
+
+    deletingExpense?.let { expense ->
+        AlertDialog(
+            onDismissRequest = { deletingExpense = null },
+            title = { Text("Delete Expense") },
+            text = { Text("Delete \"${expense.category}\" expense of ${expense.amount}?") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        viewModel.deleteExpense(expense)
+                        deletingExpense = null
+                    }
+                ) { Text("Delete", color = MaterialTheme.colorScheme.error) }
+            },
+            dismissButton = {
+                TextButton(onClick = { deletingExpense = null }) { Text("Cancel") }
             }
         )
     }

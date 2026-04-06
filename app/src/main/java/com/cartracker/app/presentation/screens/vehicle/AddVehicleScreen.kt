@@ -22,12 +22,6 @@ fun AddVehicleScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    LaunchedEffect(uiState.error) {
-        uiState.error?.let {
-            // Error will be shown in Snackbar
-        }
-    }
-
     Scaffold(
         topBar = {
             TopAppBar(
