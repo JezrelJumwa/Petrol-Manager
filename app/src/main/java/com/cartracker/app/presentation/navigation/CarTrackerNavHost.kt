@@ -1,5 +1,9 @@
 package com.cartracker.app.presentation.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope.SlideDirection
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -23,9 +27,24 @@ import com.cartracker.app.presentation.screens.parts.AddPartScreen
 fun CarTrackerNavHost() {
     val navController = rememberNavController()
 
+    val motion = tween<Float>(durationMillis = 300)
+    val slide = tween<androidx.compose.ui.unit.IntOffset>(durationMillis = 300)
+
     NavHost(
         navController = navController,
-        startDestination = Screen.VehicleList.route
+        startDestination = Screen.VehicleList.route,
+        enterTransition = {
+            slideIntoContainer(SlideDirection.Start, slide) + fadeIn(motion)
+        },
+        exitTransition = {
+            slideOutOfContainer(SlideDirection.Start, slide) + fadeOut(motion)
+        },
+        popEnterTransition = {
+            slideIntoContainer(SlideDirection.End, slide) + fadeIn(motion)
+        },
+        popExitTransition = {
+            slideOutOfContainer(SlideDirection.End, slide) + fadeOut(motion)
+        }
     ) {
         composable(Screen.VehicleList.route) {
             VehicleListScreen(

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Main app theme (applied after the splash screen). -->
     <style name="Theme.CarServiceTracker" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- Launch theme using the AndroidX Splash Screen API (Android 12+ compatible). -->
+    <style name="Theme.CarServiceTracker.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.CarServiceTracker</item>
+    </style>
 </resources>
