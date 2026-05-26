@@ -1,9 +1,10 @@
 name: Code Quality
 
 on:
-  push:
-    branches: [master, main]
+  # Run only to validate pull requests targeting the default branches,
+  # plus manual dispatch. (No push trigger — conserves Actions minutes.)
   pull_request:
+    branches: [master, main]
   workflow_dispatch:
 
 permissions:

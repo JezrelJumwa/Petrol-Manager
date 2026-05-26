@@ -1,12 +1,11 @@
 name: CodeQL
 
 on:
-  push:
-    branches: [master, main]
+  # Run only to validate pull requests targeting the default branches,
+  # plus manual dispatch. (No push/schedule triggers — conserves Actions minutes.)
   pull_request:
     branches: [master, main]
-  schedule:
-    - cron: '30 4 * * 1'  # weekly, Monday 04:30 UTC
+  workflow_dispatch:
 
 permissions:
   contents: read
