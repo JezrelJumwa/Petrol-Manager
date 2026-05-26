@@ -109,7 +109,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
 
     // Accompanist
-    implementation("com.google.accompanist:accompanist-permissions:0.34.0")
+    implementation("com.google.accompanist:accompanist-permissions:0.37.3")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
