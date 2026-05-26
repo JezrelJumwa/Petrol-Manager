@@ -1,6 +1,23 @@
 # Car Service Tracker
 
+[![Android CI](https://github.com/JezrelJumwa/Petrol-Manager/actions/workflows/android-ci.yml/badge.svg)](https://github.com/JezrelJumwa/Petrol-Manager/actions/workflows/android-ci.yml)
+[![CodeQL](https://github.com/JezrelJumwa/Petrol-Manager/actions/workflows/codeql.yml/badge.svg)](https://github.com/JezrelJumwa/Petrol-Manager/actions/workflows/codeql.yml)
+[![Security Scan](https://github.com/JezrelJumwa/Petrol-Manager/actions/workflows/security-scan.yml/badge.svg)](https://github.com/JezrelJumwa/Petrol-Manager/actions/workflows/security-scan.yml)
+[![Code Quality](https://github.com/JezrelJumwa/Petrol-Manager/actions/workflows/code-quality.yml/badge.svg)](https://github.com/JezrelJumwa/Petrol-Manager/actions/workflows/code-quality.yml)
+
 A modern Android application for tracking vehicle maintenance, service history, parts replacement, and expenses. Built with the latest Android development technologies including Jetpack Compose, Room Database, and Hilt dependency injection.
+
+## Security & CI/CD
+
+This project ships a layered, open-source security and CI pipeline (GitHub Actions). Full details in [SECURITY.md](SECURITY.md).
+
+- **SAST:** CodeQL (`java-kotlin`) + MobSF `mobsfscan` → results in the GitHub Security tab
+- **APK analysis:** MobSF full static scan of the built APK (Docker, REST API)
+- **Secrets:** gitleaks across full git history
+- **Dependencies:** Dependabot + dependency-review + Gradle dependency submission
+- **Quality:** detekt, ktlint, Android Lint
+- **Build:** debug build, lint and unit tests on every push/PR
+- **DAST:** MobSF dynamic analysis is a documented local/manual step (CI runners can't host an instrumented emulator) — see [SECURITY.md](SECURITY.md)
 
 ## Features
 

@@ -1,0 +1,27 @@
+name: Dependency Submission
+
+# Populates GitHub's dependency graph from the Gradle build so Dependabot can
+# raise alerts/PRs for vulnerable dependencies.
+#
+# This is the one workflow that intentionally runs on push to the default
+# branch: the graph can only be submitted post-merge (a PR run can't update the
+# base branch's graph). It's a single lightweight job per merge to master.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  dependency-submission:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Generate and submit dependency graph
+        uses: gradle/actions/dependency-submission@v4

@@ -1,0 +1,32 @@
+# detekt configuration — used on top of the default ruleset
+# (workflow runs with --build-upon-default-config).
+build:
+  maxIssues: 0
+  excludeCorrectable: false
+
+config:
+  validation: true
+  warningsAsErrors: false
+
+complexity:
+  LongMethod:
+    threshold: 80
+  LongParameterList:
+    functionThreshold: 8
+    constructorThreshold: 10
+  TooManyFunctions:
+    thresholdInFiles: 30
+    thresholdInClasses: 25
+
+style:
+  MagicNumber:
+    active: false  # noisy for Compose dp/sp literals
+  ReturnCount:
+    max: 4
+  MaxLineLength:
+    maxLineLength: 140
+
+naming:
+  FunctionNaming:
+    # Jetpack Compose @Composable functions are PascalCase by convention
+    ignoreAnnotated: ['Composable']
