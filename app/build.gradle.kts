@@ -92,7 +92,7 @@ dependencies {
     ksp("androidx.room:room-compiler:$roomVersion")
 
     // Hilt Dependency Injection
-    val hiltVersion = "2.50"
+    val hiltVersion = "2.59.2"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
