@@ -106,7 +106,7 @@ dependencies {
     ksp("androidx.hilt:hilt-compiler:1.1.0")
 
     // JSON serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
 
     // Accompanist
     implementation("com.google.accompanist:accompanist-permissions:0.34.0")
