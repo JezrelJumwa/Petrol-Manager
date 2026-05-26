@@ -1,0 +1,58 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  DETEKT_VERSION: 1.23.6
+  KTLINT_VERSION: 1.2.1
+
+jobs:
+  # detekt and ktlint are run as standalone CLIs (not wired into the Gradle
+  # build) so static analysis stays independent of the Android build graph.
+  detekt:
+    name: detekt (static analysis)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download detekt
+        run: |
+          curl -sSLO "https://github.com/detekt/detekt/releases/download/v${DETEKT_VERSION}/detekt-cli-${DETEKT_VERSION}.zip"
+          unzip -q "detekt-cli-${DETEKT_VERSION}.zip"
+
+      - name: Run detekt
+        run: |
+          "./detekt-cli-${DETEKT_VERSION}/bin/detekt-cli" \
+            --input app/src/main/java \
+            --config .config/detekt/detekt.yml \
+            --build-upon-default-config \
+            --report sarif:detekt.sarif || true
+
+      - name: Upload SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: detekt.sarif
+          category: detekt
+
+  ktlint:
+    name: ktlint (formatting)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download ktlint
+        run: |
+          curl -sSLO "https://github.com/pinterest/ktlint/releases/download/${KTLINT_VERSION}/ktlint"
+          chmod +x ktlint
+      - name: Run ktlint
+        run: ./ktlint "app/src/**/*.kt" --reporter=plain --relative || true
